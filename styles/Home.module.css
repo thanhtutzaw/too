@@ -59,6 +59,7 @@
   height: 100px;
   /* box-shadow:2px 20px 60px #bebebe */
   box-shadow: 20px 20px 60px #bebebe, -12px -30px 60px #ffffff;
+  border-radius: 5px;
   color: rgb(122, 122, 122);
 }
 .btnArrow:hover .iconArrow{
