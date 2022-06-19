@@ -1,9 +1,13 @@
 import Head from 'next/head'
+// import Link from "next/link";
+
 import Image from 'next/image'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
-import {HiOutlineArrowRight} from 'react-icons/hi'
+import Welcome from './Components/Welcome'
 // import {AiOutlineArrowRight} from 'react-icons/ai'
 export default function Home() {
+  const [isSignin, setisSignin] = useState(false);
   return (
     <div className={styles.container}>
       <Head>
@@ -13,14 +17,11 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="#">Too</a>
-        <br/><br />
-        {/* <AiOutlineArrowRight /> */}
-        <button className={styles.btnArrow}>
-        <HiOutlineArrowRight className={styles.iconArrow}/>
-        </button>
-        </h1>
+
+        {
+          isSignin ? (<>Home</>) : (<Welcome />)
+        }
+        
 
 
        
