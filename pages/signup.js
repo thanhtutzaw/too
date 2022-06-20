@@ -16,7 +16,7 @@ function SignUp() {
         router.push("/");
         console.log(user);
       } else {
-        googleSignin()
+        // googleSignin()
         // googleSignin()
         // try {
         //   googleSignin();
@@ -50,7 +50,7 @@ function SignUp() {
   return (
     <div>
       <div>Siginup</div>
-    <button>Google</button>
+    <button onClick={()=> googleSignin()}>Google</button>
     </div>
   );
 }

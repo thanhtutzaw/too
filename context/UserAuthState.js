@@ -10,7 +10,7 @@ function UserAuthState({children}) {
 
   const googleSignin = ()=> {
     const provider = new GoogleAuthProvider();
-    return signInWithRedirect(auth, provider);
+    return signInWithPopup(auth, provider);
     // .then( (res) => {
     //     console.log(res)
     // })
