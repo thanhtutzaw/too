@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from "firebase/auth";
+import {onAuthStateChanged } from "firebase/auth";
 import Head from "next/head";
 // import Link from "next/link";
 
@@ -11,30 +11,35 @@ import styles from "../styles/Home.module.css";
 import Welcome from "./Components/Welcome";
 // import {AiOutlineArrowRight} from 'react-icons/ai'
 export default function Home() {
-  const router = useRouter();
+  // const router = useRouter();
   const { logout } = useAuthContext();
-  const [isSignin, setisSignin] = useState(false);
+
+  const [user, setuser] = useState(() => auth.currentUser || undefined);
+  const loadingUser = user === undefined;
+
 
   const logoutHandle = () => {
     try {
       logout();
-      setisSignin(false);
+      // setisSignin(false);
     } catch (err) {
       console.error(err);
     }
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setisSignin(true);
-        console.log(user);
-      } else {
-        setisSignin(false);
-        console.log("no user in home");
-      }
-    });
+    auth.onAuthStateChanged(setuser)
+    // onAuthStateChanged(auth, (user) => {
+    //   if (user) {
+    //     setisSignin(true);
+    //     console.log(user);
+    //   } else {
+    //     setisSignin(false);
+    //     console.log("no user in home");
+    //   }
+    // });
   }, []);
+  if(loadingUser) return null;
   return (
     // <UserAuthState>
     <div className={styles.container}>
@@ -45,9 +50,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        {isSignin ? (
+        {user ? (
           <>
-            Home
+            <img src={user.photoURL} className={styles.profile}/>
+            {user.email}
             <button onClick={logoutHandle}>Logout</button>
           </>
         ) : (

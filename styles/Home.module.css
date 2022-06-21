@@ -83,6 +83,11 @@
     transform: translateX(0);
   }
 }
+.profile{
+  width:50px;
+  border-radius: 50%;
+  /* height:10px; */
+}
 .description {
   margin: 4rem 0;
   line-height: 1.5;
