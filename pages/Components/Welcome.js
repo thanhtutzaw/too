@@ -6,12 +6,18 @@ import { useAuthContext } from "../../context/UserAuthState";
 
 function Welcome() {
   const { googleSignin } = useAuthContext();
-  const signInHandle = () => {
-    googleSignin()
-    .then( res => {
+  const signInHandle = async() => {
 
-    })
-    .catch( err => console.log(err))
+    try {
+      await googleSignin()
+    } catch (err) {
+      console.log(err)
+    }
+    // googleSignin()
+    // .then( res => {
+
+    // })
+    // .catch( err => console.log(err))
   }
   // const router = userRouter()
   // const singnUp = () => {

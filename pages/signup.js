@@ -11,11 +11,21 @@ function SignUp() {
 
   
   useEffect(() => {
+    let unsub;
     onAuthStateChanged(auth, (user) => {
       if (user) {
         router.push("/");
         console.log(user);
       } else {
+        console.log(user)
+       unsub  = googleSignin()
+       .then( ()=>{
+        // router.push('/')
+       })
+        .then( res => {
+          // router.push("/");
+        })
+        .catch( err => console.log(err))
         // googleSignin()
         // googleSignin()
         // try {
@@ -44,13 +54,13 @@ function SignUp() {
     //   console.error(err)
     // }
 
-    return () => {};
+    return () => unsub;
   }, []);
   
   return (
     <div>
       <div>Siginup</div>
-    <button onClick={()=> googleSignin()}>Google</button>
+    {/* <button onClick={()=> googleSignin()}>Google</button> */}
     </div>
   );
 }

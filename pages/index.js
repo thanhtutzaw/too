@@ -11,7 +11,7 @@ import styles from "../styles/Home.module.css";
 import Welcome from "./Components/Welcome";
 // import {AiOutlineArrowRight} from 'react-icons/ai'
 export default function Home() {
-  const router = useRouter();
+  // const router = useRouter();
   const { logout } = useAuthContext();
   const [isSignin, setisSignin] = useState(false);
 
@@ -23,6 +23,14 @@ export default function Home() {
       console.error(err);
     }
   };
+  onAuthStateChanged( auth, (user) =>{
+    if(user){
+      console.log("user exist")
+    }
+    else{
+      // return( <Welcome></Welcome>)
+    }
+  })
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
