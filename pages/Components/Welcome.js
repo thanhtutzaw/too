@@ -8,6 +8,10 @@ function Welcome() {
   const { googleSignin } = useAuthContext();
   const signInHandle = () => {
     googleSignin()
+    .then( res => {
+
+    })
+    .catch( err => console.log(err))
   }
   // const router = userRouter()
   // const singnUp = () => {
