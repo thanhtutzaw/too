@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 import { useAuthContext } from '../../context/UserAuthState';
 import styles from "../../styles/Home.module.css";
@@ -15,13 +16,14 @@ function Dashboard({ user }) {
       console.error(err);
     }
   };
+
   return (
     <>
-      <img src={user.photoURL} className={styles.profile} />
-      {user.email}
+      <Image src={user?.photoURL} alt={user?.displayName} className={styles.profile}></Image>
+      {user?.email}
       <button onClick={logoutHandle}>Logout</button>
     </>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

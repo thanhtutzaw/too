@@ -10,42 +10,42 @@ function SignUp() {
   const { googleSignin } = useAuthContext();
 
   
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        router.push("/");
-        console.log(user);
-      } else {
-        // googleSignin()
-        // googleSignin()
-        // try {
-        //   googleSignin();
-        // } catch (error) {
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       router.push("/");
+  //       console.log(user);
+  //     } else {
+  //       // googleSignin()
+  //       // googleSignin()
+  //       // try {
+  //       //   googleSignin();
+  //       // } catch (error) {
           
-        // }
-        // googleSignin()
-        // googleSignin()
-        // try {
-        //   googleSignin();
-        //   // router.push('/')
-        // } catch (err) {
-        //   // console.error(err);
-        // }
+  //       // }
+  //       // googleSignin()
+  //       // googleSignin()
+  //       // try {
+  //       //   googleSignin();
+  //       //   // router.push('/')
+  //       // } catch (err) {
+  //       //   // console.error(err);
+  //       // }
         
-      }
+  //     }
 
-    });
-    // .then()
-    // .catch()
-    // try {
-    //   googleSignin()
-    //   router.push('/')
-    // } catch (err) {
-    //   console.error(err)
-    // }
+  //   });
+  //   // .then()
+  //   // .catch()
+  //   // try {
+  //   //   googleSignin()
+  //   //   router.push('/')
+  //   // } catch (err) {
+  //   //   console.error(err)
+  //   // }
 
-    return () => {};
-  }, []);
+  //   return () => {};
+  // }, []);
   
   return (
     <div>
