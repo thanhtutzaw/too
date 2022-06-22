@@ -21,7 +21,7 @@ function Welcome({ user }) {
   return (
     <>
       <h1 className={styles.title}>
-        Welcome to <a href="#">Too</a>
+        TestWelcome to <a href="#">Too</a>
         <br />
         <br />
         {/* <AiOutlineArrowRight /> */}
