@@ -1,17 +1,18 @@
 import React from "react";
 import styles from "../../styles/Home.module.css";
 import { HiOutlineArrowRight } from "react-icons/hi";
-import Link from "next/link";
 import { useAuthContext } from "../../context/UserAuthState";
 
-function Welcome() {
+function Welcome({ user }) {
+
   const { googleSignin } = useAuthContext();
+
   const signInHandle = () => {
     googleSignin()
-    .then( res => {
+      .then(res => {
 
-    })
-    .catch( err => console.log(err))
+      })
+      .catch(err => console.log(err))
   }
   // const router = userRouter()
   // const singnUp = () => {
@@ -25,10 +26,16 @@ function Welcome() {
         <br />
         {/* <AiOutlineArrowRight /> */}
         {/* <Link href="../../signup"> */}
+        {/* {user ? (<></>) : (
           <button onClick={signInHandle} className={styles.btnArrow}>
             <HiOutlineArrowRight className={styles.iconArrow} />
           </button>
+        )} */}
         {/* </Link> */}
+
+        {user ? (<></>) : (<button onClick={signInHandle} className={styles.btnArrow}>
+          <HiOutlineArrowRight className={styles.iconArrow} />
+        </button>)}
       </h1>
     </>
   );

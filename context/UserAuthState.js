@@ -3,12 +3,13 @@ import React, { useContext } from "react";
 import { auth } from "../config/firebase";
 import AuthContext from "./AuthContext";
 
-function UserAuthState({children}) {
-  const logout =()=> {
+function UserAuthState({ children }) {
+
+  const logout = () => {
     return signOut(auth);
   }
 
-  const googleSignin = ()=> {
+  const googleSignin = () => {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(auth, provider);
     // .then( (res) => {
@@ -21,8 +22,8 @@ function UserAuthState({children}) {
 
   return (
     <div>
-        <AuthContext.Provider
-        value={{googleSignin , logout}}
+      <AuthContext.Provider
+        value={{ googleSignin, logout }}
       >
         {children}
       </AuthContext.Provider>
@@ -37,6 +38,6 @@ function UserAuthState({children}) {
 export default UserAuthState;
 
 export function useAuthContext() {
-    return useContext(AuthContext);
-  
+  return useContext(AuthContext);
+
 }
