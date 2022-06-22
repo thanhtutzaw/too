@@ -19,7 +19,7 @@ function Dashboard({ user }) {
 
   return (
     <>
-      <Image src={user?.photoURL} alt={user?.displayName} className={styles.profile}></Image>
+      <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
       {user?.email}
       <button onClick={logoutHandle}>Logout</button>
     </>
