@@ -1,24 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/Home.module.css";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { useAuthContext } from "../../context/UserAuthState";
 
 function Welcome({ user }) {
-const [login, setlogin] = useState(false);
-  const { googleSignin } = useAuthContext();
+const [login, setlogin] = useState(null);
+  // const { googleSignin } = useAuthContext();
+  useEffect(() => {
+    if(login === null) return;
+  
+    let disposed = false;
 
-  const signInHandle = () => {
-    googleSignin()
-      .then(res => {
-        setlogin(true)
-
+    
+      const provider = new GoogleAuthProvider();
+       signInWithPopup(auth, provider)
+      .then( (res) => {
+        console.log(res)
       })
-      .catch(err => console.log(err))
-  }
-  // const router = userRouter()
-  // const singnUp = () => {
+      .catch( (err) => {
+        console.log("error")
+        if(!disposed){
+          setlogin(null)
+        }
+      })
+    
 
+    switch( login){
+       
+    }
+    return () => disposed = true;
+
+  }, [login])
+  
+
+  // const signInHandle = () => {
+  //   googleSignin()
+  //     .then(res => {
+  //       // setlogin(true)
+  //       // console.log("set to true")
+
+  //     })
+  //     .catch(err => console.log(err))
   // }
+
   return (
     <>
       <h1 className={styles.title}>
@@ -34,7 +58,7 @@ const [login, setlogin] = useState(false);
         )} */}
         {/* </Link> */}
 
-        {login ? (<></>) : (<button onClick={signInHandle} className={styles.btnArrow}>
+        { login === null ? (<></>) : (<button onClick={signInHandle} className={styles.btnArrow}>
           <HiOutlineArrowRight className={styles.iconArrow} />
         </button>)}
       </h1>

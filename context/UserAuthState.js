@@ -9,21 +9,30 @@ function UserAuthState({ children }) {
     return signOut(auth);
   }
 
-  const googleSignin = () => {
-    const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
-    // .then( (res) => {
-    //     console.log(res)
-    // })
-    // .catch( (err) => {
-    //     console.error(err)
-    // });
-  }
+  // const googleSignin = () => {
+  //   const provider = new GoogleAuthProvider();
+  //   return signInWithPopup(auth, provider)
+  //   .then( (res) => {
+  //     console.log(res)
+  //   })
+  //   .catch( (err) => {
+  //     console.log("error")
+  //     if(!disposed){
+  //       setlogin(null)
+  //     }
+  //   })
+  //   // .then( (res) => {
+  //   //     console.log(res)
+  //   // })
+  //   // .catch( (err) => {
+  //   //     console.error(err)
+  //   // });
+  // }
 
   return (
     <div>
       <AuthContext.Provider
-        value={{ googleSignin, logout }}
+        value={{  logout }}
       >
         {children}
       </AuthContext.Provider>
