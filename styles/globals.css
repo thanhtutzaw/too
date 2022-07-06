@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  display: flex;
+  justify-content: center;
 }
 
 a {
@@ -13,8 +15,8 @@ a {
 
 * {
   box-sizing: border-box;
+  /* outline: 3px solid red; */
 }
 button{
   cursor: pointer;
-  
 }

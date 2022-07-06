@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
 import { auth } from "../config/firebase";
+import { useAuthContext } from "../context/UserAuthState";
 import styles from "../styles/Home.module.css";
 import Dashboard from "./Components/Dashboard";
 import Welcome from "./Components/Welcome";
 // import {AiOutlineArrowRight} from 'react-icons/ai'
 export default function Home() {
-  // const router = useRouter();
-  // const { logout } = useAuthContext();
 
-  const [user, setuser] = useState(() => auth.currentUser || undefined);
-  const loadingUser = user === undefined;
-  // const [local, setlocal] = useState(false);
-  // console.log(auth.currentUser, user)
-
-
+  const { user, setuser, loadingUser } = useAuthContext()
 
   useEffect(() => {
     auth.onAuthStateChanged(setuser);
@@ -53,13 +47,13 @@ export default function Home() {
   if (loadingUser) return null;
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
+      
         {user ? (
-          <Dashboard user={user} />
+          <Dashboard />
         ) : (
-          <Welcome user={user} />
+          <Welcome />
         )}
-      </main>
+      
 
     </div>
 

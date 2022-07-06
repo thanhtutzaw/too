@@ -1,13 +1,11 @@
-import React, { useCallback, useEffect } from "react";
-import { useAuthContext } from "../context/UserAuthState";
-import { useRouter } from "next/router";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../config/firebase";
+// import React, { useCallback, useEffect } from "react";
+// import { useAuthContext } from "../context/UserAuthState";
+// import { useRouter } from "next/router";
+// import { onAuthStateChanged } from "firebase/auth";
+// import { auth } from "../config/firebase";
 // import Router from 'next/dist/server/router';
 
 function SignUp() {
-  const router = useRouter();
-  const { googleSignin } = useAuthContext();
 
   
   // useEffect(() => {
@@ -47,12 +45,12 @@ function SignUp() {
   //   return () => {};
   // }, []);
   
-  return (
-    <div>
-      <div>Siginup</div>
-    <button onClick={()=> googleSignin()}>Google</button>
-    </div>
-  );
+  // return (
+  //   <div>
+  //     <div>Siginup</div>
+  //   <button onClick={()=> googleSignin()}>Google</button>
+  //   </div>
+  // );
 }
 
 export default SignUp;

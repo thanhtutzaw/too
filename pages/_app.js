@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Too</title>
-        <meta name="description" content="for you" />
+        <meta name="Too" content="for you" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <UserAuthState>

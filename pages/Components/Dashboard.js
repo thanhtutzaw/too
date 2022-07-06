@@ -1,28 +1,23 @@
-import Image from 'next/image';
-import React from 'react'
-import { useAuthContext } from '../../context/UserAuthState';
+import React, { useState } from 'react'
+// import { useAuthContext } from '../../context/UserAuthState';
 import styles from "../../styles/Home.module.css";
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 
 
-function Dashboard({ user }) {
-  const { logout } = useAuthContext()
-
-  const logoutHandle = () => {
-    try {
-      logout();
-      // setisSignin(false);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+function Dashboard() {
+  const [showModal, setshowModal] = useState(false);
+  
 
   return (
-    <>
-      <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
-      {user?.email}
-      <button onClick={logoutHandle}>Logout</button>
-    </>
+    
+      <section className={styles.main}>
+    <Header setshowModal={setshowModal}/>
+
+    {showModal ? <Sidebar  setshowModal={setshowModal}/> : null}
+      
+    </section>
   );
 }
 
