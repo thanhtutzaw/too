@@ -7,8 +7,8 @@ import Welcome from "./Components/Welcome";
 // import {AiOutlineArrowRight} from 'react-icons/ai'
 export default function Home() {
 
-  const { user, setuser, loadingUser } = useAuthContext()
-
+  
+  const { user,setuser, loadingUser } = useAuthContext()
   useEffect(() => {
     auth.onAuthStateChanged(setuser);
   }, []);
