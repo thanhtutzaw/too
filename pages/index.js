@@ -44,7 +44,7 @@ export default function Home() {
 
   // }
 
-  if (loadingUser) return null;
+  if (loadingUser) return <>Am i null ?</>;
   return (
     <div className={styles.container}>
       
