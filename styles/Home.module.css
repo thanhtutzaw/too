@@ -1,4 +1,5 @@
 
+
 .container {
   background-color: white;
   width:100vw;
@@ -7,7 +8,6 @@
 
   padding: 0 2rem;
 }
-
 .main {
   user-select: none;
   min-height: 100vh;

@@ -2,17 +2,35 @@ import { useEffect, useState } from "react";
 import { auth } from "../config/firebase";
 import { useAuthContext } from "../context/UserAuthState";
 import styles from "../styles/Home.module.css";
+// import global from "../styles/global.css";
 import Dashboard from "./Components/Dashboard";
 import Welcome from "./Components/Welcome";
 // import {AiOutlineArrowRight} from 'react-icons/ai'
 export default function Home() {
 
-  
-  const { user,setuser, loadingUser } = useAuthContext()
+  const [issignin, setissignin] = useState(true);
+
+
+  const { user, setuser, loadingUser } = useAuthContext()
+  // useEffect(
+  //   // const local = localStorage.getItem('randid')
+  //   //   if (local !== null) {
+  //   //     console.log(local)
+  //   //   }
+  //   () => {
+      
+  //   }, []);
+  // console.log(issignin)
+
   useEffect(() => {
     auth.onAuthStateChanged(setuser);
+    // return () => {
+    //   cleanup
+    // };
   }, []);
-
+  // if(user){
+  //   // setissignin(false)
+  // }
   // var request = window.indexedDB.open("firebaseLocalStorageDb", 1);
   // request.onsuccess = function (e) {
   //   setlocal(true)
@@ -44,18 +62,27 @@ export default function Home() {
 
   // }
 
-  if (loadingUser) return <>Am i null ?</>;
+  // if (loadingUser) return <>Am i null ?</>;
+  // {loadingUser ? <>Loading</> : null}
+  // if(!user) return (<Welcome />)
+
   return (
-    <div className={styles.container}>
-      
-        {user ? (
-          <Dashboard />
+    <>
+
+
+      {/* {user && (<>User exist</>)}
+      {!user && (<>No user</>)} */}
+      {/* {user && issignin && <Dashboard/>} */}
+      <div className={styles.container}>
+        <Dashboard />
+      </div>
+      {/* {user ? (
         ) : (
           <Welcome />
-        )}
-      
+        )} */}
+    </>
 
-    </div>
+
 
   );
 }

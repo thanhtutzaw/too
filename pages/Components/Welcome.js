@@ -3,7 +3,7 @@ import styles from "../../styles/Home.module.css";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { useAuthContext } from "../../context/UserAuthState";
 
-function Welcome() {
+export default function Welcome() {
 const [login, setlogin] = useState(true);
   const { googleSignin } = useAuthContext();
 
@@ -67,4 +67,3 @@ const [login, setlogin] = useState(true);
   );
 }
 
-export default Welcome;

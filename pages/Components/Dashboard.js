@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 // import { useAuthContext } from '../../context/UserAuthState';
 import styles from "../../styles/Home.module.css";
 import Header from './Header';
@@ -6,7 +6,7 @@ import Sidebar from './Sidebar';
 
 
 
-function Dashboard() {
+export default function Dashboard() {
   const [showModal, setshowModal] = useState(false);
   
 
@@ -21,4 +21,3 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;

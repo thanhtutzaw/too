@@ -1,12 +1,11 @@
-import React from 'react'
-import { useAuthContext } from '../../context/UserAuthState';
-import styles from "../../styles/Home.module.css";
 import Image from 'next/image'
+import styles from "../../styles/Home.module.css";
+import { useAuthContext } from '../../context/UserAuthState';
 import {MdOutlineDarkMode} from 'react-icons/md'
 import {VscSignOut} from 'react-icons/vsc'
 import {CgClose} from 'react-icons/cg'
 
-function Sidebar({setshowModal}) {
+export default function Sidebar({setshowModal}) {
     const { logout, user } = useAuthContext()
     const modalHandle = () => {
         setshowModal( (prevstate ) => !prevstate)
@@ -55,5 +54,3 @@ function Sidebar({setshowModal}) {
             </section>
     )
 }
-
-export default Sidebar
