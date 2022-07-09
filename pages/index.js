@@ -1,3 +1,4 @@
+import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../config/firebase";
 import { useAuthContext } from "../context/UserAuthState";
@@ -8,26 +9,55 @@ import Welcome from "./Components/Welcome";
 // import {AiOutlineArrowRight} from 'react-icons/ai'
 export default function Home() {
 
-  const [issignin, setissignin] = useState(true);
+  // const [issignin, setissignin] = useState(true);
 
 
   const { user, setuser, loadingUser } = useAuthContext()
-  // useEffect(
-  //   // const local = localStorage.getItem('randid')
-  //   //   if (local !== null) {
-  //   //     console.log(local)
-  //   //   }
-  //   () => {
-      
-  //   }, []);
-  // console.log(issignin)
+// const [isSignin, setisSignin] = useState(true);
+// console.log("first")
 
-  useEffect(() => {
-    auth.onAuthStateChanged(setuser);
-    // return () => {
-    //   cleanup
-    // };
+
+// if(user){
+  //   console.log("user exist")
+  // }
+  
+  // if(local){
+    //   console.log("local")
+    // }else{
+      //   console.log("n0")
+      // }
+      useEffect(() => {
+
+        
+// const local = localStorage.getItem('user')
+// if(local){
+//   console.log("true")
+// }
+// else{
+//   console.log("false")
+// }
+    // const local = localStorage.getItem('user')
+
+    // if(local){
+    //   console.log("first")
+    // }
+    // if(localStorage.getItem('user') == true){
+    //   console.log("true")
+    // }
+    // console.log("set here")
+    // setuser(localStorage.getItem('user'))
+    // auth.onAuthStateChanged(setuser);
+    
+    // return unsub;
   }, []);
+  // onAuthStateChanged(auth , (user) => {
+  //   if(user){
+  //     setuser(JSON.parse(localStorage.getItem('user')))
+  //     console.log(user)
+  //   }else{
+  //     setuser('')
+  //   }
+  // })
   // if(user){
   //   // setissignin(false)
   // }
@@ -74,7 +104,10 @@ export default function Home() {
       {!user && (<>No user</>)} */}
       {/* {user && issignin && <Dashboard/>} */}
       <div className={styles.container}>
-        <Dashboard />
+        {/* {user ? <Dashboard /> : <Welcome/>} */}
+        {/* {user ? <Dashboard /> : <Welcome/>} */}
+        {user ? <Dashboard/> : <Welcome/>}
+        
       </div>
       {/* {user ? (
         ) : (

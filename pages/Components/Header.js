@@ -2,9 +2,14 @@ import styles from "../../styles/Home.module.css";
 import Image from 'next/image'
 import profile from '../../public/profile.jpg'
 import { useAuthContext } from '../../context/UserAuthState';
+import { useEffect } from "react";
 
-export default function Header({setshowModal, src}) {
+export default function Header({setshowModal}) {
+    useEffect(() => {
+        
+    }, []);
     const {user} = useAuthContext()
+    
 
     const modalHandle = () => {
         setshowModal( (prevstate ) => !prevstate)
@@ -15,8 +20,12 @@ export default function Header({setshowModal, src}) {
             <input className={styles.searchBar} type="text" />
             <div className={styles.mainProfile} onClick={modalHandle}>
 
-            {!user && <Image unoptimized={true} src={profile} alt={user?.displayName} width="40" height="40" className={styles.profile}></Image>}
-            {user && <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="40" height="40" className={styles.profile}></Image>}
+        
+                {/* {<h2>{user?.uid}</h2>} */}
+{/* 
+            {!user && <Image unoptimized={true} src={profile} alt={user?.displayName} width="40" height="40" className={styles.profile}></Image>} */}
+            {/* {user && JSON.stringify(user)} */}
+            {user && <Image unoptimized={true} src={user.photoURL} alt={user.displayName} width="40" height="40" className={styles.profile}></Image>}
             
             </div>
         </div>
