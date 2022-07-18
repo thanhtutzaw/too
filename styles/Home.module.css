@@ -235,3 +235,12 @@
   padding: 2rem 0;
   flex: 1;
 }
+
+.signinBtn{
+  text-decoration: none;
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 20px;
+  padding:5px 9px;
+  background-color: #1ed317;
+  color:rgb(255, 255, 255);
+}

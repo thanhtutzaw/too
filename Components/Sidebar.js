@@ -1,23 +1,27 @@
 import Image from 'next/image'
-import styles from "../../styles/Home.module.css";
-import { useAuthContext } from '../../context/UserAuthState';
+import styles from "../styles/Home.module.css";
+import { useAuthContext } from '../context/UserAuthState';
 import {MdOutlineDarkMode} from 'react-icons/md'
 import {VscSignOut} from 'react-icons/vsc'
 import {CgClose} from 'react-icons/cg'
 
-export default function Sidebar({setshowModal}) {
-    const { logout, user } = useAuthContext()
+export default function Sidebar({setshowModal, user}) {
+    // const { logout, user } = useAuthContext()
     const modalHandle = () => {
         setshowModal( (prevstate ) => !prevstate)
     }
-    const logoutHandle = () => {
-        try {
-            logout();
-            // setisSignin(false);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+
+    function signoutHandle (){
+        return user.signOut() , modalHandle()
+}
+    // const logoutHandle = () => {
+    //     try {
+    //         logout();
+    //         // setisSignin(false);
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // };
     return (
             <section className={styles.card}>
                 <div onClick={modalHandle} className={styles.closeBtn}><CgClose/></div>
@@ -29,10 +33,10 @@ export default function Sidebar({setshowModal}) {
 
                     <div>
                         <div className={styles.name}>
-                            {user?.displayName}
+                            {user.displayName}
                         </div>
 
-                        <div className={styles.mail}>{user?.email}
+                        <div className={styles.mail}> {user.email}
                         </div>
                     </div>
 
@@ -44,7 +48,7 @@ export default function Sidebar({setshowModal}) {
                         <div><MdOutlineDarkMode /></div>
                         <div>Appearance</div>
                     </div>
-                    <div onClick={logoutHandle} className={styles.tool}>
+                    <div onClick={signoutHandle} className={styles.tool}>
                         <div><VscSignOut/></div>
                         <div>Signout</div>
                     </div>

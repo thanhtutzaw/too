@@ -1,8 +1,9 @@
 // import UserAuthState from '../context/UserAuthState'
 import Head from 'next/head'
-import UserAuthState from '../context/UserAuthState'
 import '../styles/globals.css'
+import initAuth from '../utils/initAuth'
 
+initAuth()
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -11,9 +12,9 @@ function MyApp({ Component, pageProps }) {
         <meta name="Too" content="for you" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <UserAuthState>
+
         <Component {...pageProps} />
-      </UserAuthState>
+
     </>
 
   )
