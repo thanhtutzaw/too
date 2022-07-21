@@ -9,6 +9,8 @@ import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import SsrAuthRequired from "./ssr-auth-required";
 import Link from "next/link";
+import Notes from "../Components/Notes";
+import {SiAddthis} from 'react-icons/si'
 // import initAuth from "../utils/initAuth";
 
 // initAuth()
@@ -52,9 +54,13 @@ const Home = () => {
 
         <section className={styles.main}>
           <Header user={AuthUser} showModal={showModal} setshowModal={setshowModal} />
-          {showModal ? <Sidebar user={AuthUser} setshowModal={setshowModal} /> : null}
-          <Link href='/ssr-auth-required'>SSR required</Link>
+          <Notes />
+          {/* <Link href='/ssr-auth-required'>SSR required</Link> */}
+
+
+          {showModal ? <Sidebar  user={AuthUser} setshowModal={setshowModal} /> : null}
         </section>
+        <SiAddthis className={styles.addBtn} /> 
 
       </div>
     </>

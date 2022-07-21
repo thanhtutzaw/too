@@ -11,6 +11,7 @@
   "dependencies": {
     "firebase": "9.9",
     "firebase-admin": "^11.0.0",
+    "framer-motion": "^6.5.1",
     "netlify-cli": "^10.10.0",
     "next": "12.1.6",
     "next-absolute-url": "^1.2.2",

@@ -5,9 +5,9 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   display: flex;
   justify-content: center;
-  /* background-color: #dd0000; */
+  background-color: #dd0000;
   /* background-color: #ececec; */
-  background-color: #ececec;
+  /* background-color: #ececec; */
   text-align: center;
 }
 
@@ -21,6 +21,6 @@ a {
   box-sizing: border-box;
   /* outline: 3px solid red; */
 }
-button{
+button , searchCloseBtn{
   cursor: pointer;
 }

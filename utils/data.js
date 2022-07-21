@@ -1,0 +1,52 @@
+export const notes = [
+    {
+        id:1,
+        title:"Title1 111111111111111111111111111",
+        text:"dfsdfdfdsf"
+    },
+    {
+        id:2,
+        title:"Title22222222222222222222222222222",
+        text:"fdfghhrrhrehreherr"
+    },
+    {
+        id:3,
+        title:"Title33333333333333333333333333333333333333333333333333333333333333333",
+        text:"jkjluyuykukuy"
+    },
+    {
+        id:4,
+        title:"Title444444444444444444444444444444444444444444444444444444",
+        text:"rrtretytuy"
+    },
+    {
+        id:5,
+        title:"Title555555555555555555555555555555555555555555555555555",
+        text:"mut ddffgsdfg gfdgf rgrrdhjf ggr  rter "
+    },
+    {
+        id:6,
+        title:"Title6666666666666666666666666666666666666",
+        text:"jtrrtrrr"
+    },
+    {
+        id:7,
+        title:"Title777777777777777777777777777777777",
+        text:"dfsdfdfdsf"
+    },
+    {
+        id:8,
+        title:"Title888888888888888888888",
+        text:"dfsdfdfdsf"
+    },
+    {
+        id:9,
+        title:"Title99999999999999999999",
+        text:"dfsdfdfdsf"
+    },
+    {
+        id:10,
+        title:"Title10",
+        text:"dfsdfdfdsf"
+    },
+]

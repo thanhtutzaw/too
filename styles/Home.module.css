@@ -2,7 +2,6 @@
 
 .container {
   background-color: white;
-  width:100vw;
   max-width: 500px;
   margin:0;
 
@@ -11,7 +10,7 @@
 .main {
   user-select: none;
   min-height: 100vh;
-  padding: 2rem 0;
+  padding: 1rem 0;
   flex: 1;
   /* display: flex;
   flex-direction: column;
@@ -126,6 +125,11 @@
 }
 
 .card {
+  /* position: relative; */
+position: absolute;
+top: 0px;
+right:-3px;
+background-color: rgb(255, 255, 255);
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -135,7 +139,7 @@
   border-radius: 10px;
   font-size: 17px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  /* max-width: 300px; */
+  /* max-width: 500px; */
 }
 
 .card:hover,
@@ -193,17 +197,16 @@
   transition: all .1s ease-in;
   background-color: rgba(0, 0, 0, .1);
 }
-.profile{
+.row{
   display: flex;
   justify-content: space-between;
   align-items: center;
 
 }
-.mainProfile{
+.mainProfile , .searchCloseBtn , .addBtn , .closeBtn{
   cursor: pointer;
 }
 .closeBtn{
-  cursor: pointer;
   font-size: 1.5em;
   display: flex;
   justify-content: flex-end;
@@ -211,20 +214,43 @@
   /* float:right; */
 }
 .searchBar{
-  
+  /* display:flex;
+  flex-direction:column; */
       /* margin-top: 4rem; */
-      border:1px solid gray;
-      max-width:60%;
+      /* border:1px solid gray; */
+      background-color: #eeeeee;
+      /* max-width:60%; */
       height:2rem;
-      letter-spacing: .5px;
+      /* letter-spacing: .5px; */
       padding:.35em .85em;
       border-radius: 26px;
+      border:none;
+      display: flex;
+      align-items: center;
   
   
 }
-.searchBar:focus{
+.searchCloseBtn{
+opacity: 1;
+visibility: visible;
+}
+.searchCloseBtnHide{
+opacity: 0;
+visibility: hidden;    
+}
+
+.searchInput{
   border:none;
-  outline: 2px solid #1ed317;
+  background-color: transparent;
+  outline: none;
+}
+.searchInput:focus > .logo{
+  /* border:none;
+  outline: none;
+  background: rgb(255, 255, 255); */
+  /* box-shadow: 0px 5px 10px #e9e9e9; */
+
+  /* outline: 2px solid #1ed317; */
 }
 .welcome{
   display: flex;
@@ -243,4 +269,12 @@
   padding:5px 9px;
   background-color: #1ed317;
   color:rgb(255, 255, 255);
+}
+.addBtn{
+  position: fixed;
+  bottom: 30px;
+  right:44px;
+  transform: scale(2.5);
+  background-color: white;
+  border-radius: 10px;
 }
