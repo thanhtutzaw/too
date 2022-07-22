@@ -19,6 +19,7 @@ a {
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
   /* outline: 3px solid red; */
 }
 button , searchCloseBtn{
