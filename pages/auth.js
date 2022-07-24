@@ -5,13 +5,11 @@ import styles from "../styles/Home.module.css";
 
 const  Auth = () =>{
   return (
-    <div className={styles.container}>
 
-        <section className={styles.main}>
+    <>
     <h3>Welcome to Too</h3>
     <FirebaseAuth />
-    </section>
-    </div>
+    </>
   )
 }
 

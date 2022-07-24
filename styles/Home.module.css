@@ -1,23 +1,30 @@
 
 
 .container {
-  background-color: white;
-  max-width: 500px;
-  margin:0;
-
-  padding: 0 2rem;
+  /* max-width: 500px; */
+  /* padding: 0 2rem; */
+  /* outline:3px solid rgb(0, 4, 255); */
 }
 .main {
   user-select: none;
   min-height: 100vh;
-  padding: 1rem 0;
-  flex: 1;
+  max-width: 500px;
+  width:100vw;
+  outline:3px solid rgb(0, 248, 0);
+  /* flex: 1; */
+  background-color: white;
   /* display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; */
 }
-
+.container{
+  padding: 2em;
+}
+.row{
+  display: flex;
+  
+}
 .footer {
   display: flex;
   flex: 1;
@@ -252,7 +259,7 @@ visibility: hidden;
 
   /* outline: 2px solid #1ed317; */
 }
-.welcome{
+/* .welcome{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -260,7 +267,7 @@ visibility: hidden;
   min-height: 100vh;
   padding: 2rem 0;
   flex: 1;
-}
+} */
 
 .signinBtn{
   text-decoration: none;
@@ -271,10 +278,13 @@ visibility: hidden;
   color:rgb(255, 255, 255);
 }
 .addBtn{
-  position: fixed;
+  /* position: fixed; */
   bottom: 30px;
   right:44px;
   transform: scale(2.5);
   background-color: white;
   border-radius: 10px;
+}
+.bottomNav{
+  
 }
