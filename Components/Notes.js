@@ -7,18 +7,17 @@ function Notes() {
     // const [selectedId, setselectedId] = useState(null);
     function Card({ id, title, text }) {
         return (
+            <Link href={`/${id}`}>
+                <li className={styles.card}>
 
-            <Link href='/abc'>
-            <li className={styles.card}>
+                    <div className={styles.cardTitle}>
+                        <h5>{title}</h5>
+                    </div>
 
-<div className={styles.cardTitle}>
-    <h5>{title}</h5>
-</div>
-
-<div className={styles.cardText}>
-    <p>{text}</p>
-</div>
-</li>
+                    <div className={styles.cardText}>
+                        <p>{text}</p>
+                    </div>
+                </li>
             </Link>
         )
         {/* <AnimatePresence>
@@ -37,7 +36,8 @@ function Notes() {
 
     }
     return (
-        // <Link href={`/${id}`}>
+
+
         <ul className={styles.cardContainer}>
             {notes.map(note =>
             (
@@ -46,7 +46,7 @@ function Notes() {
             )
             )}
         </ul>
-        // </Link>
+
     )
 }
 

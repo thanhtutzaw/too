@@ -10,7 +10,7 @@
   min-height: 100vh;
   max-width: 500px;
   width:100vw;
-  outline:3px solid rgb(0, 248, 0);
+  /* outline:3px solid rgb(0, 248, 0); */
   /* flex: 1; */
   background-color: white;
   /* display: flex;
@@ -20,11 +20,17 @@
 }
 .container{
   padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap:1.3em;
 }
 .row{
-  display: flex;
-  
+  display: flex;  
 }
+.header{
+  /* outline: 2px solid blueviolet; */
+}
+
 .footer {
   display: flex;
   flex: 1;
@@ -226,7 +232,7 @@ background-color: rgb(255, 255, 255);
       /* margin-top: 4rem; */
       /* border:1px solid gray; */
       background-color: #eeeeee;
-      /* max-width:60%; */
+      max-width:60%;
       height:2rem;
       /* letter-spacing: .5px; */
       padding:.35em .85em;

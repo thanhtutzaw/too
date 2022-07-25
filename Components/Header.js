@@ -21,7 +21,7 @@ export default function Header({ showModal, setshowModal, user }) {
 
     }
     return (
-        <div className={styles.header}>
+        <header className={styles.header}>
             <div className={styles.row}>
                 <div><h1>Too</h1></div>
 
@@ -60,7 +60,7 @@ export default function Header({ showModal, setshowModal, user }) {
 
             </div>
 
-        </div>
+        </header>
 
     )
 }
