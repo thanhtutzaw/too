@@ -74,7 +74,7 @@ const Home = () => {
         
           {/* <AnimateSharedLayout type="crossfade"> */}
           <Header user={AuthUser} showModal={showModal} setshowModal={setshowModal} />
-          <Notes />
+          {AuthUser.displayName ? (<Notes />) : null}
           {/* <Router>
         <Route path={["/:id" , "/"]} component={Store} />
     </Router> */}

@@ -19,7 +19,7 @@
   align-items: center; */
 }
 .container{
-  padding: 2em;
+  padding: 1.2em;
   display: flex;
   flex-direction: column;
   gap:1.3em;
@@ -232,7 +232,7 @@ background-color: rgb(255, 255, 255);
       /* margin-top: 4rem; */
       /* border:1px solid gray; */
       background-color: #eeeeee;
-      max-width:60%;
+      /* max-width:60%; */
       height:2rem;
       /* letter-spacing: .5px; */
       padding:.35em .85em;
@@ -240,22 +240,27 @@ background-color: rgb(255, 255, 255);
       border:none;
       display: flex;
       align-items: center;
-  
-  
-}
-.searchCloseBtn{
-opacity: 1;
-visibility: visible;
-}
-.searchCloseBtnHide{
-opacity: 0;
-visibility: hidden;    
-}
+      /* width: 100%; */
+      max-width: 50%;
+      
+    }
+    .searchCloseBtn{
+      opacity: 1;
+      visibility: visible;
+    }
+    .searchCloseBtnHide{
+      opacity: 0;
+      visibility: hidden;    
+    }
+    
+    .searchInput{
+      /* width:100%; */
+      border:none;
+      background-color: transparent;
+      outline: none;
+      /* max-width: 70px; */
+      width: 100%;
 
-.searchInput{
-  border:none;
-  background-color: transparent;
-  outline: none;
 }
 .searchInput:focus > .logo{
   /* border:none;
@@ -277,11 +282,15 @@ visibility: hidden;
 
 .signinBtn{
   text-decoration: none;
-  border: 1px solid rgb(226, 226, 226);
+  /* border: 1px solid rgb(226, 226, 226); */
   border-radius: 20px;
   padding:5px 9px;
   background-color: #1ed317;
   color:rgb(255, 255, 255);
+  /* max-width:30%;
+  width:100%; */
+  display: inline-block;
+  position: relative;
 }
 .addBtn{
   /* position: fixed; */
