@@ -15,7 +15,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <main className={styles.main}>
         <div className={styles.container}>
+        {/* <LayoutGroup> */}
           <Component {...pageProps} />
+        {/* </LayoutGroup> */}
         </div>
 
       </main>

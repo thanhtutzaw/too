@@ -3,21 +3,24 @@ import styles from '../styles/Notes.module.css'
 import { notes } from '../utils/data'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
-function Notes() {
+import { useRouter } from 'next/router'
+function Notes({selectedId}) {
     // const [selectedId, setselectedId] = useState(null);
+//     const router = useRouter()
+//   const { currentId } = router.query
+//   console.log(currentId)
     function Card({ id, title, text }) {
         return (
             <Link href={`/${id}`}>
-                <li className={styles.card}>
-
-                    <div className={styles.cardTitle}>
+                <motion.li layoutId={id}  className={styles.card}>
+                    <div  className={styles.cardTitle}>
                         <h5>{title}</h5>
                     </div>
 
-                    <div className={styles.cardText}>
+                    <div  className={styles.cardText}>
                         <p>{text}</p>
                     </div>
-                </li>
+                </motion.li>
             </Link>
         )
         {/* <AnimatePresence>
@@ -41,7 +44,8 @@ function Notes() {
         <ul className={styles.cardContainer}>
             {notes.map(note =>
             (
-                <Card key={note.id} {...note} />
+                <Card key={note.id} {...note}  />
+
                 // <Card key={note.id} {...note} isSelected={note.id === selectedId} />
             )
             )}
