@@ -1,28 +1,22 @@
 // import UserAuthState from '../context/UserAuthState'
 import Head from 'next/head'
 import '../styles/globals.css'
+// import styles from "../styles/Home.module.css";
 import initAuth from '../utils/initAuth'
-import styles from "../styles/Home.module.css";
+import { LayoutGroup } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 initAuth()
 function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Head>
-        <title>Too</title>
-        <meta name="Too" content="for you" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={styles.main}>
-        <div className={styles.container}>
-        {/* <LayoutGroup> */}
+  const router = useRouter()
+  const {id} = router.query
+  const getLayout = Component.getLayout || ((page) => page)
+  return getLayout(
+   
+        <LayoutGroup type="crossfade" id={id}>
           <Component {...pageProps} />
-        {/* </LayoutGroup> */}
-        </div>
+        </LayoutGroup>
 
-      </main>
-
-    </>
 
   )
 }

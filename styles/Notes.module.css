@@ -8,12 +8,13 @@
   text-align: left;
   padding: 0;
   
-
+  
   /* border: 2px solid red; */
   /* justify-content: center; */
 }
 .card {
   /* width:100%; */
+  background-color:rgb(230, 230, 230);
   word-break: break-all;
   flex-grow: 1;
   border: 1px solid rgb(163, 163, 163);
@@ -46,9 +47,19 @@
 /* outline: 3px solid blue; */
 display: flex;
 justify-content: center;
+align-items: cen;
 flex-direction: column;
 text-align: left;
 gap:2em;
+background-color: rgba(231, 0, 252, 0.301);
+position: fixed;
+/* top:0;
+
+left:0; */
+width:100%;
+max-width: 500px;
+height:50%;
+/* padding:0; */
 }
 .titleInput{
 max-width:70vw;

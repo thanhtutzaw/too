@@ -10,18 +10,21 @@ function Notes({selectedId}) {
 //   const { currentId } = router.query
 //   console.log(currentId)
     function Card({ id, title, text }) {
+        const router = useRouter()
+        // <Link href={`/${id}`}>
         return (
-            <Link href={`/${id}`}>
-                <motion.li layoutId={id}  className={styles.card}>
-                    <div  className={styles.cardTitle}>
+            <>
+                <motion.li onClick={()=>router.push(`/${id}`,undefined,{shallow:true})} layoutId={id}  className={styles.card}>
+                    <motion.div layoutId={`title-${id}`}   className={styles.cardTitle}>
                         <h5>{title}</h5>
-                    </div>
+                    </motion.div>
 
-                    <div  className={styles.cardText}>
+                    <motion.div layoutId={`text-${id}`}  className={styles.cardText}>
                         <p>{text}</p>
-                    </div>
+                    </motion.div>
                 </motion.li>
-            </Link>
+     
+            </>
         )
         {/* <AnimatePresence>
                 {selectedId && (
