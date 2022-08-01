@@ -49,10 +49,12 @@ const Note = ({ note }) => {
         <AnimatePresence>
           {/* <p className={styles.viewContainer}>{id}</p> */}
           {/* <Link scroll={false} href='/' ><a className={styles.viewContainer}>{id}</a></Link> */}
-          <div onClick={()=>window.history.back()}className={styles.viewContainer}>
+          <Link scroll={false} href='/'>
+          <div className={styles.viewContainer}>
             <p>{note.title}</p>
             <p>{note.text}</p>
           </div>
+          </Link>
 
         </AnimatePresence>
       </LayoutGroup>
