@@ -10,3 +10,8 @@ module.exports = {
     domains: ['lh3.googleusercontent.com'],
   },
 }
+module.exports = {
+  experimental: {
+    scrollRestoration: true,
+  },
+};

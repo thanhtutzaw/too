@@ -51,8 +51,9 @@ align-items: cen;
 flex-direction: column;
 text-align: left;
 gap:2em;
-background-color: rgba(231, 0, 252, 0.301);
 position: fixed;
+background-color: rgb(219, 219, 219);
+/* background-color: rgba(231, 0, 252, 0.301); */
 /* top:0;
 
 left:0; */

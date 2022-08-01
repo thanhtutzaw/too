@@ -4,6 +4,7 @@ import { notes } from '../utils/data'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+
 function Notes({selectedId}) {
     // const [selectedId, setselectedId] = useState(null);
 //     const router = useRouter()
@@ -14,15 +15,19 @@ function Notes({selectedId}) {
         // <Link href={`/${id}`}>
         return (
             <>
-                <motion.li onClick={()=>router.push(`/${id}`,undefined,{shallow:true})} layoutId={id}  className={styles.card}>
-                    <motion.div layoutId={`title-${id}`}   className={styles.cardTitle}>
+                    <Link scroll={false} href={`/${id}`}>
+                    <a>
+                <li  layoutId={id}  className={styles.card}>
+                    <div layoutId={`title-${id}`}   className={styles.cardTitle}>
                         <h5>{title}</h5>
-                    </motion.div>
+                    </div>
 
-                    <motion.div layoutId={`text-${id}`}  className={styles.cardText}>
+                    <div layoutId={`text-${id}`}  className={styles.cardText}>
                         <p>{text}</p>
-                    </motion.div>
-                </motion.li>
+                    </div>
+                </li>
+                    </a>
+                    </Link>
      
             </>
         )

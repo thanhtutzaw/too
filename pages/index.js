@@ -1,5 +1,5 @@
 // import global from "../styles/global.css";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useAuthContext } from "../context/UserAuthState";
 import styles from "../styles/Home.module.css";
 // import Dashboard from "../Components/Dashboard";
@@ -17,6 +17,8 @@ import { BrowserRouter, BrowserRouter as Router, Route, Routes } from "react-rou
 
 import { useRouter } from "next/router";
 import Layout from "../Components/Layout";
+import Head from "next/head";
+import Home from "./Home";
 // import initAuth from "../utils/initAuth";
 
 // initAuth()
@@ -46,13 +48,21 @@ import Layout from "../Components/Layout";
 //   )
 
 // }
-const Home = () => {
-  const [showModal, setshowModal] = useState(false);
+// const HeaderMemo = memo(
+//   () => {
+// return (
+//   <Header />
+// )
+  
+//   }
+// )
+const Index = () => {
+  const AuthUser = useAuthUser()
   const router = useRouter()
   // const {id} = router.query
   console.log(router.asPath)
   const { id } = router.query
-
+  
   // const router = useRouter()
   // const { id } = router.query || '/'
   //     if(!id){
@@ -84,7 +94,7 @@ const Home = () => {
   // const buff = Buffer.from(privateKey).toString('base64');
   // console.log(buff);
   // console.log(id , typeof(id))
-  const AuthUser = useAuthUser()
+  
   // if (AuthUser) {
   //   console.log(AuthUser.email)
   // }
@@ -92,8 +102,11 @@ const Home = () => {
   return (
 
     <>
+    {/* <HeaderMemo /> */}
+    
       {/* <AnimateSharedLayout type="crossfade"> */}
-      <Header user={AuthUser} showModal={showModal} setshowModal={setshowModal} />
+      <Home/>
+
       {AuthUser.displayName && <Notes />}
 
       {/* {AuthUser.displayName ? (
@@ -110,7 +123,6 @@ const Home = () => {
       {/* <Link href='/ssr-auth-required'>SSR required</Link> */}
 
 
-      {showModal ? <Sidebar user={AuthUser} setshowModal={setshowModal} /> : null}
       {/* </AnimateSharedLayout> */}
 
       {/* <div className={styles.bottomNav}>
@@ -124,7 +136,7 @@ const Home = () => {
 
   );
 }
-Home.getLayout = function getLayout(page) {
+Index.getLayout = function getLayout(page) {
   // const AuthUser = useAuthUser()
   return (
     <Layout>
@@ -132,6 +144,9 @@ Home.getLayout = function getLayout(page) {
     </Layout>
   )
 }
+
+
 export const getServerSideProps = withAuthUserTokenSSR()()
 
-export default withAuthUser()(Home)
+export default withAuthUser()(Index)
+

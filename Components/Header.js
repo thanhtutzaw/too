@@ -6,9 +6,14 @@ import Sidebar from "./Sidebar";
 import { motion } from 'framer-motion'
 import { CgClose } from 'react-icons/cg'
 import { useState } from "react";
+import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
 // import { useAuthContext } from '../../context/UserAuthState';
 
-export default function Header({ showModal, setshowModal, user }) {
+  function Header ({user}) {
+  const [showModal, setshowModal] = useState(false);
+
+    
+    // const user = useAuthUser()
     const [Search, setSearch] = useState();
     // const {user} = useAuthContext()
     const [isClose, setisClose] = useState(false);
@@ -23,11 +28,13 @@ export default function Header({ showModal, setshowModal, user }) {
     return (
         <header className={styles.header}>
             <div className={styles.row}>
+
+                <Link href='/'>
                 <div><h1>Too</h1></div>
+                </Link>
 
                 <div className={styles.searchBar}>
                     <input value={Search} onChange={(e) => setSearch(e.target.value)} className={styles.searchInput} disabled={user ? '' : 'disable'} type="text" />
-
                     <CgClose onClick={searchCloseHandle} className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide} />
                 </div>
 
@@ -45,27 +52,29 @@ export default function Header({ showModal, setshowModal, user }) {
 
                         {/* {showModal ? <Sidebar user={user} setshowModal={setshowModal} /> : null} */}
                     </motion.div>
-
                     :
-
-
-
                     <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
-
-
-
                 }
                 {/* {console.log(user.photoURL)} */}
 
 
             </div>
 
+            {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
         </header>
+
+
 
     )
 }
-
+// export default withAuthUser()(Header)
 
 // Header.getServerSideProps = async () => {
 //     console.log("server stuff")
 //   }
+
+// export const getServerSideProps = withAuthUserTokenSSR()()
+
+export default Header
+
+

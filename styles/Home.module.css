@@ -139,8 +139,8 @@
 
 .card {
   /* position: relative; */
-position: relative;
-top: -1200px;
+position: fixed;
+/* top: -1200px; */
 
 background-color: rgb(255, 255, 255);
   margin: 1rem;
