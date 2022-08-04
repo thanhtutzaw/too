@@ -5,11 +5,11 @@ import Link from "next/link";
 import Sidebar from "./Sidebar";
 import { motion } from 'framer-motion'
 import { CgClose } from 'react-icons/cg'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
 // import { useAuthContext } from '../../context/UserAuthState';
 
-  function Header ({user}) {
+  function Header ({user }) {
   const [showModal, setshowModal] = useState(false);
 
     
@@ -25,8 +25,33 @@ import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-a
         setshowModal((prevstate) => !prevstate)
 
     }
+
+    const [float, setfloat] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+          const offset =22;
+          console.log(offset , "offset")
+          const { scrollTop } = document.documentElement
+          console.log(scrollTop)
+          const scrolled = scrollTop > offset
+
+          if(float !== scrolled){
+            console.log("scroll in ")
+            setfloat(scrolled)
+          }
+        };
+        // clean up code
+        // document.removeEventListener('scroll', handleScroll);
+        document.addEventListener('scroll', handleScroll);
+        // if(offset >= 69){
+        //   setfloat(true)
+        //   console.log("header ...")
+        // }
+        return () => document.removeEventListener('scroll', handleScroll);
+    }, [float]);
     return (
-        <header className={styles.header}>
+        <header className={float ? styles.headerfloat : styles.header}>
             <div className={styles.row}>
 
                 <Link href='/'>

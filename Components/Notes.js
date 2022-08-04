@@ -5,17 +5,16 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-function Notes({ selectedId }) {
+function Notes() {
     // const [selectedId, setselectedId] = useState(null);
     //     const router = useRouter()
     //   const { currentId } = router.query
     //   console.log(currentId)
     function Card({ id, title, text }) {
-        const router = useRouter()
         // <Link href={`/${id}`}>
         return (
             <>
-                <Link prefetch scroll={false} href={`/${id}`}>
+                <Link  scroll={false} href={`/${id}`}>
                     <a>
                         <li className={styles.card}>
                             <div layoutId={`title-${id}`} className={styles.cardTitle}>

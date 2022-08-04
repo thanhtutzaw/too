@@ -1,5 +1,5 @@
 // import global from "../styles/global.css";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useAuthContext } from "../context/UserAuthState";
 import styles from "../styles/Home.module.css";
 // import Dashboard from "../Components/Dashboard";
@@ -63,6 +63,8 @@ const Index = () => {
   console.log(router.asPath)
   const { id } = router.query
   
+  
+    
   // const router = useRouter()
   // const { id } = router.query || '/'
   //     if(!id){
@@ -105,7 +107,7 @@ const Index = () => {
     {/* <HeaderMemo /> */}
     
       {/* <AnimateSharedLayout type="crossfade"> */}
-      <Home/>
+      <Home />
 
       {AuthUser.displayName && <Notes />}
 

@@ -26,17 +26,17 @@ export default function Note2() {
   // console.log(typeof(id), id)
 
 
-  useEffect(() => {
-    notes.map(note => {
-      if (id == note.id) {
-        setnote({ ...note })
-        setEditTitle(note.title)
-        setEditText(note.text)
-        console.log(note)
-      }
+  // useEffect(() => {
+  //   notes.map(note => {
+  //     if (id == note.id) {
+  //       setnote({ ...note })
+  //       setEditTitle(note.title)
+  //       setEditText(note.text)
+  //       console.log(note)
+  //     }
 
-    })
-  }, [id]);
+  //   })
+  // }, [id]);
 
 
   {/* <textarea className={styles.titleInput} type="text" onChange={(e) => { setEditTitle(e.target.value) }} value={EditTitle}></textarea> */}

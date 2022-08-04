@@ -3,11 +3,11 @@ import React from 'react'
 import Header from '../Components/Header'
 import Note from './[id]'
 
-export default function Home() {
+export default function Home({float}) {
     const user = useAuthUser()
   return (
     <>
-    <Header user={user} />
+    <Header float={float} user={user} />
     {/* <Note /> */}
     </>
 

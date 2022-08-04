@@ -22,14 +22,29 @@
   padding: 1.2em;
   display: flex;
   flex-direction: column;
-  gap:1.3em;
+  /* gap:1.3em; */
 }
 .row{
   display: flex;  
 }
 .header{
   /* outline: 2px solid blueviolet; */
+  background-color: white;
 }
+.headerfloat{
+  /* padding-top: 60px; */
+  background-color: white;
+  /* outline: 2px solid blueviolet; */
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  width:450px; 
+  /* box-shadow:0 0px rgba(0, 0, 0, 0) inset,0 -10px  rgb(49, 49, 49) inset, 0px 0 blue inset, 0px 0 green inset; */
+  box-shadow: rgba(0,0,0,.02) 0px 30px 30px,rgba(0,0,0,.03) 0px 0px 8px,rgba(0,0,0,.05) 0px 1px 0px;
+}
+/* .headerContent{
+  margin:0 0 2rem 0;
+} */
 
 .footer {
   display: flex;

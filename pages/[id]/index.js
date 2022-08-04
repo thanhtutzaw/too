@@ -7,8 +7,9 @@ import Notes from '../../Components/Notes'
 import Home from '../Home'
 import styles from "../../styles/Notes.module.css";
 import Link from 'next/link'
-import { AnimatePresence, LayoutGroup } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { notes } from '../../utils/data'
+import { BiArrowBack } from 'react-icons/bi'
 
 
 export const getStaticPaths = async () => {
@@ -28,7 +29,7 @@ export const getStaticProps = async (context) => {
   const note = notes.find(note => note.id == id)
   return {
     props: { note },
-    revalidate: 200
+    revalidate: 100
   }
 }
 function NewHeader() {
@@ -43,23 +44,24 @@ const Note = ({ note }) => {
   // id = parseInt(id)
   return (
     <>
-      <LayoutGroup>
-        <Home />
-        {/* <Header /> */}
-        {id && 
-        <AnimatePresence>
-        {/* <p className={styles.viewContainer}>{id}</p> */}
-        {/* <Link scroll={false} href='/' ><a className={styles.viewContainer}>{id}</a></Link> */}
-        <Link scroll={false} href='/'>
-        <div className={styles.viewContainer}>
-          <p>{note.title}</p>
-          <p>{note.text}</p>
-        </div>
-        </Link>
+      {/* <Header /> */}
+      {id &&
+        <> <div className={styles.viewContainer}>
+          
+            <div onClick={()=>window.history.back()} className={styles.backBtn}>
+              <BiArrowBack />
+            </div>
+          
+          <motion.div layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
+            {note.title}
+          </motion.div>
+          <motion.div layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
+            {note.text}
+          </motion.div>
 
-      </AnimatePresence>
-        }
-      </LayoutGroup>
+        </div>
+        </>
+      }
     </>
 
   )
@@ -68,8 +70,10 @@ Note.getLayout = function getLayout(page) {
   return (
     <Layout>
       {/* <Home user={user}/> */}
+      {/* <Home /> */}
+
       {page}
-      <Notes />
+      {/* <Notes /> */}
     </Layout>
 
   )
