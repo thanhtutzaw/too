@@ -38,7 +38,7 @@
   position: sticky;
   z-index: 1;
   top: 0;
-  width:450px; 
+  max-width:450px; 
   /* box-shadow:0 0px rgba(0, 0, 0, 0) inset,0 -10px  rgb(49, 49, 49) inset, 0px 0 blue inset, 0px 0 green inset; */
   box-shadow: rgba(0,0,0,.02) 0px 30px 30px,rgba(0,0,0,.03) 0px 0px 8px,rgba(0,0,0,.05) 0px 1px 0px;
 }
