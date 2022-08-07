@@ -52,10 +52,10 @@ const Note = ({ note }) => {
               <BiArrowBack />
             </div>
           
-          <motion.div layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
+          <motion.div className={styles.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
             {note.title}
           </motion.div>
-          <motion.div layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
+          <motion.div className={styles.textView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
             {note.text}
           </motion.div>
 
@@ -69,6 +69,9 @@ const Note = ({ note }) => {
   )
 }
 Note.getLayout = function getLayout(page) {
+  const router = useRouter()
+  let { id } = router.query
+  console.log(id)
   return (
     <Layout>
       {/* <Home user={user}/> */}

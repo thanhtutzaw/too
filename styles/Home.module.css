@@ -8,6 +8,9 @@
 .main {
   user-select: none;
   min-height: 100vh;
+  
+  /* height: auto; */
+  /* height: 100vh; */
   max-width: 500px;
   width:100vw;
   /* outline:3px solid rgb(0, 248, 0); */
@@ -17,6 +20,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center; */
+}
+@supports (-webkit-touch-callout: none){
+  .main{
+    min-height: -webkit-fill-available;
+  }
 }
 .container{
   padding: 1.2em;

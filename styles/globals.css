@@ -7,7 +7,13 @@ body {
   /* background-color: #ececec; */
   background-color: #ececec;
   text-align: center;
+  /* min-height: 100vh;
+  min-height: -webkit-fill-available; */
 }
+/* html{
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+} */
 
 a {
   color: inherit;
