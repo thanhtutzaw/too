@@ -45,7 +45,7 @@ const Note = ({ note }) => {
   return (
     <>
       {/* <Header /> */}
-      {id &&
+      {id ?
         <> <div className={styles.viewContainer}>
           
             <div onClick={()=>window.history.back()} className={styles.backBtn}>
@@ -61,6 +61,8 @@ const Note = ({ note }) => {
 
         </div>
         </>
+        :
+        null
       }
     </>
 
