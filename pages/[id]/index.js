@@ -80,9 +80,7 @@ const Note = ({ note }) => {
   )
 }
 Note.getLayout = function getLayout(page) {
-  const router = useRouter()
-  let { id } = router.query
-  console.log(id)
+  
   return (
     <Layout>
       {/* <Home user={user}/> */}

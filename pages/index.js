@@ -109,8 +109,8 @@ const Index = () => {
       {/* <AnimateSharedLayout type="crossfade"> */}
       <Home />
 
-       <Notes />
-      {/* {AuthUser.displayName && <Notes />} */}
+       
+      {AuthUser.displayName && <Notes />}
 
       {/* {AuthUser.displayName ? (
         <> */}
