@@ -43,7 +43,24 @@
 .cardTitle {
 }
 
+
 .viewContainer {
+/* border: 3px solid red; */
+  /* min-height: 88vh; */
+
+  height:87vh;    
+  /* height: 90vh; */
+  /* min-height: 100vh; */
+  /* height: 100%; */
+
+  /* min-height: 100vh;
+  min-height: -webkit-fill-available;
+  min-height: fill-available;
+  min-height: -moz-available; */
+
+  /* min-height: -webkit-fill-available; */
+  /* min-height: 100vh; */
+   /* min-height: -webkit-fill-available;  */
   /* min-height: 93.8vh; */
   /* min-height: 88.8vh; */
   /* outline: 3px solid blue; */
@@ -53,7 +70,7 @@
   height: 87vh; */
   display: flex;
   /* justify-content: center; */
-  align-items: cen;
+  /* align-items: center; */
   flex-direction: column;
   text-align: left;
   gap: 2em;
@@ -98,7 +115,8 @@ left:0; */
 }
 .textView{
   /* min-height: 80vh; */
-  /* height: 500px; */
+/* min-height: 70vh; */
+/* height: 100%; */
 
 }
 .titleView{
