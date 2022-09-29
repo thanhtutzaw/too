@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "firebase": "9.9",
-    "firebase-admin": "^11.0.0",
+    "firebase-admin": "^11.0.1",
     "framer-motion": "^6.5.1",
-    "netlify-cli": "^10.10.0",
+    "netlify-cli": "^2.37.0",
     "next": "12.1.6",
     "next-absolute-url": "^1.2.2",
     "next-firebase-auth": "^1.0.0-canary.9",

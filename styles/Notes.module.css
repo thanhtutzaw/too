@@ -1,54 +1,63 @@
 .cardContainer {
-  overflow: hidden;
-  list-style: none;
-  display: flex;
+  overflow       : hidden;
+  list-style     : none;
+  display        : flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.7em;
-  text-align: left;
-  padding: 0;
-  margin-top: 1.5rem;
-  /* padding-top: 60px; */
+  flex-wrap      : wrap;
+  gap            : 0.7em;
+  text-align     : left;
+  padding        : 0;
+  margin-top     : 3.8rem;
 
-  /* border: 2px solid red; */
-  /* justify-content: center; */
 }
+
 .card {
   /* width:100%; */
   background-color: rgb(255, 255, 255);
-  word-break: break-all;
-  flex-grow: 1;
-  border: 1px solid rgb(163, 163, 163);
-  /* border: 2px solid red; */
-  border-radius: 20px;
-  /* max-width: 150px;
-  width:100%; */
-  /* max-width: 40%; */
-  padding: 1em;
-  cursor: pointer;
-  /* cursor: pointer; */
-  /* padding: 0 1.2em; */
-  /* word-wrap: break-word; */
-  /* width:50%; */
-  /* flex:1; */
-  /* flex-wrap: wrap; */
-  max-width: 150px;
+  word-break      : break-all;
+  flex-grow       : 1;
+  border          : 1px solid rgb(163, 163, 163);
+  /* border       : 2px solid red; */
+  border-radius   : 20px;
+  /* max-width    : 150px;
+  width           :100%; */
+  /* max-width    : 40%; */
+  padding         : 1em;
+  cursor          : pointer;
+  /* cursor       : pointer; */
+  /* padding      : 0 1.2em; */
+  /* word-wrap    : break-word; */
+  /* width        :50%; */
+  /* flex         :1; */
+  /* flex-wrap    : wrap; */
+
+  /* max-width: 150px; */
   width: 100%;
+  color: inherit;
+  width: 37%;
 }
+
 .card h5 {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom : 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 14px;
-  margin-bottom: 10px;
+  margin-bottom : 10px;
 }
-.cardTitle {
-}
+
+.cardTitle {}
 
 
 .viewContainer {
-/* border: 3px solid red; */
+  /* border: 3px solid red; */
   /* min-height: 88vh; */
+  /* height: 100vh; */
+  height: 87vh;
 
-  height:87vh;    
+  /* height: 100vh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: stretch;
+    min-height: -moz-available; */
+
   /* height: 90vh; */
   /* min-height: 100vh; */
   /* height: 100%; */
@@ -60,7 +69,7 @@
 
   /* min-height: -webkit-fill-available; */
   /* min-height: 100vh; */
-   /* min-height: -webkit-fill-available;  */
+  /* min-height: -webkit-fill-available;  */
   /* min-height: 93.8vh; */
   /* min-height: 88.8vh; */
   /* outline: 3px solid blue; */
@@ -68,19 +77,19 @@
   /* height: 87vh; */
   /* max-height: 100%;
   height: 87vh; */
-  display: flex;
+  display           : flex;
   /* justify-content: center; */
-  /* align-items: center; */
-  flex-direction: column;
-  text-align: left;
-  gap: 2em;
-  /* position: fixed; */
-  backdrop-filter: blur(3px);
-  /* outline:3px solid red; */
-  /* height:100vh; */
-  /* padding:1rem; */
-  background-color: white;
-  
+  /* align-items    : center; */
+  flex-direction    : column;
+  text-align        : left;
+  gap               : 2em;
+  /* position       : fixed; */
+  backdrop-filter   : blur(3px);
+  /* outline        :3px solid red; */
+  /* height         :100vh; */
+  /* padding        :1rem; */
+  background-color  : white;
+
   /* background-color:rgba(0,0,0,.5); */
   /* background-color:rgba(200,200,200,.4); */
   /* background-color:white; */
@@ -89,41 +98,48 @@
   /* top:0;
 
 left:0; */
-  width: 100%;
-  max-width: 500px;
+  width     : 100%;
+  max-width : 500px;
   /* padding:0; */
 }
+
 .titleInput {
   max-width: 70vw;
-  height: auto;
+  height   : auto;
 }
+
 .textInput {
   max-width: 70vw;
-  height: 100px;
+  height   : 100px;
 }
+
 .titleLabel {
-  position: absolute;
+  position      : absolute;
   pointer-events: none;
 }
+
 .textarea {
   overflow: hidden;
-  resize: none;
+  resize  : none;
 }
+
 .backBtn {
-  width: 30px;
+  width    : 30px;
   font-size: 1.3em;
 }
-.textView{
+
+.textView {
   /* min-height: 80vh; */
-/* min-height: 70vh; */
-/* height: 100%; */
+  /* min-height: 70vh; */
+  /* height: 100%; */
 
 }
-.titleView{
 
-}
-.titleView, .textView{
-  outline:3px solid red !important;
+.titleView {}
+
+.titleView,
+.textView {
+  outline: 3px solid red !important;
 }
 
 .backBtn {

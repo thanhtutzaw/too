@@ -13,10 +13,11 @@ function Notes() {
     function Card({ id, title, text }) {
         // <Link href={`/${id}`}>
         return (
-            <>
-                <Link  scroll={false} href={`/${id}`}>
-                    <a>
-                        <li className={styles.card}>
+
+            <li className={styles.card} >
+                
+                    <Link scroll={false} href={`/${id}`}>
+                        <div>
                             <div layoutId={`title-${id}`} className={styles.cardTitle}>
                                 <h5>{title}</h5>
                             </div>
@@ -24,11 +25,12 @@ function Notes() {
                             <div layoutId={`text-${id}`} className={styles.cardText}>
                                 <p>{text}</p>
                             </div>
-                        </li>
-                    </a>
-                </Link>
+                        </div>
+                    </Link>
+             
+            </li>
 
-            </>
+
         )
         {/* <AnimatePresence>
                 {selectedId && (

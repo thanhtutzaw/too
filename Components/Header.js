@@ -9,10 +9,10 @@ import { useEffect, useState } from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
 // import { useAuthContext } from '../../context/UserAuthState';
 
-  function Header ({user }) {
-  const [showModal, setshowModal] = useState(false);
+function Header({ user }) {
+    const [showModal, setshowModal] = useState(false);
 
-    
+
     // const user = useAuthUser()
     const [Search, setSearch] = useState();
     // const {user} = useAuthContext()
@@ -30,16 +30,16 @@ import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-a
 
     useEffect(() => {
         const handleScroll = () => {
-          const offset =22;
-          console.log(offset , "offset")
-          const { scrollTop } = document.documentElement
-          console.log(scrollTop)
-          const scrolled = scrollTop > offset
+            const offset = 22;
+            console.log(offset, "offset")
+            const { scrollTop } = document.documentElement
+            console.log(scrollTop)
+            const scrolled = scrollTop > offset
 
-          if(float !== scrolled){
-            console.log("scroll in ")
-            setfloat(scrolled)
-          }
+            if (float !== scrolled) {
+                console.log("scroll in ")
+                setfloat(scrolled)
+            }
         };
         // clean up code
         // document.removeEventListener('scroll', handleScroll);
@@ -51,13 +51,12 @@ import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-a
         return () => document.removeEventListener('scroll', handleScroll);
     }, [float]);
     return (
-        <header className={float ? styles.headerfloat : styles.header}>
+        <header className={styles.header}>
+            {/* <header className={float ? styles.headerfloat : styles.header}> */}
             <div className={styles.row}>
-
                 <Link href='/'>
-                <div><h1>Too</h1></div>
+                    <h1 className={styles.logo}>Too</h1>
                 </Link>
-
                 <div className={styles.searchBar}>
                     <input value={Search} onChange={(e) => setSearch(e.target.value)} className={styles.searchInput} disabled={user ? '' : 'disable'} type="text" />
                     <CgClose onClick={searchCloseHandle} className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide} />

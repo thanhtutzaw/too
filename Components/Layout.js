@@ -18,7 +18,8 @@ function Layout({ children }) {
                     {/* <Header /> */}
                     {/* <Note /> */}
                     {children}
-                </div></main>
+                </div>
+            </main>
         </>
     )
 }

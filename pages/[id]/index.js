@@ -79,17 +79,17 @@ const Note = ({ note }) => {
 
   )
 }
-Note.getLayout = function getLayout(page) {
+// Note.getLayout = function getLayout(page) {
   
-  return (
-    <Layout>
-      {/* <Home user={user}/> */}
-      {/* <Home /> */}
+//   return (
+//     <Layout>
+//       {/* <Home user={user}/> */}
+//       {/* <Home /> */}
 
-      {page}
-      {/* <Notes /> */}
-    </Layout>
+//       {page}
+//       {/* <Notes /> */}
+//     </Layout>
 
-  )
-}
+//   )
+// }
 export default Note

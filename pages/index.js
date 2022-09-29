@@ -110,7 +110,8 @@ const Index = () => {
       <Home />
 
        
-      {AuthUser.displayName && <Notes />}
+  <Notes />
+      {/* {AuthUser.displayName && <Notes />} */}
 
       {/* {AuthUser.displayName ? (
         <> */}

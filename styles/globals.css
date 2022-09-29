@@ -26,11 +26,7 @@ body {
 } */
 
 a {
-  color: inherit;
-
-  text-decoration: none;
-  display:flex;
-  width:37%;
+ text-decoration: none;
 }
 *,
 *:before,
