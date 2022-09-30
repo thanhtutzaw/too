@@ -51,9 +51,9 @@ function Header({ user }) {
         return () => document.removeEventListener('scroll', handleScroll);
     }, [float]);
     return (
-        <header className={styles.header}>
+        <header className={styles.headerContainer}>
             {/* <header className={float ? styles.headerfloat : styles.header}> */}
-            <div className={styles.row}>
+            <div className={styles.header}>
                 <Link href='/'>
                     <h1 className={styles.logo}>Too</h1>
                 </Link>
@@ -64,22 +64,26 @@ function Header({ user }) {
 
 
 
-                {/* {<h2>{user?.uid}</h2>} */}
-                {/* 
-{!user && <Image unoptimized={true} src={profile} alt={user?.displayName} width="40" height="40" className={styles.profile}></Image>} */}
-                {/* {user && JSON.stringify(user)} */}
+
                 {user.photoURL ?
                     // <>{user.displayName}</>
                     <motion.div className={styles.mainProfile} onClick={modalHandle} whileTap={{ scale: .8 }}>
-                        {/* {user.displayName} */}
                         <Image referrerPolicy="no-referrer" unoptimized={true} src={user?.photoURL} alt="test" width="40" height="40" className={styles.profile}></Image>
-
-                        {/* {showModal ? <Sidebar user={user} setshowModal={setshowModal} /> : null} */}
                     </motion.div>
                     :
                     <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
                 }
+
+
+
+                {/* {showModal ? <Sidebar user={user} setshowModal={setshowModal} /> : null} */}
+                {/* {user.displayName} */}
                 {/* {console.log(user.photoURL)} */}
+                {/* {<h2>{user?.uid}</h2>} */}
+                {/* 
+{!user && <Image unoptimized={true} src={profile} alt={user?.displayName} width="40" height="40" className={styles.profile}></Image>} */}
+                {/* {user && JSON.stringify(user)} */}
+
 
 
             </div>
