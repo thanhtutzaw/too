@@ -8,7 +8,7 @@
 
   /* height: auto; */
   /* height: 100vh; */
-  max-width          : 500px;
+  max-width          : 483px;
   width              : 100vw;
   /* outline         :3px solid rgb(0, 248, 0); */
   /* flex            : 1; */
@@ -37,7 +37,7 @@
 }
 
 .logo {
-  cursor: pointer;
+  cursor   : pointer;
   font-size: 34px;
 }
 
@@ -52,8 +52,8 @@
 }
 
 .header {
-  position: fixed;
-  top     : 0;
+  position              : fixed;
+  top                   : 0;
   background-color      : white;
   /* background-color   : rgba(94, 76, 76, 0.76); */
   padding               : 0 1.2rem;
@@ -64,7 +64,7 @@
   align-items           : center;
   /* width              :100px;  
   min-width             :500px; */
-  max-width             : 500px;
+  max-width             : 483px;
   width                 : 100vw;
   gap                   : .4rem;
 }
@@ -311,7 +311,7 @@
   border              : none;
   display             : flex;
   align-items         : center;
-  justify-content: center;
+  justify-content     : center;
   /* width            : 100%; */
   /* max-width        : 50%; */
   /* margin-left      : -35px; */
