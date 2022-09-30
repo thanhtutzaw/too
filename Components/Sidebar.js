@@ -28,36 +28,34 @@ export default function Sidebar({ setshowModal, user }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
 
-            className={styles.card}>
-            <div onClick={modalHandle} className={styles.closeBtn}><CgClose /></div>
-            <div className={styles.grid}>
-                <div>
+            className={styles.setting}>
+            <div className={styles.card}>
+                <div onClick={modalHandle} className={styles.closeBtn}><CgClose /></div>
+                <div className={styles.grid}>
                     <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
 
-                </div>
-
-                <div>
-                    <div className={styles.name}>
-                        {user.displayName}
+                    <div>
+                        <div className={styles.name}>
+                            {user.displayName}
+                        </div>
+                        <div className={styles.mail}> {user.email}
+                        </div>
                     </div>
 
-                    <div className={styles.mail}> {user.email}
+                </div>
+
+                <div className={styles.tools}>
+
+                    <div className={styles.tool}>
+                        <div><MdOutlineDarkMode /></div>
+                        <div>Appearance</div>
                     </div>
+                    <div onClick={signoutHandle} className={styles.tool}>
+                        <div><VscSignOut /></div>
+                        <div>Signout</div>
+                    </div>
+
                 </div>
-
-            </div>
-
-            <div className={styles.tools}>
-
-                <div className={styles.tool}>
-                    <div><MdOutlineDarkMode /></div>
-                    <div>Appearance</div>
-                </div>
-                <div onClick={signoutHandle} className={styles.tool}>
-                    <div><VscSignOut /></div>
-                    <div>Signout</div>
-                </div>
-
             </div>
 
         </motion.section>
