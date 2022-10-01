@@ -203,19 +203,15 @@
    justify-content: center; */
 }
 .setting{
-      /* min-width: 130px; */
-    position : relative;
-    right:-80px;
-    /* right    : 0px;
-    top      : 28px; */
-    z-index  : 100;
-  /* left:159px; */
-  /* left:159px;
-  top:-17px; */
+      z-index  : 100;
+      position : relative;
+      /* right:-170px; */
 }
 .card {
   /* position: relative; */
-  position: fixed;
+  position: absolute;
+  right:10px;
+  /* right: 150px; */
   /* right: 150px; */
   /* right   : -20px;
   top:-45px;

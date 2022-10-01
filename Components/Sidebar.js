@@ -23,13 +23,12 @@ export default function Sidebar({ setshowModal, user }) {
     //     }
     // };
     return (
-        <motion.section
+        <motion.div className={styles.setting}>
+        <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
-
-            className={styles.setting}>
-            <div className={styles.card}>
+            className={styles.card}>
                 <div onClick={modalHandle} className={styles.closeBtn}><CgClose /></div>
                 <div className={styles.grid}>
                     <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
@@ -56,8 +55,8 @@ export default function Sidebar({ setshowModal, user }) {
                     </div>
 
                 </div>
-            </div>
+            </motion.div>
 
-        </motion.section>
+        </motion.div>
     )
 }
