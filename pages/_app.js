@@ -15,12 +15,9 @@ function MyApp({ Component, pageProps }) {
   const {id} = router.query
   const getLayout = Component.getLayout || ((page) => page)
   return getLayout(
-   
-
-          // <LayoutGroup type="crossfade" id={id}>
 
           <Component {...pageProps} />
-        // </LayoutGroup>
+
 
 
 

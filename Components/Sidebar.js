@@ -6,22 +6,12 @@ import { VscSignOut } from 'react-icons/vsc'
 import { CgClose } from 'react-icons/cg'
 import { motion } from 'framer-motion'
 export default function Sidebar({ setshowModal, user }) {
-    // const { logout, user } = useAuthContext()
     const modalHandle = () => {
         setshowModal((prevstate) => !prevstate)
     }
-
     function signoutHandle() {
         return user.signOut(), modalHandle()
     }
-    // const logoutHandle = () => {
-    //     try {
-    //         logout();
-    //         // setisSignin(false);
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
     return (
         <motion.div className={styles.setting}>
         <motion.div
@@ -32,7 +22,6 @@ export default function Sidebar({ setshowModal, user }) {
                 <div onClick={modalHandle} className={styles.closeBtn}><CgClose /></div>
                 <div className={styles.grid}>
                     <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
-
                     <div>
                         <div className={styles.name}>
                             {user.displayName}
@@ -40,11 +29,8 @@ export default function Sidebar({ setshowModal, user }) {
                         <div className={styles.mail}> {user.email}
                         </div>
                     </div>
-
                 </div>
-
                 <div className={styles.tools}>
-
                     <div className={styles.tool}>
                         <div><MdOutlineDarkMode /></div>
                         <div>Appearance</div>
@@ -53,10 +39,8 @@ export default function Sidebar({ setshowModal, user }) {
                         <div><VscSignOut /></div>
                         <div>Signout</div>
                     </div>
-
                 </div>
             </motion.div>
-
         </motion.div>
     )
 }

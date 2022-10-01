@@ -14,6 +14,6 @@ export default function Home({float}) {
   )
 }
 export const getServerSideProps = withAuthUserTokenSSR()()
-// export const getServerSideProps = withAuthUserTokenSSR()()
 
-// export default withAuthUser()(Home)
+
+

@@ -3,29 +3,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   display: flex;
   justify-content: center;
-  /* background-color: #dd0000; */
-  /* background-color: #ececec; */
   background-color: #ececec;
   background-color: #4e0a0a;  
   text-align: center;
-  /* min-height: 100vh;
-  min-height: -webkit-fill-available; */
 }
-/* :root{
-  --vhh : 100;
-} */
-/* html{
-  height: -webkit-fill-available;
-} */
-/* html{
-  height: 100vh;
-  height: -webkit-fill-available;
-} */
-/* html{
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-} */
-
 a {
  text-decoration: none;
 }
@@ -36,9 +17,7 @@ a {
   margin: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  /* outline: 3px solid red; */
 }
-
 button,
 searchCloseBtn {
   cursor: pointer;

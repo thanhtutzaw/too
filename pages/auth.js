@@ -20,14 +20,6 @@ Auth.getLayout = function getLayout(page) {
     </Layout>
   )
 }
-// export default withAuthUser({
-
-//     whenAuthed:AuthAction.REDIRECT_TO_APP ,
-
-//     whenUnauthedBeforeInit:AuthAction.RETURN_NULL ,
-//     whenUnauthedAfterInit:AuthAction.RENDER ,
-// })(Auth)
-
 export default withAuthUser({
   whenAuthed: AuthAction.REDIRECT_TO_APP,
   whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
