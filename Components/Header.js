@@ -37,26 +37,30 @@ function Header({ user }) {
         return () => document.removeEventListener('scroll', handleScroll);
     }, [float]);
     return (
-        <header className={styles.headerContainer}>
-            {/* <header className={float ? styles.headerfloat : styles.header}> */}
-            <div className={styles.header}>
-                <Link href='/'>
-                    <h1 className={styles.logo}>Too</h1>
-                </Link>
-                <div className={styles.searchBar}>
-                    <input ref={input} value={Search} onChange={(e) => setSearch(e.target.value)} className={styles.searchInput} disabled={user ? '' : 'disable'} type="text" placeholder="Search"/>
-                    <CgClose onClick={searchCloseHandle} className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide} />
-                </div>
-                {user.photoURL ?
-                    <motion.div className={styles.mainProfile} onClick={modalHandle} whileTap={{ scale: .8 }}>
-                        <Image referrerPolicy="no-referrer" unoptimized={true} src={user?.photoURL} alt="test" width="40" height="40" className={styles.profile}></Image>
-                    </motion.div>
-                    :
-                    <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
-                }
-            </div>
+        <>
+            <header className={styles.headerContainer}>
+                {/* <header className={float ? styles.headerfloat : styles.header}> */}
+                <div className={styles.header}>
+                    <Link href='/'>
+                        <h1 className={styles.logo}>Too</h1>
+                    </Link>
+                    <div className={styles.searchBar}>
+                        <input ref={input} value={Search} onChange={(e) => setSearch(e.target.value)} className={styles.searchInput} disabled={user ? '' : 'disable'} type="text" placeholder="Search" />
+                        <CgClose onClick={searchCloseHandle} className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide} />
+                    </div>
+                    <div>
+                        {user.photoURL ?
+                            <motion.div className={styles.mainProfile} onClick={modalHandle} whileTap={{ scale: .8 }}>
+                                <Image referrerPolicy="no-referrer" unoptimized={true} src={user?.photoURL} alt="test" width="40" height="40" className={styles.profile}></Image>
+                            </motion.div>
+                            :
+                            <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
+                        }
             {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
-        </header>
+                    </div>
+                </div>
+            </header>
+        </>
     )
 }
 export default Header
