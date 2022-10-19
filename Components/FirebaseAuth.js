@@ -4,6 +4,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/auth';
 import { getAuth } from 'firebase/auth';
+
+
 const firebaseAuthConfig = {
   signInFlow: 'popup',
   signInOptions: [
@@ -27,7 +29,7 @@ const FirebaseAuth = () => {
       setRenderAuth(true)
       console.log('CLIENT')
     }
-    else{
+    else {
       console.log('server')
     }
   }, [])

@@ -9,6 +9,7 @@ body {
 }
 a {
  text-decoration: none;
+
 }
 *,
 *:before,
@@ -21,4 +22,7 @@ a {
 button,
 searchCloseBtn {
   cursor: pointer;
+}
+a{
+  color: unset;
 }

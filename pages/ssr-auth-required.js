@@ -1,43 +1,26 @@
 import React from 'react'
 import {
-  useAuthUser,
   withAuthUser,
   withAuthUserTokenSSR,
   AuthAction,
 } from 'next-firebase-auth'
-// import DemoPageLinks from '../components/DemoPageLinks'
 import getAbsoluteURL from '../utils/getAbsoluteURL'
-
-import { useState } from "react";
-import styles from "../styles/Home.module.css";
-// import Header from "../Components/Header";
-// import Sidebar from "../Components/Sidebar";
-
-
-
 const Home = ({ favoriteColor }) => {
-  
+
   return (
     <>
-      
-          {/* <Header user={AuthUser} showModal={showModal} setshowModal={setshowModal} /> */}
-          {/* {showModal ? <Sidebar user={AuthUser} setshowModal={setshowModal} /> : null} */}
-    
-          <h3>Want to fetch data but no cookie found - sign in</h3>
-          <h3>Example: SSR + data fetching with ID token</h3>
-          <p>
-            This page requires authentication. It will do a server-side redirect
-            (307) to the login page if the auth cookies are not set.
-          </p>
-          <p>Your favorite color is: {favoriteColor}</p>
+      {/* <Header user={AuthUser} showModal={showModal} setshowModal={setshowModal} /> */}
+      {/* {showModal ? <Sidebar user={AuthUser} setshowModal={setshowModal} /> : null} */}
+
+      <h3>Want to fetch data but no cookie found - sign in</h3>
+      <h3>Example: SSR + data fetching with ID token</h3>
+      <p>
+        This page requires authentication. It will do a server-side redirect
+        (307) to the login page if the auth cookies are not set.
+      </p>
+      <p>Your favorite color is: {favoriteColor}</p>
 
     </>
-
-      
-        
-        
-
-
   )
 }
 

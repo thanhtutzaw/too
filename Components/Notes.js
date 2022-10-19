@@ -8,31 +8,29 @@ import { useRouter } from 'next/router'
 function Notes() {
     function Card({ id, title, text }) {
         return (
-            <li className={styles.card} >
-                <Link scroll={false} href={`/${id}`}>
-                    <div>
-                        <div layoutId={`title-${id}`} className={styles.cardTitle}>
+                <Link prefetch scroll={false} href={`/${id}`}>
+                    <a key={id} className={styles.card}>
+                        <div layoutid={`title-${id}`} className={styles.cardTitle}>
                             <h5>{title}</h5>
                         </div>
 
-                        <div layoutId={`text-${id}`} className={styles.cardText}>
+                        <div layoutid={`text-${id}`} className={styles.cardText}>
                             <p>{text}</p>
                         </div>
-                    </div>
+                    </a>
                 </Link>
-            </li>
         )
     }
     return (
-
-
-        <ul className={styles.cardContainer}>
-            {notes.map(note =>
-            (
-                <Card key={note.id} {...note} />
-            )
-            )}
-        </ul>
+        // <div className={styles.cardContainer}>
+            <div className={styles.cardContainer} >
+                {notes.map(note =>
+                (
+                    <Card key={note.id} {...note} />
+                )
+                )}
+            </div>
+        // </div>
 
     )
 }

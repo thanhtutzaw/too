@@ -1,9 +1,9 @@
 .main {
   user-select     : none;
   min-height      : 100vh;
-  min-height      : -webkit-fill-available;
-  min-height      : stretch;
-  min-height      : -moz-available;
+  /* min-height      : -webkit-fill-available; */
+  /* min-height      : stretch; */
+  /* min-height      : -moz-available; */
   max-width       : 483px;
   width           : 100vw;
   background-color: white;
@@ -33,6 +33,7 @@
   max-width       : 483px;
   width           : 100vw;
   gap             : .4rem;
+  border-bottom: 2px solid #efefef;
 }
 
 .header>* {}

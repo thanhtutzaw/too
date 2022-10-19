@@ -51,6 +51,8 @@ const Note = ({ note }) => {
               <BiArrowBack />
             </div>
           <p>Height {height}</p>
+          <h3>{note.title}</h3>
+          <p>{note.text}</p>
           {/* <motion.div className={styles.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
             {note.title}
           </motion.div>

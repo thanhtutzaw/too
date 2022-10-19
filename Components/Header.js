@@ -7,35 +7,33 @@ import { motion } from 'framer-motion'
 import { CgClose } from 'react-icons/cg'
 import { useEffect, useRef, useState } from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
-function Header({ user }) {
+
+export default function Header({ user }) {
     const input = useRef(null)
     const [showModal, setshowModal] = useState(false);
     const [Search, setSearch] = useState();
-    const [isClose, setisClose] = useState(false);
+    // const [isClose, setisClose] = useState(false);
     const searchCloseHandle = (e) => {
         setSearch('')
         input.current.focus()
-        setisClose(true)
+        // setisClose(true)
     }
     const modalHandle = () => {
         setshowModal((prevstate) => !prevstate)
     }
-    const [float, setfloat] = useState(false);
-    useEffect(() => {
-        const handleScroll = () => {
-            const offset = 22;
-            console.log(offset, "offset")
-            const { scrollTop } = document.documentElement
-            console.log(scrollTop)
-            const scrolled = scrollTop > offset
-            if (float !== scrolled) {
-                console.log("scroll in ")
-                setfloat(scrolled)
-            }
-        };
-        document.addEventListener('scroll', handleScroll);
-        return () => document.removeEventListener('scroll', handleScroll);
-    }, [float]);
+    // const [float, setfloat] = useState(false);
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const offset = 22;
+    //         const { scrollTop } = document.documentElement
+    //         const scrolled = scrollTop > offset
+    //         if (float !== scrolled) {
+    //             setfloat("scrolled", scrolled)
+    //         }
+    //     };
+    //     document.addEventListener('scroll', handleScroll);
+    //     return () => document.removeEventListener('scroll', handleScroll);
+    // }, [float]);
     return (
         <>
             <header className={styles.headerContainer}>
@@ -56,11 +54,11 @@ function Header({ user }) {
                             :
                             <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
                         }
-            {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
+                        {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
                     </div>
                 </div>
             </header>
         </>
     )
 }
-export default Header
+
