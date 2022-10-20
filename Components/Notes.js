@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 function Notes() {
     function Card({ id, title, text }) {
         return (
-                <Link prefetch scroll={false} href={`/${id}`}>
+                <Link  scroll={false} href={`/${id}`}>
                     <a key={id} className={styles.card}>
                         <div layoutid={`title-${id}`} className={styles.cardTitle}>
                             <h5>{title}</h5>

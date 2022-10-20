@@ -53,7 +53,7 @@ import Home from "./Home";
 // return (
 //   <Header />
 // )
-  
+
 //   }
 // )
 const Index = () => {
@@ -62,9 +62,9 @@ const Index = () => {
   // const {id} = router.query
   console.log(router.asPath)
   const { id } = router.query
-  
-  
-    
+
+
+
   // const router = useRouter()
   // const { id } = router.query || '/'
   //     if(!id){
@@ -96,7 +96,7 @@ const Index = () => {
   // const buff = Buffer.from(privateKey).toString('base64');
   // console.log(buff);
   // console.log(id , typeof(id))
-  
+
   // if (AuthUser) {
   //   console.log(AuthUser.email)
   // }
@@ -104,14 +104,14 @@ const Index = () => {
   return (
 
     <>
-    {/* <HeaderMemo /> */}
-    
+      {/* <HeaderMemo /> */}
+
       {/* <AnimateSharedLayout type="crossfade"> */}
       <Home />
 
-        
-  <Notes /> 
-  
+
+      <Notes />
+
       {/* {AuthUser.displayName && <Notes />} */}
 
       {/* {AuthUser.displayName ? (

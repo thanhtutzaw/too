@@ -12,6 +12,8 @@ export default function Home({float}) {
     return (
       <>
       <Header float={float} user={user} />
+
+
     {/* <Note /> */}
       {/* <button onClick={()=>{setshowModal(prev => !prev)}} style={{position:'fixed', zIndex:'1000'}}>hey</button> */}
       {/* {showModal && <Sidebar user={user} setshowModal={setshowModal} />} */}

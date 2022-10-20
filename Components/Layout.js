@@ -1,9 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
-// import '../styles/globals.css'
 import styles from "../styles/Home.module.css";
 import { withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth';
-import Header from './Header';
 import Note from '../pages/[id]';
 function Layout({ children }) {
     return (

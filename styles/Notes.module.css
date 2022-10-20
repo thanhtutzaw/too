@@ -32,15 +32,16 @@
 }
 
 .viewContainer {
-  height          : 87vh;
+  /* height          : 87vh; */
   height          : 100vh;
   display         : flex;
   flex-direction  : column;
   text-align      : left;
   gap             : 2em;
-  backdrop-filter : blur(3px);
-  background-color: white;
-  width           : 100vw;
+  /* backdrop-filter : blur(3px); */
+  background-color: rgb(255, 255, 255);
+  max-width : 483px;
+  width:100vw;
   padding         : 1.3rem;
 }
 
@@ -73,9 +74,10 @@
 
 .titleView {}
 
-.titleView,
-.textView {
-  outline: 3px solid red !important;
+.titleView:focus,
+.textView:focus {
+  outline:none;
+  /* outline: 1px solid rgb(37, 37, 37) !important; */
 }
 
 .backBtn {
