@@ -6,15 +6,10 @@ import Header from '../Components/Header';
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth';
 
 initAuth()
-function MyApp({ Component, pageProps }) {
+
+export default function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page)
   return getLayout(
-
-          <Component {...pageProps} />
-
+    <Component {...pageProps} />
   )
 }
-
-
-
-export default MyApp

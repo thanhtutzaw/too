@@ -1,28 +1,28 @@
 export const notes = [
     {
         id:1,
-        title:"Title1 111111111111111111111111111",
+        title:"Title1 111111111111111111111111fsdfsdffsf111",
         text:"dfsdfdfdsf"
     },
     {
         id:2,
-        title:"Title22222222222222222222222222222",
-        text:"fdfghhrrhrehreherr"
+        title:"Title22222222222222222222222222fsdffsdffsdfsdf222",
+        text:"fdfghhrrhrehreher f fsdfsdfsd sdfsd fsdr"
     },
     {
         id:3,
-        title:"Title33333333333333333333333333333333333333333333333333333333333333333",
+        title:"Title33333333333333333333333fdfsf333333333333333333333333333333333333333333",
         text:"jkjluyuykukuy"
     },
     {
         id:4,
-        title:"Title444444444444444444444444444444444444444444444444444444",
-        text:"rrtretytuy"
+        title:"Title4444444",
+        text:"rrtretytuysfsfsfdfsddfsdfsdfsfsdfsdfsdfsdfgrhreghfsdf"
     },
     {
         id:5,
         title:"Title555555555555555555555555555555555555555555555555555",
-        text:"mut ddffgsdfg gfdgf rgrrdhjf ggr  rter "
+        text:"mut ddffgsdfg gfdgf rgrrdhjf ggr  rter longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
     },
     {
         id:6,
@@ -31,8 +31,8 @@ export const notes = [
     },
     {
         id:7,
-        title:"Title777777777777777777777777777777777",
-        text:"dfsdfdfdsf"
+        title:"Title777777777777777777777777777777777longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        text:"dfsdfdfdsflonggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglongggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglongggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggglonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
     },
     {
         id:8,

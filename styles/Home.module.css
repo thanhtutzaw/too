@@ -4,7 +4,8 @@
   /* min-height      : -webkit-fill-available; */
   /* min-height      : stretch; */
   /* min-height      : -moz-available; */
-  max-width       : 483px;
+  /* max-width       : 483px; */
+  max-width       : 500px;
   width           : 100vw;
   background-color: white;
   display         : flex;
@@ -30,7 +31,8 @@
   display         : flex;
   justify-content : space-between;
   align-items     : center;
-  max-width       : 483px;
+  /* max-width       : 483px; */
+  max-width       : 500px;
   width           : 100vw;
   gap             : .4rem;
   border-bottom: 2px solid #efefef;

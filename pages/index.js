@@ -4,14 +4,14 @@ import { useAuthContext } from "../context/UserAuthState";
 import styles from "../styles/Home.module.css";
 // import Dashboard from "../Components/Dashboard";
 // import Welcome from "./Components/Welcome";
-import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth"
+import { AuthAction, useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth"
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import SsrAuthRequired from "./ssr-auth-required";
 import Link from "next/link";
 import { SiAddthis } from 'react-icons/si'
 import { AnimatePresence, AnimateSharedLayout, LayoutGroup, motion } from "framer-motion";
-import Notes from "../Components/Notes";
+
 import Note from "./[id]";
 import { BrowserRouter, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -19,6 +19,8 @@ import { useRouter } from "next/router";
 import Layout from "../Components/Layout";
 import Head from "next/head";
 import Home from "./Home";
+
+const MyLoader = () => <div>Loading...</div>
 // import initAuth from "../utils/initAuth";
 
 // initAuth()
@@ -57,11 +59,11 @@ import Home from "./Home";
 //   }
 // )
 const Index = () => {
-  const AuthUser = useAuthUser()
-  const router = useRouter()
-  // const {id} = router.query
-  console.log(router.asPath)
-  const { id } = router.query
+  // const AuthUser = useAuthUser()
+  // const router = useRouter()
+
+  // console.log(router.asPath)
+  // const { id } = router.query
 
 
 
@@ -100,6 +102,10 @@ const Index = () => {
   // if (AuthUser) {
   //   console.log(AuthUser.email)
   // }
+  const router = useRouter()
+// useEffect(() => {
+//   router.push('/auth')
+// }, []);
 
   return (
 
@@ -110,7 +116,7 @@ const Index = () => {
       <Home />
 
 
-      <Notes />
+      
 
       {/* {AuthUser.displayName && <Notes />} */}
 
@@ -153,5 +159,14 @@ Index.getLayout = function getLayout(page) {
 
 export const getServerSideProps = withAuthUserTokenSSR()()
 
-export default withAuthUser()(Index)
+export default withAuthUser(
+  {
+  //   whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,                             
+  //   // whenUnauthedAfterInit: AuthAction.RENDER,
+  // LoaderComponent: MyLoader ,
+
+    whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+    authPageURL: '/auth'
+  }
+)(Index)
 

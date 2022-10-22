@@ -1,9 +1,8 @@
 import React from 'react'
 import FirebaseAuth from '../Components/FirebaseAuth'
 import {withAuthUser , AuthAction} from 'next-firebase-auth'
-import styles from "../styles/Home.module.css";
 import Layout from '../Components/Layout';
-
+// const MyLoader = () => <div>Loading...</div>
 const  Auth = () =>{
   return (
 
@@ -23,5 +22,7 @@ Auth.getLayout = function getLayout(page) {
 export default withAuthUser({
   whenAuthed: AuthAction.REDIRECT_TO_APP,
   whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
+  // whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,                             
   whenUnauthedAfterInit: AuthAction.RENDER,
+  // LoaderComponent: MyLoader ,
 })(Auth)

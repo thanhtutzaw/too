@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { CgClose } from 'react-icons/cg'
 import { useEffect, useRef, useState } from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
+import { Router } from "react-router-dom";
 
 export default function Header({ user }) {
     const input = useRef(null)
@@ -34,8 +35,12 @@ export default function Header({ user }) {
     //     document.addEventListener('scroll', handleScroll);
     //     return () => document.removeEventListener('scroll', handleScroll);
     // }, [float]);
+    // if(!user){
+    //     Router.push('/auth')
+    // }
     return (
         <>
+            {user.photoURL &&
             <header className={styles.headerContainer}>
                 {/* <header className={float ? styles.headerfloat : styles.header}> */}
                 <div className={styles.header}>
@@ -47,17 +52,20 @@ export default function Header({ user }) {
                         <CgClose onClick={searchCloseHandle} className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide} />
                     </div>
                     <div>
-                        {user.photoURL ?
+                        {user.photoURL &&
                             <motion.div className={styles.mainProfile} onClick={modalHandle} whileTap={{ scale: .8 }}>
                                 <Image referrerPolicy="no-referrer" unoptimized={true} src={user?.photoURL} alt="test" width="40" height="40" className={styles.profile}></Image>
                             </motion.div>
-                            :
-                            <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
+
+                            // :
+                            
+                            // <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
                         }
                         {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
                     </div>
                 </div>
             </header>
+                    }
         </>
     )
 }

@@ -1,14 +1,14 @@
 .cardContainer {
-  overflow       : hidden;
-  display        : flex;
-  justify-content: center;
-  flex-wrap      : wrap;
-  gap            : 0.7em;
-  text-align     : left;
+  overflow          : hidden;
+  display           : flex;
+  justify-content   : center;
+  flex-wrap         : wrap;
+  gap               : 0.7em;
+  text-align        : left;
   /* padding        : 0; */
-  margin-top     : 3.8rem;
-  padding        : 1.3rem;
-  /* gap:2em 1.4em; */
+  margin-top        : 3.8rem;
+  padding           : 1rem 0.9rem;
+  /* gap            :2em 1.4em; */
 }
 
 .card {
@@ -22,7 +22,7 @@
   width           : 100%;
   color           : inherit;
   width           : 37%;
-  /* height: 70%; */
+  /* height       : 70%; */
 }
 
 .card h5 {
@@ -31,12 +31,21 @@
   margin-bottom : 10px;
 }
 
+.card p {
+  -webkit-line-clamp: 6;
+  overflow          : hidden;
+  display           : -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow     : ellipsis;
+  white-space       : normal;
+}
+
 .viewContainer {
   /* position: fixed;
   top: 0;
 bottom: 0; */
-/* left:0; */
-/* height: 100vh;
+  /* left:0; */
+  /* height: 100vh;
 max-height: 100%; */
   /* height: stretch;
   height: -webkit-fill-available; */
@@ -46,18 +55,18 @@ max-height: 100%; */
   /* height          : 87vh; */
   /* height          : 100vh; */
   /* height:100dvh; */
-  display         : flex;
-  flex-direction  : column;
+  display       : flex;
+  flex-direction: column;
 
-  text-align      : left;
+  text-align         : left;
   /* backdrop-filter : blur(3px); */
-  background-color: rgb(255, 255, 255);
-  max-width : 500px;
-  width:100vw;
-  min-height: -webkit-fill-available;
-  inset: 0;
-  margin: 0 auto;
-  position: fixed;
+  background-color   : rgb(255, 255, 255);
+  max-width          : 500px;
+  width              : 100vw;
+  min-height         : -webkit-fill-available;
+  inset              : 0;
+  margin             : 0 auto;
+  position           : fixed;
   /* padding         : 1.3rem; */
 }
 
@@ -92,33 +101,38 @@ max-height: 100%; */
 
 .titleView:focus,
 .textView:focus {
-  outline:none;
+  outline   : none;
   /* outline: 1px solid rgb(37, 37, 37) !important; */
 }
 
 .viewHeader {
   /* background-color: rgb(17, 216, 66); */
-  padding:0 1.3rem;
-  height: 54px;
-  display: flex;
-  align-items: center;
+  padding      : 0 1.3rem;
+  height       : 54px;
+  display      : flex;
+  align-items  : center;
   border-bottom: 2px solid #efefef;
-  /* padding:0 16px; */
+  /* padding   :0 16px; */
 }
-.backBtn{
-  cursor: pointer;
-  display: flex;
+
+.backBtn {
+  cursor            : pointer;
+  display           : flex;
   /* justify-content: center; */
-  align-items: center;
-  /* width:40px; */
+  align-items       : center;
+  /* width          :40px; */
 
 }
-.viewContent{
+
+.viewContent {
   overflow: auto;
-  padding:25px 1.3rem;
-  height: calc(100%  - 44px);
-  
+  padding : 25px 1.3rem;
+  height  : calc(100% - 44px);
+
 }
-.viewContent > p {
+
+.viewContent>p {
   margin-top: 30px;
+
+
 }
