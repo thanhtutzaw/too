@@ -164,7 +164,8 @@ export default withAuthUser(
   //   whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,                             
   //   // whenUnauthedAfterInit: AuthAction.RENDER,
   // LoaderComponent: MyLoader ,
-
+    // whenUnauthedBeforeInit : AuthAction.SHOW_LOADER,
+    // LoaderComponent: MyLoader ,
     whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
     authPageURL: '/auth'
   }

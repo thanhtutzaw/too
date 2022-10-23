@@ -6,8 +6,8 @@
   gap               : 0.7em;
   text-align        : left;
   /* padding        : 0; */
-  margin-top        : 3.8rem;
-  padding           : 1rem 0.9rem;
+  margin-top        : 3.2rem;
+  padding           : 1.3rem 0.9rem;
   /* gap            :2em 1.4em; */
 }
 
@@ -108,7 +108,7 @@ max-height: 100%; */
 .viewHeader {
   /* background-color: rgb(17, 216, 66); */
   padding      : 0 1.3rem;
-  height       : 54px;
+  height       : 70px;
   display      : flex;
   align-items  : center;
   border-bottom: 2px solid #efefef;

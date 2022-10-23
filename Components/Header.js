@@ -1,13 +1,11 @@
 import styles from "../styles/Home.module.css";
 import Image from 'next/image'
-import profile from '../public/profile.jpg'
 import Link from "next/link";
 import Sidebar from "./Sidebar";
 import { motion } from 'framer-motion'
 import { CgClose } from 'react-icons/cg'
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
-import { Router } from "react-router-dom";
 
 export default function Header({ user }) {
     const input = useRef(null)

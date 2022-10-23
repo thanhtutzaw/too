@@ -6,6 +6,7 @@ import 'firebase/auth';
 import { getAuth } from 'firebase/auth';
 
 
+
 const firebaseAuthConfig = {
   signInFlow: 'popup',
   signInOptions: [
@@ -40,6 +41,7 @@ const FirebaseAuth = () => {
           <StyledFirebaseAuth
             uiConfig={firebaseAuthConfig}
             firebaseAuth={getAuth()}
+            // className={"styles.google"}
           />
         </>
         )

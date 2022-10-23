@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from "../styles/Home.module.css";
 import FirebaseAuth from '../Components/FirebaseAuth'
 import {withAuthUser , AuthAction} from 'next-firebase-auth'
 import Layout from '../Components/Layout';
@@ -6,10 +7,10 @@ import Layout from '../Components/Layout';
 const  Auth = () =>{
   return (
 
-    <>
+    <div className={styles.loginWrapper}>
     <h3>Welcome to Too</h3>
     <FirebaseAuth />
-    </>
+    </div>
   )
 }
 Auth.getLayout = function getLayout(page) {

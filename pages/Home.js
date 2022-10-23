@@ -1,37 +1,29 @@
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth'
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react'
+import React from 'react'
 import Header from '../Components/Header'
 import Notes from "../Components/Notes";
 // import Sidebar from '../Components/Sidebar'
 // import Note from './[id]'
 
-export default function Home({float}) {
-  // const [showModal, setshowModal] = useState(false);
-  
+function Home({ float }) {
 
-    const user = useAuthUser()
-    const router = useRouter()
-    useEffect(() => {
-      // if(user){
-      //   router.push('/auth')
-      // }
-      if(user){
-        // alert('user' ,typeof(user) ,user.length)
+  const user = useAuthUser()
+  const router = useRouter()
+
+  return (
+    <>
+      {
+        user.photoURL &&
+        <>
+          <Header float={float} user={user} />
+          <Notes />
+        </>
       }
-    }, []);
-    return (
-      <>
-      <Header float={float} user={user} />
-        {user.photoURL && <Notes />}
-
-    {/* <Note /> */}
-      {/* <button onClick={()=>{setshowModal(prev => !prev)}} style={{position:'fixed', zIndex:'1000'}}>hey</button> */}
-      {/* {showModal && <Sidebar user={user} setshowModal={setshowModal} />} */}
     </>
-
   )
 }
+export default Home
 export const getServerSideProps = withAuthUserTokenSSR()()
 
 
