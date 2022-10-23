@@ -98,17 +98,22 @@ const Index = () => {
   //     router.push('/auth')
   //   }
   // }, [user]);
-
+  const router = useRouter()
+  const user =useAuthUser()
+  useEffect(() => {
+    if (!user.photoURL) {
+      router.push('/auth')
+    }
+  }, [user]);
   return (
 
     <>
       {/* <HeaderMemo /> */}
 
       {/* <AnimateSharedLayout type="crossfade"> */}
-      <Home />
+      {/* {user ? <Home /> : <p>signin</p>} */}
 
-
-      
+      <Home />     
 
       {/* {AuthUser.displayName && <Notes />} */}
 
@@ -131,12 +136,7 @@ const Index = () => {
       {/* <div className={styles.bottomNav}>
         <SiAddthis className={styles.addBtn} />
       </div> */}
-
-
-
     </>
-
-
   );
 }
 Index.getLayout = function getLayout(page) {
@@ -153,13 +153,10 @@ export const getServerSideProps = withAuthUserTokenSSR()()
 
 export default withAuthUser(
   {         
-  //   // whenUnauthedAfterInit: AuthAction.RENDER,
-    whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
-    authPageURL: '/auth',
-    // whenAuthed: AuthAction.REDIRECT_TO_APP,
+    // whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+    // authPageURL: '/auth',
+
     whenAuthedBeforeRedirect: AuthAction.REDIRECT_TO_APP,
-    // appPageURL : '/hello app'
-    // whenAuthed:AuthAction.REDIRECT_TO_APP
   }
 )(Index)
 
