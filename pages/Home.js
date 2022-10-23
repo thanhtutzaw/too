@@ -20,7 +20,7 @@ export default function Home({ float }) {
           <Notes />
         </>
         :
-        <p>No user</p>
+        null
       }
     </>
   )
