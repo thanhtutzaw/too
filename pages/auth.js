@@ -7,6 +7,8 @@ import { Router } from 'react-router-dom';
 // const MyLoader = () => <div>Loading...</div>
 const Auth = () => {
   
+  const user = useAuthUser()
+  if (user.photoURL) return <div> Loading...</div>
   return (
     <div className={styles.loginWrapper}>
       <h3>Welcome to Too</h3>

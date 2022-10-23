@@ -89,15 +89,15 @@ const Index = () => {
   // if (AuthUser) {
   //   console.log(AuthUser.email)
   // }
-  const user = useAuthUser()
-  const router = useRouter()
-  useEffect(() => {
-    if(user.photoURL){
-      router.push('/')
-    }else{
-      router.push('/auth')
-    }
-  }, [user]);
+  // const user = useAuthUser()
+  // const router = useRouter()
+  // useEffect(() => {
+  //   if(user.photoURL){
+  //     router.push('/')
+  //   }else{
+  //     router.push('/auth')
+  //   }
+  // }, [user]);
 
   return (
 
