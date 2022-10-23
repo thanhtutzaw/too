@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import styles from "../styles/Home.module.css";
-import { useAuthContext } from '../context/UserAuthState';
 import { MdOutlineDarkMode } from 'react-icons/md'
 import { VscSignOut } from 'react-icons/vsc'
 import { CgClose } from 'react-icons/cg'
@@ -13,12 +12,12 @@ export default function Sidebar({ setshowModal, user }) {
         return user.signOut(), modalHandle()
     }
     return (
-        <motion.div className={styles.setting}>
+
         <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
-            className={styles.card}>
+            className={styles.setting}>
                 <div onClick={modalHandle} className={styles.closeBtn}><CgClose /></div>
                 <div className={styles.grid}>
                     <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
@@ -41,6 +40,5 @@ export default function Sidebar({ setshowModal, user }) {
                     </div>
                 </div>
             </motion.div>
-        </motion.div>
     )
 }

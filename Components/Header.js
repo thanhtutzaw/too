@@ -37,9 +37,8 @@ export default function Header({ user }) {
     //     Router.push('/auth')
     // }
     return (
-        <>
-            
-            <header className={styles.headerContainer}>
+        <>            
+            <div className={styles.headerContainer}>
                 {/* <header className={float ? styles.headerfloat : styles.header}> */}
                 <div className={styles.header}>
                     <Link href='/'>
@@ -62,7 +61,7 @@ export default function Header({ user }) {
                         {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
                     </div>
                 </div>
-            </header>
+            </div>
                     
         </>
     )

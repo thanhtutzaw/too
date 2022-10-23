@@ -6,17 +6,22 @@ import Notes from "../Components/Notes";
 // import Sidebar from '../Components/Sidebar'
 // import Note from './[id]'
 
-function Home({ float }) {
+export default function Home({ float }) {
 
   const user = useAuthUser()
   return (
     <>
-      <Header float={float} user={user} />
-      <Notes />
+      {
+        user.photoURL && 
+        <>
+          <Header float={float} user={user} />
+          <Notes />
+        </>
+      }
     </>
   )
 }
-export default Home
+
 export const getServerSideProps = withAuthUserTokenSSR()()
 
 
