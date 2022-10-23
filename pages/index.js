@@ -151,12 +151,25 @@ Index.getLayout = function getLayout(page) {
 
 export const getServerSideProps = withAuthUserTokenSSR()()
 
+// export const getServerSideProps = withAuthUserTokenSSR({
+//   whenAuthed: AuthAction.REDIRECT_TO_APP,
+// })()
+
 export default withAuthUser(
   {         
+    whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+
     // whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
     // authPageURL: '/auth',
 
-    whenAuthedBeforeRedirect: AuthAction.REDIRECT_TO_APP,
+    // whenAuthedBeforeRedirect: AuthAction.REDIRECT_TO_APP,
+
+    // whenAuthed: AuthAction.REDIRECT_TO_APP,
+
+
+    // whenAuthedBeforeRedirect: AuthAction.RETURN_NULL,
+    // whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
+    // whenUnauthedAfterInit: AuthAction.RENDER,
   }
 )(Index)
 
