@@ -38,7 +38,7 @@ export default function Header({ user }) {
     // }
     return (
         <>
-            {user.photoURL &&
+            
             <header className={styles.headerContainer}>
                 {/* <header className={float ? styles.headerfloat : styles.header}> */}
                 <div className={styles.header}>
@@ -63,7 +63,7 @@ export default function Header({ user }) {
                     </div>
                 </div>
             </header>
-                    }
+                    
         </>
     )
 }

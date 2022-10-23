@@ -1,23 +1,8 @@
 // import global from "../styles/global.css";
-import { memo, useEffect, useState } from "react";
-import { useAuthContext } from "../context/UserAuthState";
-import styles from "../styles/Home.module.css";
 // import Dashboard from "../Components/Dashboard";
 // import Welcome from "./Components/Welcome";
 import { AuthAction, useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth"
-import Header from "../Components/Header";
-import Sidebar from "../Components/Sidebar";
-import SsrAuthRequired from "./ssr-auth-required";
-import Link from "next/link";
-import { SiAddthis } from 'react-icons/si'
-import { AnimatePresence, AnimateSharedLayout, LayoutGroup, motion } from "framer-motion";
-
-import Note from "./[id]";
-import { BrowserRouter, BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-import { useRouter } from "next/router";
 import Layout from "../Components/Layout";
-import Head from "next/head";
 import Home from "./Home";
 
 const MyLoader = () => <div>Loading...</div>
@@ -102,10 +87,6 @@ const Index = () => {
   // if (AuthUser) {
   //   console.log(AuthUser.email)
   // }
-  const router = useRouter()
-// useEffect(() => {
-//   router.push('/auth')
-// }, []);
 
   return (
 
@@ -160,12 +141,8 @@ Index.getLayout = function getLayout(page) {
 export const getServerSideProps = withAuthUserTokenSSR()()
 
 export default withAuthUser(
-  {
-  //   whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,                             
+  {         
   //   // whenUnauthedAfterInit: AuthAction.RENDER,
-  // LoaderComponent: MyLoader ,
-    // whenUnauthedBeforeInit : AuthAction.SHOW_LOADER,
-    // LoaderComponent: MyLoader ,
     whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
     authPageURL: '/auth'
   }

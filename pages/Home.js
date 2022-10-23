@@ -9,17 +9,10 @@ import Notes from "../Components/Notes";
 function Home({ float }) {
 
   const user = useAuthUser()
-  const router = useRouter()
-
   return (
     <>
-      {
-        user.photoURL &&
-        <>
-          <Header float={float} user={user} />
-          <Notes />
-        </>
-      }
+      <Header float={float} user={user} />
+      <Notes />
     </>
   )
 }
