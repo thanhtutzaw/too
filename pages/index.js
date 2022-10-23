@@ -2,6 +2,8 @@
 // import Dashboard from "../Components/Dashboard";
 // import Welcome from "./Components/Welcome";
 import { AuthAction, useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth"
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import Layout from "../Components/Layout";
 import Home from "./Home";
 
@@ -87,6 +89,15 @@ const Index = () => {
   // if (AuthUser) {
   //   console.log(AuthUser.email)
   // }
+  const user = useAuthUser()
+  const router = useRouter()
+  useEffect(() => {
+    if(user.photoURL){
+      router.push('/')
+    }else{
+      router.push('/auth')
+    }
+  }, [user]);
 
   return (
 
@@ -145,7 +156,9 @@ export default withAuthUser(
   //   // whenUnauthedAfterInit: AuthAction.RENDER,
     whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
     authPageURL: '/auth',
-    whenAuthedBeforeRedirect: AuthAction.REDIRECT_TO_APP
+    // whenAuthed: AuthAction.REDIRECT_TO_APP,
+    whenAuthedBeforeRedirect: AuthAction.REDIRECT_TO_APP,
+    // appPageURL : '/hello app'
     // whenAuthed:AuthAction.REDIRECT_TO_APP
   }
 )(Index)

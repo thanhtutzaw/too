@@ -6,12 +6,7 @@ import Layout from '../Components/Layout';
 import { Router } from 'react-router-dom';
 // const MyLoader = () => <div>Loading...</div>
 const Auth = () => {
-  const user = useAuthUser()
-  useEffect(() => {
-    if(user) {
-      console.log(user) 
-    }
-  }, []);
+  
   return (
     <div className={styles.loginWrapper}>
       <h3>Welcome to Too</h3>
@@ -28,7 +23,7 @@ Auth.getLayout = function getLayout(page) {
 }
 export default withAuthUser({
   whenAuthed: AuthAction.REDIRECT_TO_APP,
-  appPageURL : '/',
+  // appPageURL : '/',
   whenAuthedBeforeRedirect:AuthAction.RETURN_NULL,
   whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
   whenUnauthedAfterInit: AuthAction.RENDER,
