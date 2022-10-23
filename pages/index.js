@@ -99,12 +99,17 @@ const Index = () => {
   //   }
   // }, [user]);
   const router = useRouter()
-  const user =useAuthUser()
+  const user = useAuthUser()
   useEffect(() => {
     if (!user.photoURL) {
+      console.log("user needs signin")
       router.push('/auth')
+    } else {
+      console.log(`${user.displayName} in index`)
     }
   }, [user]);
+
+
   return (
 
     <>
@@ -113,7 +118,7 @@ const Index = () => {
       {/* <AnimateSharedLayout type="crossfade"> */}
       {/* {user ? <Home /> : <p>signin</p>} */}
 
-      <Home />     
+      <Home />
 
       {/* {AuthUser.displayName && <Notes />} */}
 
@@ -156,7 +161,7 @@ export const getServerSideProps = withAuthUserTokenSSR()()
 // })()
 
 export default withAuthUser(
-  {         
+  {
     // whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
 
     // whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,

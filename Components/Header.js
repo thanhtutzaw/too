@@ -4,7 +4,7 @@ import Link from "next/link";
 import Sidebar from "./Sidebar";
 import { motion } from 'framer-motion'
 import { CgClose } from 'react-icons/cg'
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
 
 export default function Header({ user }) {
@@ -17,9 +17,10 @@ export default function Header({ user }) {
         input.current.focus()
         // setisClose(true)
     }
-    const modalHandle = () => {
+    const modalHandle = useCallback(() => {
         setshowModal((prevstate) => !prevstate)
     }
+    ,[])
     // const [float, setfloat] = useState(false);
     // useEffect(() => {
     //     const handleScroll = () => {
@@ -37,7 +38,7 @@ export default function Header({ user }) {
     //     Router.push('/auth')
     // }
     return (
-        <>            
+        <>
             <div className={styles.headerContainer}>
                 {/* <header className={float ? styles.headerfloat : styles.header}> */}
                 <div className={styles.header}>
@@ -55,14 +56,14 @@ export default function Header({ user }) {
                             </motion.div>
 
                             // :
-                            
+
                             // <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
                         }
                         {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
                     </div>
                 </div>
             </div>
-                    
+
         </>
     )
 }

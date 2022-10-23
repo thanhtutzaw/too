@@ -4,7 +4,9 @@ import { MdOutlineDarkMode } from 'react-icons/md'
 import { VscSignOut } from 'react-icons/vsc'
 import { CgClose } from 'react-icons/cg'
 import { motion } from 'framer-motion'
-export default function Sidebar({ setshowModal, user }) {
+import { useAuthUser } from 'next-firebase-auth';
+export default function Sidebar({ setshowModal}) {
+    const user = useAuthUser()
     const modalHandle = () => {
         setshowModal((prevstate) => !prevstate)
     }
@@ -12,7 +14,6 @@ export default function Sidebar({ setshowModal, user }) {
         return user.signOut(), modalHandle()
     }
     return (
-
         <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}

@@ -7,23 +7,12 @@ import { useRouter } from 'next/router';
 // const MyLoader = () => <div>Loading...</div>
 
 const Auth = () => {
-  const router = useRouter()
-  const user = useAuthUser()
-  useEffect(() => {
-    if (user.photoURL) {
-      router.push('/')
-    }
-  }, [user]);
   return (
     <>
-      {!user ?
-        null
-        :
         <div className={styles.loginWrapper}>
           <h3>Welcome to Too</h3>
           <FirebaseAuth />
         </div>
-      }
     </>
   )
 }

@@ -6,11 +6,14 @@ import Notes from "../Components/Notes";
 // import Sidebar from '../Components/Sidebar'
 // import Note from './[id]'
 
-export default function Home({ float }) {
-  
+export default function Home({ float }) { 
 
   const user = useAuthUser()
- 
+ useEffect(() => {
+   if (user) {
+     console.log(`${user.displayName} in Home`)
+   }
+ }, [user]);
   return (
     <>
       {
