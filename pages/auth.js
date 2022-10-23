@@ -7,13 +7,13 @@ import { useRouter } from 'next/router';
 // const MyLoader = () => <div>Loading...</div>
 
 const Auth = () => {
+  const router = useRouter()
   const user = useAuthUser()
-  // const router = useRouter()
-  // useEffect(() => {
-  //   if(!user){
-  //     router.push('/not user')
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user.photoURL) {
+      router.push('/')
+    }
+  }, [user]);
   return (
     <>
       {!user ?
@@ -36,7 +36,7 @@ Auth.getLayout = function getLayout(page) {
 }
 export default withAuthUser({
   whenAuthed: AuthAction.REDIRECT_TO_APP,
-  whenAuthedBeforeRedirect: AuthAction.RENDER,
+  whenAuthedBeforeRedirect: AuthAction.RETURN_NULL,
   // appPageURL:'/',
   whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
   whenUnauthedAfterInit: AuthAction.RENDER,
