@@ -37,13 +37,13 @@ const FirebaseAuth = () => {
   return (
     <div>
       {renderAuth ?
-        (<>
+        (
           <StyledFirebaseAuth
             uiConfig={firebaseAuthConfig}
             firebaseAuth={getAuth()}
-            // className={"styles.google"}
+          // className={"styles.google"}
           />
-        </>
+
         )
         :
         null}

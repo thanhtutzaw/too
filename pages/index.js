@@ -144,7 +144,8 @@ export default withAuthUser(
   {         
   //   // whenUnauthedAfterInit: AuthAction.RENDER,
     whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
-    authPageURL: '/auth'
+    authPageURL: '/auth',
+    whenAuthed:AuthAction.REDIRECT_TO_APP
   }
 )(Index)
 
