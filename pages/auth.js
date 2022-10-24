@@ -4,7 +4,7 @@ import FirebaseAuth from '../Components/FirebaseAuth'
 import { withAuthUser, AuthAction, useAuthUser } from 'next-firebase-auth'
 import Layout from '../Components/Layout';
 import { useRouter } from 'next/router';
-// const MyLoader = () => <div>Loading...</div>
+const MyLoader = () => <div>Loading...</div>
 
 const Auth = () => {
   const router = useRouter()
@@ -29,9 +29,9 @@ Auth.getLayout = function getLayout(page) {
 }
 export default withAuthUser({
   whenAuthed: AuthAction.REDIRECT_TO_APP,
-  whenAuthed: AuthAction.RETURN_NULL,
   whenAuthedBeforeRedirect: AuthAction.RETURN_NULL,
   // appPageURL:'/',
-  whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
+  whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
+  LoaderComponent: MyLoader,
   whenUnauthedAfterInit: AuthAction.RENDER,
 })(Auth)
