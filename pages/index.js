@@ -102,12 +102,12 @@ const Index = () => {
   const user = useAuthUser()
   useEffect(() => {
     router.prefetch('/auth')
-    if (!user.photoURL) {
-      console.log("user needs signin")
-      router.push('/auth')
-    } else {
-      console.log(`${user.displayName} in index`)
-    }
+    // if (!user.photoURL) {
+    //   console.log("user needs signin")
+    //   router.push('/auth')
+    // } else {
+    //   console.log(`${user.displayName} in index`)
+    // }
   }, [user]);
 
 
