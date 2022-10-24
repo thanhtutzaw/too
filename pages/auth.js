@@ -7,12 +7,16 @@ import { useRouter } from 'next/router';
 // const MyLoader = () => <div>Loading...</div>
 
 const Auth = () => {
+  const router = useRouter()
+  useEffect(() => {
+    router.prefetch('/')
+  }, []);
   return (
     <>
-        <div className={styles.loginWrapper}>
-          <h3>Welcome to Too</h3>
-          <FirebaseAuth />
-        </div>
+      <div className={styles.loginWrapper}>
+        <h3>Welcome to Too</h3>
+        <FirebaseAuth />
+      </div>
     </>
   )
 }
