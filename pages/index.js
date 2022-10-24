@@ -101,6 +101,7 @@ const Index = () => {
   const router = useRouter()
   const user = useAuthUser()
   useEffect(() => {
+    router.prefetch('/auth')
     if (!user.photoURL) {
       console.log("user needs signin")
       router.push('/auth')
@@ -175,6 +176,8 @@ export default withAuthUser(
     // whenAuthedBeforeRedirect: AuthAction.RETURN_NULL,
     // whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
     // whenUnauthedAfterInit: AuthAction.RENDER,
+    whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+    authPageURL: '/auth',
   }
 )(Index)
 
