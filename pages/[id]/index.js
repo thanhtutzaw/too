@@ -1,6 +1,6 @@
 import { useAuthUser, withAuthUser } from 'next-firebase-auth'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../Components/Header'
 import Layout from '../../Components/Layout'
 import Notes from '../../Components/Notes'
@@ -33,6 +33,9 @@ function NewHeader() {
 }
 const Note = ({ note }) => {
   const router = useRouter()
+  useEffect(() => {
+   router.prefetch('/')
+  }, []);
   let { id } = router.query
   let height
   if (typeof window !== "undefined") {
@@ -48,7 +51,7 @@ const Note = ({ note }) => {
         <> 
         <div className={styles.viewContainer}>
             <div  className={styles.viewHeader}>
-              <div className={styles.backBtn}><BiArrowBack prefetch onClick={() => window.history.back()} /></div>
+              <div className={styles.backBtn}><BiArrowBack onClick={() => window.history.back()} /></div>
             </div>
           {/* <p>Height {height}</p> */}
             <div className={styles.viewContent}>
