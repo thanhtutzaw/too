@@ -33,10 +33,13 @@ function NewHeader() {
 }
 const Note = ({ note }) => {
   const router = useRouter()
+  let { id } = router.query
   useEffect(() => {
    router.prefetch('/')
+   if(id){
+    router.push(`/${id}`)
+   }
   }, []);
-  let { id } = router.query
   let height
   if (typeof window !== "undefined") {
      height = window.innerHeight
@@ -51,7 +54,7 @@ const Note = ({ note }) => {
         <> 
         <div className={styles.viewContainer}>
             <div  className={styles.viewHeader}>
-              <div className={styles.backBtn}><BiArrowBack onClick={() => window.history.back()} /></div>
+              <div className={styles.backBtn}><BiArrowBack onClick={() => router.push('/')} /></div>
             </div>
           {/* <p>Height {height}</p> */}
             <div className={styles.viewContent}>
