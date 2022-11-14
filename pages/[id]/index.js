@@ -1,4 +1,4 @@
-import { useAuthUser, withAuthUser } from 'next-firebase-auth'
+import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import Header from '../../Components/Header'
@@ -8,37 +8,67 @@ import Home from '../Home'
 import styles from "../../styles/Notes.module.css";
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { notes } from '../../utils/data'
+// import { notes } from '../../utils/data'
 import { BiArrowBack } from 'react-icons/bi'
-export const getStaticPaths = async () => {
-  const paths = notes.map(note => {
-    return {
-      params: { id: note.id.toString() }
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from "../../utils/firebase";
+// export const getStaticPaths =async () => {
+//   let notes = []
+//   const q = collection(db, `users/${id}/notes`);
+//   const docSnap = await getDocs(q)
+//   // console.log(q)
+//   notes = docSnap.docs.map(doc => ({
+//     id: doc.id,
+//     ...doc.data()
+//   }))
+//   const paths = notes.map(note => {
+//     return {
+//       params: { id: note.id.toString()  }
+//     }
+//   })
+//   return {
+//     paths,
+//     fallback: false
+//   }
+
+// }
+
+// export const getStaticProps = async (context) => {
+//   const id = context.params.id
+//   // const notes = context.params.notes
+//   let notes = []
+//   const note = notes.find(note => note.id == id)
+//   return {
+//     props: { note },
+//     // revalidate: 100
+//   }
+// }
+
+export const getServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser }) => {
+  let notes = null;
+  const id = AuthUser.id;
+  const q = collection(db, `users/${id}/notes`)
+  const docSnap = await getDocs(q)
+
+  notes = docSnap.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }))
+
+  return {
+    props: {
+      notes
     }
-  })
-  return {
-    paths,
-    fallback: false
   }
-}
-export const getStaticProps = async (context) => {
-  const id = context.params.id
-  const note = notes.find(note => note.id == id)
-  return {
-    props: { note },
-    revalidate: 100
-  }
-}
-function NewHeader() {
-}
-const Note = ({ note }) => {
+})
+
+const Note = ({notes}) => {
+  // const note = []
   const router = useRouter()
   let { id } = router.query
+const note = notes.find(note => note.id == id)
   useEffect(() => {
-   router.prefetch('/')
-   if(id){
-    router.push(`/${id}`)
-   }
+  //  router.prefetch('/')
   }, []);
   let height
   if (typeof window !== "undefined") {
@@ -75,4 +105,5 @@ const Note = ({ note }) => {
     </>
   )
 }
+// export default withAuthUser()(Note)
 export default Note

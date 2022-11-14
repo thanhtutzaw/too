@@ -5,7 +5,7 @@ import { VscSignOut } from 'react-icons/vsc'
 import { CgClose } from 'react-icons/cg'
 import { motion } from 'framer-motion'
 import { useAuthUser } from 'next-firebase-auth';
-export default function Sidebar({ setshowModal}) {
+export default function Sidebar({ setshowModal }) {
     const user = useAuthUser()
     const modalHandle = () => {
         setshowModal((prevstate) => !prevstate)

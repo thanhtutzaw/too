@@ -1,26 +1,65 @@
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth'
-import { useRouter } from 'next/router';
 import React, { useEffect } from 'react'
 import Header from '../Components/Header'
 import Notes from "../Components/Notes";
 // import Sidebar from '../Components/Sidebar'
 // import Note from './[id]'
 
-export default function Home({ float }) { 
 
+// export async function getServerSideProps(context) {
+//   console.log(context)
+//   return{
+//     props:{
+//       id
+//     }
+//   }
+// }
+
+//   const q1 = collectionGroup(`users/UAGs84NckgaJI44tjokqFfVKt912/notes`);
+//   notes = (await getDocs(q1)).docs.map((doc) => doc.data())
+//   const user = useAuthUser()
+
+
+  // const q2 = query(collection(db, "users/" + user.id + "/notes"), orderBy("timeStamp", "desc"));
+  // console.log(q2)
+  
+  // const docSnap = (await getDocs(q))
+  // notes = docSnap.docs.map(doc => {
+  //   return {
+  //     id: doc.id,
+  //     ...doc.data()
+  //   }
+  // })
+
+  // onSnapshot(q, (snapshot) => {
+  //     notes = snapshot.docs.map((doc) => ({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //     }))
+  // });
+
+//   return {
+//     props: { notes, q }
+//   }
+// }
+export default function Home({ float , notes }) { 
   const user = useAuthUser()
- useEffect(() => {
-   if (user) {
-     console.log(`${user.displayName} in Home`)
-   }
- }, [user]);
+  useEffect(() => {
+    if (user) {
+      console.log(`${user.displayName} in Home`)
+    }
+  }, [user]);
   return (
     <>
       {
         user.photoURL ? 
         <>
           <Header float={float} user={user} />
-          <Notes />
+          <Notes notes={notes}/>
+          {/* <p>{id}</p> */}
+        {/* {notes.map(note => (
+          <p key={note.id}>{note.title}</p>
+        ))} */}
         </>
         :
         null
@@ -28,8 +67,17 @@ export default function Home({ float }) {
     </>
   )
 }
+export const getServerSideProps = withAuthUserTokenSSR()(Home)
 
-export const getServerSideProps = withAuthUserTokenSSR()()
+// export const getServerSideProps = withAuthUserTokenSSR()( ({AuthUser}) => {
+//   // const id = AuthUser.id;
+//   const id = 123;
+//   // let notes = null;
 
-
-
+//   // const q = "hey";
+//   return{
+//     props:{
+//       id
+//     }
+//   }
+// })

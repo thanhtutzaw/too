@@ -102,6 +102,12 @@ const initAuth = () => {
       secure: process.env.NEXT_PUBLIC_COOKIE_SECURE === 'true',
       signed: true,
     },
+    onVerifyTokenError: (err) => {
+      console.error(err)
+    },
+    onTokenRefreshError: (err) => {
+      console.error(err)
+    },
   })
 }
 

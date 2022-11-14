@@ -1,11 +1,19 @@
 // import global from "../styles/global.css";
 // import Dashboard from "../Components/Dashboard";
 // import Welcome from "./Components/Welcome";
+import { collection, doc, getDoc, getDocs, getFirestore, QuerySnapshot } from "firebase/firestore";
 import { AuthAction, useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth"
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
+import { db } from "../utils/firebase";
+// import { db } from "firebase-admin";
+import { getFirebaseAdmin } from "next-firebase-auth";
 import Home from "./Home";
+// import admin from "../utils/admin";
+// import { getApp } from "firebase-admin/app";
+// import { firestore } from "firebase-admin";
+// import { getApp } from "firebase-admin/app";
 
 const MyLoader = () => <div>Loading...</div>
 // import initAuth from "../utils/initAuth";
@@ -45,7 +53,8 @@ const MyLoader = () => <div>Loading...</div>
 
 //   }
 // )
-const Index = () => {
+const Index = (props) => {
+  const {notes} = props;
   // const AuthUser = useAuthUser()
   // const router = useRouter()
 
@@ -98,10 +107,25 @@ const Index = () => {
   //     router.push('/auth')
   //   }
   // }, [user]);
+
+  // const AuthUser = useAuthUser()
+
   const router = useRouter()
   const user = useAuthUser()
+  // const [notes, setnotes] = useState();
   useEffect(() => {
     router.prefetch('/auth')
+
+    // let notes = null;
+    // const id = AuthUser.id;
+    // const q = collection(db, `users/${user.id}/notes`);
+    // const docSnap = getDocs(q)
+    // console.log(docSnap)
+    // setnotes(docSnap.docs.map(doc => ({
+    //   id: doc.id, 
+    //   ...doc.data()
+    // })) )
+    
     // if (!user.photoURL) {
     //   console.log("user needs signin")
     //   router.push('/auth')
@@ -110,7 +134,8 @@ const Index = () => {
     // }
   }, [user]);
 
-
+// const notes = []
+// const id = user.id;
   return (
 
     <>
@@ -119,7 +144,7 @@ const Index = () => {
       {/* <AnimateSharedLayout type="crossfade"> */}
       {/* {user ? <Home /> : <p>signin</p>} */}
 
-      <Home />
+      <Home notes={notes}  />
 
       {/* {AuthUser.displayName && <Notes />} */}
 
@@ -146,7 +171,6 @@ const Index = () => {
   );
 }
 Index.getLayout = function getLayout(page) {
-  // const AuthUser = useAuthUser()
   return (
     <Layout>
       {page}
@@ -155,11 +179,41 @@ Index.getLayout = function getLayout(page) {
 }
 
 
-export const getServerSideProps = withAuthUserTokenSSR()()
+// export const getServerSideProps = withAuthUserTokenSSR()()
 
-// export const getServerSideProps = withAuthUserTokenSSR({
-//   whenAuthed: AuthAction.REDIRECT_TO_APP,
-// })()
+export const getServerSideProps = withAuthUserTokenSSR()( async ({AuthUser}) => {
+  let notes = null;
+  const id = AuthUser.id;
+  // const db = getFirebaseAdmin().firestore() // I don't use this because of version problem
+  // import { db } from "../utils/firebase";// I import db from firebasejs like traditional
+  // const app = getApp()
+  
+  // const db = getFirebaseAdmin().firestore()
+  // const admin = getFirebaseAdmin()
+  // const db = getApp()
+  // const app = getFirebaseAdmin().firestore()
+  // const db = getFirestore(app)
+  // console.log(db)
+  // const db = admin.firestore()
+  // const q = collection(db,`users/${id}/notes`);
+
+//here
+  const q = collection(db,`users/${id}/notes`)
+  const docSnap =await getDocs(q)
+
+  notes = docSnap.docs.map(doc => ({
+      id:doc.id,
+      ...doc.data()
+  }))
+
+  return{
+    props:{
+      notes
+    }
+  }
+})
+
+
 
 export default withAuthUser(
   {
