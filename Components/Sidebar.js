@@ -1,11 +1,13 @@
-import Image from 'next/image'
-import styles from "../styles/Home.module.css";
-import { MdOutlineDarkMode } from 'react-icons/md'
-import { VscSignOut } from 'react-icons/vsc'
-import { CgClose } from 'react-icons/cg'
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 import { useAuthUser } from 'next-firebase-auth';
+import Image from 'next/image';
+import { useState } from 'react';
+import { CgClose } from 'react-icons/cg';
+import { MdLightMode, MdOutlineDarkMode } from 'react-icons/md';
+import { VscSignOut } from 'react-icons/vsc';
+import styles from "../styles/Home.module.css";
 export default function Sidebar({ setshowModal }) {
+    const [DarkMode, setDarkMode] = useState(false);
     const user = useAuthUser()
     const modalHandle = () => {
         setshowModal((prevstate) => !prevstate)
@@ -19,27 +21,28 @@ export default function Sidebar({ setshowModal }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
             className={styles.setting}>
-                <div onClick={modalHandle} className={styles.closeBtn}><CgClose /></div>
-                <div className={styles.grid}>
-                    <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
-                    <div>
-                        <div className={styles.name}>
-                            {user.displayName}
-                        </div>
-                        <div className={styles.mail}> {user.email}
-                        </div>
+            <div onClick={modalHandle} className={styles.closeBtn}><CgClose /></div>
+            <div className={styles.grid}>
+                <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
+                <div>
+                    <div className={styles.name}>
+                        {user.displayName}
+                    </div>
+                    <div className={styles.mail}> {user.email}
                     </div>
                 </div>
-                <div className={styles.tools}>
-                    <div className={styles.tool}>
-                        <div><MdOutlineDarkMode /></div>
-                        <div>Appearance</div>
-                    </div>
-                    <div onClick={signoutHandle} className={styles.tool}>
-                        <div><VscSignOut /></div>
-                        <div>Signout</div>
-                    </div>
+            </div>
+            <div className={styles.tools}>
+                <div className={styles.tool} onClick={() => { setDarkMode(prev => !prev) }}>
+                    <div style={{display:'flex',flexDirection:'column',}}><MdOutlineDarkMode className={DarkMode ? styles.darkAnimation : styles.darkIcon} />
+                        <MdLightMode className={DarkMode ? styles.lightIcon : styles.lightAnimation} /></div>
+                    Appearance
                 </div>
-            </motion.div>
+                <div onClick={signoutHandle} className={styles.tool}>
+                    <VscSignOut />
+                    Signout
+                </div>
+            </div>
+        </motion.div>
     )
 }
