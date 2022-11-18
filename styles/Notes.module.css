@@ -15,20 +15,22 @@
   background-color: rgb(255, 255, 255);
   word-break      : break-all;
   flex-grow       : 1;
-  border          : 1px solid rgb(163, 163, 163);
+  border          : 1px solid rgb(189, 189, 189);
   border-radius   : 20px;
   padding         : 1em;
   cursor          : pointer;
   width           : 100%;
   color           : inherit;
   width           : 37%;
+  font-size: 1.2rem;
   /* height       : 70%; */
 }
 
-.card h5 {
+.cardTitle {
   border-bottom : 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 14px;
   margin-bottom : 10px;
+  font-weight:550;
 }
 
 .card p {

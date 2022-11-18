@@ -30,7 +30,7 @@
 }
 
 .lightIcon {
-  transform : translateY(-12px);
+  transform : translateY(-15px);
   transition: all .3s ease-in-out;
 
 }
@@ -224,11 +224,24 @@
   font-size  : 1rem;
   line-height: 1.5;
 }
-
+.info{
+  display: flex;
+  flex-direction: column;
+  gap:.2rem;
+}
+@media only screen and (min-width: 500px) {
+  .tools button:hover {
+  background-color: rgba(0, 0, 0, .1);
+}
+}
+.tools button:active {
+background-color: rgba(0, 0, 0, .1);
+}
 @media (max-width: 600px) {
   .grid {
     width: 100%;
   }
+  
 }
 
 .name {
@@ -240,22 +253,31 @@
 }
 
 .tools {
-  font-size : 1rem;
-  margin-top: 1.2em;
+  /* font-size : 1rem; */
+  margin-top: 1.5em;
+}
+.tools button{
+  cursor: pointer;
+  border:none;
+  outline:none;
+  background-color: transparent;
+  width:100%;
 }
 
 .tool {
-  line-height: 40px;
+  /* line-height: 40px; */
   display    : flex;
   gap        : .5em;
   align-items: center;
-  padding    : 7px;
+  padding    : 13px;
   overflow   : hidden;
+  height: 55px;
+  font-size: 1.2rem;
 }
 
-.tool:hover {
-  transition      : all .1s ease-in;
-  background-color: rgba(0, 0, 0, .1);
+.tool:active  {
+  /* transition      : all .1s ease-in; */
+  /* background-color: rgba(0, 0, 0, .1); */
 }
 
 .mainProfile,

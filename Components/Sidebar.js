@@ -24,7 +24,7 @@ export default function Sidebar({ setshowModal }) {
             <div onClick={modalHandle} className={styles.closeBtn}><CgClose /></div>
             <div className={styles.grid}>
                 <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
-                <div>
+                <div className={styles.info}>
                     <div className={styles.name}>
                         {user.displayName}
                     </div>
@@ -33,15 +33,15 @@ export default function Sidebar({ setshowModal }) {
                 </div>
             </div>
             <div className={styles.tools}>
-                <div className={styles.tool} onClick={() => { setDarkMode(prev => !prev) }}>
+                <button className={styles.tool} onClick={() => { setDarkMode(prev => !prev) }}>
                     <div style={{display:'flex',flexDirection:'column',}}><MdOutlineDarkMode className={DarkMode ? styles.darkAnimation : styles.darkIcon} />
                         <MdLightMode className={DarkMode ? styles.lightIcon : styles.lightAnimation} /></div>
                     Appearance
-                </div>
-                <div onClick={signoutHandle} className={styles.tool}>
+                </button>
+                <button onClick={signoutHandle} className={styles.tool}>
                     <VscSignOut />
                     Signout
-                </div>
+                </button>
             </div>
         </motion.div>
     )

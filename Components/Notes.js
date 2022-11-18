@@ -13,7 +13,7 @@ export default function Notes(props) {
             <Link scroll={false} href={`/${id}`}>
                 <a key={id} className={styles.card}>
                     <div layoutid={`title-${id}`} className={styles.cardTitle}>
-                        <h5>{title}</h5>
+                        {title}
                     </div>
 
                     <div layoutid={`text-${id}`} className={styles.cardText}>
