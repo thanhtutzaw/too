@@ -265,7 +265,6 @@ background-color: rgba(0, 0, 0, .1);
   /* align-items: center; */
 }
 .tools {
-  /* font-size : 1rem; */
   margin-top: 1.5em;
   
 }
@@ -292,7 +291,7 @@ background-color: rgba(0, 0, 0, .1);
   padding    : 13px;
   /* overflow   : hidden; */
   height: 55px;
-  font-size: 1.2rem;
+  font-size: 26px;
 }
 
 .tool:active  {
