@@ -20,7 +20,8 @@
 }
 
 .darkIcon {
-  transform : translateY(11px);
+  
+  transform : translateY(13px);
   transition: all .3s ease-in-out;
 }
 
@@ -30,7 +31,7 @@
 }
 
 .lightIcon {
-  transform : translateY(-15px);
+  transform : translateY(-13px);
   transition: all .3s ease-in-out;
 
 }
@@ -251,10 +252,29 @@ background-color: rgba(0, 0, 0, .1);
 .mail {
   color: rgb(83, 83, 83)
 }
-
+.themeContainer{
+  display: flex;
+  flex-direction: column;
+}
+.themeContainer > * {
+  outline: 1px solid blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* align-items: center; */
+}
 .tools {
   /* font-size : 1rem; */
   margin-top: 1.5em;
+  
+}
+.tool{
+  outline:1px solid green !important;
+}
+.tool > *{
+  outline: 1px solid red !important;
+  /* height: 0; */
 }
 .tools button{
   cursor: pointer;
@@ -270,7 +290,7 @@ background-color: rgba(0, 0, 0, .1);
   gap        : .5em;
   align-items: center;
   padding    : 13px;
-  overflow   : hidden;
+  /* overflow   : hidden; */
   height: 55px;
   font-size: 1.2rem;
 }

@@ -34,7 +34,7 @@ export default function Sidebar({ setshowModal }) {
             </div>
             <div className={styles.tools}>
                 <button className={styles.tool} onClick={() => { setDarkMode(prev => !prev) }}>
-                    <div style={{display:'flex',flexDirection:'column',}}><MdOutlineDarkMode className={DarkMode ? styles.darkAnimation : styles.darkIcon} />
+                    <div className={styles.themeContainer}><MdOutlineDarkMode className={DarkMode ? styles.darkAnimation : styles.darkIcon} />
                         <MdLightMode className={DarkMode ? styles.lightIcon : styles.lightAnimation} /></div>
                     Appearance
                 </button>
