@@ -21,7 +21,7 @@
 
 .darkIcon {
   
-  transform : translateY(13px);
+  transform : translateY(0px);
   transition: all .3s ease-in-out;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .lightIcon {
-  transform : translateY(-13px);
+  transform : translateY(-26px);
   transition: all .3s ease-in-out;
 
 }
@@ -253,8 +253,8 @@ background-color: rgba(0, 0, 0, .1);
   color: rgb(83, 83, 83)
 }
 .themeContainer{
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 .themeContainer > * {
   outline: 1px solid blue;
@@ -274,7 +274,7 @@ background-color: rgba(0, 0, 0, .1);
 }
 .tool > *{
   outline: 1px solid red !important;
-  /* height: 0; */
+  height: 26px;
 }
 .tools button{
   cursor: pointer;
