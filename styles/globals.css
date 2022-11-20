@@ -1,3 +1,4 @@
+@import url('https: //fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese');
 body {
   display: flex;
   justify-content: center;
@@ -7,12 +8,12 @@ body {
   /* font-family: Roboto,
   Arial,
   sans-serif; */
-  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
-        font-family: "Google Sans",
-    Roboto,
-    Arial,
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    /* font-family: "Google Sans",
+Roboto,
+Arial,
+sans-serif; */
 }
 a {
  text-decoration: none;
@@ -27,6 +28,7 @@ a {
   -webkit-tap-highlight-color: transparent;
   /* outline:3px solid orange; */
 }
+
 button,
 searchCloseBtn {
   cursor: pointer;

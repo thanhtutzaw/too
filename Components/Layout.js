@@ -3,6 +3,8 @@ import Head from 'next/head'
 import styles from "../styles/Home.module.css";
 import { withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth';
 import Note from '../pages/[id]';
+import Input from './Input';
+import { useState } from 'react';
 function Layout({ children }) {
     return (
         <>
@@ -16,6 +18,7 @@ function Layout({ children }) {
                     {/* <Header /> */}
                     {/* <Note /> */}
                     {children}
+                {/* { OpenNew && <Input setOpenNew={setOpenNew} />} */}
                 {/* </div> */}
             </main>
         </>

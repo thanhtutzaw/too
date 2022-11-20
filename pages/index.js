@@ -10,6 +10,8 @@ import { db } from "../utils/firebase";
 // import { db } from "firebase-admin";
 import { getFirebaseAdmin } from "next-firebase-auth";
 import Home from "./Home";
+import Input from '../Components/Input';
+
 // import admin from "../utils/admin";
 // import { getApp } from "firebase-admin/app";
 // import { firestore } from "firebase-admin";
@@ -54,6 +56,7 @@ const MyLoader = () => <div>Loading...</div>
 //   }
 // )
 const Index = (props) => {
+
   const {notes} = props;
   // const AuthUser = useAuthUser()
   // const router = useRouter()
@@ -136,6 +139,11 @@ const Index = (props) => {
 
 // const notes = []
 // const id = user.id;
+// if(OpenNew !== true){
+// return(
+//   <Input setOpenNew={setOpenNew} />
+// )
+// }
   return (
 
     <>
@@ -144,8 +152,9 @@ const Index = (props) => {
       {/* <AnimateSharedLayout type="crossfade"> */}
       {/* {user ? <Home /> : <p>signin</p>} */}
 
-      <Home notes={notes}  />
-
+      
+      {/* {OpenNew && <Input setOpenNew={setOpenNew} />}  */}
+      <Home notes={notes} />
       {/* {AuthUser.displayName && <Notes />} */}
 
       {/* {AuthUser.displayName ? (
@@ -171,9 +180,10 @@ const Index = (props) => {
   );
 }
 Index.getLayout = function getLayout(page) {
+
   return (
     <Layout>
-      {page}
+      {page}      
     </Layout>
   )
 }

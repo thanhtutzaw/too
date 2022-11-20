@@ -28,6 +28,7 @@
 .darkAnimation {
   transition: all .3s ease-in-out;
   transform : translateY(-45px);
+  /* user-select: none; */
 }
 
 .lightIcon {
@@ -289,7 +290,7 @@ background-color: rgba(0, 0, 0, .1);
   gap        : .5em;
   align-items: center;
   padding    : 13px;
-  /* overflow   : hidden; */
+  overflow   : hidden;
   height: 55px;
   font-size: 26px;
 }
@@ -374,4 +375,48 @@ background-color: rgba(0, 0, 0, .1);
 
 .google {
   color: red;
+}
+.footerContainer{
+  /* outline:3px solid red; */
+  /* background-color: rgba(255, 68, 0, 0.534); */
+  position: fixed;
+  bottom:0;  
+  /* right:0; */
+  max-width: 500px;
+  width:100vw;
+  height: 6rem;
+  /* margin-right: auto; */
+  /* height: 60px; */
+  display: flex;
+  justify-content: flex-end;
+  /* align-items: center; */
+  /* bottom: 1rem; */
+/* align-self: flex-end; */
+  /* left:-40px; */
+}
+
+.addBtn{
+  position: relative;
+  width:30px;
+  height:30px;
+  
+  /* outline: none; */
+  font-size: inherit;
+   bottom: -2rem;
+   /* transition: all .2s ease-in-out; */
+   /* align-self: flex-end; */
+   transition: all .1s ease-in-out;
+  background-color: rgb(41, 209, 117);
+  color:white;
+  border:0;  
+  
+  
+}
+.addBtn:active{
+    background-color: rgb(11, 114, 45);
+    /* opacity: .5; */
+    /* scale:-1; */
+  /* transition: all .1s ease-in; */
+  /* outline:1px solid green; */
+/* color  :green; */
 }

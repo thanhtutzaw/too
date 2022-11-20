@@ -1,6 +1,8 @@
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import Footer from '../Components/Footer';
 import Header from '../Components/Header'
+import Input from '../Components/Input';
 import Notes from "../Components/Notes";
 // import Sidebar from '../Components/Sidebar'
 // import Note from './[id]'
@@ -43,6 +45,8 @@ import Notes from "../Components/Notes";
 //   }
 // }
 export default function Home({ float , notes }) { 
+  const [OpenNew, setOpenNew] = useState(false);
+
   const user = useAuthUser()
   useEffect(() => {
     if (user) {
@@ -51,11 +55,13 @@ export default function Home({ float , notes }) {
   }, [user]);
   return (
     <>
+        {/* {OpenNew === false ?  <Input setOpenNew={setOpenNew} /> : null} */}
       {
         user.photoURL ? 
         <>
           <Header float={float} user={user} />
           <Notes notes={notes}/>
+          <Footer setOpenNew={setOpenNew} />
           {/* <p>{id}</p> */}
         {/* {notes.map(note => (
           <p key={note.id}>{note.title}</p>

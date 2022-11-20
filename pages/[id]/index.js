@@ -79,6 +79,7 @@ const note = notes.find(note => note.id == id)
   }
   return (
     <>
+      {/* <p>Height {height}</p> */}
       {/* <Header /> */}
       {id ?
         <> 
@@ -86,7 +87,6 @@ const note = notes.find(note => note.id == id)
             <div  className={styles.viewHeader}>
               <div className={styles.backBtn}><BiArrowBack onClick={() => window.history.back()} /></div>
             </div>
-          {/* <p>Height {height}</p> */}
             <div className={styles.viewContent}>
               <h3 className={styles.titleView} contentEditable >{note.title}</h3>
             <p className={styles.textView} contentEditable>{note.text}</p>

@@ -1,3 +1,6 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap'); */
+@import url('https://fonts.googleapis.com/css?lang=en&family=Product+Sans|Roboto:400,700');
+@import url('https: //fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese');
 .cardContainer {
   overflow          : hidden;
   display           : flex;
@@ -8,21 +11,25 @@
   /* padding        : 0; */
   margin-top        : 65px;
   padding           : 1.3rem 0.9rem;
+  /* height: 100vh; */
   /* gap            :2em 1.4em; */
 }
 
 .card {
   background-color: rgb(255, 255, 255);
-  word-break      : break-all;
+  /* word-break      : break-all; */
+  word-break: break-word;
   flex-grow       : 1;
   border          : 1px solid rgb(189, 189, 189);
   border-radius   : 20px;
-  padding         : 1em;
+  /* padding         : 1em; */
+  padding:1rem;
   cursor          : pointer;
   width           : 100%;
   color           : inherit;
   width           : 37%;
-  font-size: 1.2rem;
+  white-space: pre-wrap;
+  /* font-size: 1.2rem; */
   /* height       : 70%; */
 }
 
@@ -30,7 +37,11 @@
   border-bottom : 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 14px;
   margin-bottom : 10px;
-  font-weight:550;
+  font-weight:500;
+      font-family: "Google Sans",Roboto,Arial,sans-serif;
+      /* font-family: 'Open Sans',
+sans-serif; */
+/* font-family:Roboto,sans-serif; */
 }
 
 .card p {
@@ -39,7 +50,9 @@
   display           : -webkit-box;
   -webkit-box-orient: vertical;
   text-overflow     : ellipsis;
-  white-space       : normal;
+  font-family: Roboto,Arial,sans-serif;
+  /* white-space       : normal; */
+
 }
 
 .viewContainer {
@@ -61,7 +74,6 @@ max-height: 100%; */
   flex-direction: column;
 
   text-align         : left;
-  /* backdrop-filter : blur(3px); */
   background-color   : rgb(255, 255, 255);
   max-width          : 500px;
   width              : 100vw;
@@ -69,7 +81,7 @@ max-height: 100%; */
   inset              : 0;
   margin             : 0 auto;
   position           : fixed;
-  /* padding         : 1.3rem; */
+
 }
 
 /* .titleInput {
@@ -91,12 +103,6 @@ max-height: 100%; */
   overflow: hidden;
   resize  : none;
 }
-
-/* .backBtn {
-
-  font-size: 300px;
-} */
-
 .textView {}
 
 .titleView {}
