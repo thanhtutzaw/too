@@ -46,6 +46,7 @@ import Notes from "../Components/Notes";
 // }
 export default function Home({ float , notes }) { 
   const [OpenNew, setOpenNew] = useState(false);
+  const [isSearching, setisSearching] = useState(false);
 
   const user = useAuthUser()
   useEffect(() => {
@@ -59,8 +60,8 @@ export default function Home({ float , notes }) {
       {
         user.photoURL ? 
         <>
-          <Header float={float} user={user} />
-          <Notes notes={notes}/>
+            <Header float={float} user={user} setisSearching={setisSearching}/>
+            <Notes notes={notes} isSearching={isSearching}/>
           <Footer setOpenNew={setOpenNew} />
           {/* <p>{id}</p> */}
         {/* {notes.map(note => (

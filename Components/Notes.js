@@ -7,7 +7,7 @@ import { useAuthUser } from 'next-firebase-auth';
 // import {  } from 'firebase'
 
 export default function Notes(props) {
-    const { notes } = props;
+    const { notes, isSearching } = props;
     function Card({ id, title, text }) {
         return (
             <Link scroll={false} href={`/${id}`}>
@@ -24,7 +24,7 @@ export default function Notes(props) {
         )
     }
     return (
-        <div className={styles.cardContainer} >
+        <div style={{ pointerEvents: isSearching&&'none' }} className={styles.cardContainer} >
             {notes.map(note =>
             (
                 <Card key={note.id} {...note} />

@@ -11,7 +11,9 @@
   display            : flex;
   flex-direction     : column;
 }
-
+/* .pointer-events-none{
+  pointer-events: none;
+} */
 .container {}
 
 .logo {
@@ -334,12 +336,13 @@ background-color: rgba(0, 0, 0, .1);
   opacity   : 0;
   visibility: hidden;
 }
-
+  
 .searchInput {
   border          : none;
   background-color: transparent;
   outline         : none;
   width           : 100%;
+  padding: 12px 0;
 }
 
 .searchBar:focus-within {
@@ -409,8 +412,6 @@ background-color: rgba(0, 0, 0, .1);
   background-color: rgb(41, 209, 117);
   color:white;
   border:0;  
-  
-  
 }
 .addBtn:active{
     background-color: rgb(11, 114, 45);

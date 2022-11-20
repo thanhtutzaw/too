@@ -7,7 +7,7 @@ import { CgClose } from 'react-icons/cg'
 import { useCallback, useRef, useState } from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
 
-export default function Header({ user }) {
+export default function Header({ user, setisSearching }) {
     const input = useRef(null)
     const [showModal, setshowModal] = useState(false);
     const [Search, setSearch] = useState();
@@ -46,7 +46,7 @@ export default function Header({ user }) {
                         <h1 className={styles.logo}>Too</h1>
                     </Link>
                     <div className={styles.searchBar}>
-                        <input ref={input} value={Search} onChange={(e) => setSearch(e.target.value)} className={styles.searchInput} disabled={user ? '' : 'disable'} type="text" placeholder="Search" />
+                        <input onBlur={(e)=>{setisSearching(false)}}  onFocus={(e) => { setisSearching(true)}} ref={input} value={Search} onChange={(e) => setSearch(e.target.value)} className={styles.searchInput} disabled={user ? '' : 'disable'} type="text" placeholder="Search" />
                         <CgClose onClick={searchCloseHandle} className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide} />
                     </div>
                     <div>
