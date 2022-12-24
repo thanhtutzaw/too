@@ -12,6 +12,7 @@ function Layout({ children }) {
                 <title>Too</title>
                 <meta name="Too" content="for you" />
                 <link rel="icon" href="favicon.ico" />
+
             </Head>
             <main className={styles.main}>
                 {/* <div className={styles.container}> */}

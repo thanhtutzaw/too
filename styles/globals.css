@@ -4,9 +4,10 @@ body {
   justify-content: center;
   background-color: #ececec;
   background-color: #4e0a0a;  
+  background-color: #cfd3d0;  
   text-align: center;
   /* font-family: Roboto,
-  Arial,
+Arial,
   sans-serif; */
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -14,8 +15,10 @@ body {
 Roboto,
 Arial,
 sans-serif; */
+font-size: 22px;
 }
 a {
+  display:block;
  text-decoration: none;
 
 }
@@ -29,10 +32,7 @@ a {
   /* outline:3px solid orange; */
 }
 
-button,
+/* button, */
 searchCloseBtn {
   cursor: pointer;
-}
-a{
-  color: unset;
 }

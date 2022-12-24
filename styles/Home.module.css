@@ -10,7 +10,9 @@
   background-color   : white;
   display            : flex;
   flex-direction     : column;
+  overflow           : hidden;
 }
+
 /* .pointer-events-none{
   pointer-events: none;
 } */
@@ -22,14 +24,14 @@
 }
 
 .darkIcon {
-  
+
   transform : translateY(0px);
   transition: all .3s ease-in-out;
 }
 
 .darkAnimation {
-  transition: all .3s ease-in-out;
-  transform : translateY(-45px);
+  transition    : all .3s ease-in-out;
+  transform     : translateY(-45px);
   /* user-select: none; */
 }
 
@@ -64,6 +66,7 @@
   width              : 100vw;
   gap                : .4rem;
   border-bottom      : 2px solid #efefef;
+  z-index            : 999;
 }
 
 .header>* {}
@@ -228,24 +231,28 @@
   font-size  : 1rem;
   line-height: 1.5;
 }
-.info{
-  display: flex;
+
+.info {
+  display       : flex;
   flex-direction: column;
-  gap:.2rem;
+  gap           : .2rem;
 }
+
 @media only screen and (min-width: 500px) {
   .tools button:hover {
+    background-color: rgba(0, 0, 0, .1);
+  }
+}
+
+.tools button:active {
   background-color: rgba(0, 0, 0, .1);
 }
-}
-.tools button:active {
-background-color: rgba(0, 0, 0, .1);
-}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
   }
-  
+
 }
 
 .name {
@@ -255,35 +262,41 @@ background-color: rgba(0, 0, 0, .1);
 .mail {
   color: rgb(83, 83, 83)
 }
-.themeContainer{
+
+.themeContainer {
   /* display: flex;
   flex-direction: column; */
 }
-.themeContainer > * {
-  outline: 1px solid blue;
-  display: flex;
+
+.themeContainer>* {
+  outline        : 1px solid blue;
+  display        : flex;
   justify-content: center;
-  align-items: center;
-  
+  align-items    : center;
+
   /* align-items: center; */
 }
+
 .tools {
   margin-top: 1.5em;
-  
+
 }
-.tool{
-  outline:1px solid green !important;
+
+.tool {
+  outline: 1px solid green !important;
 }
-.tool > *{
+
+.tool>* {
   outline: 1px solid red !important;
-  height: 26px;
+  height : 26px;
 }
-.tools button{
-  cursor: pointer;
-  border:none;
-  outline:none;
+
+.tools button {
+  cursor          : pointer;
+  border          : none;
+  outline         : none;
   background-color: transparent;
-  width:100%;
+  width           : 100%;
 }
 
 .tool {
@@ -293,11 +306,11 @@ background-color: rgba(0, 0, 0, .1);
   align-items: center;
   padding    : 13px;
   overflow   : hidden;
-  height: 55px;
-  font-size: 26px;
+  height     : 55px;
+  font-size  : 26px;
 }
 
-.tool:active  {
+.tool:active {
   /* transition      : all .1s ease-in; */
   /* background-color: rgba(0, 0, 0, .1); */
 }
@@ -336,13 +349,13 @@ background-color: rgba(0, 0, 0, .1);
   opacity   : 0;
   visibility: hidden;
 }
-  
+
 .searchInput {
   border          : none;
   background-color: transparent;
   outline         : none;
   width           : 100%;
-  padding: 12px 0;
+  padding         : 12px 0;
 }
 
 .searchBar:focus-within {
@@ -379,45 +392,124 @@ background-color: rgba(0, 0, 0, .1);
 .google {
   color: red;
 }
-.footerContainer{
+
+.footerContainer {
+  /* background-color: rgba(255, 68, 0, 0.534); */
   /* outline:3px solid red; */
   /* background-color: rgba(255, 68, 0, 0.534); */
-  position: fixed;
-  bottom:0;  
-  /* right:0; */
-  max-width: 500px;
-  width:100vw;
-  height: 6rem;
+  position       : fixed;
+  bottom         : 0;
+  /* right       :0; */
+  /* min-width   : 500px; */
+  max-width      : 500px;
+  width          : 100vw;
+  height         : 100vh;
+  height         : 6rem;
   /* margin-right: auto; */
-  /* height: 60px; */
-  display: flex;
+  /* height      : 60px; */
+  /* display     : flex; */
   justify-content: flex-end;
-  /* align-items: center; */
-  /* bottom: 1rem; */
-/* align-self: flex-end; */
-  /* left:-40px; */
+  justify-content: center;
+  z-index        : 10000;
+  /* align-items : center; */
+  /* align-self  : flex-end; */
+  /* bottom      : 1rem; */
+  /* left        :-40px; */
+  /* user-select : none; */
 }
 
-.addBtn{
-  position: relative;
-  width:30px;
-  height:30px;
-  
+.addBtn {
+  /* position: relative; */
+  position        : absolute;
+  width           : 30px;
+  height          : 30px;
+  /* bottom       : -700px;
+right             : -200px; */
+  transform-origin: right;
+
+  /* transform: translateX(); */
   /* outline: none; */
-  font-size: inherit;
-   bottom: -2rem;
-   /* transition: all .2s ease-in-out; */
-   /* align-self: flex-end; */
-   transition: all .1s ease-in-out;
+  font-size       : inherit;
+  /* bottom       : -2rem; */
+  /* bottom       : -700px; */
+  /* transition   : all .2s ease-in-out; */
+  /* align-self   : flex-end; */
+  /* transition   : all .3s  ease-in-out; */
+  transition      : all .4s cubic-bezier(1, 0.05, 0, 0.94) , background-color .6s ease-in-out;
   background-color: rgb(41, 209, 117);
-  color:white;
-  border:0;  
+  color           : white;
+  border          : 0;
+  /* rotate: 0deg; */
 }
-.addBtn:active{
-    background-color: rgb(11, 114, 45);
-    /* opacity: .5; */
-    /* scale:-1; */
-  /* transition: all .1s ease-in; */
-  /* outline:1px solid green; */
-/* color  :green; */
+.addBtn:focus-visible{
+  outline: 1px solid black;
+}
+
+.addBtn {}
+.addBtn.active:focus-visible{
+  outline: none;
+}
+.addBtn.active {
+  /* transition: all .4s  ease-in-out; */
+  /* min-width: 200px; */
+  /* animation       : animateBtn .3s ease-in-out; */
+  width : 40%;
+height: 100vh;
+  bottom          : 0;
+  right           : 0;
+  background-color: rgb(11, 114, 45);
+  border-radius   : 0%;
+  /* opacity      : .5; */
+  /* scale        :-1; */
+  /* transition   : all .1s ease-in; */
+  /* outline      :1px solid green; */
+  /* color        :green; */
+}
+.buttonText{
+  display: block;
+  rotate: 0deg;
+  transition: all .7s cubic-bezier(1, 0.05, 0, 0.94);
+  /* transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
+}
+.addBtn:is(.active) .buttonText{
+  display: inline-block;
+  rotate: 45deg;
+  cursor: pointer;
+  /* transition-delay: 1s; */
+  /* scale: 15; */
+  /* animation: scaleup 1s ease-in-out; */
+  /* transition: all .6s ease-in-out; */
+  /* transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
+}
+@keyframes scaleup {
+  50%{
+    width:100%;
+    height:100%;
+    /* scale:0; */
+  }
+  100%{
+    width:100%;
+    height:100%;
+    /* scale:15; */
+  }
+}
+
+@keyframes animateBtn {
+  /* 0% {
+
+    width : auto;
+    height: auto;
+  } */
+
+  /* 50% {
+
+    width           : 20%;
+    height          : 30vh;
+    transition-delay: .2s;
+  } */
+
+  /* 100% {
+    width : 40%;
+    height: 100vh;
+  } */
 }

@@ -16,7 +16,6 @@ export default function MyApp({ Component, pageProps }) {
         <title>Too</title>
         <meta name="Too" content="for you" />
         <link rel="icon" href="favicon.ico" />
-        <link href="//fonts.googleapis.com/css?family=Google+Sans:400,500&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese" rel="stylesheet" nonce=""></link>
       </Head>
       <Component {...pageProps} />
     </>

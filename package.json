@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "file-loader": "^6.2.0",
     "firebase": "9.9",
     "firebase-admin": "^11.0.1",
     "framer-motion": "^6.5.1",
+    "isotope-layout": "^3.0.6",
     "netlify-cli": "^2.37.0",
     "next": "12.1.6",
     "next-absolute-url": "^1.2.2",
@@ -20,7 +22,9 @@
     "react-dom": "18.2.0",
     "react-firebaseui": "^6.0.0",
     "react-icons": "^4.4.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "url-loader": "^4.1.1",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "eslint": "8.18.0",

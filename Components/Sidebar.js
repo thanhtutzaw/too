@@ -6,6 +6,40 @@ import { CgClose } from 'react-icons/cg';
 import { MdLightMode, MdOutlineDarkMode } from 'react-icons/md';
 import { VscSignOut } from 'react-icons/vsc';
 import styles from "../styles/Home.module.css";
+
+function Setting(props) {
+    // const {DarkMode , setDarkMode} = props;
+    return (<div className={styles.tools}>
+        <button className={styles.tool} onClick={() => {
+            props.setDarkMode(prev => !prev);
+        }}>
+            <div className={styles.themeContainer}><MdOutlineDarkMode className={props.DarkMode ? styles.darkAnimation : styles.darkIcon} />
+                <MdLightMode className={props.DarkMode ? styles.lightIcon : styles.lightAnimation} /></div>
+            Appearance
+        </button>
+        <button onClick={props.signoutHandle} className={styles.tool}>
+            <VscSignOut />
+            Signout
+        </button>
+    </div>);
+}
+
+
+
+function AccountHeader(props) {
+    return (<div className={styles.grid}>
+        <Image unoptimized={true} src={props.user?.photoURL} alt={props.user?.displayName} width="50" height="50" className={styles.profile}></Image>
+        <div className={styles.info}>
+            <div className={styles.name}>
+                {props.user.displayName}
+            </div>
+            <div className={styles.mail}> {props.user.email}
+            </div>
+        </div>
+    </div>);
+}
+
+
 export default function Sidebar({ setshowModal }) {
     const [DarkMode, setDarkMode] = useState(false);
     const user = useAuthUser()
@@ -21,28 +55,11 @@ export default function Sidebar({ setshowModal }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
             className={styles.setting}>
-            <div onClick={modalHandle} className={styles.closeBtn}><CgClose /></div>
-            <div className={styles.grid}>
-                <Image unoptimized={true} src={user?.photoURL} alt={user?.displayName} width="50" height="50" className={styles.profile}></Image>
-                <div className={styles.info}>
-                    <div className={styles.name}>
-                        {user.displayName}
-                    </div>
-                    <div className={styles.mail}> {user.email}
-                    </div>
-                </div>
+            <div className={styles.closeBtn}>
+                <CgClose onClick={modalHandle} />
             </div>
-            <div className={styles.tools}>
-                <button className={styles.tool} onClick={() => { setDarkMode(prev => !prev) }}>
-                    <div className={styles.themeContainer}><MdOutlineDarkMode className={DarkMode ? styles.darkAnimation : styles.darkIcon} />
-                        <MdLightMode className={DarkMode ? styles.lightIcon : styles.lightAnimation} /></div>
-                    Appearance
-                </button>
-                <button onClick={signoutHandle} className={styles.tool}>
-                    <VscSignOut />
-                    Signout
-                </button>
-            </div>
+            <AccountHeader user={user} />
+            <Setting DarkMode={DarkMode} setDarkMode={setDarkMode} signoutHandle={signoutHandle} />
         </motion.div>
     )
 }
