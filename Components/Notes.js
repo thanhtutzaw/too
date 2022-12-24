@@ -4,9 +4,9 @@ import styles from '../styles/Notes.module.css'
 import Link from 'next/link'
 // import firebase from 'firebase/compat/app';
 import { useAuthUser } from 'next-firebase-auth';
-import Isotope from 'isotope-layout';
+// import Isotope from 'isotope-layout';
 import { useRef } from 'react';
-import isotope from 'isotope-layout';
+// import isotope from 'isotope-layout';
 // import {  } from 'firebase'
 
 export default function Notes(props) {

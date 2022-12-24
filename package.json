@@ -13,7 +13,6 @@
     "firebase": "9.9",
     "firebase-admin": "^11.0.1",
     "framer-motion": "^6.5.1",
-    "isotope-layout": "^3.0.6",
     "netlify-cli": "^2.37.0",
     "next": "12.1.6",
     "next-absolute-url": "^1.2.2",
