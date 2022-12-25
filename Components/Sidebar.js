@@ -23,15 +23,12 @@ function Setting(props) {
         </button>
     </div>);
 }
-
-
-
 function AccountHeader(props) {
     return (<div className={styles.grid}>
-        <Image unoptimized={true} src={props.user?.photoURL} alt={props.user?.displayName} width="50" height="50" className={styles.profile}></Image>
+        <Image unoptimized={true} src={props.user?.photoURL ? props.user.photoURL : './profile.jpg'} alt={props.user?.displayName ? props.user.displayName :'test_user'} width="50" height="50" className={styles.profile}></Image>
         <div className={styles.info}>
             <div className={styles.name}>
-                {props.user.displayName}
+                {props.user.displayName ? props.user.displayName :'test_user'}
             </div>
             <div className={styles.mail}> {props.user.email}
             </div>
@@ -58,7 +55,11 @@ export default function Sidebar({ setshowModal }) {
             <div className={styles.closeBtn}>
                 <CgClose onClick={modalHandle} />
             </div>
+            {user ?
             <AccountHeader user={user} />
+            :
+            <AccountHeader user={"test_user"} />
+}
             <Setting DarkMode={DarkMode} setDarkMode={setDarkMode} signoutHandle={signoutHandle} />
         </motion.div>
     )

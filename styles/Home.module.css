@@ -210,6 +210,7 @@
   font-size                 : 17px;
   transition                : color 0.15s ease, border-color 0.15s ease;
   box-shadow                : 0px 10px 20px rgba(0, 0, 0, .1);
+  border:1px solid #dfdfdf;
   /* outline                : 3px solid red; */
   /* max-width              : 500px; */
   /* margin-right           : 30px; */
@@ -269,7 +270,7 @@
 }
 
 .themeContainer>* {
-  outline        : 1px solid blue;
+  /* outline        : 1px solid blue; */
   display        : flex;
   justify-content: center;
   align-items    : center;
@@ -283,11 +284,11 @@
 }
 
 .tool {
-  outline: 1px solid green !important;
+  /* outline: 1px solid green !important; */
 }
 
 .tool>* {
-  outline: 1px solid red !important;
+  /* outline: 1px solid red !important; */
   height : 26px;
 }
 
@@ -388,10 +389,24 @@
   flex-direction: column;
   gap           : 1rem;
 }
+.loginWrapper > button{
+  /* border:3px solid red; */
+  background-color: rgb(0, 119, 255);
+  color:white;
+  border-radius: 7px;
+  border:0;
+  /* padding:2rem; */
+      max-width : 220px;
+    min-height: 40px;
+    padding   : .8rem 16px;
+    width     : 100%;
+    margin:0 auto;
+}
 
 .google {
   color: red;
 }
+
 
 .footerContainer {
   /* background-color: rgba(255, 68, 0, 0.534); */

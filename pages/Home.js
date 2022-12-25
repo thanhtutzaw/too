@@ -58,7 +58,7 @@ export default function Home({ float , notes }) {
     <>
         {/* {OpenNew === false ?  <Input setOpenNew={setOpenNew} /> : null} */}
       {
-        user.photoURL ? 
+        (user.photoURL || user.email) ? 
         <>
             <Header float={float} user={user} setisSearching={setisSearching}/>
             <Notes notes={notes} isSearching={isSearching}/>
