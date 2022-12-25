@@ -402,6 +402,7 @@ font-size  : 20px;
     padding   : .8rem 16px;
     width     : 100%;
     margin:0 auto;
+    cursor: pointer;
 }
 
 .google {
