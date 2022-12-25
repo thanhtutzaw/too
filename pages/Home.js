@@ -22,29 +22,29 @@ import Notes from "../Components/Notes";
 //   const user = useAuthUser()
 
 
-  // const q2 = query(collection(db, "users/" + user.id + "/notes"), orderBy("timeStamp", "desc"));
-  // console.log(q2)
-  
-  // const docSnap = (await getDocs(q))
-  // notes = docSnap.docs.map(doc => {
-  //   return {
-  //     id: doc.id,
-  //     ...doc.data()
-  //   }
-  // })
+// const q2 = query(collection(db, "users/" + user.id + "/notes"), orderBy("timeStamp", "desc"));
+// console.log(q2)
 
-  // onSnapshot(q, (snapshot) => {
-  //     notes = snapshot.docs.map((doc) => ({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //     }))
-  // });
+// const docSnap = (await getDocs(q))
+// notes = docSnap.docs.map(doc => {
+//   return {
+//     id: doc.id,
+//     ...doc.data()
+//   }
+// })
+
+// onSnapshot(q, (snapshot) => {
+//     notes = snapshot.docs.map((doc) => ({
+//         id: doc.id,
+//         ...doc.data(),
+//     }))
+// });
 
 //   return {
 //     props: { notes, q }
 //   }
 // }
-export default function Home({ float , notes }) { 
+export default function Home({ float, notes }) {
   const [OpenNew, setOpenNew] = useState(false);
   const [isSearching, setisSearching] = useState(false);
 
@@ -56,20 +56,20 @@ export default function Home({ float , notes }) {
   }, [user]);
   return (
     <>
-        {/* {OpenNew === false ?  <Input setOpenNew={setOpenNew} /> : null} */}
+      {/* {OpenNew === false ?  <Input setOpenNew={setOpenNew} /> : null} */}
       {
-        (user.photoURL || user.email) ? 
-        <>
-            <Header float={float} user={user} setisSearching={setisSearching}/>
-            <Notes notes={notes} isSearching={isSearching}/>
-          <Footer setOpenNew={setOpenNew} />
-          {/* <p>{id}</p> */}
-        {/* {notes.map(note => (
+        (user.photoURL || user.email) ?
+          <>
+            <Header float={float} user={user} setisSearching={setisSearching} />
+            <Notes notes={notes} isSearching={isSearching} />
+            <Footer setOpenNew={setOpenNew} />
+            {/* <p>{id}</p> */}
+            {/* {notes.map(note => (
           <p key={note.id}>{note.title}</p>
         ))} */}
-        </>
-        :
-        null
+          </>
+          :
+          null
       }
     </>
   )

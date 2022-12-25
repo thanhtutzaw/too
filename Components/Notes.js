@@ -50,7 +50,7 @@ export default function Notes(props) {
             
 
         return (
-            <Link scroll={false} href={`/${id}`}>
+            <Link href={`/${id}`}>
                 <div id="card"  key={id} className={styles.card}>
                 {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
                     <div layoutid={`title-${id}`} className={styles.cardTitle}>

@@ -8,14 +8,28 @@ import { BiArrowBack } from 'react-icons/bi'
 import { useEffect } from 'react'
 function Footer({ setOpenNew }) {
   const [active, setactive] = useState(false)
-
+  const [playOn] = useSound(checkSound,
+    { volume: 0.1 })
+  const [playOff] = useSound(uncheckSound,
+    { volume: 0.1 })
   useEffect(() => {
     if(active == true){
-      // window.location.hash('#hello')
-      // console.log(window.location)
-      window.location.hash ="hello"
+      window.location.hash ="#Note"
     }else{
-      window.location.hash =""
+      window.location.hash ="home"
+    }
+    window.onhashchange= (e)=>{
+      // console.log(window.location.hash === '#home')
+    }
+    window.onpopstate =(e)=>{
+      // console.log(window.location.hash === '#home')
+      if (window.location.hash === '#home'){
+setactive(false)
+playOff()
+      }else{
+        setactive(true)
+        playOn()
+      }
     }
     // window.onhashchange = (e) => {
     //   if(window.location.hash === "hello"){
@@ -35,20 +49,17 @@ function Footer({ setOpenNew }) {
       // st
     })
   }, [active]);
-  const [playOn] = useSound(checkSound,
-    { volume: 0.1 })
-  const [playOff] = useSound(uncheckSound,
-    { volume: 0.1 })
+
   function handle() {
     // if (e.keyCode == 27) {
     //   setactive(prev => !prev)
     // }
     setactive(prev => !prev)
     if (active) {
-      playOff()
+      // playOff()
     }
     else {
-      playOn()
+      // playOn()
     }
   }
   return (
