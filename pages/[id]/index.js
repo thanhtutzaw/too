@@ -67,9 +67,7 @@ const Note = ({notes}) => {
   const router = useRouter()
   let { id } = router.query
 const note = notes.find(note => note.id == id)
-  useEffect(() => {
-  //  router.prefetch('/')
-  }, []);
+
   let height
   if (typeof window !== "undefined") {
      height = window.innerHeight
@@ -84,13 +82,14 @@ const note = notes.find(note => note.id == id)
       {id ?
         <> 
         <div className={styles.viewContainer}>
-            <div  className={styles.viewHeader}>
+            {/* <div  className={styles.viewHeader}>
               <div className={styles.backBtn}><BiArrowBack onClick={() => window.history.back()} /></div>
             </div>
             <div className={styles.viewContent}>
               <h3 className={styles.titleView} contentEditable >{note.title}</h3>
             <p className={styles.textView} contentEditable>{note.text}</p>
-            </div>
+            </div> */}
+
           {/* <motion.div className={styles.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
             {note.title}
           </motion.div>

@@ -320,7 +320,7 @@
 .mainProfile,
 .searchCloseBtn,
 .addBtn,
-.closeBtn {
+.closeBtn>svg {
   cursor: pointer;
 }
 
@@ -328,6 +328,10 @@
   font-size      : 1.5em;
   display        : flex;
   justify-content: flex-end;
+  margin-top     : -32px;
+  position       : absolute;
+  right          : 0;
+  padding        : 0.4rem;
 }
 
 .searchBar {
@@ -499,39 +503,42 @@ right             : -200px; */
 }
 
 .addBtn:is(.active) .buttonText {
-  display               : inline-block;
-  /* rotate             : 45deg; */
-  cursor                : pointer;
-  opacity: 0;
-  transform: translate(-70px,-130px);
-  visibility: hidden;
-  user-select: none;
-  /* transition: all .5s ease; */
-  transition: all .4s cubic-bezier(1, 0.05, 0, 0.94);
-  transition-delay: .1s;
-  /* transition: all .5s ease , opacity 1s ease; */
-  /* rotate             : 360deg; */
-  /* position           : relative;
-  top                   :0; */
-  /* transform          : translate(82px, -143px) rotate(calc(45deg*3)); */
+  display                  : inline-block;
+  /* rotate                : 45deg; */
+  cursor                   : pointer;
+  opacity                  : 0;
+  transform                : translate(-70px, -130px);
+  visibility               : hidden;
+  user-select              : none;
+  /* transition            : all .5s ease; */
+  transition               : all .4s cubic-bezier(1, 0.05, 0, 0.94);
+  transition-delay         : .1s;
+  /* transition            : all .5s ease , opacity 1s ease; */
+  /* rotate                : 360deg; */
+  /* position              : relative;
+  top                      :0; */
+  /* transform             : translate(82px, -143px) rotate(calc(45deg*3)); */
   /* transform             : translate(-82px, -183px) rotate(calc(45deg*3)); */
-  /* opacity: 1; */
-  /* animation : fadeout 1s ease; */
-  /* scale              : 205; */
-  /* transition-delay   : .3s; */
-  /* scale              : 15; */
-  /* animation          : scaleup 1s ease-in-out; */
-  /* transition         : all .6s ease-in-out; */
-  /* transition         : all 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
+  /* opacity               : 1; */
+  /* animation             : fadeout 1s ease; */
+  /* scale                 : 205; */
+  /* transition-delay      : .3s; */
+  /* scale                 : 15; */
+  /* animation             : scaleup 1s ease-in-out; */
+  /* transition            : all .6s ease-in-out; */
+  /* transition            : all 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
 }
+
 @keyframes fadeout {
-  0%{
-opacity: 1;
+  0% {
+    opacity: 1;
   }
-  100%{
+
+  100% {
     opacity: 0;
   }
 }
+
 .addContainer {
   position        : fixed;
   inset           : 0;

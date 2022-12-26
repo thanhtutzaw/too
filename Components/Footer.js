@@ -14,7 +14,7 @@ function Footer({ setOpenNew }) {
     { volume: 0.1 })
   useEffect(() => {
     if (active == true) {
-      window.location.hash = "#Note"
+      window.location.hash = "#addNote"
     } else {
       window.location.hash = "home"
     }
@@ -25,7 +25,7 @@ function Footer({ setOpenNew }) {
       // console.log(window.location.hash === '#home')
       if (window.location.hash === '#home') {
         setactive(false)
-      } else {
+      } else if(window.location.hash === "#addNote") {
         setactive(true)
         // playOn()
       }

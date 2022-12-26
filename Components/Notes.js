@@ -6,12 +6,13 @@ import Link from 'next/link'
 import { useAuthUser } from 'next-firebase-auth';
 // import Isotope from 'isotope-layout';
 import { useRef } from 'react';
+import EditNote from './EditNote';
 // import isotope from 'isotope-layout';
 // import {  } from 'firebase'
 
 export default function Notes(props) {
     const { notes, isSearching } = props;
-    function Card({ id, title, text, index }) {
+    function Card({ id, title, text, index ,setactiveNote }) {
 
         // function getStyle(elem) {
         //     if (typeof window !== 'undefined') {
@@ -38,7 +39,7 @@ export default function Notes(props) {
         // }
         // elements?.forEach((ele) => {
         //     // console.log("hey")
-            
+
         //     const style = getStyle(ele);
         //     // ele.style.color = 'red !important'
         //     // console.log(style.width)
@@ -46,28 +47,35 @@ export default function Notes(props) {
         // })
         // let width = 150
 
-            
-            
 
         return (
-            <Link href={`/${id}`}>
-                <div id="card"  key={id} className={styles.card}>
-                {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
-                    <div layoutid={`title-${id}`} className={styles.cardTitle}>
-                        {title}
-                    </div>
+            <>
+                <Link href={`/#Note/#${id}`}>
+                    <div onClick={(e) => { setactiveNote(id) ;}} id="card" key={id} className={styles.card}>
+                        {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
+                        <div layoutid={`title-${id}`} className={styles.cardTitle}>
+                            {title}
+                        </div>
 
-                    <div layoutid={`text-${id}`} className={styles.cardText}>
+                        <div layoutid={`text-${id}`} className={styles.cardText}>
+                            <p>{text}</p>
+                        </div>
+                    </div>
+                </Link>
+
+                {/* {editNote && (
+                    <div>
+                        <p>{title}</p>
                         <p>{text}</p>
                     </div>
-                </div>
-            </Link>
+                )} */}
+            </>
         )
     }
     const [totalHeight, settotalHeight] = useState(0);
     useEffect(() => {
         let elements = document.querySelectorAll('#card')
-        
+
         let height;
         let totalHeight = 0;
         elements?.forEach(ele => {
@@ -89,10 +97,10 @@ export default function Notes(props) {
 
         console.log(totalHeight)
     }, [totalHeight]);
-    
 
-        // return elements 
-        const container = useRef(null)  
+
+    // return elements 
+    const container = useRef(null)
     if (typeof window !== 'undefined') {
         var elem = document.querySelectorAll('.cardContainer')[0]
 
@@ -104,17 +112,28 @@ export default function Notes(props) {
         //     layoutMode: 'masonry'
         // });
     }
-    
+
+    const [activeNote, setactiveNote] = useState("");
+    const editNote = notes.find(note => note.id == activeNote)
+    useEffect(() => {
+    }, [activeNote]);
     return (
         <div ref={container} style={{ pointerEvents: isSearching ? 'none' : 'auto' }} className={styles.cardContainer} >
             {/* <div> */}
-                            {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
-                {notes.map((note, index) =>
-                (
-                    <Card index={index} key={note.id} {...note} />
-                )
-                )}
+            {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
+            {notes.map((note, index) =>
+            (
+                <Card setactiveNote={setactiveNote} index={index} key={note.id} {...note} />
+            )
+            )}
             {/* </div> */}
+            <EditNote setactiveNote={setactiveNote} editnote={editNote}/>
+            {/* {editNote && (
+                <div>
+                    <p>{editNote.title}</p>
+                    <p>{editNote.text}</p>
+                </div>
+            )} */}
         </div>
     )
 }
