@@ -60,7 +60,7 @@
   border             : 1px solid rgb(189, 189, 189);
   border-radius      : 20px;
   /* padding         : 1em; */
-  padding            : 1rem;
+  padding            : .5rem;
   cursor             : pointer;
   /* width           : 100%; */
   color              : inherit;
@@ -84,7 +84,7 @@
   flex-grow       : 1;
   border          : 1px solid #bdbdbd;
   border-radius   : 20px;
-  padding         : 1rem;
+  padding         : .5rem;
   cursor          : pointer;
   width           : 100%;
   color           : inherit;
@@ -110,6 +110,8 @@ sans-serif; */
   -webkit-box-orient   : vertical;
   text-overflow        : ellipsis;
   font-family          : Roboto, Arial, sans-serif;
+      color: #4a4a4a;
+      color: #414141;
   /* white-space       : normal; */
 }
 
@@ -138,7 +140,7 @@ max-height: 100%; */
   inset           : 0;
   margin          : 0 auto;
   position        : fixed;
-  z-index: 100000;
+  z-index         : 100000;
 }
 
 /* .titleInput {
