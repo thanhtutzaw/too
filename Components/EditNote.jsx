@@ -68,7 +68,7 @@ import { BiArrowBack } from "react-icons/bi";
 //   }
 // );
 
-const EditNote = ({ editnote, setactiveNote }) => {
+const EditNote = ({ editnote, setactiveNote, activeNote }) => {
   // const note = []
   //   const router = useRouter();
   //   let { id } = router.query;
@@ -85,9 +85,12 @@ const EditNote = ({ editnote, setactiveNote }) => {
     <>
       {/* <p>Height {height}</p> */}
       {/* <Header /> */}
-      {editnote ? (
+      {
         <>
-          <div className={styles.viewContainer}>
+          <div
+            style={{ opacity: activeNote ? "1" : "0" , visibility:activeNote?'visible':'hidden'}}
+            className={styles.viewContainer}
+          >
             <div className={styles.viewHeader}>
               <div className={styles.backBtn}>
                 <BiArrowBack
@@ -100,10 +103,10 @@ const EditNote = ({ editnote, setactiveNote }) => {
             </div>
             <div className={styles.viewContent}>
               <h3 className={styles.titleView} contentEditable>
-                {editnote.title}
+                {editnote?.title}
               </h3>
               <p className={styles.textView} contentEditable>
-                {editnote.text}
+                {editnote?.text}
               </p>
             </div>
             {/* <motion.div className={styles.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
@@ -114,7 +117,7 @@ const EditNote = ({ editnote, setactiveNote }) => {
           </motion.div> */}
           </div>
         </>
-      ) : null}
+      }
     </>
   );
 };

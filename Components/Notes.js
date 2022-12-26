@@ -12,7 +12,7 @@ import EditNote from './EditNote';
 
 export default function Notes(props) {
     const { notes, isSearching } = props;
-    function Card({ id, title, text, index ,setactiveNote }) {
+    function Card({ id, title, text, index, setactiveNote , activeNote }) {
 
         // function getStyle(elem) {
         //     if (typeof window !== 'undefined') {
@@ -47,23 +47,45 @@ export default function Notes(props) {
         // })
         // let width = 150
 
-
+function handleStyle (e){
+    // console.log(e.currentTarget)
+e.currentTarget.style.color = "red !important"
+}
         return (
             <>
                 <Link href={`/#Note/#${id}`}>
-                    <div onClick={(e) => { setactiveNote(id) ;}} id="card" key={id} className={styles.card}>
-                        {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
-                        <div layoutid={`title-${id}`} className={styles.cardTitle}>
-                            {title}
-                        </div>
+                    <div
+                        style={{zIndex: activeNote === id ?'2' : '0',transform: activeNote === id ? 'translate(0%,0%) scale(1)' : 'none'}}
+                    data-id={id} onMouseEnter={(e)=>{   
+                        // e.currentTarget.style.border = "3px solid red"
+                    }} onClick={(e) => {
+                        // e.currentTarget.style.border = "3px solid red"
+                        // e.stopPropagation()
+                        handleStyle(e)
+                        // e.currentTarget.style.display = "none !important"
+                        // if(activeNote){
+                        //     e.currentTarget.style.transform = 'translate(-54%, -50%) scale(2.2)'
+                        // }
+                        setactiveNote(id); 
+                        // e.currentTarget.style.display = 'none !important'
+                        // e.currentTarget.style.backgroundColor = "red";
+                        // e.currentTarget.style.transform = "translate(-54%, -50%) scale(2.2)"; 
+                        // e.currentTarget.style.transition = "all .4s ease"                        
+                        }} 
+                        
+                        id="card" key={id} className={styles.card}>
+                        {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */ }
+                            < div layoutid = {`title-${id}`} className={styles.cardTitle}>
+                    {title}
+                </div>
 
-                        <div layoutid={`text-${id}`} className={styles.cardText}>
-                            <p>{text}</p>
-                        </div>
-                    </div>
-                </Link>
+                <div layoutid={`text-${id}`} className={styles.cardText}>
+                    <p>{text}</p>
+                </div>
+            </div>
+                </Link >
 
-                {/* {editNote && (
+        {/* {editNote && (
                     <div>
                         <p>{title}</p>
                         <p>{text}</p>
@@ -118,16 +140,29 @@ export default function Notes(props) {
     useEffect(() => {
     }, [activeNote]);
     return (
-        <div ref={container} style={{ pointerEvents: isSearching ? 'none' : 'auto' }} className={styles.cardContainer} >
+        <div onClick={(e)=>{
+            // e.stopPropagation()
+            // const target = e.currentTarget.dataset.id = editNote;
+            // if (e.currentTarget && target) {
+            //     // target.style.border = "3px solid red"
+            //     console.log(target)
+            // }
+            // e.stopPropagation()
+            // e.preventDefault()
+            // console.log(e.currentTarget.dataset.id = editNote)
+            // console.log(target)
+        }} ref={container} style={{ pointerEvents: isSearching ? 'none' : 'auto' }} className={styles.cardContainer} >
             {/* <div> */}
             {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
             {notes.map((note, index) =>
             (
-                <Card setactiveNote={setactiveNote} index={index} key={note.id} {...note} />
+                <Card activeNote={activeNote} setactiveNote={setactiveNote} index={index} key={note.id} {...note} />
             )
             )}
             {/* </div> */}
-            <EditNote setactiveNote={setactiveNote} editnote={editNote}/>
+
+            <EditNote activeNote={activeNote} setactiveNote={setactiveNote} editnote={editNote} />
+
             {/* {editNote && (
                 <div>
                     <p>{editNote.title}</p>

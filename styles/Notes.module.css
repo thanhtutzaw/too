@@ -53,6 +53,9 @@
 }
 
 .card {
+  transition         : all .4s ease-in-out;
+  transform-origin   : 50% 50% 0px;
+  transform          : translate(0px, 0px);
   background-color   : rgb(255, 255, 255);
   /* word-break      : break-all; */
   word-break         : break-word;
@@ -79,6 +82,8 @@
 }
 
 .card {
+  transition      : all .4s ease-in-out;
+  transform       : translate(0px, 0px);
   background-color: #fff;
   word-break      : break-word;
   flex-grow       : 1;
@@ -90,6 +95,7 @@
   color           : inherit;
   width           : 37%;
   white-space     : pre-wrap;
+
 }
 
 .cardTitle {
@@ -110,37 +116,41 @@ sans-serif; */
   -webkit-box-orient   : vertical;
   text-overflow        : ellipsis;
   font-family          : Roboto, Arial, sans-serif;
-      color: #4a4a4a;
-      color: #414141;
+  color                : #4a4a4a;
+  color                : #414141;
   /* white-space       : normal; */
 }
 
 .viewContainer {
-  /* position: fixed;
-  top: 0;
-bottom: 0; */
-  /* left:0; */
-  /* height: 100vh;
-max-height: 100%; */
-  /* height: stretch;
-  height: -webkit-fill-available; */
-  /* height: -webkit-fill-available;
-  height: fill-available; */
-  /* height: 100vh; */
+  visibility         : hidden;
+  transform-origin   : 0 0;
+  transition         : all .2s ease-in-out , opacity .4s ease-out;
+  opacity            : 0;
+  /* position        : fixed;
+  top                : 0;
+bottom               : 0; */
+  /* left            :0; */
+  /* height          : 100vh;
+max-height           : 100%; */
+  /* height          : stretch;
+  height             : -webkit-fill-available; */
+  /* height          : -webkit-fill-available;
+  height             : fill-available; */
+  /* height          : 100vh; */
   /* height          : 87vh; */
   /* height          : 100vh; */
-  /* height:100dvh; */
-  display         : flex;
-  flex-direction  : column;
-  text-align      : left;
-  background-color: rgb(255, 255, 255);
-  max-width       : 500px;
-  width           : 100vw;
-  min-height      : -webkit-fill-available;
-  inset           : 0;
-  margin          : 0 auto;
-  position        : fixed;
-  z-index         : 100000;
+  /* height          :100dvh; */
+  display            : flex;
+  flex-direction     : column;
+  text-align         : left;
+  background-color   : rgb(255, 255, 255);
+  max-width          : 500px;
+  width              : 100vw;
+  min-height         : -webkit-fill-available;
+  inset              : 0;
+  margin             : 0 auto;
+  position           : fixed;
+  z-index            : 100000;
 }
 
 /* .titleInput {
