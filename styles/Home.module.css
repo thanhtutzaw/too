@@ -146,6 +146,7 @@
 
 .profile {
   border-radius: 50%;
+  object-fit   : cover;
 }
 
 .description {
@@ -237,8 +238,21 @@
   }
 }
 
+
+
+.tools button:hover {
+  /* background-color: rgba(0, 0, 0, .1);
+   */
+  background-color: rgba(179, 179, 179, 0.466) !important;
+  /* color        :red; */
+}
+
 .tools button:active {
-  background-color: rgba(0, 0, 0, .1);
+  /* background-color: rgba(0, 0, 0, .1);
+   */
+  opacity         : .7;
+  background-color: rgba(179, 179, 179, 0.432) !important;
+  /* color        :red; */
 }
 
 @media (max-width: 600px) {
@@ -461,6 +475,11 @@
 .loginWrapper>button:hover {
   color           : white;
   background-color: #1ed317;
+}
+
+.loginWrapper>button:active {
+  color           : white;
+  background-color: #24ae1f;
 }
 
 .loginWrapper>button:disabled {

@@ -97,7 +97,6 @@ export default function Footer({ user }) {
             className={s.titleView}
             contentEditable
           ></h3>
-
           <span
             style={{
               opacity: textInput !== "" ? "0" : ".5",

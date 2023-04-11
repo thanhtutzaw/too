@@ -37,7 +37,11 @@ function AccountHeader(props) {
     <div className={styles.grid}>
       <Image
         unoptimized={true}
-        src={user?.photoURL ? user.photoURL : "./profile.jpg"}
+        src={
+          user?.photoURL
+            ? user.photoURL
+            : "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+        }
         alt={user?.displayName ? user.displayName : "test_user"}
         width="50"
         height="50"

@@ -100,11 +100,11 @@ export default function Header({ user, setisSearching }) {
                     referrerPolicy="no-referrer"
                     unoptimized={true}
                     src={user?.photoURL}
-                    alt="test"
+                    alt={""}
                     width="40"
                     height="40"
                     className={styles.profile}
-                  ></Image>
+                  />
                 </motion.div>
               ) : (
                 <motion.div
@@ -127,12 +127,12 @@ export default function Header({ user, setisSearching }) {
                   <Image
                     referrerPolicy="no-referrer"
                     unoptimized={true}
-                    src="./profile.jpg"
-                    alt="test"
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                    alt="testUser Profile"
                     width="40"
                     height="40"
                     className={styles.profile}
-                  ></Image>
+                  />
                 </motion.div>
               )
               // :
