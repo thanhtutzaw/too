@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
-import FirebaseAuth from "../Components/FirebaseAuth";
-import { withAuthUser, AuthAction, useAuthUser } from "next-firebase-auth";
-import Layout from "../Components/Layout.jsx";
-import { useRouter } from "next/router";
-import EmailAuth from "../Components/EmailAuth";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { AuthAction, withAuthUser } from "next-firebase-auth";
 import Link from "next/link";
-const MyLoader = () => <div>Loading...</div>;
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import FirebaseAuth from "../Components/FirebaseAuth";
+import Layout from "../Components/Layout.jsx";
+import styles from "../styles/Home.module.css";
+import FullPageLoader from "../Components/FullPageLoader";
 
 const Auth = () => {
   const router = useRouter();
@@ -35,7 +34,7 @@ const Auth = () => {
           Welcome to <Link href="https://github.com/thanhtutzaw/too">Too</Link>
         </h1>
         <FirebaseAuth />
-        <span style={{ opacity:'.5'}}>or</span>
+        <span style={{ opacity: ".5" }}>or</span>
         <button
           disabled={emailLoading}
           className={styles.loginBtn}
@@ -61,6 +60,6 @@ export default withAuthUser({
   whenAuthedBeforeRedirect: AuthAction.RETURN_NULL,
   // appPageURL:'/',
   whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
-  LoaderComponent: MyLoader,
+  LoaderComponent: FullPageLoader,
   whenUnauthedAfterInit: AuthAction.RENDER,
 })(Auth);
