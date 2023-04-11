@@ -1,14 +1,10 @@
-import React, { useEffect, useRef } from "react";
-// import Header from "./Header";
-// import Layout from "../../Components/Layout";
-// import Notes from "../../Components/Notes";
-// import Home from "../Home";
+import React, { useEffect, useRef, useState } from "react";
 import s from "../styles/Notes.module.css";
-// import { motion } from "framer-motion";
 // import { notes } from '../../utils/data'
 import { BiArrowBack } from "react-icons/bi";
-// import { collection, getDocs } from "firebase/firestore";
-// import { db } from "../../utils/firebase";
+import { updateDoc, doc, serverTimestamp, Timestamp } from "firebase/firestore";
+import { app, db } from "../utils/firebase";
+import { getAuth } from "firebase/auth";
 // export const getStaticPaths =async () => {
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -62,6 +58,7 @@ import { BiArrowBack } from "react-icons/bi";
 // );
 
 export default function EditNote({ editnote, setactiveNote, activeNote }) {
+  const auth = getAuth(app);
   // const note = []
   //   const router = useRouter();
   //   let { id } = router.query;
@@ -74,32 +71,33 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
   //       height = 57 + " extra px need (full screen)";
   //     }
   //   }
-  const editRef = useRef(null);
   useEffect(() => {
-    // const target = editRef.current;
-    // console.log(target);
-    function handleEscape(e) {
-      if (e.key === "Escape") {
-        // console.log("Escape");
-        setactiveNote("");
-        window.location.hash = "#home";
-      }
-    }
+    // function handleEscape(e) {
+    //   if (e.key === "Escape") {
+    //     // console.log("Escape");
+    //     setactiveNote("");
+    //     window.location.hash = "#home";
+    //   }
+    // }
     if (activeNote) {
       // window.addEventListener("keyup", handleEscape);
     }
     // return () => window.removeEventListener("keyup", handleEscape);
   }, [activeNote, setactiveNote]);
   const title = useRef(null);
+  const text = useRef(null);
   useEffect(() => {
     //  title.current.innerText = "";
     //  text.current.textContent = "";
     //  settitleInput("");
     //  settextInput("");
     if (activeNote) {
+      console.log(editnote);
       title.current.focus();
     }
-  }, [activeNote]);
+  }, [title, activeNote, editnote]);
+  const [titleInput, settitleInput] = useState("");
+  const [textInput, settextInput] = useState("");
   return (
     <>
       {/* <p>Height {height}</p> */}
@@ -147,15 +145,17 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
               onClick={() => {
                 window.history.back();
                 setactiveNote("");
+                updateNote();
               }}
               tabIndex="0"
               className="addBtn"
             >
-              Save
+              Update
             </button>
           </div>
           <div className={s.viewContent}>
             <h3
+              onInput={() => settitleInput(title.current.innerText)}
               ref={title}
               role="textbox"
               className={s.titleView}
@@ -163,7 +163,13 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
             >
               {editnote?.title}
             </h3>
-            <p role="textbox" className={s.textView} contentEditable>
+            <p
+              onInput={() => settextInput(text.current.innerText)}
+              ref={text}
+              role="textbox"
+              className={s.textView}
+              contentEditable
+            >
               {editnote?.text}
             </p>
           </div>
@@ -177,5 +183,27 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
       </div>
     </>
   );
+  async function updateNote() {
+    console.log("just exit");
+    if (titleInput !== editnote.title || titleInput !== editnote.text) {
+      const q = doc(
+        db,
+        `users/${auth.currentUser.uid}/notes/${editnote?.id.toString()}`
+      );
+      console.log("do update");
+      await updateDoc(q, {
+        ...editnote,
+        title: titleInput,
+        text: textInput,
+        createdAt: new Timestamp(
+          editnote.createdAt.seconds,
+          editnote.createdAt.nanoseconds
+        ),
+        updatedAt: serverTimestamp(),
+      });
+      window.location.reload();
+    }
+  }
 }
+
 // export default withAuthUser()(Note)
