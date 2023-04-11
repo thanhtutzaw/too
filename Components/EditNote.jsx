@@ -1,18 +1,12 @@
-import {
-  useAuthUser,
-  withAuthUser,
-  withAuthUserTokenSSR,
-} from "next-firebase-auth";
-import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 // import Header from "./Header";
 // import Layout from "../../Components/Layout";
 // import Notes from "../../Components/Notes";
 // import Home from "../Home";
-import styles from "../styles/Notes.module.css";
-import Link from "next/link";
+import s from "../styles/Notes.module.css";
 // import { motion } from "framer-motion";
 // import { notes } from '../../utils/data'
+import { useRef } from "react";
 import { BiArrowBack } from "react-icons/bi";
 // import { collection, getDocs } from "firebase/firestore";
 // import { db } from "../../utils/firebase";
@@ -68,7 +62,7 @@ import { BiArrowBack } from "react-icons/bi";
 //   }
 // );
 
-const EditNote = ({ editnote, setactiveNote, activeNote }) => {
+export default function EditNote({ editnote, setactiveNote, activeNote }) {
   // const note = []
   //   const router = useRouter();
   //   let { id } = router.query;
@@ -81,45 +75,81 @@ const EditNote = ({ editnote, setactiveNote, activeNote }) => {
   //       height = 57 + " extra px need (full screen)";
   //     }
   //   }
+  const editRef = useRef(null);
+  useEffect(() => {
+    // const target = editRef.current;
+    // console.log(target);
+    if (activeNote) {
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          setactiveNote(null);
+          window.location.hash = "#home";
+        }
+      });
+    }
+  }, []);
+
   return (
     <>
       {/* <p>Height {height}</p> */}
       {/* <Header /> */}
-      {
-        <>
-          <div
-            style={{ opacity: activeNote ? "1" : "0" , visibility:activeNote?'visible':'hidden'}}
-            className={styles.viewContainer}
-          >
-            <div className={styles.viewHeader}>
-              <div className={styles.backBtn}>
-                <BiArrowBack
-                  onClick={() => {
-                    window.history.back();
-                    setactiveNote("");
-                  }}
-                />
-              </div>
+      <div
+        style={{
+          zIndex: "100000",
+          pointerEvents: activeNote ? "auto" : "none",
+          // visibility: activeNote ? "visible" : "hidden",
+        }}
+        className={s.edit}
+      >
+        <div
+          // ref={editRef}
+          // tabIndex="1"
+          style={{
+            zIndex: "100000",
+            opacity: activeNote ? "1" : "0",
+            visibility: activeNote ? "visible" : "hidden",
+          }}
+          className={`${s.viewContainer} ${activeNote ? s.animateView : ""}`}
+          // layoutid={`card-${editnote.id}`}
+
+          //  onKeyDown={(e)=>{
+          //    if (e.key === "Escape") {
+          //     console.log(e.key + "in edit")
+          //      setactiveNote(null);
+          //      window.location.hash = `#home`;
+          //    }
+          //  }}
+          // onKeyDown={(e)=>{
+          //   alert('ehy')
+          // }}
+        >
+          <div className={s.viewHeader}>
+            <div className={s.backBtn}>
+              <BiArrowBack
+                onClick={() => {
+                  window.history.back();
+                  setactiveNote("");
+                }}
+              />
             </div>
-            <div className={styles.viewContent}>
-              <h3 className={styles.titleView} contentEditable>
-                {editnote?.title}
-              </h3>
-              <p className={styles.textView} contentEditable>
-                {editnote?.text}
-              </p>
-            </div>
-            {/* <motion.div className={styles.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
+          </div>
+          <div className={s.viewContent}>
+            <h3 role="textbox" className={s.titleView} contentEditable>
+              {editnote?.title}
+            </h3>
+            <p role="textbox" className={s.textView} contentEditable>
+              {editnote?.text}
+            </p>
+          </div>
+          {/* <motion.div className={s.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
             {note.title}
           </motion.div>
-          <motion.div className={styles.textView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
+          <motion.div className={s.textView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
             {note.text}
           </motion.div> */}
-          </div>
-        </>
-      }
+        </div>
+      </div>
     </>
   );
-};
+}
 // export default withAuthUser()(Note)
-export default EditNote;

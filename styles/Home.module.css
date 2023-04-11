@@ -16,7 +16,7 @@
 /* .pointer-events-none{
   pointer-events: none;
 } */
-.container {}
+
 
 .logo {
   cursor   : pointer;
@@ -24,31 +24,25 @@
 }
 
 .darkIcon {
-
   transform : translateY(0px);
   transition: all .3s ease-in-out;
 }
 
 .darkAnimation {
-  transition    : all .3s ease-in-out;
-  transform     : translateY(-45px);
-  /* user-select: none; */
+  transition: all .3s ease-in-out;
+  transform : translateY(-45px);
 }
 
 .lightIcon {
-  transform : translateY(-26px);
+  transform : translateY(-22px);
   transition: all .3s ease-in-out;
 
 }
 
 .lightAnimation {
-  transition   : all .3s ease-in-out;
-  transform    : translateY(45px);
-  /* visibility: hidden; */
-  /* display   : none; */
+  transition: all .3s ease-in-out;
+  transform : translateY(45px);
 }
-
-.headerContainer {}
 
 .header {
   position           : fixed;
@@ -56,8 +50,6 @@
   background-color   : white;
   padding            : 0 1.2rem;
   height             : 70px;
-  /* padding-top     : 1.1rem;
-  padding-bottom     : 0.4rem; */
   display            : flex;
   justify-content    : space-between;
   align-items        : center;
@@ -196,12 +188,12 @@
 
 .card,
 .setting {
-
+  /* border:3px solid red !important; */
 
   /* left    : 180px; */
 
   background-color          : rgb(255, 255, 255);
-  padding                   : 1.5rem;
+  padding                   : 1rem;
   text-align                : left;
   color                     : inherit;
   text-decoration           : none;
@@ -280,17 +272,22 @@
 }
 
 .tools {
-  margin-top: 1.5em;
+  margin-top    : 1.5em;
+  display       : flex;
+  flex-direction: column;
+  gap           : 10px;
 
 }
 
 .tool {
+  color     : rgb(32, 32, 32);
   /* outline: 1px solid green !important; */
 }
 
 .tool>* {
   /* outline: 1px solid red !important; */
-  height: 26px;
+  height   : 20px;
+  /* height: 26px; */
 }
 
 .tools button {
@@ -303,14 +300,19 @@
 
 .tool {
   /* line-height: 40px; */
-  display    : flex;
-  gap        : .5em;
-  align-items: center;
-  padding    : 13px;
-  overflow   : hidden;
-  height     : 55px;
-  font-size  : 26px;
+  display         : flex;
+  gap             : .5em;
+  align-items     : center;
+  padding         : 13px;
+  overflow        : hidden;
+  height          : 55px;
+  font-size       : 20px;
+  background-color: rgb(245, 245, 245) !important;
+  border-radius   : 5px;
+  /* font-size    : 1rem; */
 }
+
+.tool>* {}
 
 .tool:active {
   /* transition      : all .1s ease-in; */
@@ -325,13 +327,21 @@
 }
 
 .closeBtn {
-  font-size      : 1.5em;
-  display        : flex;
-  justify-content: flex-end;
-  margin-top     : -32px;
-  position       : absolute;
-  right          : 0;
-  padding        : 0.4rem;
+  font-size       : 1.5em;
+  display         : flex;
+  justify-content : flex-end;
+  margin-top      : -24px;
+  position        : absolute;
+  right           : 0;
+  padding         : 0.4rem;
+  transition      : all .3s ease-in-out;
+  background-color: transparent;
+}
+
+.closeBtn:active {
+  color           : rgb(87, 87, 87);
+  background-color: gainsboro;
+  border-radius   : 50px;
 }
 
 .searchBar {
@@ -365,9 +375,11 @@
 }
 
 .searchBar:focus-within {
-  background: rgb(255, 255, 255);
-  box-shadow: 0px 5px 10px #e9e9e9;
-  outline   : 2px solid rgb(77, 216, 77);
+  background   : rgb(255, 255, 255);
+  box-shadow   : 0px 5px 10px #e9e9e9;
+  /* outline   : 2px solid rgb(77, 216, 77); */
+  outline      : 2px solid var(--main-color);
+
 }
 
 .signinBtn {
@@ -380,6 +392,18 @@
   position        : relative;
 }
 
+.loginWrapper a {
+  color: #1ed317;
+}
+
+.loginWrapper a:hover {
+  text-decoration: underline;
+}
+
+.loginWrapper a:active {
+  color: #0ca307 !important;
+}
+
 .addBtn {
   bottom          : 30px;
   right           : 44px;
@@ -389,55 +413,84 @@
 }
 
 .loginWrapper {
-  margin-top    : 1rem;
-  display       : flex;
-  flex-direction: column;
-  gap           : 1rem;
+  margin-top     : 1rem;
+  display        : flex;
+  flex-direction : column;
+  gap            : 1rem;
+  display        : flex;
+  flex-direction : column;
+  gap            : 1rem;
+  justify-content: center;
+  /* align-items : center; */
+  flex           : 1;
+}
+
+.loginWrapper h1 {
+  position: absolute;
+  top     : 25%;
+  right   : 0;
+  left    : 0;
+}
+
+.loginWrapper a {
+  display: inline-block;
 }
 
 .loginWrapper>button {
   /* border:3px solid red; */
-  background-color: rgb(0, 119, 255);
+  /* background-color   : rgb(0, 119, 255); */
+  /* color              : white; */
+  border-radius         : 7px;
+  /* border             : 0; */
+  /* padding            :2rem; */
+  max-width             : 220px;
+  min-height            : 40px;
+  padding               : .7rem 16px;
+  width                 : 100%;
+  margin                : 0 auto;
+  cursor                : pointer;
+  border-radius         : 100px;
+  transition            : all .3s ease-in-out;
+  font-family           : Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 14px;
+}
+
+.loginWrapper>button:hover {
   color           : white;
-  border-radius   : 7px;
-  border          : 0;
-  /* padding      :2rem; */
-  max-width       : 220px;
-  min-height      : 40px;
-  padding         : .8rem 16px;
-  width           : 100%;
-  margin          : 0 auto;
-  cursor          : pointer;
+  background-color: #1ed317;
 }
 
-.google {
-  color: red;
+.loginWrapper>button:disabled {
+  color           : white;
+  background-color: #1ed317;
+  cursor          : not-allowed;
 }
 
+.loginBtn {
+  background-color: transparent;
+  border          : 1px solid rgb(0, 119, 255);
+  color           : rgb(0, 119, 255);
+  border          : 1px solid #1ed317;
+  color           : #1ed317;
+}
 
 .footerContainer {
-  /* background-color: rgba(255, 68, 0, 0.534); */
-  /* outline:3px solid red; */
-  /* background-color: rgba(255, 68, 0, 0.534); */
-  position       : fixed;
-  bottom         : 0;
-  /* right       :0; */
-  /* min-width   : 500px; */
-  max-width      : 500px;
-  width          : 100vw;
-  height         : 100vh;
-  height         : 6rem;
-  /* margin-right: auto; */
-  /* height      : 60px; */
-  /* display     : flex; */
-  justify-content: flex-end;
-  justify-content: center;
-  z-index        : 10000;
-  /* align-items : center; */
-  /* align-self  : flex-end; */
-  /* bottom      : 1rem; */
-  /* left        :-40px; */
-  /* user-select : none; */
+  position          : fixed;
+  bottom            : 0;
+  /* min-width      : 500px; */
+  max-width         : 500px;
+  width             : 100vw;
+  /* height         : 100vh; */
+  /* height         : 6rem; */
+
+  justify-content   : flex-end;
+  justify-content   : center;
+  z-index           : 10000;
+  /* bottom         : 1rem; */
+  /* left           :-40px; */
 }
 
 .addBtn {
@@ -451,18 +504,15 @@ right             : -200px; */
   transform-origin: right;
 
   /* transform: translateX(); */
-  /* outline: none; */
-  font-size       : inherit;
-  /* bottom       : -2rem; */
-  /* bottom       : -700px; */
-  /* transition   : all .2s ease-in-out; */
-  /* align-self   : flex-end; */
-  /* transition   : all .3s  ease-in-out; */
-  transition      : all .4s cubic-bezier(1, 0.05, 0, 0.94), background-color .6s ease-in-out, color 0s ease;
-  background-color: rgb(41, 209, 117);
-  color           : white;
-  border          : 0;
-  /* rotate       : 0deg; */
+  font-size          : inherit;
+  /* bottom          : -2rem; */
+  /* bottom          : -700px; */
+  transition         : all .4s cubic-bezier(1, 0.05, 0, 0.94), background-color .6s ease-in-out, color 0s ease;
+  /* background-color: rgb(41, 209, 117); */
+  background-color   : var(--main-color);
+  background-color   : var(--btn-background);
+  border             : 0;
+  /* rotate          : 0deg; */
 }
 
 .addBtn:focus-visible {
@@ -477,29 +527,25 @@ right             : -200px; */
   /* transition: all .4s  ease-in-out; */
   /* min-width: 200px; */
   /* animation       : animateBtn .3s ease-in-out; */
-  width           : 40%;
-  height          : 100vh;
-  bottom          : 0;
-  right           : 0;
-  background-color: rgb(11, 114, 45);
-  background-color: white;
-  transition-delay: .2s;
-  color           : black;
-  border-radius   : 0%;
-  /* opacity      : .5; */
-  /* scale        :-1; */
-  /* transition   : all .1s ease-in; */
-  /* outline      :1px solid green; */
-  /* color        :green; */
+  width              : 40%;
+  height             : 100vh;
+  bottom             : 0;
+  right              : 0;
+  /* background-color: rgb(11, 114, 45); */
+  background-color   : white;
+  transition-delay   : .2s;
+  color              : black;
+  border-radius      : 0%;
+  /* scale           :-1; */
+  /* transition      : all .1s ease-in; */
 }
 
 .buttonText {
-  display      : block;
-  rotate       : 0deg;
-  transform    : translate(0px, 0px);
-  /* scale     : 1; */
-  transition   : all .7s cubic-bezier(1, 0.05, 0, 0.94);
-  /* transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
+  display   : block;
+  rotate    : 0deg;
+  transform : translate(0px, 0px);
+  color     : white;
+  transition: all .7s cubic-bezier(1, 0.05, 0, 0.94);
 }
 
 .addBtn:is(.active) .buttonText {
@@ -552,15 +598,42 @@ right             : -200px; */
   /* padding      : 0 1rem; */
   opacity         : 0;
   display         : none;
-  transition      : 1s ease;
+  transition      : opacity 1s ease;
+}
+
+.viewContent>p {
+  color: #242424;
+}
+
+.viewContent>h3 {
+  /* color:#242424; */
+  font-weight: 500;
+}
+
+.titleSpan,
+.textSpan {
+  position      : absolute;
+  user-select   : none;
+  pointer-events: none;
+
+}
+
+.titleSpan {
+  font-size: 1.3em;
 }
 
 .viewHeader {
-  padding      : 0 1.3rem;
-  height       : 70px;
-  display      : flex;
-  align-items  : center;
-  border-bottom: 2px solid #efefef;
+  padding        : 0 1.3rem;
+  height         : 70px;
+  display        : flex;
+  justify-content: space-between;
+  align-items    : center;
+  border-bottom  : 2px solid #efefef;
+
+}
+
+.viewContent>h3 {
+  margin-bottom: .7rem;
 }
 
 .viewContent {
@@ -568,6 +641,7 @@ right             : -200px; */
   padding : 25px 1.3rem;
   height  : calc(100% - 44px);
 }
+
 
 .addContainer.active {
   animation: fadein 1s ease-in-out;

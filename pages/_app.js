@@ -1,9 +1,5 @@
-// import UserAuthState from '../context/UserAuthState'
 import '../styles/globals.css'
-// import styles from "../styles/Home.module.css";
 import initAuth from '../utils/initAuth'
-import Header from '../Components/Header';
-import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth';
 import Head from 'next/head';
 
 initAuth()

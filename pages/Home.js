@@ -1,9 +1,8 @@
-import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth'
-import React, { useEffect, useState } from 'react'
+import { useAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth';
+import React, { useEffect, useState } from 'react';
 import Footer from '../Components/Footer';
-import Header from '../Components/Header'
-import Input from '../Components/Input';
-import Notes from "../Components/Notes";
+import Header from '../Components/Header.jsx';
+import Notes from "../Components/Notes.jsx";
 // import Sidebar from '../Components/Sidebar'
 // import Note from './[id]'
 
@@ -45,7 +44,6 @@ import Notes from "../Components/Notes";
 //   }
 // }
 export default function Home({ float, notes }) {
-  const [OpenNew, setOpenNew] = useState(false);
   const [isSearching, setisSearching] = useState(false);
 
   const user = useAuthUser()
@@ -60,10 +58,10 @@ export default function Home({ float, notes }) {
       {
         (user.photoURL || user.email) ?
           <>
+            {/* <p style={{zIndex:'10000000'}}>{q}</p> */}
             <Header float={float} user={user} setisSearching={setisSearching} />
             <Notes notes={notes} isSearching={isSearching} />
-            <Footer setOpenNew={setOpenNew} />
-            {/* <p>{id}</p> */}
+            <Footer user={user} />
             {/* {notes.map(note => (
           <p key={note.id}>{note.title}</p>
         ))} */}
@@ -75,6 +73,13 @@ export default function Home({ float, notes }) {
   )
 }
 export const getServerSideProps = withAuthUserTokenSSR()(Home)
+
+// here is home page
+
+
+
+
+
 
 // export const getServerSideProps = withAuthUserTokenSSR()( ({AuthUser}) => {
 //   // const id = AuthUser.id;

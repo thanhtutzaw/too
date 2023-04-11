@@ -15,3 +15,15 @@ if (!apps.length) {
 }
 export const db = getFirestore(app)
 export default app;
+
+export function postToJSON(doc) {
+    const data = doc.data();
+    return {
+        ...data,
+        id: doc.id,
+        // Gotcha! firestore timestamp NOT serializable to JSON. 
+        //Must convert to milliseconds
+        createdAt: data?.createdAt?.toMillis() || 0,
+        updatedAt: data?.updatedAt?.toMillis() || 0,
+    };
+}

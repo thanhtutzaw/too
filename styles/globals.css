@@ -1,57 +1,85 @@
-@import url('https: //fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese');
+@import url('https://fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese');
+
+:root {
+  --main-color    : rgb(8, 166, 60);
+  --btn-background: rgb(18, 170, 77);
+}
+
+button:disabled {
+  opacity: .5;
+  cursor : not-allowed !important;
+}
+
 body {
-  display: flex;
-  justify-content: center;
-  background-color: #ececec;
-  background-color: #4e0a0a;  
-  background-color: #cfd3d0;  
-  text-align: center;
-  /* font-family: Roboto,
+  display            : flex;
+  justify-content    : center;
+  /* background-color: #ececec; */
+  /* background-color: #a53838; */
+  background-color   : #cfd3d0;
+  text-align         : center;
+  /* font-family     : Roboto,
 Arial,
   sans-serif; */
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family        : -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    /* font-family: "Google Sans",
+  /* font-family: "Google Sans",
 Roboto,
 Arial,
 sans-serif; */
-font-size: 22px;
+  font-size: 22px;
 }
-a {
-  display:block;
- text-decoration: none;
 
+a {
+  display        : block;
+  text-decoration: none;
 }
+
+
 *,
 *:before,
 *:after {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+  padding                    : 0;
+  margin                     : 0;
+  box-sizing                 : border-box;
   -webkit-tap-highlight-color: transparent;
-  /* outline:3px solid orange; */
 }
 
-/* button, */
-searchCloseBtn {
+button,
+.searchCloseBtn {
   cursor: pointer;
 }
-.googleBtn  button {
-  /* border: 3px solid red; */
-  /* border:1px solid rgb(199, 199, 199); */
-  /* padding:.7rem .4rem; */
-  padding:.7rem 16px;
-  text-align: center;
+
+.googleBtn button {
+  padding         : .7rem 16px;
+  text-align      : center;
   background-color: rgb(228, 228, 228) !important;
+  border-radius   : 100px;
 }
-.backBtn{
+
+.backBtn {
   cursor     : pointer;
-display    : flex;
-align-items: center;
-width      : 30px;
-scale      : 1.5;
-color      : #232323;
+  display    : flex;
+  align-items: center;
+  width      : 30px;
+  scale      : 1.5;
+  color      : #232323;
 }
-.backBtn>svg{
-  flex:1;
+
+.backBtn>svg {
+  flex: 1;
+}
+
+.addBtn {
+  cursor          : pointer;
+  display         : flex;
+  align-items     : center;
+  scale           : 1.2;
+  color           : #232323;
+  background-color: transparent;
+  border          : 0;
+  outline         : 0;
+  background-color: rgb(224, 224, 224);
+  padding         : .5rem;
+  border-radius   : .5rem;
+
 }

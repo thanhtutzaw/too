@@ -1,17 +1,10 @@
-import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth'
+import { withAuthUserTokenSSR } from 'next-firebase-auth'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
-import Header from '../../Components/Header'
-import Layout from '../../Components/Layout'
-import Notes from '../../Components/Notes'
-import Home from '../Home'
-import styles from "../../styles/Notes.module.css";
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-// import { notes } from '../../utils/data'
-import { BiArrowBack } from 'react-icons/bi'
-import { collection, getDocs } from 'firebase/firestore'
+import React from 'react'
 import { db } from "../../utils/firebase";
+import styles from "../../styles/Notes.module.css";
+import { collection, getDocs } from 'firebase/firestore'
+// import { notes } from '../../utils/data'
 // export const getStaticPaths =async () => {
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -62,17 +55,16 @@ export const getServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser }) =>
   }
 })
 
-const Note = ({notes}) => {
-  // const note = []
+export default function Note({ notes }) {
   const router = useRouter()
   let { id } = router.query
-const note = notes.find(note => note.id == id)
+  const note = notes.find(note => note.id == id)
 
   let height
   if (typeof window !== "undefined") {
-     height = window.innerHeight
-    if(height > 673){
-      height = 57 +" extra px need (full screen)"
+    height = window.innerHeight
+    if (height > 673) {
+      height = 57 + " extra px need (full screen)"
     }
   }
   return (
@@ -80,8 +72,8 @@ const note = notes.find(note => note.id == id)
       {/* <p>Height {height}</p> */}
       {/* <Header /> */}
       {id ?
-        <> 
-        <div className={styles.viewContainer}>
+        <>
+          <div className={styles.viewContainer}>
             {/* <div  className={styles.viewHeader}>
               <div className={styles.backBtn}><BiArrowBack onClick={() => window.history.back()} /></div>
             </div>
@@ -90,13 +82,13 @@ const note = notes.find(note => note.id == id)
             <p className={styles.textView} contentEditable>{note.text}</p>
             </div> */}
 
-          {/* <motion.div className={styles.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
+            {/* <motion.div className={styles.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
             {note.title}
           </motion.div>
           <motion.div className={styles.textView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
             {note.text}
           </motion.div> */}
-        </div>
+          </div>
         </>
         :
         null
@@ -105,4 +97,3 @@ const note = notes.find(note => note.id == id)
   )
 }
 // export default withAuthUser()(Note)
-export default Note
