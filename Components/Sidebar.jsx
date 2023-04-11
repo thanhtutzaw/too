@@ -46,7 +46,7 @@ function AccountHeader(props) {
         width="50"
         height="50"
         className={styles.profile}
-      ></Image>
+      />
       <div className={styles.info}>
         <div className={styles.name}>
           {user.displayName ? user.displayName : "test_user"}

@@ -493,7 +493,9 @@
   border          : 1px solid rgb(0, 119, 255);
   color           : rgb(0, 119, 255);
   border          : 1px solid #1ed317;
+  border:0;
   color           : #1ed317;
+  background-color: #1ed31730;
 }
 
 .footerContainer {
