@@ -54,15 +54,16 @@ function Card({ id, title, text, index, setactiveNote, activeNote }) {
           tabIndex="0"
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
-              e.stopPropagation();
-              e.preventDefault();
+              // e.stopPropagation();
+              // e.preventDefault();
               setactiveNote(id);
-
-              console.log(id);
-
-              window.location.hash = `#Note/${id}`;
+              if (activeNote === id) {
+                setactiveNote(null);
+              }
+              e.currentTarget.click();
+              // window.location.hash = `#Note/${id}`;
             }
-            if (activeNote || e.key === "Escape") {
+            if (activeNote && e.key === "Escape") {
               e.preventDefault();
               setactiveNote(null);
               window.location.hash = `#home`;
@@ -73,7 +74,6 @@ function Card({ id, title, text, index, setactiveNote, activeNote }) {
           // data-id={id}
           // onKeyDown={(e) => {if (e.key === 'Escape') { setactiveNote(prev => !prev) } }}
           // onKeyDown={(e) => {
-          //     alert("keydown")
           //     // if(e.key === "Escape"){
           //     //   setactiveNote(null)
           //     // }

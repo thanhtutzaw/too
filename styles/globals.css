@@ -56,12 +56,26 @@ button,
 }
 
 .backBtn {
-  cursor     : pointer;
-  display    : flex;
-  align-items: center;
-  width      : 30px;
-  scale      : 1.5;
-  color      : #232323;
+  cursor             : pointer;
+  display            : flex;
+  align-items        : center;
+  width              : 30px;
+  height             : 30px;
+  /* background-color: rgba(218, 218, 218, 0.507); */
+  border-radius      : 100px;
+  scale              : 1.5;
+  color              : #232323;
+}
+
+.backBtn:hover {
+  background-color: rgba(218, 218, 218, 0.507);
+  color           : #232323;
+}
+
+.backBtn:active {
+  opacity         : .6;
+  background-color: rgba(218, 218, 218, 0.507);
+  color           : #232323;
 }
 
 .backBtn>svg {
@@ -69,16 +83,33 @@ button,
 }
 
 .addBtn {
-  cursor          : pointer;
-  display         : flex;
-  align-items     : center;
-  scale           : 1.2;
-  color           : #232323;
-  background-color: transparent;
-  border          : 0;
-  outline         : 0;
-  background-color: rgb(224, 224, 224);
-  padding         : .5rem;
-  border-radius   : .5rem;
+  cursor             : pointer;
+  display            : flex;
+  align-items        : center;
+  /* scale           : 1.2; */
+  width              : 90px;
+  justify-content    : center;
+  color              : #19e062;
+  background-color   : transparent;
+  border             : 0;
+  outline            : 0;
+  background-color   : rgb(230 255 231);
+  padding            : 0.5rem;
+  border-radius      : 0.5rem;
+  font-family        : 'Google Sans';
+  transition         : all .3s ease-in-out, scale .1s ease-in-out;
+}
 
+.addBtn:hover {
+  background-color: var(--btn-background);
+  background-color: rgb(50 224 117);
+  color           : white;
+}
+
+.addBtn:active {
+  background-color: var(--btn-background);
+  background-color: rgb(50 224 117);
+  color           : white;
+  opacity         : .5;
+  scale           : .94;
 }

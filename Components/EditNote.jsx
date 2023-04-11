@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 // import Header from "./Header";
 // import Layout from "../../Components/Layout";
 // import Notes from "../../Components/Notes";
@@ -6,7 +6,6 @@ import React, { useEffect } from "react";
 import s from "../styles/Notes.module.css";
 // import { motion } from "framer-motion";
 // import { notes } from '../../utils/data'
-import { useRef } from "react";
 import { BiArrowBack } from "react-icons/bi";
 // import { collection, getDocs } from "firebase/firestore";
 // import { db } from "../../utils/firebase";
@@ -79,16 +78,28 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
   useEffect(() => {
     // const target = editRef.current;
     // console.log(target);
-    if (activeNote) {
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          setactiveNote(null);
-          window.location.hash = "#home";
-        }
-      });
+    function handleEscape(e) {
+      if (e.key === "Escape") {
+        // console.log("Escape");
+        setactiveNote("");
+        window.location.hash = "#home";
+      }
     }
-  }, []);
-
+    if (activeNote) {
+      // window.addEventListener("keyup", handleEscape);
+    }
+    // return () => window.removeEventListener("keyup", handleEscape);
+  }, [activeNote, setactiveNote]);
+  const title = useRef(null);
+  useEffect(() => {
+    //  title.current.innerText = "";
+    //  text.current.textContent = "";
+    //  settitleInput("");
+    //  settextInput("");
+    if (activeNote) {
+      title.current.focus();
+    }
+  }, [activeNote]);
   return (
     <>
       {/* <p>Height {height}</p> */}
@@ -124,7 +135,7 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
           // }}
         >
           <div className={s.viewHeader}>
-            <div className={s.backBtn}>
+            <div className={"backBtn"}>
               <BiArrowBack
                 onClick={() => {
                   window.history.back();
@@ -132,9 +143,24 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
                 }}
               />
             </div>
+            <button
+              onClick={() => {
+                window.history.back();
+                setactiveNote("");
+              }}
+              tabIndex="0"
+              className="addBtn"
+            >
+              Save
+            </button>
           </div>
           <div className={s.viewContent}>
-            <h3 role="textbox" className={s.titleView} contentEditable>
+            <h3
+              ref={title}
+              role="textbox"
+              className={s.titleView}
+              contentEditable
+            >
               {editnote?.title}
             </h3>
             <p role="textbox" className={s.textView} contentEditable>

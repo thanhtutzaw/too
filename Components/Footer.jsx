@@ -18,15 +18,16 @@ export default function Footer({ user }) {
     } else {
       window.location.hash = "home";
     }
-    if (active) {
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          setactive(false);
-          window.location.hash = "#home";
-        }
-      });
+    function handleEscape(e) {
+      if (e.key === "Escape") {
+        setactive(false);
+        window.location.hash = "#home";
+      }
     }
-    window.onpopstate = async (e) => {
+    if (active) {
+      window.addEventListener("keyup", handleEscape);
+    }
+    window.onpopstate = async () => {
       // console.log(window.location.hash === '#home')
       if (window.location.hash === "#home") {
         setactive(false);
@@ -41,16 +42,12 @@ export default function Footer({ user }) {
     } else {
       playOff();
     }
+    return () => window.removeEventListener("keyup", handleEscape);
   }, [active]);
   const auth = getAuth(app);
 
   async function handle() {
-    // window.location.reload();
-    // if (e.keyCode == 27) {
-    //   setactive(prev => !prev)
-    // }
     setactive((prev) => !prev);
-
     // const q = collection(db, `users/${user.id}/notes`);
     await addNotes();
   }
@@ -78,7 +75,6 @@ export default function Footer({ user }) {
             Save
           </button>
         </div>
-        {/* {user.email} */}
         <div className={s.viewContent}>
           <span
             style={{
