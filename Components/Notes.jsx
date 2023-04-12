@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Notes.module.css";
 import Link from "next/link";
 // import firebase from 'firebase/compat/app';
@@ -64,6 +64,7 @@ function Card({ id, title, text, index, setactiveNote, activeNote }) {
               // window.location.hash = `#Note/${id}`;
             }
             if (activeNote && e.key === "Escape") {
+              console.log("I am escape key");
               e.preventDefault();
               setactiveNote(null);
               window.location.hash = `#home`;
@@ -173,14 +174,46 @@ export default function Notes(props) {
   }
   const [activeNote, setactiveNote] = useState();
   const editNote = notes?.find((note) => note.id == activeNote);
+  const [titleInput, settitleInput] = useState("");
+  const [textInput, settextInput] = useState("");
+  const confirmModalRef = useRef(null);
+  const exitWithoutSaving =
+    titleInput !== editNote?.title || textInput !== editNote?.text;
   useEffect(() => {
+    // if (!activeNote && !exitWithoutSaving) {
     if (!activeNote) {
       window.location.hash = "home";
+      confirmModalRef.current?.close();
     }
+
     window.onpopstate = () => {
-      setactiveNote(null);
+      // setactiveNote("");
+      if (exitWithoutSaving) {
+        if (editNote) {
+          window.location.hash = `#Note/${editNote?.id}`;
+        } else {
+          window.location.hash = `home`;
+        }
+        confirmModalRef.current?.close();
+        confirmModalRef?.current?.showModal();
+        // window.location.hash = `home`;
+      } else {
+        window.location.hash = `home`;
+        setactiveNote("");
+
+        // window.location.hash = "home";
+      }
     };
-  }, [activeNote]);
+    // console.log(exitWithoutSaving);
+    // if (exitWithoutSaving) {
+    //   // confirmModalRef.current.showModal();
+    // } else {
+    //   console.log("back key in Notes.jsx");
+    //   // confirmModalRef.current.close();
+    //   setactiveNote(null);
+    //   setactiveNote("");
+    // }
+  }, [editNote, activeNote, exitWithoutSaving]);
   return (
     <>
       <div
@@ -224,6 +257,12 @@ export default function Notes(props) {
             )} */}
       </div>
       <EditNote
+        confirmModalRef={confirmModalRef}
+        exitWithoutSaving={exitWithoutSaving}
+        titleInput={titleInput}
+        settitleInput={settitleInput}
+        textInput={textInput}
+        settextInput={settextInput}
         activeNote={activeNote}
         setactiveNote={setactiveNote}
         editnote={editNote}

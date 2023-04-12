@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import s from "../styles/Notes.module.css";
 // import { notes } from '../../utils/data'
 import { BiArrowBack } from "react-icons/bi";
 import { updateDoc, doc, serverTimestamp, Timestamp } from "firebase/firestore";
 import { app, db } from "../utils/firebase";
 import { getAuth } from "firebase/auth";
+import ConfirmModal from "./ConfirmModal";
 // export const getStaticPaths =async () => {
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -57,7 +58,17 @@ import { getAuth } from "firebase/auth";
 //   }
 // );
 
-export default function EditNote({ editnote, setactiveNote, activeNote }) {
+export default function EditNote({
+  confirmModalRef,
+  exitWithoutSaving,
+  titleInput,
+  settitleInput,
+  textInput,
+  settextInput,
+  editnote,
+  setactiveNote,
+  activeNote,
+}) {
   const auth = getAuth(app);
   // const note = []
   //   const router = useRouter();
@@ -71,47 +82,69 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
   //       height = 57 + " extra px need (full screen)";
   //     }
   //   }
+  // useEffect(() => {
+  //   // function handleEscape(e) {
+  //   //   if (e.key === "Escape") {
+  //   //     // console.log("Escape");
+  //   //     setactiveNote("");
+  //   //     window.location.hash = "#home";
+  //   //   }
+  //   // }
+  //   if (activeNote) {
+  //     // window.addEventListener("keyup", handleEscape);
+  //   }
+  //   // return () => window.removeEventListener("keyup", handleEscape);
+  // }, [activeNote, setactiveNote]);
+  const closeEdit = useCallback(() => {
+    setactiveNote(null);
+    window.location.hash = "#home";
+  }, [setactiveNote]);
   useEffect(() => {
-    // function handleEscape(e) {
-    //   if (e.key === "Escape") {
-    //     // console.log("Escape");
-    //     setactiveNote("");
-    //     window.location.hash = "#home";
-    //   }
-    // }
-    if (activeNote) {
-      // window.addEventListener("keyup", handleEscape);
+    function handleEscape(e) {
+      if (e.key === "Escape") {
+        if (exitWithoutSaving) {
+          confirmModalRef.current.showModal();
+        } else {
+          closeEdit();
+        }
+      }
     }
-    // return () => window.removeEventListener("keyup", handleEscape);
-  }, [activeNote, setactiveNote]);
+    window.addEventListener("keyup", handleEscape);
+    return () => window.removeEventListener("keyup", handleEscape);
+  }, [closeEdit, confirmModalRef, exitWithoutSaving, setactiveNote]);
+  // useEffect(() => {
+  //   window.onpopstate = () => {
+  //     console.log("back");
+  //   };
+  // }, []);
   const title = useRef(null);
   const text = useRef(null);
+
   useEffect(() => {
-    //  title.current.innerText = "";
-    //  text.current.textContent = "";
-    //  settitleInput("");
-    //  settextInput("");
-    if (activeNote) {
-      console.log(editnote);
+    if (activeNote || editnote) {
       title.current.focus();
     }
-  }, [title, activeNote, editnote]);
-  const [titleInput, settitleInput] = useState("");
-  const [textInput, settextInput] = useState("");
+    settitleInput(editnote?.title);
+    settextInput(editnote?.text);
+  }, [activeNote, editnote, settextInput, settitleInput]);
+
   return (
     <>
+      <dialog id="confirmModal" ref={confirmModalRef}>
+        <ConfirmModal
+          confirmModalRef={confirmModalRef}
+          setactiveNote={setactiveNote}
+        />
+      </dialog>
       {/* <p>Height {height}</p> */}
-      {/* <Header /> */}
       <div
         style={{
           zIndex: "100000",
           pointerEvents: activeNote ? "auto" : "none",
-          // visibility: activeNote ? "visible" : "hidden",
         }}
         className={s.edit}
       >
         <div
-          // ref={editRef}
           // tabIndex="1"
           style={{
             zIndex: "100000",
@@ -119,25 +152,14 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
             visibility: activeNote ? "visible" : "hidden",
           }}
           className={`${s.viewContainer} ${activeNote ? s.animateView : ""}`}
-          // layoutid={`card-${editnote.id}`}
-
-          //  onKeyDown={(e)=>{
-          //    if (e.key === "Escape") {
-          //     console.log(e.key + "in edit")
-          //      setactiveNote(null);
-          //      window.location.hash = `#home`;
-          //    }
-          //  }}
-          // onKeyDown={(e)=>{
-          //   alert('ehy')
-          // }}
         >
           <div className={s.viewHeader}>
             <div className={"backBtn"}>
               <BiArrowBack
                 onClick={() => {
-                  window.history.back();
-                  setactiveNote("");
+                  exitWithoutSaving
+                    ? confirmModalRef.current.showModal()
+                    : closeEdit();
                 }}
               />
             </div>
@@ -183,15 +205,16 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
       </div>
     </>
   );
+
   async function updateNote() {
     console.log("just exit");
-    if (titleInput !== editnote.title || titleInput !== editnote.text) {
-      const q = doc(
-        db,
-        `users/${auth.currentUser.uid}/notes/${editnote?.id.toString()}`
-      );
+    if (titleInput !== editnote?.title || textInput !== editnote?.text) {
+      const path = `users/${
+        auth.currentUser.uid
+      }/notes/${editnote?.id.toString()}`;
+      const docRef = doc(db, path);
       console.log("do update");
-      await updateDoc(q, {
+      const newData = {
         ...editnote,
         title: titleInput,
         text: textInput,
@@ -200,10 +223,9 @@ export default function EditNote({ editnote, setactiveNote, activeNote }) {
           editnote.createdAt.nanoseconds
         ),
         updatedAt: serverTimestamp(),
-      });
+      };
+      await updateDoc(docRef, newData);
       window.location.reload();
     }
   }
 }
-
-// export default withAuthUser()(Note)

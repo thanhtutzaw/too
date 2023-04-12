@@ -28,20 +28,13 @@ export default function Footer({ user }) {
       window.addEventListener("keyup", handleEscape);
     }
     window.onpopstate = async () => {
-      // console.log(window.location.hash === '#home')
       if (window.location.hash === "#home") {
         setactive(false);
-        // await addNotes()
       } else if (window.location.hash === "#addNote") {
         setactive(true);
-        // playOn()
       }
     };
-    if (active === true) {
-      playOn();
-    } else {
-      playOff();
-    }
+    active ? playOn() : playOff();
     return () => window.removeEventListener("keyup", handleEscape);
   }, [active]);
   const auth = getAuth(app);
