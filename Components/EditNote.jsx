@@ -164,10 +164,13 @@ export default function EditNote({
               />
             </div>
             <button
-              onClick={() => {
-                window.history.back();
-                setactiveNote("");
-                updateNote();
+              onClick={async () => {
+                try {
+                  await updateNote();
+                  setactiveNote("");
+                } catch (error) {
+                  alert(error.message);
+                }
               }}
               tabIndex="0"
               className="addBtn"

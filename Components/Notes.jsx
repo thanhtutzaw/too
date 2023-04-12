@@ -159,19 +159,19 @@ export default function Notes(props) {
     console.log(totalHeight);
   }, [totalHeight]);
 
-  // return elements
-  // const container = useRef(null);
-  if (typeof window !== "undefined") {
-    var elem = document.querySelectorAll(".cardContainer")[0];
-    // console.log(elem);
-    // var elem = container.current;
+  // // return elements
+  // // const container = useRef(null);
+  // if (typeof window !== "undefined") {
+  //   var elem = document.querySelectorAll(".cardContainer")[0];
+  //   // console.log(elem);
+  //   // var elem = container.current;
 
-    // var elem = document.querySelectorAll('.cardContainer')
-    // var iso = new isotope(elem, {
-    //     itemSelector: '#card',
-    //     layoutMode: 'masonry'
-    // });
-  }
+  //   // var elem = document.querySelectorAll('.cardContainer')
+  //   // var iso = new isotope(elem, {
+  //   //     itemSelector: '#card',
+  //   //     layoutMode: 'masonry'
+  //   // });
+  // }
   const [activeNote, setactiveNote] = useState();
   const editNote = notes?.find((note) => note.id == activeNote);
   const [titleInput, settitleInput] = useState("");
