@@ -1,16 +1,14 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import s from "../styles/Notes.module.css";
-// import { notes } from '../../utils/data'
-import { BiArrowBack } from "react-icons/bi";
-import { updateDoc, doc, serverTimestamp, Timestamp } from "firebase/firestore";
-import { app, db } from "../utils/firebase";
 import { getAuth } from "firebase/auth";
+import { Timestamp, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import React, { useCallback, useEffect, useRef } from "react";
+import { BiArrowBack } from "react-icons/bi";
+import s from "../styles/Notes.module.css";
+import { app, db } from "../utils/firebase";
 import ConfirmModal from "./ConfirmModal";
-// export const getStaticPaths =async () => {
+// export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
 //   const docSnap = await getDocs(q)
-//   // console.log(q)
 //   notes = docSnap.docs.map(doc => ({
 //     id: doc.id,
 //     ...doc.data()
@@ -20,44 +18,6 @@ import ConfirmModal from "./ConfirmModal";
 //       params: { id: note.id.toString()  }
 //     }
 //   })
-//   return {
-//     paths,
-//     fallback: false
-//   }
-
-// }
-
-// export const getStaticProps = async (context) => {
-//   const id = context.params.id
-//   // const notes = context.params.notes
-//   let notes = []
-//   const note = notes.find(note => note.id == id)
-//   return {
-//     props: { note },
-//     // revalidate: 100
-//   }
-// }
-
-// export const getServerSideProps = withAuthUserTokenSSR()(
-//   async ({ AuthUser }) => {
-//     let notes = null;
-//     const id = AuthUser.id;
-//     const q = collection(db, `users/${id}/notes`);
-//     const docSnap = await getDocs(q);
-
-//     notes = docSnap.docs.map((doc) => ({
-//       id: doc.id,
-//       ...doc.data(),
-//     }));
-
-//     return {
-//       props: {
-//         notes,
-//       },
-//     };
-//   }
-// );
-
 export default function EditNote({
   confirmModalRef,
   exitWithoutSaving,
@@ -70,11 +30,6 @@ export default function EditNote({
   activeNote,
 }) {
   const auth = getAuth(app);
-  // const note = []
-  //   const router = useRouter();
-  //   let { id } = router.query;
-  //   const note = notes.find((note) => note.id == id);
-
   //   let height;
   //   if (typeof window !== "undefined") {
   //     height = window.innerHeight;
@@ -82,41 +37,18 @@ export default function EditNote({
   //       height = 57 + " extra px need (full screen)";
   //     }
   //   }
-  // useEffect(() => {
-  //   // function handleEscape(e) {
-  //   //   if (e.key === "Escape") {
-  //   //     // console.log("Escape");
-  //   //     setactiveNote("");
-  //   //     window.location.hash = "#home";
-  //   //   }
-  //   // }
-  //   if (activeNote) {
-  //     // window.addEventListener("keyup", handleEscape);
-  //   }
-  //   // return () => window.removeEventListener("keyup", handleEscape);
-  // }, [activeNote, setactiveNote]);
   const closeEdit = useCallback(() => {
     setactiveNote(null);
     window.location.hash = "#home";
   }, [setactiveNote]);
   useEffect(() => {
     function handleEscape(e) {
-      if (e.key === "Escape") {
-        if (exitWithoutSaving) {
-          confirmModalRef.current.showModal();
-        } else {
-          closeEdit();
-        }
-      }
+      if (e.key !== "Escape") return;
+      exitWithoutSaving ? confirmModalRef.current.showModal() : closeEdit();
     }
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
   }, [closeEdit, confirmModalRef, exitWithoutSaving, setactiveNote]);
-  // useEffect(() => {
-  //   window.onpopstate = () => {
-  //     console.log("back");
-  //   };
-  // }, []);
   const title = useRef(null);
   const text = useRef(null);
 
@@ -136,18 +68,14 @@ export default function EditNote({
           setactiveNote={setactiveNote}
         />
       </dialog>
-      {/* <p>Height {height}</p> */}
       <div
         style={{
-          zIndex: "100000",
           pointerEvents: activeNote ? "auto" : "none",
         }}
         className={s.edit}
       >
         <div
-          // tabIndex="1"
           style={{
-            zIndex: "100000",
             opacity: activeNote ? "1" : "0",
             visibility: activeNote ? "visible" : "hidden",
           }}
@@ -156,11 +84,11 @@ export default function EditNote({
           <div className={s.viewHeader}>
             <div className={"backBtn"}>
               <BiArrowBack
-                onClick={() => {
+                onClick={() =>
                   exitWithoutSaving
                     ? confirmModalRef.current.showModal()
-                    : closeEdit();
-                }}
+                    : closeEdit()
+                }
               />
             </div>
             <button
@@ -208,15 +136,11 @@ export default function EditNote({
       </div>
     </>
   );
-
   async function updateNote() {
-    console.log("just exit");
-    if (titleInput !== editnote?.title || textInput !== editnote?.text) {
-      const path = `users/${
-        auth.currentUser.uid
-      }/notes/${editnote?.id.toString()}`;
-      const docRef = doc(db, path);
-      console.log("do update");
+    if (exitWithoutSaving) {
+      const uid = auth.currentUser.uid,
+        noteId = editnote?.id.toString();
+      const docRef = doc(db, `users/${uid}/notes/${noteId}`);
       const newData = {
         ...editnote,
         title: titleInput,
