@@ -10,6 +10,7 @@
   background-color: white;
   padding         : 1.3rem 0.9rem;
   position        : relative;
+  transition      : all .3s ease-in-out;
 }
 
 .cardContainer {
@@ -99,9 +100,8 @@ border                  :none; */
 }
 
 .positioned {
-  top                : 0;
-  left               : 0;
-  /* transition-delay: 50ms; */
+  top : 0;
+  left: 0;
 }
 
 /* .card.active { */
@@ -139,7 +139,6 @@ border                  :none; */
   display            : -webkit-box;
   -webkit-box-orient : vertical;
   text-overflow      : ellipsis; */
-
 }
 
 .cardTitle {
@@ -207,8 +206,6 @@ max-height           : 100%; */
 }
 
 .animateView {
-  /* border: 3px solid red; */
-
   transform: translateX(0px);
   right    : 0;
 }
@@ -235,20 +232,28 @@ max-height           : 100%; */
 
 .titleView:focus,
 .textView:focus {
-  outline   : none;
-  /* outline: 1px solid rgb(37, 37, 37) !important; */
+  outline: none;
 }
 
+.titleSpan,
+.textSpan {
+  position      : absolute;
+  user-select   : none;
+  pointer-events: none;
+
+}
+
+.titleSpan {
+  font-size: 1.3em;
+}
 
 .viewHeader {
-  /* background-color: rgb(17, 216, 66); */
   padding        : 0 1.3rem;
   height         : 70px;
   display        : flex;
   align-items    : center;
   justify-content: space-between;
   border-bottom  : 2px solid #efefef;
-  /* padding     :0 16px; */
 }
 
 .backBtn {
@@ -269,13 +274,14 @@ max-height           : 100%; */
   width      : 30px;
   scale      : 1.5;
   color      : #232323;
-
 }
-
-
 
 .backBtn>svg {
   flex: 1;
+}
+
+.animateNotes {
+  transform: translateX(-500px);
 }
 
 .viewContent {
@@ -285,16 +291,15 @@ max-height           : 100%; */
 }
 
 .viewContent>h3 {
-  font-weight: 500;
+  font-weight  : 500;
+  margin-bottom: 0.7rem;
 }
 
 .viewContent>p {
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .edit {
-  /* border:3px solid red; */
-  /* background-color: red; */
   position : fixed;
   overflow : hidden;
   width    : 100vw;

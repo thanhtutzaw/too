@@ -134,7 +134,7 @@ function Card({ id, title, text, index, setactiveNote, activeNote }) {
   );
 }
 export default function Notes(props) {
-  const { notes, isSearching } = props;
+  const { activeNote, setactiveNote, notes, isSearching } = props;
   const [totalHeight, settotalHeight] = useState(0);
   useEffect(() => {
     let elements = document.querySelectorAll("#card");
@@ -172,7 +172,6 @@ export default function Notes(props) {
   //   //     layoutMode: 'masonry'
   //   // });
   // }
-  const [activeNote, setactiveNote] = useState();
   const editNote = notes?.find((note) => note.id == activeNote);
   const [titleInput, settitleInput] = useState("");
   const [textInput, settextInput] = useState("");
@@ -232,7 +231,9 @@ export default function Notes(props) {
         // ref={container}
 
         // style={{ pointerEvents: isSearching ? "none" : "auto" }}
-        className={styles.cardContainer}
+        className={`${styles.cardContainer} ${
+          activeNote ? styles.animateNotes : ""
+        }`}
       >
         {/* <div> */}
         {/* <div  style={{height:`${totalHeight + 190}px`}} > */}

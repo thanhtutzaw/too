@@ -29,6 +29,25 @@ sans-serif; */
   font-size: 22px;
 }
 
+header {
+  position           : fixed;
+  top                : 0;
+  background-color   : white;
+  padding            : 0 1.2rem;
+  height             : 70px;
+  display            : flex;
+  justify-content    : space-between;
+  align-items        : center;
+  /* max-width       : 483px; */
+  max-width          : 500px;
+  width              : 100vw;
+  gap                : .4rem;
+  border-bottom      : 2px solid #efefef;
+  z-index            : 999;
+  /* overflow           : hidden; */
+  transition         : all .3s ease-in-out;
+}
+
 a {
   display        : block;
   text-decoration: none;

@@ -13,11 +13,6 @@
   overflow           : hidden;
 }
 
-/* .pointer-events-none{
-  pointer-events: none;
-} */
-
-
 .logo {
   cursor   : pointer;
   font-size: 34px;
@@ -44,27 +39,17 @@
   transform : translateY(45px);
 }
 
-.header {
-  position           : fixed;
-  top                : 0;
-  background-color   : white;
-  padding            : 0 1.2rem;
-  height             : 70px;
-  display            : flex;
-  justify-content    : space-between;
-  align-items        : center;
-  /* max-width       : 483px; */
-  max-width          : 500px;
-  width              : 100vw;
-  gap                : .4rem;
-  border-bottom      : 2px solid #efefef;
-  z-index            : 999;
+.animateHeader {
+  /* transform     : translateX(-500px); */
+  opacity          : 0;
+  /* visibility    : hidden; */
+  /* pointer-events: none; */
 }
 
-.header>* {}
 
 .headerfloat {
   background-color: white;
+  background-color: red;
   position        : sticky;
   z-index         : 1;
   top             : 0;
@@ -271,18 +256,10 @@
   color: rgb(83, 83, 83)
 }
 
-.themeContainer {
-  /* display: flex;
-  flex-direction: column; */
-}
-
 .themeContainer>* {
-  /* outline        : 1px solid blue; */
   display        : flex;
   justify-content: center;
   align-items    : center;
-
-  /* align-items: center; */
 }
 
 .tools {
@@ -294,14 +271,11 @@
 }
 
 .tool {
-  color     : rgb(32, 32, 32);
-  /* outline: 1px solid green !important; */
+  color: rgb(32, 32, 32);
 }
 
 .tool>* {
-  /* outline: 1px solid red !important; */
-  height   : 20px;
-  /* height: 26px; */
+  height: 20px;
 }
 
 .tools button {
@@ -323,14 +297,6 @@
   font-size       : 20px;
   background-color: rgb(245, 245, 245) !important;
   border-radius   : 5px;
-  /* font-size    : 1rem; */
-}
-
-.tool>* {}
-
-.tool:active {
-  /* transition      : all .1s ease-in; */
-  /* background-color: rgba(0, 0, 0, .1); */
 }
 
 .mainProfile,
@@ -348,14 +314,22 @@
   position        : absolute;
   right           : 0;
   padding         : 0.4rem;
-  transition      : all .3s ease-in-out;
+  transition      : all .1s ease-in-out;
   background-color: transparent;
+  cursor          : pointer;
+  border-radius   : 50px;
+}
+
+.closeBtn:hover {
+
+  /* color           : rgb(87, 87, 87); */
+  background-color: gainsboro;
 }
 
 .closeBtn:active {
-  color           : rgb(87, 87, 87);
-  background-color: gainsboro;
-  border-radius   : 50px;
+  opacity            : .5;
+  background-color   : gainsboro;
+  /* color           : rgb(87, 87, 87); */
 }
 
 .searchBar {
@@ -493,7 +467,7 @@
   border          : 1px solid rgb(0, 119, 255);
   color           : rgb(0, 119, 255);
   border          : 1px solid #1ed317;
-  border:0;
+  border          : 0;
   color           : #1ed317;
   background-color: #1ed31730;
 }

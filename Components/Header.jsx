@@ -32,7 +32,7 @@ function Searchbar(props) {
     </div>
   );
 }
-export default function Header({ user, setisSearching }) {
+export default function Header({activeNote, user, setisSearching }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
   const [Search, setSearch] = useState();
@@ -61,88 +61,79 @@ export default function Header({ user, setisSearching }) {
   // }
 
   return (
-    <>
-      <div className={styles.headerContainer}>
-        {/* <header className={float ? styles.headerfloat : styles.header}> */}
-        <div className={styles.header}>
-          <Link href="/">
-            <h1 className={styles.logo}>Too</h1>
-          </Link>
-          <Searchbar
-            user={user}
-            setisSearching={setisSearching}
-            input={input}
-            Search={Search}
-            setSearch={setSearch}
-            searchCloseHandle={searchCloseHandle}
-          />
-          <div>
-            {
-              user.photoURL ? (
-                <motion.div
-                  onKeyDown={(e) => {
-                    // e.preventDefault();
-                    if (
-                      e.key === "Enter" ||
-                      e.key === " " ||
-                      e.key === "Escape"
-                    ) {
-                      modalHandle();
-                    }
-                  }}
-                  role="button"
-                  tabIndex={4}
-                  className={styles.mainProfile}
-                  onClick={modalHandle}
-                  whileTap={{ scale: 0.8 }}
-                >
-                  <Image
-                    referrerPolicy="no-referrer"
-                    unoptimized={true}
-                    src={user?.photoURL}
-                    alt={""}
-                    width="40"
-                    height="40"
-                    className={styles.profile}
-                  />
-                </motion.div>
-              ) : (
-                <motion.div
-                  onKeyDown={(e) => {
-                    // e.preventDefault();
-                    if (
-                      e.key === "Enter" ||
-                      e.key === " " ||
-                      e.key === "Escape"
-                    ) {
-                      modalHandle();
-                    }
-                  }}
-                  role="button"
-                  tabIndex={4}
-                  className={styles.mainProfile}
-                  onClick={modalHandle}
-                  whileTap={{ scale: 0.8 }}
-                >
-                  <Image
-                    referrerPolicy="no-referrer"
-                    unoptimized={true}
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                    alt="testUser Profile"
-                    width="40"
-                    height="40"
-                    className={styles.profile}
-                  />
-                </motion.div>
-              )
-              // :
+    <header
+      className={`${
+        activeNote ? styles.animateHeader : ""
+      }`}
+    >
+      <Link href="/">
+        <h1 className={styles.logo}>Too</h1>
+      </Link>
+      <Searchbar
+        user={user}
+        setisSearching={setisSearching}
+        input={input}
+        Search={Search}
+        setSearch={setSearch}
+        searchCloseHandle={searchCloseHandle}
+      />
+      <div>
+        {
+          user.photoURL ? (
+            <motion.div
+              onKeyDown={(e) => {
+                // e.preventDefault();
+                if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
+                  modalHandle();
+                }
+              }}
+              role="button"
+              tabIndex={4}
+              className={styles.mainProfile}
+              onClick={modalHandle}
+              whileTap={{ scale: 0.8 }}
+            >
+              <Image
+                referrerPolicy="no-referrer"
+                unoptimized={true}
+                src={user?.photoURL}
+                alt={""}
+                width="40"
+                height="40"
+                className={styles.profile}
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              onKeyDown={(e) => {
+                // e.preventDefault();
+                if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
+                  modalHandle();
+                }
+              }}
+              role="button"
+              tabIndex={4}
+              className={styles.mainProfile}
+              onClick={modalHandle}
+              whileTap={{ scale: 0.8 }}
+            >
+              <Image
+                referrerPolicy="no-referrer"
+                unoptimized={true}
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                alt="testUser Profile"
+                width="40"
+                height="40"
+                className={styles.profile}
+              />
+            </motion.div>
+          )
+          // :
 
-              // <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
-            }
-            {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
-          </div>
-        </div>
+          // <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
+        }
+        {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
       </div>
-    </>
+    </header>
   );
 }

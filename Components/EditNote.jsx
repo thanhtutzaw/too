@@ -107,19 +107,35 @@ export default function EditNote({
             </button>
           </div>
           <div className={s.viewContent}>
+            <span
+              style={{
+                opacity: titleInput !== "" ? "0" : ".5",
+              }}
+              className={s.titleSpan}
+            >
+              Title
+            </span>
             <h3
               onInput={() => settitleInput(title.current.innerText)}
               ref={title}
-              role="textbox"
-              className={s.titleView}
+              role="input"
+              style={{ outline: "none" }}
+              // className={s.titleView}
               contentEditable
             >
               {editnote?.title}
             </h3>
+            <span
+              style={{
+                opacity: textInput !== "" ? "0" : ".5",
+              }}
+              className={s.textSpan}
+            >
+              Text
+            </span>
             <p
               onInput={() => settextInput(text.current.innerText)}
               ref={text}
-              role="textbox"
               className={s.textView}
               contentEditable
             >
