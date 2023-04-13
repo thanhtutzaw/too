@@ -11,7 +11,7 @@ Project is created with:
 :ballot_box_with_check:	Create and Update Note
 
 ## Demo
-[Too](https://too.netlify.app)
+[too.app](https://too.netlify.app)
 
 ## Setup
 To run this project, install it locally using npm:
