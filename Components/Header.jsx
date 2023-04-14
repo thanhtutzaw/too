@@ -28,7 +28,7 @@ function Searchbar(props) {
     </div>
   );
 }
-export default function Header({ user, setisSearching }) {
+export default function Header({ selectedId,setselectedId, user, setisSearching }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
   const [Search, setSearch] = useState();
@@ -59,6 +59,8 @@ export default function Header({ user, setisSearching }) {
   // }
   return (
     <header>
+      {selectedId.length}
+      <button onClick={() => setselectedId([])}>Clear</button>
       <Link href="/">
         <h1 className={styles.logo}>Too</h1>
       </Link>

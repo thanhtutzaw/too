@@ -1,8 +1,14 @@
 import { motion } from "framer-motion";
-import { BiTrash } from "react-icons/bi";
+import { BiCheckCircle, BiCheckShield, BiTrash } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import s from "../styles/Notes.module.css";
-export default function NoteAction({ showModal, setShowModal }) {
+export default function NoteAction({
+  // setselectMode,
+  // setselectedId,
+  showModal,
+  setShowModal,
+  chooseSelectMode,
+}) {
   const modalHandle = (e) => {
     e.stopPropagation();
     setShowModal("");
@@ -21,6 +27,7 @@ export default function NoteAction({ showModal, setShowModal }) {
     alert(showModal);
     setShowModal("");
   }
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
@@ -31,9 +38,13 @@ export default function NoteAction({ showModal, setShowModal }) {
       {/* <div className={styles.closeBtn}> */}
       <button onClick={modalHandle}>
         <CgClose />
+        Close
       </button>
-      {/* <button className={styles.tool}> */}
-      <button onClick={deletNote}>
+      <button onClick={chooseSelectMode}>
+        <BiCheckCircle />
+        Select
+      </button>
+      <button className={s.deletBtn} onClick={deletNote}>
         <BiTrash />
         Delete
       </button>

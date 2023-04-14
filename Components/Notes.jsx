@@ -1,11 +1,16 @@
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import { BiDotsVerticalRounded } from "react-icons/bi";
+import { BiCheck, BiDotsVerticalRounded } from "react-icons/bi";
+import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import styles from "../styles/Notes.module.css";
 import EditNote from "./EditNote";
 import NoteAction from "./NoteAction";
 
 function Card({
+  selectedId,
+  setselectedId,
+  selectMode,
+  setselectMode,
   showModal,
   setShowModal,
   id,
@@ -47,9 +52,28 @@ function Card({
   const cardActive = `${styles.card} ${
     activeNote === id ? styles.active : ""
   } ${activeNote === id ? styles.positioned : ""}`;
+  const [select, setSelect] = useState(false);
+
+  function chooseSelectMode(e) {
+    e.stopPropagation();
+    console.log("called this ");
+    setselectMode(true);
+    setselectedId([...selectedId, showModal]);
+    setSelect(true);
+    setShowModal("");
+  }
+  const checkRef = useRef(null);
+  const uncheckRef = useRef(null);
+  useEffect(() => {
+    if (selectedId.length === 0) {
+      setselectMode(false);
+      setSelect(false);
+    }
+  }, [selectedId, setselectMode]);
   return (
     <>
       <Link href={`/#Note/${id}`}>
+        {/* <Link href={`/#home`}> */}
         <div
           role="button"
           tabIndex="0"
@@ -68,42 +92,105 @@ function Card({
           }}
           onClick={(e) => {
             e.stopPropagation();
-            setactiveNote(id);
-            if (activeNote !== id) return;
-            setactiveNote(null);
+            if (!selectMode) {
+              setactiveNote(id);
+              if (activeNote !== id) return;
+              setactiveNote(null);
+            } else {
+              if (select) {
+                checkRef.current?.click();
+                // setselectedId([...selectedId, id]);
+              } else {
+                uncheckRef.current?.click();
+                // setselectedId([...selectedId, id]);
+              }
+            }
+          }}
+          style={{
+            outline: select ? "1px solid rgb(97, 245, 97)" : "",
           }}
           className={cardActive}
         >
-          {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
           {showModal === id && (
-            <NoteAction showModal={showModal} setShowModal={setShowModal} />
+            <NoteAction
+              chooseSelectMode={chooseSelectMode}
+              setselectMode={setselectMode}
+              setselectedId={setselectedId}
+              showModal={showModal}
+              setShowModal={setShowModal}
+            />
           )}
-
-          <div className={styles.header}>
+          {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
+          <div
+            style={{ filter: showModal === id ? "blur(2px)" : "" }}
+            className={styles.header}
+          >
             <div className={styles.cardTitle}>{title}</div>
-            <button
-              tabIndex={-1}
-              aria-expanded={showModal}
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowModal(id);
-              }}
-              className={styles.dropdown}
-            >
-              <BiDotsVerticalRounded />
-            </button>
+            {!selectMode ? (
+              <button
+                tabIndex={-1}
+                aria-expanded={showModal}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowModal(id);
+                }}
+                className={styles.dot}
+              >
+                <BiDotsVerticalRounded />
+              </button>
+            ) : (
+              <>
+                {select ? (
+                  <button
+                    ref={checkRef}
+                    role="checkbox"
+                    tabIndex={-1}
+                    aria-checked={true}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // setselectedId(id)
+                      setSelect(!select);
+                      setselectedId(selectedId.filter((t) => t !== id));
+                      // setselectedId(selectedId.map((t) => t !== id));
+                      if (selectedId.length === 1) {
+                        setselectMode(false);
+                      }
+                    }}
+                    className={styles.check}
+                  >
+                    <BiCheck />
+                  </button>
+                ) : (
+                  <button
+                    ref={uncheckRef}
+                    role="checkbox"
+                    tabIndex={-1}
+                    aria-checked={false}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelect(!select);
+                      setselectedId([...selectedId, id]);
+                    }}
+                    className={styles.uncheck}
+                  >
+                    <RiCheckboxBlankCircleLine />
+                  </button>
+                )}
+              </>
+            )}
           </div>
-          <p>{text}</p>
+          <p style={{ filter: showModal === id ? "blur(2px)" : "" }}>{text}</p>
         </div>
       </Link>
     </>
   );
 }
 export default function Notes(props) {
-  const { notes, isSearching } = props;
-  const [activeNote, setactiveNote] = useState();
+  const { notes, isSearching, selectedId, setselectedId } = props;
   const [totalHeight, settotalHeight] = useState(0);
   const [showModal, setShowModal] = useState();
+  const [activeNote, setactiveNote] = useState();
+  const [selectMode, setselectMode] = useState(false);
 
   useEffect(() => {
     let elements = document.querySelectorAll("#card");
@@ -168,8 +255,6 @@ export default function Notes(props) {
       } else {
         window.location.hash = `home`;
         setactiveNote("");
-
-        // window.location.hash = "home";
       }
     };
     // console.log(exitWithoutSaving);
@@ -182,6 +267,7 @@ export default function Notes(props) {
     //   setactiveNote("");
     // }
   }, [editNote, activeNote, exitWithoutSaving, setactiveNote]);
+
   return (
     <>
       <div
@@ -206,8 +292,13 @@ export default function Notes(props) {
       >
         {/* <div> */}
         {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
+        {/* {selectMode ? "true" : "false"} */}
         {notes?.map((note, index) => (
           <Card
+            selectedId={selectedId}
+            setselectedId={setselectedId}
+            selectMode={selectMode}
+            setselectMode={setselectMode}
             showModal={showModal}
             setShowModal={setShowModal}
             activeNote={activeNote}
