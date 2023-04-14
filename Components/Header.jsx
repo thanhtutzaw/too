@@ -64,14 +64,14 @@ export default function Header({ selectedId,setselectedId, user, setisSearching 
       <Link href="/">
         <h1 className={styles.logo}>Too</h1>
       </Link>
-      <Searchbar
+      {/* <Searchbar
         user={user}
         setisSearching={setisSearching}
         input={input}
         Search={Search}
         setSearch={setSearch}
         searchCloseHandle={searchCloseHandle}
-      />
+      /> */}
       <div>
         {
           user.photoURL ? (
