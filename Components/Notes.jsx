@@ -72,7 +72,7 @@ function Card({
   }, [selectedId, setselectMode]);
   return (
     <>
-      <Link href={`/#Note/${id}`}>
+      <Link href={selectMode ? `/#home` : `/#Note/${id}`}>
         {/* <Link href={`/#home`}> */}
         <div
           role="button"
