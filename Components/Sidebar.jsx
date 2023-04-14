@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { useAuthUser } from "next-firebase-auth";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { MdLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { VscSignOut } from "react-icons/vsc";
 import styles from "../styles/Home.module.css";
+import { AppContext } from "../context/AppContext";
 function Setting(props) {
   const { loading, setDarkMode, DarkMode, signoutHandle } = props;
   const handleDarkMode = () => setDarkMode((prev) => !prev);

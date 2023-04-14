@@ -8,7 +8,10 @@ Project is created with:
 
 ## Features
 :ballot_box_with_check:	Google Sign-in and Test-User Account\
+:ballot_box_with_check:	Fetch Notes Data with Server Sider Rendering\
+:ballot_box_with_check:	Delete Muliple Notes and Single Note\
 :ballot_box_with_check:	Create and Update Note
+:ballot_box_with_check:	Dropdown Actions
 
 ## Demo
 [too.app](https://too.netlify.app)

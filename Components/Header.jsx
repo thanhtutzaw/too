@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useContext, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import styles from "../styles/Home.module.css";
 import Sidebar from "./Sidebar";
+import { AppContext } from "../context/AppContext";
+import SelectModal from "./SelectModal";
 function Searchbar(props) {
   return (
     <div className={styles.searchBar}>
@@ -28,7 +30,7 @@ function Searchbar(props) {
     </div>
   );
 }
-export default function Header({ selectedId,setselectedId, user, setisSearching }) {
+export default function Header({ user, setisSearching }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
   const [Search, setSearch] = useState();
@@ -57,72 +59,83 @@ export default function Header({ selectedId,setselectedId, user, setisSearching 
   // if(!user){
   //     Router.push('/auth')
   // }
+  const { selectLength, selectedId } = useContext(AppContext);
   return (
     <header>
-      {selectedId.length}
-      <button onClick={() => setselectedId([])}>Clear</button>
-      <Link href="/">
-        <h1 className={styles.logo}>Too</h1>
-      </Link>
-      {/* <Searchbar
-        user={user}
-        setisSearching={setisSearching}
-        input={input}
-        Search={Search}
-        setSearch={setSearch}
-        searchCloseHandle={searchCloseHandle}
-      /> */}
-      <div>
-        {
-          user.photoURL ? (
-            <motion.div
-              onKeyDown={(e) =>
-                (e.key === "Enter" || e.key === " " || e.key === "Escape") &&
-                modalHandle()
-              }
-              role="button"
-              tabIndex={4}
-              className={styles.mainProfile}
-              onClick={modalHandle}
-              whileTap={{ scale: 0.8 }}
-            >
-              <Image
-                referrerPolicy="no-referrer"
-                unoptimized={true}
-                src={user?.photoURL}
-                alt={""}
-                width="40"
-                height="40"
-                className={styles.profile}
-              />
-            </motion.div>
-          ) : (
-            <motion.div
-              onKeyDown={(e) =>
-                (e.key === "Enter" || e.key === " " || e.key === "Escape") &&
-                modalHandle()
-              }
-              role="button"
-              tabIndex={4}
-              className={styles.mainProfile}
-              onClick={modalHandle}
-              whileTap={{ scale: 0.8 }}
-            >
-              <Image
-                referrerPolicy="no-referrer"
-                unoptimized={true}
-                src={testUserPicture}
-                alt="testUser Profile"
-                width="40"
-                height="40"
-                className={styles.profile}
-              />
-            </motion.div>
-          )
-          //<Link href="/auth">Sign in</Link>
-        }
-        {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
-      </div>
+      {selectLength > 0 ? (
+        <SelectModal />
+      ) : (
+        <div className={styles.headerContainer}>
+          <Link href="/">
+            <h1 className={styles.logo}>Too</h1>
+          </Link>
+          <Searchbar
+            user={user}
+            setisSearching={setisSearching}
+            input={input}
+            Search={Search}
+            setSearch={setSearch}
+            searchCloseHandle={searchCloseHandle}
+          />
+          <div>
+            {
+              user.photoURL ? (
+                <motion.div
+                  onKeyDown={(e) =>
+                    (e.key === "Enter" ||
+                      e.key === " " ||
+                      e.key === "Escape") &&
+                    modalHandle()
+                  }
+                  role="button"
+                  tabIndex={4}
+                  className={styles.mainProfile}
+                  onClick={modalHandle}
+                  whileTap={{ scale: 0.8 }}
+                >
+                  <Image
+                    referrerPolicy="no-referrer"
+                    unoptimized={true}
+                    src={user?.photoURL}
+                    alt={""}
+                    width="40"
+                    height="40"
+                    className={styles.profile}
+                  />
+                </motion.div>
+              ) : (
+                <motion.div
+                  onKeyDown={(e) =>
+                    (e.key === "Enter" ||
+                      e.key === " " ||
+                      e.key === "Escape") &&
+                    modalHandle()
+                  }
+                  role="button"
+                  tabIndex={4}
+                  className={styles.mainProfile}
+                  onClick={modalHandle}
+                  whileTap={{ scale: 0.8 }}
+                >
+                  <Image
+                    referrerPolicy="no-referrer"
+                    unoptimized={true}
+                    src={testUserPicture}
+                    alt="testUser Profile"
+                    width="40"
+                    height="40"
+                    className={styles.profile}
+                  />
+                </motion.div>
+              )
+              //<Link href="/auth">Sign in</Link>
+            }
+            {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
+          </div>
+        </div>
+      )}
+
+      {/* <button onClick={() => setselectedId([])}>Clear</button> */}
     </header>
   );
 }

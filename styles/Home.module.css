@@ -13,6 +13,19 @@
   overflow           : hidden;
 }
 
+.headerContainer {
+  background-color         : white;
+  display                  : flex;
+  justify-content          : space-between;
+  align-items              : center;
+  /* max-width             : 483px; */
+  max-width                : 500px;
+  width                    : 100vw;
+  /* border-bottom         : 2px solid #efefef; */
+  z-index                  : 999;
+  transition               : opacity .4s ease-in-out;
+}
+
 .logo {
   cursor   : pointer;
   font-size: 34px;
@@ -45,6 +58,65 @@
   /* pointer-events: none; */
 }
 
+.selectModal {
+  display        : flex;
+  flex           : 1;
+  justify-content: space-between;
+  align-items    : center;
+}
+
+.selectModal .left {
+  display    : flex;
+  align-items: center;
+  gap        : 1rem;
+
+}
+
+.selectModal .left p {
+  font-size: 1.5rem;
+}
+
+.selectModal .delete {
+  padding         : 10px;
+  border          : 0;
+  border-radius   : 20px;
+  background-color: #ffd9d9;
+  color           : #fa3b3b;
+}
+
+.selectModal .delete:hover {
+  background-color: #ff3f3f;
+  color           : white;
+}
+
+.selectModal .delete:active {
+  background-color: #ff3f3f;
+  color           : white;
+  opacity         : .5;
+}
+
+.selectModal .close {
+  padding            : 10px;
+  width              : 45px;
+  height             : 45px;
+  border             : 0;
+  border-radius      : 20px;
+  /* background-color: rgba(220, 220, 220, 0.521); */
+}
+
+.selectModal path {
+  /* stroke: rgb(71, 71, 71) !important; */
+  /* stroke: rgb(71, 71, 71) !important;  */
+}
+
+.selectModal .close:hover {
+  background-color: gainsboro;
+}
+
+.selectModal .close:active {
+  opacity         : .5;
+  background-color: gainsboro;
+}
 
 .headerfloat {
   background-color: white;

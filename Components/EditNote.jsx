@@ -44,7 +44,7 @@ export default function EditNote({
   useEffect(() => {
     function handleEscape(e) {
       if (e.key !== "Escape") return;
-      exitWithoutSaving ? confirmModalRef.current.showModal() : closeEdit();
+      exitWithoutSaving ? confirmModalRef.current.showAction() : closeEdit();
     }
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
@@ -86,7 +86,7 @@ export default function EditNote({
               <BiArrowBack
                 onClick={() =>
                   exitWithoutSaving
-                    ? confirmModalRef.current.showModal()
+                    ? confirmModalRef.current.showAction()
                     : closeEdit()
                 }
               />

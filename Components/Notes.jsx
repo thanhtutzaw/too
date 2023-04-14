@@ -1,18 +1,19 @@
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiCheck, BiDotsVerticalRounded } from "react-icons/bi";
 import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import styles from "../styles/Notes.module.css";
 import EditNote from "./EditNote";
 import NoteAction from "./NoteAction";
+import { AppContext } from "../context/AppContext";
 
 function Card({
-  selectedId,
-  setselectedId,
+  // selectedId,
+  // setselectedId,
   selectMode,
   setselectMode,
-  showModal,
-  setShowModal,
+  // showAction,
+  // setShowAction,
   id,
   title,
   text,
@@ -53,14 +54,16 @@ function Card({
     activeNote === id ? styles.active : ""
   } ${activeNote === id ? styles.positioned : ""}`;
   const [select, setSelect] = useState(false);
+  const { selectedId, setselectedId, showAction, setShowAction } =
+    useContext(AppContext);
 
   function chooseSelectMode(e) {
     e.stopPropagation();
     console.log("called this ");
     setselectMode(true);
-    setselectedId([...selectedId, showModal]);
+    setselectedId([...selectedId, showAction]);
     setSelect(true);
-    setShowModal("");
+    setShowAction("");
   }
   const checkRef = useRef(null);
   const uncheckRef = useRef(null);
@@ -69,9 +72,17 @@ function Card({
       setselectMode(false);
       setSelect(false);
     }
-  }, [selectedId, setselectMode]);
+    function handleEscape() {
+      setselectedId([]);
+      setselectMode(false);
+      setSelect(false);
+    }
+    window.addEventListener("keyup", handleEscape);
+    return () => window.removeEventListener("keyup", handleEscape);
+  }, [selectedId, setselectMode, setselectedId]);
   return (
     <>
+      {/* {selectedId.length} */}
       <Link href={selectMode ? `/#home` : `/#Note/${id}`}>
         {/* <Link href={`/#home`}> */}
         <div
@@ -111,28 +122,28 @@ function Card({
           }}
           className={cardActive}
         >
-          {showModal === id && (
+          {showAction === id && (
             <NoteAction
               chooseSelectMode={chooseSelectMode}
               setselectMode={setselectMode}
               setselectedId={setselectedId}
-              showModal={showModal}
-              setShowModal={setShowModal}
+              // showAction={showAction}
+              // setShowAction={setShowAction}
             />
           )}
           {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
           <div
-            style={{ filter: showModal === id ? "blur(2px)" : "" }}
+            style={{ filter: showAction === id ? "blur(2px)" : "" }}
             className={styles.header}
           >
             <div className={styles.cardTitle}>{title}</div>
             {!selectMode ? (
               <button
                 tabIndex={-1}
-                aria-expanded={showModal}
+                aria-expanded={showAction}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setShowModal(id);
+                  setShowAction(id);
                 }}
                 className={styles.dot}
               >
@@ -179,16 +190,17 @@ function Card({
               </>
             )}
           </div>
-          <p style={{ filter: showModal === id ? "blur(2px)" : "" }}>{text}</p>
+          <p style={{ filter: showAction === id ? "blur(2px)" : "" }}>{text}</p>
         </div>
       </Link>
     </>
   );
 }
 export default function Notes(props) {
-  const { notes, isSearching, selectedId, setselectedId } = props;
+  const { notes, isSearching } = props;
+
   const [totalHeight, settotalHeight] = useState(0);
-  const [showModal, setShowModal] = useState();
+
   const [activeNote, setactiveNote] = useState();
   const [selectMode, setselectMode] = useState(false);
 
@@ -250,7 +262,7 @@ export default function Notes(props) {
           window.location.hash = `home`;
         }
         confirmModalRef.current?.close();
-        confirmModalRef?.current?.showModal();
+        confirmModalRef?.current.showModal();
         // window.location.hash = `home`;
       } else {
         window.location.hash = `home`;
@@ -259,7 +271,7 @@ export default function Notes(props) {
     };
     // console.log(exitWithoutSaving);
     // if (exitWithoutSaving) {
-    //   // confirmModalRef.current.showModal();
+    //   // confirmModalRef.current.showAction();
     // } else {
     //   console.log("back key in Notes.jsx");
     //   // confirmModalRef.current.close();
@@ -295,12 +307,10 @@ export default function Notes(props) {
         {/* {selectMode ? "true" : "false"} */}
         {notes?.map((note, index) => (
           <Card
-            selectedId={selectedId}
-            setselectedId={setselectedId}
             selectMode={selectMode}
             setselectMode={setselectMode}
-            showModal={showModal}
-            setShowModal={setShowModal}
+            // showAction={showAction}
+            // setShowAction={setShowAction}
             activeNote={activeNote}
             setactiveNote={setactiveNote}
             index={index}
@@ -308,7 +318,7 @@ export default function Notes(props) {
             {...note}
           />
         ))}
-        {/* {showModal && <NoteAction setShowModal={setShowModal} />} */}
+        {/* {showAction && <NoteAction setShowAction={setShowAction} />} */}
         {/* </div> */}
 
         {/* <EditNote activeNote={activeNote} setactiveNote={setactiveNote} editnote={editNote} /> */}

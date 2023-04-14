@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import Layout from "../Components/Layout.jsx";
 import { db, postToJSON } from "../utils/firebase.js";
 import Home from "./Home.jsx";
+import AppProvider from "../context/AppContext.jsx";
 const MyLoader = () => <div>Loading...</div>;
 
 // initAuth()
@@ -96,7 +97,11 @@ const Index = (props) => {
   //   <Input setOpenNew={setOpenNew} />
   // )
   // }
-  return <Home notes={notes} />;
+  return (
+    <AppProvider>
+      <Home notes={notes} />
+    </AppProvider>
+  );
 };
 Index.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
