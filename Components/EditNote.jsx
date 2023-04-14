@@ -120,7 +120,6 @@ export default function EditNote({
               ref={title}
               role="input"
               style={{ outline: "none" }}
-              // className={s.titleView}
               contentEditable
             >
               {editnote?.title}

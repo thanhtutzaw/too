@@ -142,6 +142,8 @@ border                  :none; */
 }
 
 .cardTitle {
+  display       : flex;
+  flex          : 1;
   border-bottom : 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 14px;
   margin-bottom : 10px;
@@ -163,6 +165,17 @@ sans-serif; */
   color                : #414141;
   font-size            : 19px;
   /* white-space       : normal; */
+}
+
+.dropdown {
+  width          : 25px;
+  height         : 25px;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  border         : 0;
+  border-radius  : 100px;
+  padding        : 3px;
 }
 
 .viewContainer {
@@ -241,6 +254,47 @@ max-height           : 100%; */
   user-select   : none;
   pointer-events: none;
 
+}
+
+.header {
+  display: flex;
+  gap    : 10px;
+}
+
+.action {
+  z-index            : 100;
+  position           : absolute;
+  min-width          : 200px;
+  display            : flex;
+  flex-direction     : column;
+  gap                : 6px;
+  /* background-color: rgb(180, 180, 182); */
+}
+
+.action>button {
+  padding         : 8px;
+  background-color: white;
+  border          : 0;
+  border          : 1px solid rgb(231, 231, 231);
+  border-radius   : 10px;
+  box-shadow      : 0 0 10px rgb(235, 235, 235);
+  transition      : all .19s ease-in-out;
+}
+
+.action>button:hover {
+  padding         : 8px;
+  background-color: rgb(221, 221, 221);
+}
+
+.action>button:active {
+  background-color: rgb(91 231 145);
+}
+
+.action>button {
+  display    : flex;
+  gap        : 5px;
+  align-items: center;
+  width      : 100%;
 }
 
 .titleSpan {

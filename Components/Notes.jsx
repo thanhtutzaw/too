@@ -1,12 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
-import styles from "../styles/Notes.module.css";
 import Link from "next/link";
-// import firebase from 'firebase/compat/app';
-// import { useAuthUser } from "next-firebase-auth";
+import React, { useEffect, useRef, useState } from "react";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+import styles from "../styles/Notes.module.css";
 import EditNote from "./EditNote";
-// import isotope from 'isotope-layout';
+import NoteAction from "./NoteAction";
 
-function Card({ id, title, text, index, setactiveNote, activeNote }) {
+function Card({
+  showModal,
+  setShowModal,
+  id,
+  title,
+  text,
+  setactiveNote,
+  activeNote,
+}) {
   // function getStyle(elem) {
   //     if (typeof window !== 'undefined') {
   //         var style = getComputedStyle(elem);
@@ -21,9 +28,7 @@ function Card({ id, title, text, index, setactiveNote, activeNote }) {
   // let elements
   // if (typeof window !== 'undefined') {
   //     elements = document.querySelectorAll('#card')
-
   //     var elem = document.querySelectorAll('.cardContainer')
-  //     // console.log(elem)
   //     // var iso = new Isotope(elem, {
   //     //     // options
   //     //     itemSelector: '.card',
@@ -39,13 +44,9 @@ function Card({ id, title, text, index, setactiveNote, activeNote }) {
   //     // ele.style.color = 'red'
   // })
   // let width = 150
-
-  function handleStyle(e) {
-    // console.log(e.currentTarget)
-    //   e.currentTarget.style.color = "red !important";
-  }
-  // const [animate, setanimate] = useState(false);
-
+  const cardActive = `${styles.card} ${
+    activeNote === id ? styles.active : ""
+  } ${activeNote === id ? styles.positioned : ""}`;
   return (
     <>
       <Link href={`/#Note/${id}`}>
@@ -54,88 +55,56 @@ function Card({ id, title, text, index, setactiveNote, activeNote }) {
           tabIndex="0"
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
-              // e.stopPropagation();
-              // e.preventDefault();
               setactiveNote(id);
               if (activeNote === id) {
                 setactiveNote(null);
               }
               e.currentTarget.click();
-              // window.location.hash = `#Note/${id}`;
             }
-            if (activeNote && e.key === "Escape") {
-              console.log("I am escape key");
-              e.preventDefault();
-              setactiveNote(null);
-              window.location.hash = `#home`;
-            }
+            if (!activeNote && e.key !== "Escape") return;
+            e.preventDefault();
+            setactiveNote(null);
+            window.location.hash = `#home`;
           }}
-          // layoutid={`card-${id}`}
-          // style={{ zIndex: activeNote === id ? '2' : '0', transform: activeNote === id ? 'translate(0%,0%) scale(1)' : 'none' }}
-          // data-id={id}
-          // onKeyDown={(e) => {if (e.key === 'Escape') { setactiveNote(prev => !prev) } }}
-          // onKeyDown={(e) => {
-          //     // if(e.key === "Escape"){
-          //     //   setactiveNote(null)
-          //     // }
-          // }}
           onClick={(e) => {
             e.stopPropagation();
-            //   handleStyle(e);
-            // if(activeNote){
-            //     e.currentTarget.style.transform = 'translate(-54%, -50%) scale(2.2)'
-            // }
             setactiveNote(id);
-            if (activeNote === id) {
-              setactiveNote(null);
-            }
-            // if (activeNote || window.location.hash === activeNote) {
-            // setactiveNote(null);
-            // window.location.hash = "#home"
-            // }
-            // e.currentTarget.style.transform = "translate(-54%, -50%) scale(2.2)";
+            if (activeNote !== id) return;
+            setactiveNote(null);
           }}
-          // id="card"
-          // key={id}
-          className={`${styles.card} ${
-            activeNote === id ? styles.active : ""
-          } ${activeNote === id ? styles.positioned : ""}`}
+          className={cardActive}
         >
           {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
-          <div
-            //   layoutid={`title-${id}`}
-            className={styles.cardTitle}
-          >
-            {/* <div
-            //   layoutid={`title-${id}`}
-            className={styles.cardTitle}
-            contentEditable={activeNote === id ? true : false}
-          > */}
-            {title}
-          </div>
+          {showModal === id && (
+            <NoteAction showModal={showModal} setShowModal={setShowModal} />
+          )}
 
-          <div
-            // layoutid={`text-${id}`}
-            className={styles.cardText}
-          >
-            <p>{text}</p>
-            {/* <p contentEditable={activeNote ? true : false}>{text}</p> */}
+          <div className={styles.header}>
+            <div className={styles.cardTitle}>{title}</div>
+            <button
+              tabIndex={-1}
+              aria-expanded={showModal}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowModal(id);
+              }}
+              className={styles.dropdown}
+            >
+              <BiDotsVerticalRounded />
+            </button>
           </div>
+          <p>{text}</p>
         </div>
       </Link>
-
-      {/* {editNote && (
-                  <div>
-                      <p>{title}</p>
-                      <p>{text}</p>
-                  </div>
-              )} */}
     </>
   );
 }
 export default function Notes(props) {
-  const { activeNote, setactiveNote, notes, isSearching } = props;
+  const { notes, isSearching } = props;
+  const [activeNote, setactiveNote] = useState();
   const [totalHeight, settotalHeight] = useState(0);
+  const [showModal, setShowModal] = useState();
+
   useEffect(() => {
     let elements = document.querySelectorAll("#card");
 
@@ -212,7 +181,7 @@ export default function Notes(props) {
     //   setactiveNote(null);
     //   setactiveNote("");
     // }
-  }, [editNote, activeNote, exitWithoutSaving]);
+  }, [editNote, activeNote, exitWithoutSaving, setactiveNote]);
   return (
     <>
       <div
@@ -239,6 +208,8 @@ export default function Notes(props) {
         {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
         {notes?.map((note, index) => (
           <Card
+            showModal={showModal}
+            setShowModal={setShowModal}
             activeNote={activeNote}
             setactiveNote={setactiveNote}
             index={index}
@@ -246,6 +217,7 @@ export default function Notes(props) {
             {...note}
           />
         ))}
+        {/* {showModal && <NoteAction setShowModal={setShowModal} />} */}
         {/* </div> */}
 
         {/* <EditNote activeNote={activeNote} setactiveNote={setactiveNote} editnote={editNote} /> */}
@@ -258,15 +230,15 @@ export default function Notes(props) {
             )} */}
       </div>
       <EditNote
+        editnote={editNote}
+        textInput={textInput}
+        activeNote={activeNote}
+        titleInput={titleInput}
+        settextInput={settextInput}
+        settitleInput={settitleInput}
+        setactiveNote={setactiveNote}
         confirmModalRef={confirmModalRef}
         exitWithoutSaving={exitWithoutSaving}
-        titleInput={titleInput}
-        settitleInput={settitleInput}
-        textInput={textInput}
-        settextInput={settextInput}
-        activeNote={activeNote}
-        setactiveNote={setactiveNote}
-        editnote={editNote}
       />
 
       {

@@ -41,7 +41,6 @@ export default function Footer({ user }) {
 
   async function handle() {
     setactive((prev) => !prev);
-    // const q = collection(db, `users/${user.id}/notes`);
     await addNotes();
   }
   const title = useRef(null);
@@ -79,7 +78,6 @@ export default function Footer({ user }) {
           </span>
           <h3
             onInput={() => settitleInput(title.current.innerText)}
-            // onKeyDown={()=>{title.current.innerText = title.current.innerText;}}
             ref={title}
             role="input"
             style={{ outline: "none" }}
@@ -96,9 +94,6 @@ export default function Footer({ user }) {
           </span>
           <p
             onInput={() => settextInput(text.current.innerText)}
-            // onKeyDown={(e) => {
-            //   settextInput(e.currentTarget.innerText);
-            // }}
             ref={text}
             style={{ outline: "none" }}
             className={s.textView}

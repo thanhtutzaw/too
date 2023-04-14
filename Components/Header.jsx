@@ -9,15 +9,11 @@ function Searchbar(props) {
   return (
     <div className={styles.searchBar}>
       <input
-        onBlur={(e) => {
-          props.setisSearching(false);
-        }}
-        onFocus={(e) => {
-          props.setisSearching(true);
-        }}
+        onBlur={() => props.setisSearching(false)}
+        onFocus={() => props.setisSearching(true)}
+        onChange={(e) => props.setSearch(e.target.value)}
         ref={props.input}
         value={props.Search}
-        onChange={(e) => props.setSearch(e.target.value)}
         className={styles.searchInput}
         disabled={props.user ? "" : "disable"}
         type="text"
@@ -32,17 +28,19 @@ function Searchbar(props) {
     </div>
   );
 }
-export default function Header({activeNote, user, setisSearching }) {
+export default function Header({ user, setisSearching }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
   const [Search, setSearch] = useState();
-  const searchCloseHandle = (e) => {
+  const searchCloseHandle = () => {
     setSearch("");
     input.current.focus();
   };
   const modalHandle = useCallback(() => {
     setshowModal((prevstate) => !prevstate);
   }, []);
+  const testUserPicture =
+    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
   // const [float, setfloat] = useState(false);
   // useEffect(() => {
   //     const handleScroll = () => {
@@ -59,13 +57,8 @@ export default function Header({activeNote, user, setisSearching }) {
   // if(!user){
   //     Router.push('/auth')
   // }
-
   return (
-    <header
-      className={`${
-        activeNote ? styles.animateHeader : ""
-      }`}
-    >
+    <header>
       <Link href="/">
         <h1 className={styles.logo}>Too</h1>
       </Link>
@@ -81,12 +74,10 @@ export default function Header({activeNote, user, setisSearching }) {
         {
           user.photoURL ? (
             <motion.div
-              onKeyDown={(e) => {
-                // e.preventDefault();
-                if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
-                  modalHandle();
-                }
-              }}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " " || e.key === "Escape") &&
+                modalHandle()
+              }
               role="button"
               tabIndex={4}
               className={styles.mainProfile}
@@ -105,12 +96,10 @@ export default function Header({activeNote, user, setisSearching }) {
             </motion.div>
           ) : (
             <motion.div
-              onKeyDown={(e) => {
-                // e.preventDefault();
-                if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
-                  modalHandle();
-                }
-              }}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " " || e.key === "Escape") &&
+                modalHandle()
+              }
               role="button"
               tabIndex={4}
               className={styles.mainProfile}
@@ -120,7 +109,7 @@ export default function Header({activeNote, user, setisSearching }) {
               <Image
                 referrerPolicy="no-referrer"
                 unoptimized={true}
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                src={testUserPicture}
                 alt="testUser Profile"
                 width="40"
                 height="40"
@@ -128,9 +117,7 @@ export default function Header({activeNote, user, setisSearching }) {
               />
             </motion.div>
           )
-          // :
-
-          // <><Link href="/auth"><a className={styles.signinBtn}>Sign in</a></Link></>
+          //<Link href="/auth">Sign in</Link>
         }
         {showModal && <Sidebar user={user} setshowModal={setshowModal} />}
       </div>
