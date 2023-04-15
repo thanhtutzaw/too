@@ -29,7 +29,7 @@ const firebaseAuthConfig = {
     signInSuccessWithAuthResult: () => false,
   },
 };
-const FirebaseAuth = () => {
+const GoogleLogin = () => {
   const [renderAuth, setRenderAuth] = useState(false);
   // const input = document.querySelectorAll('input[type=email]')[0]
 
@@ -67,4 +67,4 @@ const FirebaseAuth = () => {
     </div>
   );
 };
-export default FirebaseAuth;
+export default GoogleLogin;

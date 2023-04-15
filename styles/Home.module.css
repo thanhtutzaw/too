@@ -496,21 +496,23 @@
 }
 
 .loginWrapper>button {
+  height:50px !important;
   /* border:3px solid red; */
   /* background-color   : rgb(0, 119, 255); */
   /* color              : white; */
-  border-radius         : 7px;
-  /* border             : 0; */
-  /* padding            :2rem; */
-  max-width             : 220px;
-  min-height            : 40px;
-  padding               : .7rem 16px;
-  width                 : 100%;
-  margin                : 0 auto;
-  cursor                : pointer;
-  border-radius         : 100px;
-  transition            : all .3s ease-in-out;
-  font-family           : Roboto,
+  border-radius            : 7px;
+  /* border                : 0; */
+  /* padding               :2rem; */
+  max-width                : 220px;
+  min-height               : 40px;
+  /* padding               : .7rem 16px; */
+  padding                  : .4rem 16px;
+  width                    : 100%;
+  margin                   : 0 auto;
+  cursor                   : pointer;
+  border-radius            : 100px;
+  transition               : all .3s ease-in-out;
+  font-family              : Roboto,
     Helvetica,
     Arial,
     sans-serif;
@@ -525,6 +527,7 @@
 .loginWrapper>button:active {
   color           : white;
   background-color: #24ae1f;
+  opacity         : .8;
 }
 
 .loginWrapper>button:disabled {
@@ -534,13 +537,18 @@
 }
 
 .loginBtn {
-  background-color: transparent;
-  border          : 1px solid rgb(0, 119, 255);
-  color           : rgb(0, 119, 255);
-  border          : 1px solid #1ed317;
-  border          : 0;
-  color           : #1ed317;
-  background-color: #1ed31730;
+  background-color   : transparent;
+  border             : 1px solid rgb(0, 119, 255);
+  color              : rgb(0, 119, 255);
+  border             : 1px solid #1ed317;
+  border             : 0;
+  color              : #1ed317;
+  background-color   : #1ed31730;
+  display            : flex;
+  justify-content    : flex-start;
+  align-items        : center;
+  gap                : 16px;
+  /* padding         : 0.7rem 16px; */
 }
 
 .footerContainer {

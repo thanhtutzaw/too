@@ -45,29 +45,26 @@ export default function EditNote({
   //       height = 57 + " extra px need (full screen)";
   //     }
   //   }
-  const openConfirm = useCallback(
-    () => confirmModalRef.current?.showModal(),
-    [confirmModalRef]
-  );
   const closeEdit = useCallback(() => {
     setactiveNote(null);
     setShowAction("");
     window.location.hash = "#home";
   }, [setShowAction, setactiveNote]);
+  // const exitHandle = useCallback(
+  //   () =>
+  //     exitWithoutSaving ? confirmModalRef.current?.showModal() : closeEdit(),
+  //   [closeEdit, confirmModalRef, exitWithoutSaving]
+  // );
+
   useEffect(() => {
     function handleEscape(e) {
       if (e.key !== "Escape") return;
-      exitWithoutSaving ? openConfirm() : closeEdit();
+      // exitHandle();
+      exitWithoutSaving ? confirmModalRef.current?.showModal() : closeEdit();
     }
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
-  }, [
-    closeEdit,
-    confirmModalRef,
-    exitWithoutSaving,
-    openConfirm,
-    setactiveNote,
-  ]);
+  }, [closeEdit, confirmModalRef, exitWithoutSaving, setactiveNote]);
   const title = useRef(null);
   const text = useRef(null);
 
@@ -104,24 +101,30 @@ export default function EditNote({
           <div className={s.viewHeader}>
             <div className="backBtn">
               <BiArrowBack
-                onClick={() => {
-                  exitWithoutSaving ? openConfirm() : closeEdit();
-                }}
+                // onClick={closeEdit}
+                onClick={() =>
+                  exitWithoutSaving
+                    ? confirmModalRef.current?.showModal()
+                    : closeEdit()
+                }
               />
             </div>
             <button
               disabled={loading}
               onClick={async () => {
-                setLoading(true);
-                try {
-                  await updateNote();
+                if (exitWithoutSaving) {
+                  setLoading(true);
+                  try {
+                    await updateNote();
+                    closeEdit();
+                    confirmModalRef.current.close();
+                    setLoading(false);
+                  } catch (error) {
+                    setLoading(false);
+                    alert(`Update Failed ! ${error.message}`);
+                  }
+                } else {
                   closeEdit();
-                  // setactiveNote("");
-                  // setShowAction("");
-                  setLoading(false);
-                } catch (error) {
-                  setLoading(false);
-                  alert(`Update Failed ! ${error.message}`);
                 }
               }}
               tabIndex="0"

@@ -3,10 +3,11 @@ import { AuthAction, withAuthUser } from "next-firebase-auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import FirebaseAuth from "../Components/FirebaseAuth";
+import GoogleLogin from "../Components/GoogleLogin";
 import Layout from "../Components/Layout.jsx";
 import styles from "../styles/Home.module.css";
 import FullPageLoader from "../Components/FullPageLoader";
+import Image from "next/image";
 
 const Auth = () => {
   const router = useRouter();
@@ -33,8 +34,20 @@ const Auth = () => {
         <h1>
           Welcome to <Link href="https://github.com/thanhtutzaw/too">Too</Link>
         </h1>
-        <FirebaseAuth />
-        <span style={{ opacity: ".5" }}>or</span>
+        <div
+          style={{
+            opacity: emailLoading ? "0" : "1",
+            pointerEvents: emailLoading ? "none" : "initial",
+            transition: "all .3s ease-in-out",
+          }}
+          onTransitionEnd={() => {
+            // setMounted(false);
+            // }} style={{ scale: emailLoading ? '0' : '1'}}>
+          }}
+        >
+          <GoogleLogin />
+          <span style={{ opacity: ".5" }}>or</span>
+        </div>
         <button
           disabled={emailLoading}
           className={styles.loginBtn}
@@ -45,7 +58,18 @@ const Auth = () => {
             }, 1000);
           }}
         >
-          {emailLoading ? "Welcome TestUser" : "Sign in as testUser"}
+          <span>
+            <Image
+              className={styles.profile}
+              alt="testuser profile"
+              referrerPolicy="no-referrer"
+              unoptimized={true}
+              width="20"
+              height="20"
+              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+            />
+          </span>
+          <span>{emailLoading ? "Signing in..." : "Sign in as testUser"}</span>
         </button>
         {/* <EmailAuth /> */}
       </div>

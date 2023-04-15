@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
 export default function ConfirmModal(props) {
+  const { setShowAction } = useContext(AppContext);
   const { setactiveNote, confirmModalRef } = props;
   const close = () => confirmModalRef.current?.close();
   return (
@@ -14,6 +18,7 @@ export default function ConfirmModal(props) {
           window.location.hash = "home";
           setactiveNote(null);
           setactiveNote("");
+          setShowAction("");
           console.log("edit canceled");
         }}
       >
