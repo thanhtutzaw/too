@@ -19,8 +19,8 @@ export default function SelectModal() {
   //     if (e.key === "Escape") {
   //       if (exitWithoutSaving) {
   //         console.log("confirm update");
-  //         editModalRef.current?.showAction();
-  //         confirmModalRef.current?.showAction();
+  //         editModalRef.current?.showModal();
+  //         confirmModalRef.current?.showModal();
   //       }
   //       if (selectedId.length > 1 || !exitWithoutSaving) {
   //         console.log(e.key + " (closing selectModal)");

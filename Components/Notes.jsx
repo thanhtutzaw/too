@@ -124,6 +124,7 @@ function Card({
         >
           {showAction === id && (
             <NoteAction
+              setactiveNote={setactiveNote}
               chooseSelectMode={chooseSelectMode}
               setselectMode={setselectMode}
               setselectedId={setselectedId}
@@ -246,15 +247,14 @@ export default function Notes(props) {
   const confirmModalRef = useRef(null);
   const exitWithoutSaving =
     titleInput !== editNote?.title || textInput !== editNote?.text;
+  const { setShowAction } = useContext(AppContext);
   useEffect(() => {
-    // if (!activeNote && !exitWithoutSaving) {
     if (!activeNote) {
       window.location.hash = "home";
       confirmModalRef.current?.close();
     }
 
     window.onpopstate = () => {
-      // setactiveNote("");
       if (exitWithoutSaving) {
         if (editNote) {
           window.location.hash = `#Note/${editNote?.id}`;
@@ -267,33 +267,30 @@ export default function Notes(props) {
       } else {
         window.location.hash = `home`;
         setactiveNote("");
+        setShowAction("");
       }
     };
     // console.log(exitWithoutSaving);
     // if (exitWithoutSaving) {
-    //   // confirmModalRef.current.showAction();
+    //   // confirmModalRef.current.showModal();
     // } else {
     //   console.log("back key in Notes.jsx");
     //   // confirmModalRef.current.close();
     //   setactiveNote(null);
     //   setactiveNote("");
     // }
-  }, [editNote, activeNote, exitWithoutSaving, setactiveNote]);
+  }, [editNote, activeNote, exitWithoutSaving, setactiveNote, setShowAction]);
 
   return (
     <>
       <div
         // onClick={(e) => {
-        // e.stopPropagation()
         // const target = e.currentTarget.dataset.id = editNote;
         // if (e.currentTarget && target) {
         //     // target.style.border = "3px solid red"
         //     console.log(target)
         // }
-        // e.stopPropagation()
-        // e.preventDefault()
         // console.log(e.currentTarget.dataset.id = editNote)
-        // console.log(target)
         // }}
         // ref={container}
 
@@ -302,15 +299,11 @@ export default function Notes(props) {
           activeNote ? styles.animateNotes : ""
         }`}
       >
-        {/* <div> */}
         {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
-        {/* {selectMode ? "true" : "false"} */}
         {notes?.map((note, index) => (
           <Card
             selectMode={selectMode}
             setselectMode={setselectMode}
-            // showAction={showAction}
-            // setShowAction={setShowAction}
             activeNote={activeNote}
             setactiveNote={setactiveNote}
             index={index}

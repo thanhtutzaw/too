@@ -1,10 +1,17 @@
 import { getAuth } from "firebase/auth";
 import { Timestamp, doc, serverTimestamp, updateDoc } from "firebase/firestore";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { BiArrowBack } from "react-icons/bi";
 import s from "../styles/Notes.module.css";
 import { app, db } from "../utils/firebase";
 import ConfirmModal from "./ConfirmModal";
+import { AppContext } from "../context/AppContext";
 // export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -29,6 +36,7 @@ export default function EditNote({
   setactiveNote,
   activeNote,
 }) {
+  const { setShowAction } = useContext(AppContext);
   const auth = getAuth(app);
   //   let height;
   //   if (typeof window !== "undefined") {
@@ -37,18 +45,29 @@ export default function EditNote({
   //       height = 57 + " extra px need (full screen)";
   //     }
   //   }
+  const openConfirm = useCallback(
+    () => confirmModalRef.current?.showModal(),
+    [confirmModalRef]
+  );
   const closeEdit = useCallback(() => {
     setactiveNote(null);
+    setShowAction("");
     window.location.hash = "#home";
-  }, [setactiveNote]);
+  }, [setShowAction, setactiveNote]);
   useEffect(() => {
     function handleEscape(e) {
       if (e.key !== "Escape") return;
-      exitWithoutSaving ? confirmModalRef.current.showAction() : closeEdit();
+      exitWithoutSaving ? openConfirm() : closeEdit();
     }
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
-  }, [closeEdit, confirmModalRef, exitWithoutSaving, setactiveNote]);
+  }, [
+    closeEdit,
+    confirmModalRef,
+    exitWithoutSaving,
+    openConfirm,
+    setactiveNote,
+  ]);
   const title = useRef(null);
   const text = useRef(null);
 
@@ -59,7 +78,7 @@ export default function EditNote({
     settitleInput(editnote?.title);
     settextInput(editnote?.text);
   }, [activeNote, editnote, settextInput, settitleInput]);
-
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <dialog id="confirmModal" ref={confirmModalRef}>
@@ -71,6 +90,7 @@ export default function EditNote({
       <div
         style={{
           pointerEvents: activeNote ? "auto" : "none",
+          cursor: loading ? "wait" : "default",
         }}
         className={s.edit}
       >
@@ -82,28 +102,32 @@ export default function EditNote({
           className={`${s.viewContainer} ${activeNote ? s.animateView : ""}`}
         >
           <div className={s.viewHeader}>
-            <div className={"backBtn"}>
+            <div className="backBtn">
               <BiArrowBack
-                onClick={() =>
-                  exitWithoutSaving
-                    ? confirmModalRef.current.showAction()
-                    : closeEdit()
-                }
+                onClick={() => {
+                  exitWithoutSaving ? openConfirm() : closeEdit();
+                }}
               />
             </div>
             <button
+              disabled={loading}
               onClick={async () => {
+                setLoading(true);
                 try {
                   await updateNote();
-                  setactiveNote("");
+                  closeEdit();
+                  // setactiveNote("");
+                  // setShowAction("");
+                  setLoading(false);
                 } catch (error) {
-                  alert(error.message);
+                  setLoading(false);
+                  alert(`Update Failed ! ${error.message}`);
                 }
               }}
               tabIndex="0"
               className="addBtn"
             >
-              Update
+              {loading ? "Updating" : "Update"}
             </button>
           </div>
           <div className={s.viewContent}>

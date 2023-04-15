@@ -2,15 +2,14 @@ import { getAuth } from "firebase/auth";
 import { deleteDoc, doc, writeBatch } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { useContext } from "react";
-import { BiCheckCircle, BiTrash } from "react-icons/bi";
+import { BiCheckCircle, BiEdit, BiTrash } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { AppContext } from "../context/AppContext";
 import s from "../styles/Notes.module.css";
 import { app, db } from "../utils/firebase";
 
-export default function NoteAction({ chooseSelectMode }) {
-  const { selectLength, showAction, setShowAction, selectedId } =
-    useContext(AppContext);
+export default function NoteAction({ setactiveNote, chooseSelectMode }) {
+  const { showAction, setShowAction } = useContext(AppContext);
   const modalHandle = (e) => {
     e.stopPropagation();
     setShowAction("");
@@ -50,7 +49,7 @@ export default function NoteAction({ chooseSelectMode }) {
       noteId = showAction.toString();
     const docRef = doc(db, `users/${uid}/notes/${noteId}`);
     await deleteDoc(docRef);
-    window.location.reload(); 
+    window.location.reload();
     // try {
     //   await batch.commit();
     //   console.info("%cDeleted !", "color: green");
@@ -78,10 +77,20 @@ export default function NoteAction({ chooseSelectMode }) {
       transition={{ duration: 0.2 }}
       className={s.action}
     >
-      {/* <div className={styles.closeBtn}> */}
       <button onClick={modalHandle}>
         <CgClose />
         Close
+      </button>
+      <button
+        onClick={(e) => {
+          // e.stopPropagation();
+          // setactiveNote(showAction);
+          // window.location.hash = `#Note`;
+        }}
+      >
+        <BiEdit />
+        Edit
+        {/* {showAction} */}
       </button>
       <button onClick={chooseSelectMode}>
         <BiCheckCircle />
