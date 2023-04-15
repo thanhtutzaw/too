@@ -50,21 +50,26 @@ export default function EditNote({
     setShowAction("");
     window.location.hash = "#home";
   }, [setShowAction, setactiveNote]);
-  // const exitHandle = useCallback(
-  //   () =>
-  //     exitWithoutSaving ? confirmModalRef.current?.showModal() : closeEdit(),
-  //   [closeEdit, confirmModalRef, exitWithoutSaving]
-  // );
+  const exitHandle = useCallback(
+    () =>
+      exitWithoutSaving ? confirmModalRef.current?.showModal() : closeEdit(),
+    [closeEdit, confirmModalRef, exitWithoutSaving]
+  );
 
   useEffect(() => {
     function handleEscape(e) {
       if (e.key !== "Escape") return;
-      // exitHandle();
-      exitWithoutSaving ? confirmModalRef.current?.showModal() : closeEdit();
+      exitHandle();
     }
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
-  }, [closeEdit, confirmModalRef, exitWithoutSaving, setactiveNote]);
+  }, [
+    closeEdit,
+    confirmModalRef,
+    exitHandle,
+    exitWithoutSaving,
+    setactiveNote,
+  ]);
   const title = useRef(null);
   const text = useRef(null);
 
@@ -100,14 +105,7 @@ export default function EditNote({
         >
           <div className={s.viewHeader}>
             <div className="backBtn">
-              <BiArrowBack
-                // onClick={closeEdit}
-                onClick={() =>
-                  exitWithoutSaving
-                    ? confirmModalRef.current?.showModal()
-                    : closeEdit()
-                }
-              />
+              <BiArrowBack onClick={exitHandle} />
             </div>
             <button
               disabled={loading}
