@@ -76,6 +76,10 @@
   font-size: 1.5rem;
 }
 
+.selectModal .left svg {
+  cursor: pointer;
+}
+
 .selectModal .delete {
   padding         : 10px;
   border          : 0;
@@ -237,11 +241,11 @@
   /* outline            : 3px solid red; */
   /* position        : absolute;
   right              : 10px; */
-  position        : absolute;
-  right           : 30px;
-  width           : 100%;
-  max-width       : 300px;
-  transform-origin: top right;
+  position           : absolute;
+  right              : 30px;
+  width              : 100%;
+  max-width          : 300px;
+  /* transform-origin: top right; */
 }
 
 .card,
@@ -264,6 +268,20 @@
   /* outline                : 3px solid red; */
   /* max-width              : 500px; */
   /* margin-right           : 30px; */
+}
+
+.setting {
+  padding    : 0;
+  padding-top: 10px;
+}
+
+.grid,
+.tools {
+  padding: 0 1rem;
+}
+
+.tools {
+  padding-bottom: 1rem;
 }
 
 .card:hover,
@@ -379,26 +397,40 @@
 }
 
 .closeBtn {
-  font-size       : 1.5em;
-  display         : flex;
-  justify-content : flex-end;
-  margin-top      : -24px;
-  position        : absolute;
-  right           : 0;
-  padding         : 0.4rem;
-  transition      : all .1s ease-in-out;
-  background-color: transparent;
-  cursor          : pointer;
-  border-radius   : 50px;
+  font-size                      : 1.5em;
+  display                        : flex;
+  /* width                       : 30px; */
+  flex                           : 1;
+  right                          : 0;
+  /* height                      : 50px; */
+  justify-content                : center;
+  justify-content                : flex-end;
+  align-content                  : center;
+  /* margin-top                  : -24px; */
+  /* position                    : absolute; */
+  /* right                       : 0; */
+  /* padding                     : 0.4rem; */
+  background-color               : transparent;
+  /* background-color            : red; */
 }
 
-.closeBtn:hover {
+.closeBtn svg {
+  transition   : all .1s ease-in-out;
+  border-radius: 50px;
+  margin       : 0 10px;
+  cursor       : pointer;
+  scale        : 1.5;
+  padding      : 5px;
 
+}
+
+.closeBtn svg:hover {
   /* color           : rgb(87, 87, 87); */
   background-color: gainsboro;
+
 }
 
-.closeBtn:active {
+.closeBtn svg:active {
   opacity            : .5;
   background-color   : gainsboro;
   /* color           : rgb(87, 87, 87); */

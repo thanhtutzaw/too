@@ -59,18 +59,17 @@ export default function Header({ user, setisSearching }) {
   // if(!user){
   //     Router.push('/auth')
   // }
-  const { selectLength, selectedId } = useContext(AppContext);
+  const { selectLength, showAction, setShowAction } = useContext(AppContext);
   return (
     <header>
       <AnimatePresence>
         {selectLength > 0 ? (
           <SelectModal />
         ) : (
-          <motion.dvi
-            initial={{ opacity: 0, rotateX: 60 }}
-            animate={{ opacity: 1, rotateX: 0 }}
-            exit={{ opacity: 0, rotateX: 90 }}
-            transition={{ duration: 0.2 }}
+          <motion.div
+            // initial={{ opacity: 0, rotateX: 60 }}
+            // animate={{ opacity: 1, rotateX: 0 }}
+            // transition={{ duration: 0.1 }}
             className={styles.headerContainer}
           >
             <Link href="/">
@@ -97,7 +96,12 @@ export default function Header({ user, setisSearching }) {
                     role="button"
                     tabIndex={4}
                     className={styles.mainProfile}
-                    onClick={modalHandle}
+                    onClick={() => {
+                      modalHandle();
+                      if (showAction) {
+                        setShowAction("");
+                      }
+                    }}
                     whileTap={{ scale: 0.8 }}
                   >
                     <Image
@@ -121,7 +125,12 @@ export default function Header({ user, setisSearching }) {
                     role="button"
                     tabIndex={4}
                     className={styles.mainProfile}
-                    onClick={modalHandle}
+                    onClick={() => {
+                      modalHandle();
+                      if (showAction) {
+                        setShowAction("");
+                      }
+                    }}
                     whileTap={{ scale: 0.8 }}
                   >
                     <Image
@@ -143,7 +152,7 @@ export default function Header({ user, setisSearching }) {
                 )}
               </AnimatePresence>
             </div>
-          </motion.dvi>
+          </motion.div>
         )}
       </AnimatePresence>
 
