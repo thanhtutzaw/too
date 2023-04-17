@@ -1,3 +1,7 @@
 {
-    "npm-scripts.showStartNotification": false
+  "npm-scripts.showStartNotification": false,
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  }
 }

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 
 export default function ConfirmModal(props) {
   const { setShowAction } = useContext(AppContext);

@@ -1,46 +1,19 @@
-import { AppContext } from "../context/AppContext";
-import { useContext, useEffect } from "react";
+import { AppContext } from "../../context/AppContext";
+import { useContext, useState } from "react";
 import { GrClose } from "react-icons/gr";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import { doc, writeBatch } from "firebase/firestore";
-import app, { db } from "../utils/firebase";
+import app, { db } from "../../utils/firebase";
 import { getAuth } from "firebase/auth";
+import { motion } from "framer-motion";
 export default function SelectModal() {
-  // const mountStyle = {
-  //   animation: "selectMount 200ms ease-in",
-  // };
-  // const unmountStyle = {
-  //   animation: "selectUnmount 250ms ease-out",
-  // };
   const { clearSelect, selectLength, selectedId, setShowAction } =
     useContext(AppContext);
-  // useEffect(() => {
-  //   function handleEscape(e) {
-  //     if (e.key === "Escape") {
-  //       if (exitWithoutSaving) {
-  //         console.log("confirm update");
-  //         editModalRef.current?.showModal();
-  //         confirmModalRef.current?.showModal();
-  //       }
-  //       if (selectedId.length > 1 || !exitWithoutSaving) {
-  //         console.log(e.key + " (closing selectModal)");
-  //         clearSelect();
-  //         setisPrevent(false);
-  //         setDeleteModalMounted(false);
-  //         setopenDeleteModal(false);
-  //       }
-  //     }
-  //   }
-  //   window.addEventListener("keyup", handleEscape);
-  //   return () => {
-  //     window.removeEventListener("keyup", handleEscape);
-  //   };
-  // }, [exitWithoutSaving]);
-
+  const [loading, setloading] = useState(false);
   // const controlTabkey = !openDeleteModal ? 1 : -1;
   // const mountAnimation = selecting ? mountStyle : unmountStyle;
   const auth = getAuth(app);
-  async function deleteMultipleNote() {
+  async function deleteMultipleNotes() {
     if (!db) {
       alert("Firestore database is not available");
       throw new Error("Firestore database is not available");
@@ -51,42 +24,54 @@ export default function SelectModal() {
     }
     const batch = writeBatch(db);
     const chunkSize = 10;
-    for (let i = 0; i < selectLength; i += chunkSize) {
+    // console.log(selectLength);
+    for (let i = 0; i < selectedId.length; i += chunkSize) {
       const chunk = selectedId.slice(i, i + chunkSize);
-      // console.log(chunk)
       const uid = auth.currentUser.uid;
       for (let j = 0; j < chunk.length; j++) {
         const docRef = doc(db, `users/${uid}/notes/${chunk[j]}`);
+        console.log(docRef);
         batch.delete(docRef);
       }
     }
-    batch.commit();
+    await batch.commit();
     window.location.reload();
   }
   return (
     // <div style={mountAnimation} className={`selectModal `}>
-    <div className={styles.selectModal}>
+    <motion.div
+      style={{
+        cursor: loading ? "wait" : "initial",
+        pointerEvents: loading ? "none" : "initial",
+      }}
+      initial={{ opacity: 0, rotateX: 60 }}
+      animate={{ opacity: 1, rotateX: 0 }}
+      exit={{ opacity: 0, rotateX: 90 }}
+      transition={{ duration: 0.2 }}
+      className={styles.selectModal}
+    >
       <div className={styles.left}>
         <GrClose className={styles.close} onClick={() => clearSelect()} />
         <p>{selectLength}</p>
       </div>
       <button
-        // tabIndex={controlTabkey}
+        disabled={loading}
         // style={{ pointerEvents: deleteloading ? "none" : "initial" }}
-        // disabled={deleteloading}
         onClick={async (e) => {
           e.stopPropagation();
+          setloading(true);
           try {
-            await deleteMultipleNote();
+            await deleteMultipleNotes();
           } catch (error) {
+            setloading(false);
             alert(error.message);
           }
           setShowAction("");
         }}
         className={styles.delete}
       >
-        Delete
+        {loading ? "Deleting" : "Delete"}
       </button>
-    </div>
+    </motion.div>
   );
 }

@@ -1,16 +1,12 @@
 import { useAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Footer from "../Components/Footer";
-import Header from "../Components/Header.jsx";
-import Notes from "../Components/Notes.jsx";
-import { AppContext } from "../context/AppContext";
-// import useSelect from "../hooks/useSelect";
-
-// import Sidebar from '../Components/Sidebar'
+import Header from "../Components/Header";
+import Notes from "../Components/Notes";
+// import { AppContext } from "../context/AppContext";
 // import Note from './[id]'
 
 // export async function getServerSideProps(context) {
-//   console.log(context)
 //   return{
 //     props:{
 //       id
@@ -45,9 +41,10 @@ import { AppContext } from "../context/AppContext";
 //   }
 // }
 export default function Home({ float, notes }) {
+  const [active, setactive] = useState(false);
   const [isSearching, setisSearching] = useState(false);
   const user = useAuthUser();
-  const { selectedId, setselectedId, selectLength } = useContext(AppContext);
+  // const { selectedId, setselectedId, selectLength } = useContext(AppContext);
 
   return (
     <>
@@ -56,8 +53,8 @@ export default function Home({ float, notes }) {
         <>
           {/* <p style={{zIndex:'10000000'}}>{q}</p> */}
           <Header float={float} user={user} setisSearching={setisSearching} />
-          <Notes notes={notes} isSearching={isSearching} />
-          <Footer user={user} />
+          <Notes active={active} notes={notes} isSearching={isSearching} />
+          <Footer active={active} setactive={setactive} user={user} />
         </>
       ) : null}
     </>

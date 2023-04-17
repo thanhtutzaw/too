@@ -3,7 +3,7 @@ import { AuthAction, withAuthUser } from "next-firebase-auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import GoogleLogin from "../Components/GoogleLogin";
+import GoogleLogin from "../Components/Login/GoogleLogin";
 import Layout from "../Components/Layout.jsx";
 import styles from "../styles/Home.module.css";
 import FullPageLoader from "../Components/FullPageLoader";

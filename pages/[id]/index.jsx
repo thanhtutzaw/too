@@ -1,9 +1,9 @@
-import { withAuthUserTokenSSR } from 'next-firebase-auth'
-import { useRouter } from 'next/router'
-import React from 'react'
+import { withAuthUserTokenSSR } from "next-firebase-auth";
+import { useRouter } from "next/router";
+import React from "react";
 import { db } from "../../utils/firebase";
-import styles from "../../styles/Notes.module.css";
-import { collection, getDocs } from 'firebase/firestore'
+import styles from "../../Components/Notes/Notes.module.css";
+import { collection, getDocs } from "firebase/firestore";
 // import { notes } from '../../utils/data'
 // export const getStaticPaths =async () => {
 //   let notes = []
@@ -37,41 +37,43 @@ import { collection, getDocs } from 'firebase/firestore'
 //   }
 // }
 
-export const getServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser }) => {
-  let notes = null;
-  const id = AuthUser.id;
-  const q = collection(db, `users/${id}/notes`)
-  const docSnap = await getDocs(q)
+export const getServerSideProps = withAuthUserTokenSSR()(
+  async ({ AuthUser }) => {
+    let notes = null;
+    const id = AuthUser.id;
+    const q = collection(db, `users/${id}/notes`);
+    const docSnap = await getDocs(q);
 
-  notes = docSnap.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }))
+    notes = docSnap.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-  return {
-    props: {
-      notes
-    }
+    return {
+      props: {
+        notes,
+      },
+    };
   }
-})
+);
 
 export default function Note({ notes }) {
-  const router = useRouter()
-  let { id } = router.query
-  const note = notes.find(note => note.id == id)
+  const router = useRouter();
+  let { id } = router.query;
+  const note = notes.find((note) => note.id == id);
 
-  let height
+  let height;
   if (typeof window !== "undefined") {
-    height = window.innerHeight
+    height = window.innerHeight;
     if (height > 673) {
-      height = 57 + " extra px need (full screen)"
+      height = 57 + " extra px need (full screen)";
     }
   }
   return (
     <>
       {/* <p>Height {height}</p> */}
       {/* <Header /> */}
-      {id ?
+      {id ? (
         <>
           <div className={styles.viewContainer}>
             {/* <div  className={styles.viewHeader}>
@@ -90,10 +92,8 @@ export default function Note({ notes }) {
           </motion.div> */}
           </div>
         </>
-        :
-        null
-      }
+      ) : null}
     </>
-  )
+  );
 }
 // export default withAuthUser()(Note)

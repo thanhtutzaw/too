@@ -8,10 +8,10 @@ import React, {
   useState,
 } from "react";
 import { BiArrowBack } from "react-icons/bi";
-import s from "../styles/Notes.module.css";
-import { app, db } from "../utils/firebase";
-import ConfirmModal from "./ConfirmModal";
-import { AppContext } from "../context/AppContext";
+import s from "./Notes.module.css";
+import { app, db } from "../../utils/firebase";
+import ConfirmModal from "../Modal/ConfirmModal";
+import { AppContext } from "../../context/AppContext";
 // export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -70,12 +70,12 @@ export default function EditNote({
     exitWithoutSaving,
     setactiveNote,
   ]);
-  const title = useRef(null);
-  const text = useRef(null);
+  const titleRef = useRef(null);
+  const textRef = useRef(null);
 
   useEffect(() => {
     if (activeNote || editnote) {
-      title.current.focus();
+      titleRef.current.focus();
     }
     settitleInput(editnote?.title);
     settextInput(editnote?.text);
@@ -98,6 +98,7 @@ export default function EditNote({
       >
         <div
           style={{
+            pointerEvents: loading ? "none" : "initial",
             opacity: activeNote ? "1" : "0",
             visibility: activeNote ? "visible" : "hidden",
           }}
@@ -110,19 +111,19 @@ export default function EditNote({
             <button
               disabled={loading}
               onClick={async () => {
-                if (exitWithoutSaving) {
-                  setLoading(true);
-                  try {
-                    await updateNote();
-                    closeEdit();
-                    confirmModalRef.current.close();
-                    setLoading(false);
-                  } catch (error) {
-                    setLoading(false);
-                    alert(`Update Failed ! ${error.message}`);
-                  }
-                } else {
+                if (!exitWithoutSaving) {
                   closeEdit();
+                  return;
+                }
+                setLoading(true);
+                try {
+                  await updateNote();
+                  closeEdit();
+                  confirmModalRef.current.close();
+                  setLoading(false);
+                } catch (error) {
+                  setLoading(false);
+                  alert(`Update Failed ! ${error.message}`);
                 }
               }}
               tabIndex="0"
@@ -141,8 +142,8 @@ export default function EditNote({
               Title
             </span>
             <h3
-              onInput={() => settitleInput(title.current.innerText)}
-              ref={title}
+              onInput={() => settitleInput(titleRef.current.innerText)}
+              ref={titleRef}
               role="input"
               style={{ outline: "none" }}
               contentEditable
@@ -158,8 +159,8 @@ export default function EditNote({
               Text
             </span>
             <p
-              onInput={() => settextInput(text.current.innerText)}
-              ref={text}
+              onInput={() => settextInput(textRef.current.innerText)}
+              ref={textRef}
               className={s.textView}
               contentEditable
             >
@@ -167,32 +168,32 @@ export default function EditNote({
             </p>
           </div>
           {/* <motion.div className={s.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
-            {note.title}
           </motion.div>
           <motion.div className={s.textView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
-            {note.text}
+
           </motion.div> */}
         </div>
       </div>
     </>
   );
   async function updateNote() {
-    if (exitWithoutSaving) {
-      const uid = auth.currentUser.uid,
-        noteId = editnote?.id.toString();
-      const docRef = doc(db, `users/${uid}/notes/${noteId}`);
-      const newData = {
-        ...editnote,
-        title: titleInput,
-        text: textInput,
-        createdAt: new Timestamp(
-          editnote.createdAt.seconds,
-          editnote.createdAt.nanoseconds
-        ),
-        updatedAt: serverTimestamp(),
-      };
-      await updateDoc(docRef, newData);
-      window.location.reload();
-    }
+    console.log("update function");
+    // if (exitWithoutSaving) {
+    const uid = auth.currentUser.uid,
+      noteId = editnote?.id.toString();
+    const docRef = doc(db, `users/${uid}/notes/${noteId}`);
+    const newData = {
+      ...editnote,
+      title: titleInput,
+      text: textInput,
+      createdAt: new Timestamp(
+        editnote.createdAt.seconds,
+        editnote.createdAt.nanoseconds
+      ),
+      updatedAt: serverTimestamp(),
+    };
+    await updateDoc(docRef, newData);
+    window.location.reload();
+    // }
   }
 }

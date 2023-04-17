@@ -69,6 +69,11 @@
   /* transition: width 400ms ease , height 400ms ease , left cubic-bezier(0.4, 0, 0.2, 1) 420ms , top cubic-bezier(0.4, 0, 0.2, 1) 420ms; */
 }
 
+.card:focus-visible {
+  outline       : 2px solid var(--main-color);
+  outline-offset: 2px;
+}
+
 .active {
   /* background-color: green ; */
   /* width:100%; */
@@ -281,12 +286,13 @@ max-height           : 100%; */
 }
 
 .action {
-  z-index       : 100;
-  position      : absolute;
-  display       : flex;
-  flex-direction: column;
-  gap           : 6px;
-  width         : 40%;
+  z-index         : 100;
+  position        : absolute;
+  display         : flex;
+  flex-direction  : column;
+  gap             : 6px;
+  width           : 40%;
+  transform-origin: top;
 }
 
 .action>button {

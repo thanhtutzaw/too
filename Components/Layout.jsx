@@ -12,11 +12,8 @@ function Layout({ children }) {
       </Head>
       <main className={styles.main}>
         {/* <div className={styles.container}> */}
-        {/* <Header /> */}
-        {/* <Note /> */}
         {children}
         {/* { OpenNew && <Input setOpenNew={setOpenNew} />} */}
-        {/* </div> */}
       </main>
     </>
   );

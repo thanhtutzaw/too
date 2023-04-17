@@ -2,18 +2,15 @@ import Link from "next/link";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiCheck, BiDotsVerticalRounded } from "react-icons/bi";
 import { RiCheckboxBlankCircleLine } from "react-icons/ri";
-import styles from "../styles/Notes.module.css";
-import EditNote from "./EditNote";
+import styles from "./Notes.module.css";
 import NoteAction from "./NoteAction";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
+import EditNote from "./EditNote";
+import { AnimatePresence } from "framer-motion";
 
 function Card({
-  // selectedId,
-  // setselectedId,
   selectMode,
   setselectMode,
-  // showAction,
-  // setShowAction,
   id,
   title,
   text,
@@ -122,16 +119,18 @@ function Card({
           }}
           className={cardActive}
         >
-          {showAction === id && (
-            <NoteAction
-              setactiveNote={setactiveNote}
-              chooseSelectMode={chooseSelectMode}
-              setselectMode={setselectMode}
-              setselectedId={setselectedId}
-              // showAction={showAction}
-              // setShowAction={setShowAction}
-            />
-          )}
+          <AnimatePresence>
+            {showAction === id && (
+              <NoteAction
+                setactiveNote={setactiveNote}
+                chooseSelectMode={chooseSelectMode}
+                setselectMode={setselectMode}
+                setselectedId={setselectedId}
+                // showAction={showAction}
+                // setShowAction={setShowAction}
+              />
+            )}
+          </AnimatePresence>
           {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
           <div
             style={{ filter: showAction === id ? "blur(2px)" : "" }}
@@ -198,7 +197,7 @@ function Card({
   );
 }
 export default function Notes(props) {
-  const { notes, isSearching } = props;
+  const { active, notes, isSearching } = props;
 
   const [totalHeight, settotalHeight] = useState(0);
 
@@ -249,51 +248,31 @@ export default function Notes(props) {
     titleInput !== editNote?.title || textInput !== editNote?.text;
   const { setShowAction } = useContext(AppContext);
   useEffect(() => {
-    if (!activeNote) {
-      window.location.hash = "home";
-      confirmModalRef.current?.close();
-    }
-
     window.onpopstate = () => {
       if (exitWithoutSaving) {
         if (editNote) {
-          window.location.hash = `#Note/${editNote?.id}`;
+          // window.location.hash = `#Note/${editNote?.id}`;
         } else {
-          window.location.hash = `home`;
+          // window.location.hash = "home";
         }
         confirmModalRef.current?.close();
         confirmModalRef?.current.showModal();
-        // window.location.hash = `home`;
       } else {
-        window.location.hash = `home`;
+        // window.location.hash = "home";
         setactiveNote("");
         setShowAction("");
       }
     };
-    // console.log(exitWithoutSaving);
-    // if (exitWithoutSaving) {
-    //   // confirmModalRef.current.showModal();
-    // } else {
-    //   console.log("back key in Notes.jsx");
-    //   // confirmModalRef.current.close();
-    //   setactiveNote(null);
-    //   setactiveNote("");
-    // }
-  }, [editNote, activeNote, exitWithoutSaving, setactiveNote, setShowAction]);
-
+  }, [editNote, exitWithoutSaving, setShowAction]);
+  useEffect(() => {
+    if (!activeNote && !active) {
+      window.location.hash = "home";
+      confirmModalRef.current?.close();
+    }
+  }, [activeNote, active]);
   return (
     <>
       <div
-        // onClick={(e) => {
-        // const target = e.currentTarget.dataset.id = editNote;
-        // if (e.currentTarget && target) {
-        //     // target.style.border = "3px solid red"
-        //     console.log(target)
-        // }
-        // console.log(e.currentTarget.dataset.id = editNote)
-        // }}
-        // ref={container}
-
         // style={{ pointerEvents: isSearching ? "none" : "auto" }}
         className={`${styles.cardContainer} ${
           activeNote ? styles.animateNotes : ""

@@ -1,6 +1,6 @@
 import React from "react";
 import { withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
-import GoogleLogin from "../Components/GoogleLogin";
+import GoogleLogin from "../Components/Login/GoogleLogin";
 import Layout from "../Components/Layout.jsx";
 
 const Auth = () => (
