@@ -5,6 +5,61 @@
   --btn-background: rgb(18, 170, 77);
 }
 
+#confirmModal {
+  background: unset;
+  border    : unset;
+  margin    : 0 auto;
+  min-height: 100dvh;
+}
+
+.confirmModal {
+  background      : rgba(255, 255, 255, .01);
+  background-color: white;
+  padding         : 1rem;
+  width           : 350px;
+  max-width       : 97vw;
+  display         : flex;
+  justify-content : center;
+  flex-direction  : column;
+  gap             : 1rem;
+  border-radius   : 0.5rem;
+  backdrop-filter : blur(6px);
+  border          : 1px solid rgba(255, 255, 255, .3);
+  box-shadow      : 0 4px 20px #6664;
+
+  outline     : 0;
+  position    : fixed;
+  top         : 50%;
+  left        : 50%;
+  transform   : translate(-50%, -50%);
+  /* animation: fadeIn .3s ease-in-out; */
+  overflow    : auto;
+}
+
+.confirmModal>p {
+  font-weight: 500;
+  font-size  : 1rem;
+  text-align : center;
+  user-select: none;
+}
+
+.confirmModal button {
+  border          : 0;
+  border-radius   : 0.5rem;
+  font-size       : 18px;
+  min-width       : 100px;
+  /* cursor       : pointer; */
+  user-select     : none;
+  margin          : 0 5px;
+  color           : #000 !important;
+  padding         : 0.7rem !important;
+  background-color: transparent !important;
+}
+
+.confirmModal button:hover {
+  background-color: rgba(179, 179, 179, 0.466) !important;
+}
+
 button:disabled {
   opacity: .5;
   cursor : not-allowed !important;
