@@ -332,8 +332,9 @@ max-height           : 100%; */
   background-color: rgb(255, 77, 77) !important;
 }
 
-.deletBtn:active {
+.deletBtn:is(:active, :disabled) {
   background-color: rgb(255, 127, 127) !important;
+  opacity         : 1 !important;
 }
 
 .titleSpan {

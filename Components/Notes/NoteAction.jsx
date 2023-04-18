@@ -56,6 +56,8 @@ export default function NoteAction({ chooseSelectMode }) {
         Select
       </button>
       <button
+        disabled={loading}
+        // style={{ backgroundColor: "initial" }}
         className={s.deletBtn}
         onClick={async (e) => {
           e.stopPropagation();

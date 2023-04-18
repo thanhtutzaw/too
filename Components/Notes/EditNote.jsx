@@ -12,6 +12,8 @@ import { AppContext } from "../../context/AppContext";
 import { app, db } from "../../utils/firebase";
 import ConfirmModal from "../Modal/ConfirmModal";
 import s from "./Notes.module.css";
+import Input from "./Input";
+import ViewHeader from "./ViewHeader";
 // export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -82,6 +84,22 @@ export default function EditNote({
     settextInput(editnote?.text);
   }, [activeNote, editnote, settextInput, settitleInput]);
   const [loading, setLoading] = useState(false);
+  const submitHandle = async () => {
+    if (!exitWithoutSaving) {
+      closeEdit();
+      return;
+    }
+    setLoading(true);
+    try {
+      await updateNote();
+      closeEdit();
+      confirmModalRef.current.close();
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      alert(`Update Failed ! ${error.message}`);
+    }
+  };
   return (
     <>
       <dialog id="confirmModal" ref={confirmModalRef}>
@@ -105,69 +123,20 @@ export default function EditNote({
           }}
           className={`${s.viewContainer} ${activeNote ? s.animateView : ""}`}
         >
-          <div className={s.viewHeader}>
-            <div className="backBtn">
-              <BiArrowBack onClick={exitHandle} />
-            </div>
-            <button
-              disabled={loading}
-              onClick={async () => {
-                if (!exitWithoutSaving) {
-                  closeEdit();
-                  return;
-                }
-                setLoading(true);
-                try {
-                  await updateNote();
-                  closeEdit();
-                  confirmModalRef.current.close();
-                  setLoading(false);
-                } catch (error) {
-                  setLoading(false);
-                  alert(`Update Failed ! ${error.message}`);
-                }
-              }}
-              tabIndex="0"
-              className="addBtn"
-            >
-              {loading ? "Updating" : "Update"}
-            </button>
-          </div>
-          <div className={s.viewContent}>
-            <span
-              style={{
-                opacity: titleInput !== "" ? "0" : ".5",
-              }}
-              className={s.titleSpan}
-            >
-              Title
-            </span>
-            <h3
-              onInput={() => settitleInput(titleRef.current.innerText)}
-              ref={titleRef}
-              role="input"
-              style={{ outline: "none" }}
-              contentEditable
-            >
-              {editnote?.title}
-            </h3>
-            <span
-              style={{
-                opacity: textInput !== "" ? "0" : ".5",
-              }}
-              className={s.textSpan}
-            >
-              Text
-            </span>
-            <p
-              onInput={() => settextInput(textRef.current.innerText)}
-              ref={textRef}
-              className={s.textView}
-              contentEditable
-            >
-              {editnote?.text}
-            </p>
-          </div>
+          <ViewHeader
+            loading={loading}
+            exitHandle={exitHandle}
+            submitHandle={submitHandle}
+          />
+          <Input
+            titleInput={titleInput}
+            settitleInput={settitleInput}
+            titleRef={titleRef}
+            note={editnote}
+            textInput={textInput}
+            settextInput={settextInput}
+            textRef={textRef}
+          />
           {/* <motion.div className={s.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
           </motion.div>
           <motion.div className={s.textView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
