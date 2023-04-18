@@ -8,10 +8,10 @@ import React, {
   useState,
 } from "react";
 import { BiArrowBack } from "react-icons/bi";
-import s from "./Notes.module.css";
+import { AppContext } from "../../context/AppContext";
 import { app, db } from "../../utils/firebase";
 import ConfirmModal from "../Modal/ConfirmModal";
-import { AppContext } from "../../context/AppContext";
+import s from "./Notes.module.css";
 // export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -36,8 +36,8 @@ export default function EditNote({
   setactiveNote,
   activeNote,
 }) {
-  const { setShowAction } = useContext(AppContext);
   const auth = getAuth(app);
+  const { setShowAction } = useContext(AppContext);
   //   let height;
   //   if (typeof window !== "undefined") {
   //     height = window.innerHeight;
@@ -63,13 +63,14 @@ export default function EditNote({
     }
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
-  }, [
-    closeEdit,
-    confirmModalRef,
-    exitHandle,
-    exitWithoutSaving,
-    setactiveNote,
-  ]);
+  }, [exitHandle]);
+  // }, [
+  //   closeEdit,
+  //   confirmModalRef,
+  //   exitHandle,
+  //   exitWithoutSaving,
+  //   setactiveNote,
+  // ]);
   const titleRef = useRef(null);
   const textRef = useRef(null);
 

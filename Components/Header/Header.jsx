@@ -38,9 +38,14 @@ export default function Header({ user, setisSearching }) {
     setSearch("");
     input.current.focus();
   };
+  const { selectLength, showAction, setShowAction } = useContext(AppContext);
+
   const modalHandle = useCallback(() => {
     setshowModal((prevstate) => !prevstate);
-  }, []);
+    if (showAction) {
+      setShowAction("");
+    }
+  }, [setShowAction, showAction]);
   const testUserPicture =
     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
   // const [float, setfloat] = useState(false);
@@ -59,7 +64,6 @@ export default function Header({ user, setisSearching }) {
   // if(!user){
   //     Router.push('/auth')
   // }
-  const { selectLength, showAction, setShowAction } = useContext(AppContext);
   return (
     <header>
       <AnimatePresence>
@@ -84,68 +88,28 @@ export default function Header({ user, setisSearching }) {
               searchCloseHandle={searchCloseHandle}
             />
             <div>
-              {
-                user.photoURL ? (
-                  <motion.div
-                    onKeyDown={(e) =>
-                      (e.key === "Enter" ||
-                        e.key === " " ||
-                        e.key === "Escape") &&
-                      modalHandle()
-                    }
-                    role="button"
-                    tabIndex={4}
-                    className={styles.mainProfile}
-                    onClick={() => {
-                      modalHandle();
-                      if (showAction) {
-                        setShowAction("");
-                      }
-                    }}
-                    whileTap={{ scale: 0.8 }}
-                  >
-                    <Image
-                      referrerPolicy="no-referrer"
-                      unoptimized={true}
-                      src={user?.photoURL}
-                      alt={""}
-                      width="40"
-                      height="40"
-                      className={styles.profile}
-                    />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    onKeyDown={(e) =>
-                      (e.key === "Enter" ||
-                        e.key === " " ||
-                        e.key === "Escape") &&
-                      modalHandle()
-                    }
-                    role="button"
-                    tabIndex={4}
-                    className={styles.mainProfile}
-                    onClick={() => {
-                      modalHandle();
-                      if (showAction) {
-                        setShowAction("");
-                      }
-                    }}
-                    whileTap={{ scale: 0.8 }}
-                  >
-                    <Image
-                      referrerPolicy="no-referrer"
-                      unoptimized={true}
-                      src={testUserPicture}
-                      alt="testUser Profile"
-                      width="40"
-                      height="40"
-                      className={styles.profile}
-                    />
-                  </motion.div>
-                )
-                //<Link href="/auth">Sign in</Link>
-              }
+              <motion.div
+                onKeyDown={(e) =>
+                  (e.key === "Enter" || e.key === " " || e.key === "Escape") &&
+                  modalHandle()
+                }
+                role="button"
+                tabIndex={4}
+                className={styles.mainProfile}
+                onClick={modalHandle}
+                whileTap={{ scale: 0.8 }}
+              >
+                <Image
+                  referrerPolicy="no-referrer"
+                  unoptimized={!user.photoURL}
+                  src={user.photoURL ? user.photoURL : testUserPicture}
+                  alt={""}
+                  width="40"
+                  height="40"
+                  className={styles.profile}
+                />
+              </motion.div>
+
               <AnimatePresence>
                 {showModal && (
                   <Sidebar user={user} setshowModal={setshowModal} />

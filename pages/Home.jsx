@@ -3,9 +3,6 @@ import React, { useState } from "react";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import Notes from "../Components/Notes";
-// import { AppContext } from "../context/AppContext";
-// import Note from './[id]'
-
 // export async function getServerSideProps(context) {
 //   return{
 //     props:{
@@ -44,8 +41,6 @@ export default function Home({ float, notes }) {
   const [active, setactive] = useState(false);
   const [isSearching, setisSearching] = useState(false);
   const user = useAuthUser();
-  // const { selectedId, setselectedId, selectLength } = useContext(AppContext);
-
   return (
     <>
       {/* {OpenNew === false ?  <Input setOpenNew={setOpenNew} /> : null} */}

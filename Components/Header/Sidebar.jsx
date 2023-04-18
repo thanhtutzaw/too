@@ -70,7 +70,7 @@ export default function Sidebar({ setshowModal }) {
       setLoading(false);
     }, 1000);
   };
-  const { showAction, setShowAction } = useContext(AppContext);
+  // const { showAction, setShowAction } = useContext(AppContext);
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
@@ -80,14 +80,7 @@ export default function Sidebar({ setshowModal }) {
       className={styles.setting}
     >
       <div className={styles.closeBtn}>
-        <CgClose
-          onClick={() => {
-            modalHandle();
-            // if (showAction) {
-            //   setShowAction("");
-            // }
-          }}
-        />
+        <CgClose onClick={modalHandle} />
       </div>
       {user ? (
         <AccountHeader user={user} />
