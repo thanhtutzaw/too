@@ -389,10 +389,6 @@ max-height           : 100%; */
   margin-bottom: 0.7rem;
 }
 
-.viewContent>p {
-  /* margin-top: 30px; */
-}
-
 .edit {
   position : fixed;
   overflow : hidden;
