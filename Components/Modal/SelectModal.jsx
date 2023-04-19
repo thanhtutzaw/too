@@ -24,7 +24,6 @@ export default function SelectModal() {
     }
     const batch = writeBatch(db);
     const chunkSize = 10;
-    // console.log(selectLength);
     for (let i = 0; i < selectedId.length; i += chunkSize) {
       const chunk = selectedId.slice(i, i + chunkSize);
       const uid = auth.currentUser.uid;

@@ -9,7 +9,6 @@ import { collection, getDocs } from "firebase/firestore";
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
 //   const docSnap = await getDocs(q)
-//   // console.log(q)
 //   notes = docSnap.docs.map(doc => ({
 //     id: doc.id,
 //     ...doc.data()

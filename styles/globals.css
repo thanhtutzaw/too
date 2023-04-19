@@ -27,13 +27,12 @@
   border          : 1px solid rgba(255, 255, 255, .3);
   box-shadow      : 0 4px 20px #6664;
 
-  outline     : 0;
-  position    : fixed;
-  top         : 50%;
-  left        : 50%;
-  transform   : translate(-50%, -50%);
-  /* animation: fadeIn .3s ease-in-out; */
-  overflow    : auto;
+  outline  : 0;
+  position : fixed;
+  top      : 50%;
+  left     : 50%;
+  transform: translate(-50%, -50%);
+  overflow : auto;
 }
 
 .confirmModal>p {
@@ -48,7 +47,6 @@
   border-radius   : 0.5rem;
   font-size       : 18px;
   min-width       : 100px;
-  /* cursor       : pointer; */
   user-select     : none;
   margin          : 0 5px;
   color           : #000 !important;
@@ -58,6 +56,14 @@
 
 .confirmModal button:hover {
   background-color: rgba(179, 179, 179, 0.466) !important;
+}
+
+.confirmModal button:focus-visible {
+  background-color : rgba(179, 179, 179, 0.466) !important;
+  outline          : 1px solid #27272785;
+  /* outline       : 2px solid #a5ffa5;
+  outline-offset   : 5px;
+  background       : #ccffcc !important; */
 }
 
 button:disabled {
@@ -85,22 +91,20 @@ sans-serif; */
 }
 
 header {
-  position              : fixed;
-  top                   : 0;
-  background-color      : white;
-  padding               : 0 1.2rem;
-  height                : 70px;
-  display               : flex;
-  justify-content       : space-between;
-  align-items           : center;
-  /* max-width          : 483px; */
-  max-width             : 500px;
-  width                 : 100vw;
-  gap                   : .4rem;
-  border-bottom         : 2px solid #efefef;
-  z-index               : 999;
-  /* overflow           : hidden; */
-  transition            : opacity .4s ease-in-out;
+  position        : fixed;
+  top             : 0;
+  background-color: white;
+  padding         : 0 1.2rem;
+  height          : 70px;
+  display         : flex;
+  justify-content : space-between;
+  align-items     : center;
+  max-width       : 500px;
+  width           : 100vw;
+  gap             : .4rem;
+  border-bottom   : 2px solid #efefef;
+  z-index         : 999;
+  transition      : opacity .4s ease-in-out;
 }
 
 a {
@@ -130,15 +134,14 @@ button,
 }
 
 .backBtn {
-  cursor             : pointer;
-  display            : flex;
-  align-items        : center;
-  width              : 30px;
-  height             : 30px;
-  /* background-color: rgba(218, 218, 218, 0.507); */
-  border-radius      : 100px;
-  scale              : 1.5;
-  color              : #232323;
+  cursor       : pointer;
+  display      : flex;
+  align-items  : center;
+  width        : 30px;
+  height       : 30px;
+  border-radius: 100px;
+  scale        : 1.5;
+  color        : #232323;
 }
 
 .backBtn:hover {
@@ -157,21 +160,20 @@ button,
 }
 
 .addBtn {
-  cursor             : pointer;
-  display            : flex;
-  align-items        : center;
-  /* scale           : 1.2; */
-  width              : 90px;
-  justify-content    : center;
-  color              : #19e062;
-  background-color   : transparent;
-  border             : 0;
-  outline            : 0;
-  background-color   : rgb(230 255 231);
-  padding            : 0.5rem;
-  border-radius      : 0.5rem;
-  font-family        : 'Google Sans';
-  transition         : all .3s ease-in-out, scale .1s ease-in-out;
+  cursor          : pointer;
+  display         : flex;
+  align-items     : center;
+  width           : 90px;
+  justify-content : center;
+  color           : #19e062;
+  background-color: transparent;
+  border          : 0;
+  outline         : 0;
+  background-color: rgb(230 255 231);
+  padding         : 0.5rem;
+  border-radius   : 0.5rem;
+  font-family     : 'Google Sans';
+  transition      : all .3s ease-in-out, scale .1s ease-in-out;
 }
 
 .addBtn:hover {

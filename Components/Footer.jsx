@@ -10,7 +10,7 @@ import ViewHeader from "./Notes/ViewHeader";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
 
-export default function Footer({ active, setactive }) {
+export default function Footer({ activeNote, active, setactive }) {
   const [loading, setloading] = useState(false);
   const [playOn] = useSound(checkSound, { volume: 0.1 });
   const [playOff] = useSound(uncheckSound, { volume: 0.1 });
@@ -65,12 +65,16 @@ export default function Footer({ active, setactive }) {
     };
     // return () => window.removeEventListener("keyup", handleEscape);
   }, [active]);
+
   useEffect(() => {
-    window.onpopstate = () => {
+    window.onpopstate = (e) => {
       history.pushState(null, document.title, location.href);
+      console.log("%cbackBtn(add)", "color:green");
       if (active) {
         if (exitWithoutSaving) {
-          addConfirmRef?.current.showModal();
+          // window.location.hash = "#addNote";
+          // addConfirmRef.current.close();
+          addConfirmRef.current.showModal();
           setactive(true);
         } else {
           setactive(false);
@@ -88,7 +92,8 @@ export default function Footer({ active, setactive }) {
   const auth = getAuth(app);
 
   async function handle() {
-    if (titleInput !== "" || titleInput !== "") {
+    // if (titleInput !== "" || titleInput !== "") {
+    if (exitWithoutSaving) {
       setloading(true);
       try {
         await addNotes();
@@ -100,10 +105,76 @@ export default function Footer({ active, setactive }) {
       setactive((prev) => !prev);
     }
   }
+  // const exitHandle = useCallback(
+  //   () =>
+  //     exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false),
+  //   [exitWithoutSaving, setactive]
+  // );
+  // const closeEdit = useCallback(() => {
+  //   setactive(false);
+  //   window.location.hash = "#home";
+  // }, [setactive]);
+  // const exitHandle = useCallback(
+  //   () =>
+  //     exitWithoutSaving ? addConfirmRef.current?.showModal() : closeEdit(),
+  //   [closeEdit, addConfirmRef, exitWithoutSaving]
+  // );
+
+  useEffect(() => {
+    function handleEscape(e) {
+      if (e.key !== "Escape") return;
+      if (active) {
+        console.log("%cEscape (add)", "color:green");
+        if (exitWithoutSaving) {
+          addConfirmRef.current?.showModal();
+        } else {
+          setactive(false);
+        }
+      }
+      // if (exitWithoutSaving) {
+      //   window.location.hash = "#addNote";
+
+      //   // history.pushState(null, document.title, location.href);
+      //   addConfirmRef.current?.close();
+      //   addConfirmRef.current?.showModal();
+      //   setactive(true);
+      // } else {
+      //   setactive(false);
+      // }
+    }
+
+    window.addEventListener("keyup", handleEscape);
+
+    return () => window.removeEventListener("keyup", handleEscape);
+  }, [active, exitWithoutSaving, setactive]);
+  useEffect(() => {
+    if (!activeNote && !active) {
+      window.location.hash = "home";
+      addConfirmRef.current?.close();
+    }
+  }, [activeNote, active]);
   // useEffect(() => {
   //   function handleEscape(e) {
   //     if (e.key !== "Escape") return;
-  //     console.log("add note");
+  //     // history.pushState(null, document.title, location.hash);
+  //     if (active) {
+  //       if (exitWithoutSaving && e.key === "Escape") {
+  //         window.location.hash = `#addNote`;
+  //         // addConfirmRef.current.showModal();
+  //         addConfirmRef.current.close();
+  //         addConfirmRef.current.showModal();
+  //       } else if (!exitWithoutSaving && e.key === "Escape") {
+  //         setactive(false);
+  //       }
+  //     }
+  //     // exitHandle();
+  //   }
+  //   window.addEventListener("keyup", handleEscape);
+  //   return () => window.removeEventListener("keyup", handleEscape);
+  // }, [active, exitWithoutSaving, setactive]);
+  // useEffect(() => {
+  //   function handleEscape(e) {
+  //     if (e.key !== "Escape") return;
   //   }
   //   if (titleInput !== "" || titleInput !== "") {
   //     window.addEventListener("keyup", handleEscape);
@@ -145,7 +216,7 @@ export default function Footer({ active, setactive }) {
           />
         </div>
         <button
-          onKeyDown={(e) => active && e.key === "Escape" && handle}
+          // onKeyDown={(e) => active && e.key === "Escape" && handle}
           style={{ cursor: !active ? "pointer" : "default" }}
           onClick={() => {
             if (!active) {

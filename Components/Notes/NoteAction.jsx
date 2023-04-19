@@ -5,8 +5,8 @@ import { useContext, useState } from "react";
 import { BiCheckCircle, BiEdit, BiTrash } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { AppContext } from "../../context/AppContext";
-import s from "./Notes.module.css";
 import { app, db } from "../../utils/firebase";
+import s from "./Notes.module.css";
 
 export default function NoteAction({ chooseSelectMode }) {
   const { showAction, setShowAction } = useContext(AppContext);
@@ -57,7 +57,6 @@ export default function NoteAction({ chooseSelectMode }) {
       </button>
       <button
         disabled={loading}
-        // style={{ backgroundColor: "initial" }}
         className={s.deletBtn}
         onClick={async (e) => {
           e.stopPropagation();

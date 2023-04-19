@@ -8,5 +8,4 @@ export default function handler(req, res) {
   // console.log(typeof (key), JSON.parse(key).replace(/\n/gm, "\n"))
   console.log(typeof (keyJson), keyJson)
   res.status(200).json({ name: 'John Doe' , key : key })
-    // console.log("first")
 }

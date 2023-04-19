@@ -25,6 +25,7 @@ const Auth = () => {
   }
   useEffect(() => {
     router.prefetch("/");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [emailLoading, setemailLoading] = useState(false);
   // const [googleLoading, setgoogleLoading] = useState(false);

@@ -8,7 +8,6 @@ const handler =  async(req,res) => {
   // const key =  process.env.FIREBASE_PRIVATE_KEY
   // console.log(typeof(key) , key)
   try {
-    // if()
     await setAuthCookies(req, res)
     console.info("added cokkies from login api")
   } catch (e) {

@@ -7,7 +7,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { BiArrowBack } from "react-icons/bi";
 import { AppContext } from "../../context/AppContext";
 import { app, db } from "../../utils/firebase";
 import ConfirmModal from "../Modal/ConfirmModal";
@@ -61,18 +60,15 @@ export default function EditNote({
   useEffect(() => {
     function handleEscape(e) {
       if (e.key !== "Escape") return;
-      exitHandle();
+      if (activeNote) {
+        console.log("%cEscape (editNote)", "color:green");
+        exitHandle();
+      }
     }
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
-  }, [exitHandle]);
-  // }, [
-  //   closeEdit,
-  //   confirmModalRef,
-  //   exitHandle,
-  //   exitWithoutSaving,
-  //   setactiveNote,
-  // ]);
+  }, [activeNote, exitHandle]);
+
   const titleRef = useRef(null);
   const textRef = useRef(null);
 
@@ -147,8 +143,6 @@ export default function EditNote({
     </>
   );
   async function updateNote() {
-    console.log("update function");
-    // if (exitWithoutSaving) {
     const uid = auth.currentUser.uid,
       noteId = editnote?.id.toString();
     const docRef = doc(db, `users/${uid}/notes/${noteId}`);
@@ -164,6 +158,5 @@ export default function EditNote({
     };
     await updateDoc(docRef, newData);
     window.location.reload();
-    // }
   }
 }

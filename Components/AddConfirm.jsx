@@ -3,10 +3,9 @@ export default function AddConfirm(props) {
   const close = () => addConfirmRef.current?.close();
   const discard = () => {
     close();
-    console.log("close with discard")
     window.location.hash = "home";
     setactive(false);
-    console.log("add note canceled");
+    console.log("%cCanceled", "color:grey");
   };
   return (
     <div className="confirmModal">

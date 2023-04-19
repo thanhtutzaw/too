@@ -75,7 +75,6 @@
 }
 
 .active {
-  /* background-color: green ; */
   /* width:100%; */
   /* max-width: 500px; */
   /* height:100vh; */
@@ -135,13 +134,10 @@ border                  :none; */
     background-color: rgb(216, 9, 9);
   }
 } */
-.card.active p {
-  /* -webkit-line-clamp : unset;
+
+/* -webkit-line-clamp : unset;
   overflow           : auto;
-  display            : -webkit-box;
-  -webkit-box-orient : vertical;
-  text-overflow      : ellipsis; */
-}
+*/
 
 .cardTitle {
   display       : flex;
@@ -204,7 +200,6 @@ sans-serif; */
   color           : green;
   background-color: rgb(59, 223, 59);
   background-color: rgb(97, 245, 97);
-  /* outline      : 1px solid green !important; */
 }
 
 /* @media (hover: hover) and (pointer: fine) {

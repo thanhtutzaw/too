@@ -38,7 +38,6 @@ export function Card({
   //     // });
   // }
   // elements?.forEach((ele) => {
-  //     // console.log("hey")
   //     const style = getStyle(ele);
   //     // ele.style.color = 'red !important'
   //     // console.log(style.width)
@@ -54,7 +53,6 @@ export function Card({
 
   function chooseSelectMode(e) {
     e.stopPropagation();
-    console.log("called this ");
     setselectMode(true);
     setselectedId([...selectedId, showAction]);
     setSelect(true);
@@ -102,13 +100,7 @@ export function Card({
               if (activeNote !== id) return;
               setactiveNote(null);
             } else {
-              if (select) {
-                checkRef.current?.click();
-                // setselectedId([...selectedId, id]);
-              } else {
-                uncheckRef.current?.click();
-                // setselectedId([...selectedId, id]);
-              }
+              select ? checkRef.current?.click() : uncheckRef.current?.click();
             }
           }}
           style={{

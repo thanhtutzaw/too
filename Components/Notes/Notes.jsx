@@ -5,9 +5,8 @@ import EditNote from "./EditNote";
 import styles from "./Notes.module.css";
 
 export default function Notes(props) {
-  const { active, notes, isSearching } = props;
+  const { active, activeNote, setactiveNote, notes, isSearching } = props;
   const [totalHeight, settotalHeight] = useState(0);
-  const [activeNote, setactiveNote] = useState();
   const [selectMode, setselectMode] = useState(false);
 
   useEffect(() => {
@@ -34,7 +33,6 @@ export default function Notes(props) {
 
   // if (typeof window !== "undefined") {
   //   var elem = document.querySelectorAll(".cardContainer")[0];
-  //   // console.log(elem);
   //   // var elem = container.current;
   //   // var elem = document.querySelectorAll('.cardContainer')
   //   // var iso = new isotope(elem, {
@@ -52,33 +50,24 @@ export default function Notes(props) {
   useEffect(() => {
     window.onpopstate = () => {
       history.pushState(null, document.title, location.hash);
-
       if (activeNote) {
+        console.log("back btn(edit)");
         if (exitWithoutSaving) {
-          // alert("edit can't leave");
-          // if (editNote) {
-          //   // window.location.hash = `#Note/${editNote?.id}`;
-          // } else {
-          //   // window.location.hash = "home";
-          // }
           if (editNote) {
             window.location.hash = `#Note/${editNote?.id}`;
           }
           confirmModalRef.current?.close();
           confirmModalRef?.current.showModal();
         } else {
-          // alert("edit can leave");
-          // window.location.hash = "home";
           setactiveNote("");
           setShowAction("");
         }
       }
     };
-  }, [editNote, activeNote, exitWithoutSaving, setShowAction]);
+  }, [editNote, activeNote, exitWithoutSaving, setShowAction, setactiveNote]);
   useEffect(() => {
     if (!activeNote && !active) {
       window.location.hash = "home";
-      // console.log("changed to home");
       confirmModalRef.current?.close();
     }
   }, [activeNote, active]);

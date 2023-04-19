@@ -40,14 +40,12 @@ const GoogleLogin = () => {
       // const input = document.querySelectorAll('#firebaseui_container > div > div.firebaseui-card-content > form > ul > li:nth-child(2) > button')[0]
       // if(input){
       //   input.addEventListener('click', ()=>{
-      //     console.log(input)
       //   })
       // }
       // const emailInput = document.querySelectorAll('input[type=email]')[0]
       // emailInput.value = 'test'
 
       // if(emailInput){
-      //   console.log(emailInput)
       //   // emailInput.value = "test"
       //   // emailInput.style.backgroundColor = 'red !important'
       // }

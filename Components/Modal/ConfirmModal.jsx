@@ -19,7 +19,7 @@ export default function ConfirmModal(props) {
           setactiveNote(null);
           setactiveNote("");
           setShowAction("");
-          console.log("edit canceled");
+          console.log("%cCanceled" , 'color:grey');
         }}
       >
         Discard
