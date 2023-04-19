@@ -7,6 +7,7 @@ import { AppContext } from "../../context/AppContext";
 import styles from "../../styles/Home.module.css";
 import SelectModal from "../Modal/SelectModal";
 import Sidebar from "./Sidebar";
+import useTheme from "../../hooks/useTheme";
 function Searchbar(props) {
   return (
     <div className={styles.searchBar}>
@@ -34,6 +35,7 @@ export default function Header({ user, setisSearching }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
   const [Search, setSearch] = useState();
+  const { theme, setTheme } = useTheme();
   const searchCloseHandle = () => {
     setSearch("");
     input.current.focus();
@@ -112,7 +114,12 @@ export default function Header({ user, setisSearching }) {
 
               <AnimatePresence>
                 {showModal && (
-                  <Sidebar user={user} setshowModal={setshowModal} />
+                  <Sidebar
+                    theme={theme}
+                    setTheme={setTheme}
+                    user={user}
+                    setshowModal={setshowModal}
+                  />
                 )}
               </AnimatePresence>
             </div>

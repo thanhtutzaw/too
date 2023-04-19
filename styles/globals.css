@@ -3,7 +3,38 @@
 :root {
   --main-color    : rgb(8, 166, 60);
   --btn-background: rgb(18, 170, 77);
+  --light-card    : rgb(255, 255, 255);
+  --text-black    : black;
+  --border-light  : #efefef;
 }
+
+main {
+  user-select        : none;
+  min-height         : 100vh;
+  /* min-height      : -webkit-fill-available; */
+  /* min-height      : stretch; */
+  /* min-height      : -moz-available; */
+  /* max-width       : 483px; */
+  max-width          : 500px;
+  width              : 100vw;
+  background-color   : white;
+  display            : flex;
+  flex-direction     : column;
+  overflow           : hidden;
+}
+
+html[theme="dark"] main {
+  background-color: rgb(39, 39, 39);
+  color           : white;
+}
+
+html[theme="dark"] main {
+  /* --light-card  : transparent; */
+  --light-card  : rgb(39, 39, 39);
+  --text-black  : rgb(255, 255, 255);
+  --border-light: #efefef1a;
+}
+
 
 #confirmModal {
   background: unset;
@@ -59,7 +90,8 @@
 }
 
 .confirmModal button:focus-visible {
-  background-color : rgba(179, 179, 179, 0.466) !important;
+  /* background-color : rgba(179, 179, 179, 0.466) !important; */
+  background-color : rgba(233, 233, 233, 0.466) !important;
   outline          : 1px solid #27272785;
   /* outline       : 2px solid #a5ffa5;
   outline-offset   : 5px;
@@ -72,39 +104,32 @@ button:disabled {
 }
 
 body {
-  display            : flex;
-  justify-content    : center;
-  /* background-color: #ececec; */
-  /* background-color: #a53838; */
-  background-color   : #cfd3d0;
-  text-align         : center;
-  /* font-family     : Roboto,
-Arial,
-  sans-serif; */
-  font-family        : -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  display         : flex;
+  justify-content : center;
+  background-color: #cfd3d0;
+  text-align      : center;
+  font-family     : -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  /* font-family: "Google Sans",
-Roboto,
-Arial,
-sans-serif; */
   font-size: 22px;
 }
 
 header {
-  position        : fixed;
-  top             : 0;
-  background-color: white;
-  padding         : 0 1.2rem;
-  height          : 70px;
-  display         : flex;
-  justify-content : space-between;
-  align-items     : center;
-  max-width       : 500px;
-  width           : 100vw;
-  gap             : .4rem;
-  border-bottom   : 2px solid #efefef;
-  z-index         : 999;
-  transition      : opacity .4s ease-in-out;
+  position           : fixed;
+  top                : 0;
+  /* background-color: white; */
+  padding            : 0 1.2rem;
+  height             : 70px;
+  display            : flex;
+  justify-content    : space-between;
+  align-items        : center;
+  max-width          : 500px;
+  width              : 100vw;
+  gap                : .4rem;
+  border-bottom      : 2px solid var(--border-light);
+  /* #efefef1a */
+  z-index            : 999;
+  transition         : opacity .4s ease-in-out;
+  background-color   : var(--light-card);
 }
 
 a {

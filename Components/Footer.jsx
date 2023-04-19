@@ -69,7 +69,6 @@ export default function Footer({ activeNote, active, setactive }) {
   useEffect(() => {
     window.onpopstate = (e) => {
       history.pushState(null, document.title, location.href);
-      console.log("%cbackBtn(add)", "color:green");
       if (active) {
         if (exitWithoutSaving) {
           // window.location.hash = "#addNote";

@@ -1,27 +1,11 @@
-.main {
-  user-select        : none;
-  min-height         : 100vh;
-  /* min-height      : -webkit-fill-available; */
-  /* min-height      : stretch; */
-  /* min-height      : -moz-available; */
-  /* max-width       : 483px; */
-  max-width          : 500px;
-  width              : 100vw;
-  background-color   : white;
-  display            : flex;
-  flex-direction     : column;
-  overflow           : hidden;
-}
-
 .headerContainer {
-  background-color         : white;
+  /* background-color         : white; */
   display                  : flex;
   justify-content          : space-between;
   align-items              : center;
   /* max-width             : 483px; */
   max-width                : 500px;
   width                    : 100vw;
-  /* border-bottom         : 2px solid #efefef; */
   z-index                  : 999;
   transition               : opacity .4s ease-in-out;
 }
@@ -254,7 +238,8 @@
 
   /* left    : 180px; */
 
-  background-color          : rgb(255, 255, 255);
+  /* background-color          : rgb(255, 255, 255); */
+  background-color          : var(--light-card);
   padding                   : 1rem;
   text-align                : left;
   color                     : inherit;

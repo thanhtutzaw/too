@@ -51,7 +51,6 @@ export default function Notes(props) {
     window.onpopstate = () => {
       history.pushState(null, document.title, location.hash);
       if (activeNote) {
-        console.log("back btn(edit)");
         if (exitWithoutSaving) {
           if (editNote) {
             window.location.hash = `#Note/${editNote?.id}`;

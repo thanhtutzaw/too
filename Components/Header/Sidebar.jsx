@@ -6,12 +6,17 @@ import { CgClose } from "react-icons/cg";
 import { MdLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { VscSignOut } from "react-icons/vsc";
 import styles from "../../styles/Home.module.css";
-import { AppContext } from "../../context/AppContext";
 function Setting(props) {
-  const { loading, setDarkMode, DarkMode, signoutHandle } = props;
-  const handleDarkMode = () => setDarkMode((prev) => !prev);
-  const darkMode = DarkMode ? styles.darkAnimation : styles.darkIcon;
-  const lightMode = DarkMode ? styles.lightIcon : styles.lightAnimation;
+  const { loading, signoutHandle, theme, setTheme, modalHandle } = props;
+  const handleDarkMode = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTimeout(() => {
+      modalHandle();
+    }, 200);
+  };
+  const darkMode = theme !== "light" ? styles.darkAnimation : styles.darkIcon;
+  const lightMode =
+    theme === "light" ? styles.lightAnimation : styles.lightIcon;
   return (
     <div className={styles.tools}>
       <button className={styles.tool} onClick={handleDarkMode}>
@@ -57,7 +62,7 @@ function AccountHeader(props) {
     </div>
   );
 }
-export default function Sidebar({ setshowModal }) {
+export default function Sidebar({ setshowModal, theme, setTheme }) {
   const user = useAuthUser();
   const [DarkMode, setDarkMode] = useState(false);
   const modalHandle = () => setshowModal((prevstate) => !prevstate);
@@ -88,9 +93,10 @@ export default function Sidebar({ setshowModal }) {
         <AccountHeader user={"test_user"} />
       )}
       <Setting
+        modalHandle={modalHandle}
+        theme={theme}
+        setTheme={setTheme}
         loading={loading}
-        DarkMode={DarkMode}
-        setDarkMode={setDarkMode}
         signoutHandle={signoutHandle}
       />
     </motion.div>

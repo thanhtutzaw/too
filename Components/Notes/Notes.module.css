@@ -3,14 +3,14 @@
 @import url('https://fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese');
 
 .cardContainer {
-  width           : 100%;
-  text-align      : left;
-  margin-top      : 65px;
-  margin          : 0 auto;
-  background-color: white;
-  padding         : 1.3rem 0.9rem;
-  position        : relative;
-  transition      : all .3s ease-in-out;
+  width              : 100%;
+  text-align         : left;
+  margin-top         : 65px;
+  margin             : 0 auto;
+  /* background-color: white; */
+  padding            : 1.3rem 0.9rem;
+  position           : relative;
+  transition         : all .3s ease-in-out;
 }
 
 .cardContainer {
@@ -25,7 +25,8 @@
 }
 
 .card {
-  background-color            : rgb(255, 255, 255);
+  /* background-color            : rgb(255, 255, 255); */
+  background-color            : var(--light-card);
   /* word-break               : break-all; */
   word-break                  : break-word;
   flex-grow                   : 1;
@@ -51,7 +52,7 @@
   /* transition      : all .4s ease-in-out;
   transform       : translate(0px, 0px); */
 
-  /* background-color: #fff;
+  /* 
   word-break      : break-word;
   flex-grow       : 1;
   border          : 1px solid #bdbdbd;
@@ -108,7 +109,6 @@ border                  :none; */
 /* .card.active { */
 /* transform: scale(1.5); */
 /* opacity            : 0; */
-/* background-color: red; */
 
 /* transition: all 1s ease;
   transition-delay: 1s; */
@@ -119,7 +119,6 @@ border                  :none; */
 /* .card.inactive { */
 /* transition: all .2s ease;
   transform: scale(1); */
-/* background-color: red; */
 /* transition: all 1s ease;
   transition-delay: 1s; */
 /* animation: fadein 1s ease-in-out; */
@@ -128,10 +127,8 @@ border                  :none; */
 
 /* @keyframes fadein {
   0%{
-    background-color: white;
   }
   100%{
-    background-color: rgb(216, 9, 9);
   }
 } */
 
@@ -175,6 +172,7 @@ sans-serif; */
   border-radius   : 100px;
   padding         : 3px;
   background-color: transparent;
+  color           : var(--text-black)
 }
 
 .header>button:hover {
