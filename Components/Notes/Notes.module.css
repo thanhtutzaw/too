@@ -27,7 +27,6 @@
 .card {
   /* background-color            : rgb(255, 255, 255); */
   background-color            : var(--light-card);
-  /* word-break               : break-all; */
   word-break                  : break-word;
   flex-grow                   : 1;
   border                      : 1px solid rgb(189, 189, 189);
@@ -38,7 +37,7 @@
   color                       : inherit;
   /* width                    : 37%; */
   white-space                 : pre-wrap;
-  transition                  : all .2s ease-in-out;
+  transition                  : all .2s ease-in-out, background-color 0s;
   width                       : 35%;
   /* width                    :50%; */
   /* height                   : 70%; */
