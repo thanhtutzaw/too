@@ -134,16 +134,21 @@ border                     :none; */
 }
 
 .header>button {
-  width           : 25px;
-  height          : 25px;
-  display         : flex;
-  justify-content : center;
-  align-items     : center;
-  border          : 0;
-  border-radius   : 100px;
-  padding         : 3px;
-  background-color: transparent;
-  color           : var(--text-black)
+  width              : 25px;
+  height             : 25px;
+  display            : flex;
+  justify-content    : center;
+  align-items        : center;
+  border             : 0;
+  border-radius      : 100px;
+  padding            : 3px;
+  background-color   : transparent;
+  /* color           : var(--text-black); */
+}
+
+.header>button:not(.check) {
+  color: var(--text-black);
+
 }
 
 .header>button:hover {
