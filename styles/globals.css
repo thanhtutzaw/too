@@ -2,10 +2,17 @@
 
 :root {
   --main-color    : rgb(8, 166, 60);
+  --body-bg       : #cfd3d0;
   --btn-background: rgb(18, 170, 77);
+
   --light-card    : rgb(255, 255, 255);
   --text-black    : black;
   --border-light  : #efefef;
+  --card-border   : #bdbdbd;
+  --btn-dark-green: rgb(230 255 231);
+
+  --light-btn-hover : #dcdcdc4a;
+  --light-btn-active: gainsboro;
 }
 
 main {
@@ -24,17 +31,20 @@ main {
 }
 
 html[theme="dark"] main {
-  background-color: rgb(39, 39, 39);
+  background-color: var(--light-card);
   color           : white;
 }
 
-html[theme="dark"] main {
-  /* --light-card  : transparent; */
-  --light-card  : rgb(39, 39, 39);
-  --text-black  : rgb(255, 255, 255);
-  --border-light: #efefef1a;
+html[theme="dark"] {
+  --body-bg         : #343434;
+  --btn-dark-green  : rgb(230 255 231 / 8%);
+  --light-card      : rgb(39, 39, 39);
+  --text-black      : rgb(255, 255, 255);
+  --border-light    : #efefef1a;
+  --light-btn-hover : #dcdcdc4a;
+  --light-btn-active: #5b5b5b;
+  --card-border     : #464646;
 }
-
 
 #confirmModal {
   background: unset;
@@ -46,6 +56,8 @@ html[theme="dark"] main {
 .confirmModal {
   background      : rgba(255, 255, 255, .01);
   background-color: white;
+  background-color: var(--light-card);
+  color           : var(--text-black) !important;
   padding         : 1rem;
   width           : 350px;
   max-width       : 97vw;
@@ -74,15 +86,16 @@ html[theme="dark"] main {
 }
 
 .confirmModal button {
-  border          : 0;
-  border-radius   : 0.5rem;
-  font-size       : 18px;
-  min-width       : 100px;
-  user-select     : none;
-  margin          : 0 5px;
-  color           : #000 !important;
-  padding         : 0.7rem !important;
-  background-color: transparent !important;
+  border             : 0;
+  border-radius      : 0.5rem;
+  font-size          : 18px;
+  min-width          : 100px;
+  user-select        : none;
+  margin             : 0 5px;
+  /* color           : #000 !important; */
+  color              : var(--text-black) !important;
+  padding            : 0.7rem !important;
+  background-color   : transparent !important;
 }
 
 .confirmModal button:hover {
@@ -90,12 +103,8 @@ html[theme="dark"] main {
 }
 
 .confirmModal button:focus-visible {
-  /* background-color : rgba(179, 179, 179, 0.466) !important; */
-  background-color : rgba(233, 233, 233, 0.466) !important;
-  outline          : 1px solid #27272785;
-  /* outline       : 2px solid #a5ffa5;
-  outline-offset   : 5px;
-  background       : #ccffcc !important; */
+  background-color: rgba(233, 233, 233, 0.466) !important;
+  outline         : 1px solid #27272785;
 }
 
 button:disabled {
@@ -106,7 +115,7 @@ button:disabled {
 body {
   display         : flex;
   justify-content : center;
-  background-color: #cfd3d0;
+  background-color: var(--body-bg);
   text-align      : center;
   font-family     : -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -114,22 +123,20 @@ body {
 }
 
 header {
-  position           : fixed;
-  top                : 0;
-  /* background-color: white; */
-  padding            : 0 1.2rem;
-  height             : 70px;
-  display            : flex;
-  justify-content    : space-between;
-  align-items        : center;
-  max-width          : 500px;
-  width              : 100vw;
-  gap                : .4rem;
-  border-bottom      : 2px solid var(--border-light);
-  /* #efefef1a */
-  z-index            : 999;
-  transition         : opacity .4s ease-in-out;
-  background-color   : var(--light-card);
+  position        : fixed;
+  top             : 0;
+  padding         : 0 1.2rem;
+  height          : 70px;
+  display         : flex;
+  justify-content : space-between;
+  align-items     : center;
+  max-width       : 500px;
+  width           : 100vw;
+  gap             : .4rem;
+  border-bottom   : 2px solid var(--border-light);
+  z-index         : 999;
+  transition      : opacity .4s ease-in-out;
+  background-color: var(--light-card);
 }
 
 a {
@@ -147,6 +154,8 @@ a {
 }
 
 button,
+.backBtn,
+.addBtn,
 .searchCloseBtn {
   cursor: pointer;
 }
@@ -159,25 +168,23 @@ button,
 }
 
 .backBtn {
-  cursor       : pointer;
   display      : flex;
   align-items  : center;
   width        : 30px;
   height       : 30px;
   border-radius: 100px;
   scale        : 1.5;
-  color        : #232323;
+  color        : var(--text-black);
 }
 
 .backBtn:hover {
-  background-color: rgba(218, 218, 218, 0.507);
-  color           : #232323;
+  background-color: var(--light-btn-hover);
+  color           : var(--text-black);
 }
 
 .backBtn:active {
   opacity         : .6;
-  background-color: rgba(218, 218, 218, 0.507);
-  color           : #232323;
+  background-color: var(--light-btn-active);
 }
 
 .backBtn>svg {
@@ -185,7 +192,6 @@ button,
 }
 
 .addBtn {
-  cursor          : pointer;
   display         : flex;
   align-items     : center;
   width           : 90px;
@@ -194,11 +200,14 @@ button,
   background-color: transparent;
   border          : 0;
   outline         : 0;
-  background-color: rgb(230 255 231);
+  background-color: var(--btn-dark-green);
   padding         : 0.5rem;
   border-radius   : 0.5rem;
-  font-family     : 'Google Sans';
-  transition      : all .3s ease-in-out, scale .1s ease-in-out;
+  font-family     : "Google Sans",
+    Roboto,
+    Arial,
+    sans-serif;
+  transition: all .3s ease-in-out, scale .1s ease-in-out;
 }
 
 .addBtn:hover {

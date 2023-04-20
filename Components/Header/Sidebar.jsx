@@ -12,7 +12,7 @@ function Setting(props) {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
     setTimeout(() => {
       modalHandle();
-    }, 200);
+    }, 340);
   };
   const darkMode = theme !== "light" ? styles.darkAnimation : styles.darkIcon;
   const lightMode =

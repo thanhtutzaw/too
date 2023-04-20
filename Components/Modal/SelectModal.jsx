@@ -50,7 +50,9 @@ export default function SelectModal() {
       className={styles.selectModal}
     >
       <div className={styles.left}>
-        <GrClose className={styles.close} onClick={() => clearSelect()} />
+        <div className={styles.close}>
+          <GrClose onClick={() => clearSelect()} />
+        </div>
         <p>{selectLength}</p>
       </div>
       <button

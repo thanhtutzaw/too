@@ -105,19 +105,19 @@ export default function EditNote({
         />
       </dialog>
       <div
-        style={{
-          pointerEvents: activeNote ? "auto" : "none",
-          cursor: loading ? "wait" : "default",
-        }}
-        className={s.edit}
+        // style={
+        //   {
+        //     // pointerEvents: activeNote ? "auto" : "none",
+        //   }
+        // }
+        className={`${s.edit} ${activeNote ? s.active : ""} ${
+          loading ? s.loading : ""
+        }`}
       >
         <div
-          style={{
-            pointerEvents: loading ? "none" : "initial",
-            opacity: activeNote ? "1" : "0",
-            visibility: activeNote ? "visible" : "hidden",
-          }}
-          className={`${s.viewContainer} ${activeNote ? s.animateView : ""}`}
+          className={`${s.viewContainer} ${activeNote ? s.active : ""} ${
+            loading ? s.loading : ""
+          }`}
         >
           <ViewHeader
             loading={loading}

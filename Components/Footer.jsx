@@ -204,7 +204,10 @@ export default function Footer({ activeNote, active, setactive }) {
             loading={loading}
             exitHandle={handle}
             submitHandle={handle}
-          />
+          >
+            {loading ? "Saving" : "Save"}
+            {/* {loading ? "Updating" : "Update"} */}
+          </ViewHeader>
           <Input
             titleInput={titleInput}
             settitleInput={settitleInput}

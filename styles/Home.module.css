@@ -36,10 +36,7 @@
 }
 
 .animateHeader {
-  /* transform     : translateX(-500px); */
-  opacity          : 0;
-  /* visibility    : hidden; */
-  /* pointer-events: none; */
+  opacity: 0;
 }
 
 .selectModal {
@@ -89,21 +86,27 @@
   height             : 45px;
   border             : 0;
   border-radius      : 20px;
+  color              : var(--text-black) !important;
   /* background-color: rgba(220, 220, 220, 0.521); */
 }
 
 .selectModal path {
+  stroke   : var(--text-black);
   /* stroke: rgb(71, 71, 71) !important; */
   /* stroke: rgb(71, 71, 71) !important;  */
 }
 
 .selectModal .close:hover {
-  background-color: gainsboro;
+  /* background-color: gainsboro; */
+  background-color: var(--light-btn-hover);
 }
 
 .selectModal .close:active {
-  opacity         : .5;
-  background-color: gainsboro;
+  opacity            : .5;
+  background-color   : var(--light-btn-active);
+  /* background-color: gainsboro; */
+
+
 }
 
 .headerfloat {
@@ -216,43 +219,29 @@
 }
 
 .setting {
-  z-index    : 100;
-  /* position: absolute; 
-  right      : 400px; */
-  /* left    :300px; */
-  /* right   :-170px; */
-
-  /* outline            : 3px solid red; */
-  /* position        : absolute;
-  right              : 10px; */
-  position           : absolute;
-  right              : 30px;
-  width              : 100%;
-  max-width          : 300px;
-  /* transform-origin: top right; */
+  z-index  : 100;
+  position : absolute;
+  right    : 30px;
+  width    : 100%;
+  max-width: 300px;
 }
 
-.card,
 .setting {
-  /* border:3px solid red !important; */
+  background-color      : var(--light-card);
+  padding               : 1rem;
+  text-align            : left;
+  color                 : inherit;
+  text-decoration       : none;
+  /* border             : 1px solid #eaeaea; */
+  /* border             : 1px solid var(--border-light); */
+  border-radius         : 10px;
+  font-size             : 17px;
+  transition            : color 0.15s ease, border-color 0.15s ease;
+  box-shadow            : 0px 10px 20px rgba(0, 0, 0, .1);
+  /* border             : 1px solid #dfdfdf; */
+  border                : 1px solid var(--card-border);
+  ;
 
-  /* left    : 180px; */
-
-  /* background-color          : rgb(255, 255, 255); */
-  background-color          : var(--light-card);
-  padding                   : 1rem;
-  text-align                : left;
-  color                     : inherit;
-  text-decoration           : none;
-  border                    : 1px solid #eaeaea;
-  border-radius             : 10px;
-  font-size                 : 17px;
-  transition                : color 0.15s ease, border-color 0.15s ease;
-  box-shadow                : 0px 10px 20px rgba(0, 0, 0, .1);
-  border                    : 1px solid #dfdfdf;
-  /* outline                : 3px solid red; */
-  /* max-width              : 500px; */
-  /* margin-right           : 30px; */
 }
 
 .setting {
@@ -363,15 +352,18 @@
 
 .tool {
   /* line-height: 40px; */
-  display         : flex;
-  gap             : .5em;
-  align-items     : center;
-  padding         : 13px;
-  overflow        : hidden;
-  height          : 55px;
-  font-size       : 20px;
-  background-color: rgb(245, 245, 245) !important;
-  border-radius   : 5px;
+  display               : flex;
+  gap                   : .5em;
+  align-items           : center;
+  padding               : 13px;
+  overflow              : hidden;
+  height                : 55px;
+  font-size             : 20px;
+  /* background-color   : rgb(245, 245, 245) !important; */
+  background-color      : var(--light-card);
+  /* background-color   : rgb(245, 245, 245) !important; */
+  color                 : var(--text-black);
+  border-radius         : 5px;
 }
 
 .mainProfile,
@@ -382,21 +374,21 @@
 }
 
 .closeBtn {
-  font-size                      : 1.5em;
-  display                        : flex;
-  /* width                       : 30px; */
-  flex                           : 1;
-  right                          : 0;
-  /* height                      : 50px; */
-  justify-content                : center;
-  justify-content                : flex-end;
-  align-content                  : center;
-  /* margin-top                  : -24px; */
-  /* position                    : absolute; */
-  /* right                       : 0; */
-  /* padding                     : 0.4rem; */
-  background-color               : transparent;
-  /* background-color            : red; */
+  font-size                         : 1.5em;
+  display                           : flex;
+  /* width                          : 30px; */
+  flex                              : 1;
+  /* right                          : 0; */
+  /* height                         : 50px; */
+  justify-content                   : center;
+  justify-content                   : flex-end;
+  align-content                     : center;
+  /* margin-top                     : -24px; */
+  /* position                       : absolute; */
+  /* right                          : 0; */
+  /* padding                        : 0.4rem; */
+  background-color                  : transparent;
+  /* background-color               : red; */
 }
 
 .closeBtn svg {
@@ -411,14 +403,16 @@
 
 .closeBtn svg:hover {
   /* color           : rgb(87, 87, 87); */
-  background-color: gainsboro;
+  /* background-color: gainsboro; */
+  background-color: var(--light-btn-hover);
 
 }
 
 .closeBtn svg:active {
-  opacity            : .5;
-  background-color   : gainsboro;
-  /* color           : rgb(87, 87, 87); */
+  opacity               : .5;
+  /* background-color   : gainsboro; */
+  background-color      : var(--light-btn-active);
+  /* color              : rgb(87, 87, 87); */
 }
 
 .searchBar {
@@ -616,20 +610,17 @@ right             : -200px; */
 }
 
 .addBtn.active {
-  /* transition: all .4s  ease-in-out; */
   /* min-width: 200px; */
   /* animation       : animateBtn .3s ease-in-out; */
-  width              : 40%;
-  height             : 100vh;
-  bottom             : 0;
-  right              : 0;
-  /* background-color: rgb(11, 114, 45); */
-  background-color   : white;
-  transition-delay   : .2s;
-  color              : black;
-  border-radius      : 0%;
-  /* scale           :-1; */
-  /* transition      : all .1s ease-in; */
+  width           : 40%;
+  height          : 100vh;
+  bottom          : 0;
+  right           : 0;
+  background-color: white;
+  background-color: var(--light-card);
+  transition-delay: .2s;
+  color           : black;
+  border-radius   : 0%;
 }
 
 .buttonText {
@@ -641,30 +632,14 @@ right             : -200px; */
 }
 
 .addBtn:is(.active) .buttonText {
-  display                  : inline-block;
-  /* rotate                : 45deg; */
-  cursor                   : pointer;
-  opacity                  : 0;
-  transform                : translate(-70px, -130px);
-  visibility               : hidden;
-  user-select              : none;
-  /* transition            : all .5s ease; */
-  transition               : all .4s cubic-bezier(1, 0.05, 0, 0.94);
-  transition-delay         : .1s;
-  /* transition            : all .5s ease , opacity 1s ease; */
-  /* rotate                : 360deg; */
-  /* position              : relative;
-  top                      :0; */
-  /* transform             : translate(82px, -143px) rotate(calc(45deg*3)); */
-  /* transform             : translate(-82px, -183px) rotate(calc(45deg*3)); */
-  /* opacity               : 1; */
-  /* animation             : fadeout 1s ease; */
-  /* scale                 : 205; */
-  /* transition-delay      : .3s; */
-  /* scale                 : 15; */
-  /* animation             : scaleup 1s ease-in-out; */
-  /* transition            : all .6s ease-in-out; */
-  /* transition            : all 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
+  display         : inline-block;
+  cursor          : pointer;
+  opacity         : 0;
+  transform       : translate(-70px, -130px);
+  visibility      : hidden;
+  user-select     : none;
+  transition      : all .4s cubic-bezier(1, 0.05, 0, 0.94);
+  transition-delay: .1s;
 }
 
 @keyframes fadeout {
@@ -691,6 +666,7 @@ right             : -200px; */
   opacity         : 0;
   display         : none;
   transition      : opacity 1s ease;
+  background-color: var(--light-card);
 }
 
 .viewContent>p {
@@ -747,10 +723,11 @@ right             : -200px; */
     display: none;
   }
 
+  /* 
   50% {
     opacity: 0;
     display: none;
-  }
+  } */
 
   100% {
     opacity: 1;

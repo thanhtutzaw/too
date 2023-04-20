@@ -1,16 +1,14 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap'); */
 @import url('https://fonts.googleapis.com/css?lang=en&family=Product+Sans|Roboto:400,700');
 @import url('https://fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese');
 
 .cardContainer {
-  width              : 100%;
-  text-align         : left;
-  margin-top         : 65px;
-  margin             : 0 auto;
-  /* background-color: white; */
-  padding            : 1.3rem 0.9rem;
-  position           : relative;
-  transition         : all .3s ease-in-out;
+  width     : 100%;
+  text-align: left;
+  margin-top: 65px;
+  margin    : 0 auto;
+  padding   : 1.3rem 0.9rem;
+  position  : relative;
+  transition: all .3s ease-in-out;
 }
 
 .cardContainer {
@@ -25,32 +23,21 @@
 }
 
 .card {
-  /* background-color            : rgb(255, 255, 255); */
-  background-color            : var(--light-card);
-  word-break                  : break-word;
-  flex-grow                   : 1;
-  border                      : 1px solid rgb(189, 189, 189);
-  border-radius               : 13px;
-  padding                     : .5rem;
-  cursor                      : pointer;
-  /* width                    : 100%; */
-  color                       : inherit;
-  /* width                    : 37%; */
-  white-space                 : pre-wrap;
-  transition                  : all .2s ease-in-out, background-color 0s;
-  width                       : 35%;
-  /* width                    :50%; */
-  /* height                   : 70%; */
-  /* width                    :50%; */
-  /* width                    :210px; */
-  /* position                 : relative; */
-  /* transform                : translate(0px,0px); */
+  background-color: var(--light-card);
+  word-break      : break-word;
+  flex-grow       : 1;
+  border          : 1px solid var(--card-border);
+  border-radius   : 13px;
+  padding         : .5rem;
+  cursor          : pointer;
+  color           : inherit;
+  white-space     : pre-wrap;
+  transition      : all .2s ease-in-out, background-color 0s;
+  width           : 35%;
+  opacity         : 1;
 }
 
 .card {
-  /* transition      : all .4s ease-in-out;
-  transform       : translate(0px, 0px); */
-
   /* 
   word-break      : break-word;
   flex-grow       : 1;
@@ -62,10 +49,8 @@
   width           : 37%;
   white-space     : pre-wrap; */
 
-  /* transition: all 1s ease-in-out; */
   /* transform: scale(1); */
   /* position: relative; */
-  opacity      : 1;
   /* transition: width 400ms ease , height 400ms ease , left cubic-bezier(0.4, 0, 0.2, 1) 420ms , top cubic-bezier(0.4, 0, 0.2, 1) 420ms; */
 }
 
@@ -74,67 +59,57 @@
   outline-offset: 2px;
 }
 
-.active {
+.card.active {
   /* width:100%; */
   /* max-width: 500px; */
   /* height:100vh; */
   /* position: fixed; */
-  opacity               : 0;
-  /* scale              : 2; */
-  /* position           : relative;
-  top                   :0;
-  left                  :0; */
-  /* transform          : translate(50%,50%); */
-  /* transform-origin   : center  ; */
-  /* transform-origin   : 50% 10%; */
-  /* -webkit-line-clamp : unset;
-  word-break            : normal;
-white-space             : pre-wrap;
-height                  : 100vh;
-position                : fixed;
-inset                   : 0;
-margin                  : 0 auto;
-z-index                 : 20000;
-border                  :none; */
-  /* width              : 100vw; */
-  /* max-width          : 500px; */
+  opacity                  : 0;
+  /* scale                 : 5; */
+  /* scale                 : 2; */
+  /* position              : relative;
+  top                      :0;
+  left                     :0; */
+  /* transform             : translate(50%,50%); */
+  /* transform-origin      : center  ; */
+  /* transform-origin      : 50% 10%; */
+  /* -webkit-line-clamp    : unset;
+  word-break               : normal;
+white-space                : pre-wrap;
+height                     : 100vh;
+position                   : fixed;
+inset                      : 0;
+margin                     : 0 auto;
+z-index                    : 20000;
+border                     :none; */
+  /* width                 : 100vw; */
+  /* max-width             : 500px; */
 }
 
 .positioned {
-  top : 0;
-  left: 0;
+  /* opacity         : 0; */
+  /* top          : 0; */
+  /* left         : 0; */
 }
 
 /* .card.active { */
 /* transform: scale(1.5); */
 /* opacity            : 0; */
 
-/* transition: all 1s ease;
-  transition-delay: 1s; */
 /* animation: fadein 1s ease-in-out; */
 
 /* } */
 
 /* .card.inactive { */
-/* transition: all .2s ease;
+/*
   transform: scale(1); */
-/* transition: all 1s ease;
-  transition-delay: 1s; */
+/* transition-delay: 1s; */
 /* animation: fadein 1s ease-in-out; */
 
 /* } */
-
-/* @keyframes fadein {
-  0%{
-  }
-  100%{
-  }
-} */
-
 /* -webkit-line-clamp : unset;
   overflow           : auto;
 */
-
 .cardTitle {
   display       : flex;
   flex          : 1;
@@ -143,9 +118,6 @@ border                  :none; */
   margin-bottom : 10px;
   font-weight   : 500;
   font-family   : "Google Sans", Roboto, Arial, sans-serif;
-  /* font-family: 'Open Sans',
-sans-serif; */
-  /* font-family:Roboto,sans-serif; */
 }
 
 .card p {
@@ -175,15 +147,19 @@ sans-serif; */
 }
 
 .header>button:hover {
-  background-color: #F0F0F0;
+  /* background-color: #F0F0F0; */
+  background-color: var(--light-btn-hover);
 }
 
-.header>button:focus {
-  background-color: #F0F0F0;
-}
+/* .header>button:focus {
+  background-color: var(--light-btn-active);
+  opacity         : .5;
+} */
 
 .header>button:active {
-  background-color: #F0F0F0;
+  /* background-color: #F0F0F0; */
+  background-color: var(--light-btn-active);
+  opacity         : .5;
 }
 
 .uncheck {
@@ -212,14 +188,7 @@ sans-serif; */
 .viewContainer {
   /* visibility         : hidden;
   transform-origin   : 0 0;
-  transition         : all .2s ease-in-out , opacity .4s ease-out;
   opacity            : 0; */
-
-
-  /* position        : fixed;
-  top                : 0;
-bottom               : 0; */
-  /* left            :0; */
   /* height          : 100vh;
 max-height           : 100%; */
   /* height          : stretch;
@@ -230,28 +199,31 @@ max-height           : 100%; */
   /* height          : 87vh; */
   /* height          : 100vh; */
   /* height          :100dvh; */
-  display               : flex;
-  flex-direction        : column;
-  text-align            : left;
-  background-color      : rgb(255, 255, 255);
-  /* background-color   : rgb(136, 85, 85); */
-  max-width             : 500px;
-  width                 : 100vw;
-  min-height            : -webkit-fill-available;
-  inset                 : 0;
-  margin                : 0 auto;
-  /* position           : fixed; */
-  /* z-index            : 100000; */
-  transform             : translateX(500px);
-  transition            : all .4s ease-in-out, width 0s;
-  /* right              : -1000px; */
-  /* right              : 5rem ; */
-  z-index               : 100000;
+  display         : flex;
+  flex-direction  : column;
+  text-align      : left;
+  background-color: var(--light-card);
+  color           : var(--text-black);
+  max-width       : 500px;
+  width           : 100vw;
+  min-height      : -webkit-fill-available;
+  margin          : 0 auto;
+  transform       : translateX(500px);
+  transition      : all .4s ease-in-out, width 0s;
+  z-index         : 100000;
+  opacity         : 0;
+  visibility      : hidden;
+  pointer-events  : initial;
 }
 
-.animateView {
-  transform: translateX(0px);
-  right    : 0;
+.viewContainer.loading {
+  pointer-events: none;
+}
+
+.viewContainer.active {
+  transform : translateX(0px);
+  opacity   : 1;
+  visibility: visible;
 }
 
 .textarea {
@@ -269,7 +241,6 @@ max-height           : 100%; */
   position      : absolute;
   user-select   : none;
   pointer-events: none;
-
 }
 
 .header {
@@ -288,14 +259,13 @@ max-height           : 100%; */
 }
 
 .action>button {
-  padding            : 8px;
-  background-color   : white;
-  font-size          : 1rem;
-  border             : 0;
-  border-radius      : 10px;
-  /* box-shadow      : 0 0 10px rgb(235, 235, 235); */
-  box-shadow         : 0 0 8px 1px rgb(159 159 159 / 32%);
-  transition         : all .19s ease-in-out;
+  padding         : 8px;
+  background-color: white;
+  font-size       : 1rem;
+  border          : 0;
+  border-radius   : 10px;
+  box-shadow      : 0 0 8px 1px rgb(159 159 159 / 32%);
+  transition      : all .19s ease-in-out;
 }
 
 .action>button:hover {
@@ -304,7 +274,9 @@ max-height           : 100%; */
 }
 
 .action>button:active {
-  background-color: rgb(91 231 145);
+  background-color   : rgb(91 231 145);
+  /* opacity         : .5; */
+  scale              : .9;
 }
 
 .action>button {
@@ -339,7 +311,7 @@ max-height           : 100%; */
   display        : flex;
   align-items    : center;
   justify-content: space-between;
-  border-bottom  : 2px solid #efefef;
+  border-bottom  : 2px solid var(--border-light);
 }
 
 .backBtn {
@@ -350,7 +322,7 @@ max-height           : 100%; */
   height          : 30px;
   background-color: red;
   scale           : 1.5;
-  color           : #232323;
+  color           : var(--text-black);
 }
 
 .addBtn {
@@ -367,7 +339,7 @@ max-height           : 100%; */
 }
 
 .animateNotes {
-  transform: translateX(-500px);
+  /* transform: translateX(-500px); */
 }
 
 .viewContent {
@@ -382,10 +354,20 @@ max-height           : 100%; */
 }
 
 .edit {
-  position : fixed;
-  overflow : hidden;
-  width    : 100vw;
-  max-width: 500px;
-  height   : 100%;
-  z-index  : 100000;
+  position      : fixed;
+  overflow      : hidden;
+  width         : 100vw;
+  max-width     : 500px;
+  height        : 100%;
+  z-index       : 100000;
+  cursor        : default;
+  pointer-events: none;
+}
+
+.edit.active {
+  pointer-events: auto;
+}
+
+.edit.loading {
+  cursor: wait;
 }

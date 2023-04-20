@@ -3,6 +3,7 @@ import s from "./Notes.module.css";
 import { BiArrowBack } from "react-icons/bi";
 
 export default function ViewHeader({
+  children,
   exitHandle,
   submitHandle,
   loading = false,
@@ -18,7 +19,7 @@ export default function ViewHeader({
         tabIndex="0"
         className="addBtn"
       >
-        {loading ? "Updating" : "Update"}
+        {children ? children : loading ? "Updating" : "Update"}
       </button>
     </div>
   );

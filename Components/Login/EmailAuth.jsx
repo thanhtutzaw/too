@@ -35,12 +35,10 @@ export default function EmailAuth() {
           <StyledFirebaseAuth
             uiConfig={firebaseAuthConfig}
             firebaseAuth={getAuth()}
-            // className={"styles.google"}
           />
           <StyledFirebaseAuth
             uiConfig={firebaseAuthConfig}
             firebaseAuth={getAuth()}
-            // className={"styles.google"}
           />
         </>
       ) : null}

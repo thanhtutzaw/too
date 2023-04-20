@@ -25,10 +25,9 @@ const Auth = () => {
   }
   useEffect(() => {
     router.prefetch("/");
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [emailLoading, setemailLoading] = useState(false);
-  // const [googleLoading, setgoogleLoading] = useState(false);
   return (
     <>
       <div className={styles.loginWrapper}>
@@ -40,10 +39,6 @@ const Auth = () => {
             opacity: emailLoading ? "0" : "1",
             pointerEvents: emailLoading ? "none" : "initial",
             transition: "all .3s ease-in-out",
-          }}
-          onTransitionEnd={() => {
-            // setMounted(false);
-            // }} style={{ scale: emailLoading ? '0' : '1'}}>
           }}
         >
           <GoogleLogin />

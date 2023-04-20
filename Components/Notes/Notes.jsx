@@ -90,17 +90,6 @@ export default function Notes(props) {
             {...note}
           />
         ))}
-        {/* {showAction && <NoteAction setShowAction={setShowAction} />} */}
-        {/* </div> */}
-
-        {/* <EditNote activeNote={activeNote} setactiveNote={setactiveNote} editnote={editNote} /> */}
-
-        {/* {editNote && (
-                <div>
-                    <p>{editNote.title}</p>
-                    <p>{editNote.text}</p>
-                </div>
-            )} */}
       </div>
       <EditNote
         editnote={editNote}
