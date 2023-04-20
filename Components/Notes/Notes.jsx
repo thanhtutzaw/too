@@ -3,6 +3,9 @@ import { AppContext } from "../../context/AppContext";
 import { Card } from "./Card";
 import EditNote from "./EditNote";
 import styles from "./Notes.module.css";
+import uncheckSound from "/public/disable-sound.mp3";
+import checkSound from "/public/enable-sound.mp3";
+import useSound from "use-sound";
 
 export default function Notes(props) {
   const { active, activeNote, setactiveNote, notes, isSearching } = props;
@@ -44,6 +47,8 @@ export default function Notes(props) {
   const { setShowAction } = useContext(AppContext);
   const [titleInput, settitleInput] = useState("");
   const [textInput, settextInput] = useState("");
+  const [playOn] = useSound(checkSound, { volume: 0.1 });
+  const [playOff] = useSound(uncheckSound, { volume: 0.1 });
   const editNote = notes?.find((note) => note.id == activeNote);
   const exitWithoutSaving =
     titleInput !== editNote?.title || textInput !== editNote?.text;
@@ -70,6 +75,17 @@ export default function Notes(props) {
       confirmModalRef.current?.close();
     }
   }, [activeNote, active]);
+  useEffect(() => {
+    activeNote ? playOn() : playOff();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeNote]);
+  // useEffect(() => {
+  //   active ? playOn() : playOff();
+  //   if (!active) {
+  //     addConfirmRef.current.close();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [active]);
   return (
     <>
       <div

@@ -19,12 +19,10 @@ main {
   user-select        : none;
   min-height         : 100vh;
   /* min-height      : -webkit-fill-available; */
-  /* min-height      : stretch; */
   /* min-height      : -moz-available; */
-  /* max-width       : 483px; */
   max-width          : 500px;
   width              : 100vw;
-  background-color   : white;
+  background-color   : white; 
   display            : flex;
   flex-direction     : column;
   overflow           : hidden;
@@ -54,8 +52,6 @@ html[theme="dark"] {
 }
 
 .confirmModal {
-  background      : rgba(255, 255, 255, .01);
-  background-color: white;
   background-color: var(--light-card);
   color           : var(--text-black) !important;
   padding         : 1rem;
@@ -86,16 +82,15 @@ html[theme="dark"] {
 }
 
 .confirmModal button {
-  border             : 0;
-  border-radius      : 0.5rem;
-  font-size          : 18px;
-  min-width          : 100px;
-  user-select        : none;
-  margin             : 0 5px;
-  /* color           : #000 !important; */
-  color              : var(--text-black) !important;
-  padding            : 0.7rem !important;
-  background-color   : transparent !important;
+  border          : 0;
+  border-radius   : 0.5rem;
+  font-size       : 18px;
+  min-width       : 100px;
+  user-select     : none;
+  margin          : 0 5px;
+  color           : var(--text-black) !important;
+  padding         : 0.7rem !important;
+  background-color: transparent !important;
 }
 
 .confirmModal button:hover {

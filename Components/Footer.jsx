@@ -91,7 +91,6 @@ export default function Footer({ activeNote, active, setactive }) {
   const auth = getAuth(app);
 
   async function handle() {
-    // if (titleInput !== "" || titleInput !== "") {
     if (exitWithoutSaving) {
       setloading(true);
       try {
@@ -104,21 +103,6 @@ export default function Footer({ activeNote, active, setactive }) {
       setactive((prev) => !prev);
     }
   }
-  // const exitHandle = useCallback(
-  //   () =>
-  //     exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false),
-  //   [exitWithoutSaving, setactive]
-  // );
-  // const closeEdit = useCallback(() => {
-  //   setactive(false);
-  //   window.location.hash = "#home";
-  // }, [setactive]);
-  // const exitHandle = useCallback(
-  //   () =>
-  //     exitWithoutSaving ? addConfirmRef.current?.showModal() : closeEdit(),
-  //   [closeEdit, addConfirmRef, exitWithoutSaving]
-  // );
-
   useEffect(() => {
     function handleEscape(e) {
       if (e.key !== "Escape") return;

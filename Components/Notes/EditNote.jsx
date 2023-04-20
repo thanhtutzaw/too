@@ -79,6 +79,13 @@ export default function EditNote({
     settitleInput(editnote?.title);
     settextInput(editnote?.text);
   }, [activeNote, editnote, settextInput, settitleInput]);
+  // useEffect(() => {
+  //   active ? playOn() : playOff();
+  //   if (!active) {
+  //     addConfirmRef.current.close();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [active]);
   const [loading, setLoading] = useState(false);
   const submitHandle = async () => {
     if (!exitWithoutSaving) {
