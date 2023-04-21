@@ -76,7 +76,7 @@ export default function EditNote({
     if (activeNote || editnote) {
       setTimeout(() => {
         titleRef.current.focus();
-      }, 1000);
+      }, 500);
     }
     settitleInput(editnote?.title);
     settextInput(editnote?.text);

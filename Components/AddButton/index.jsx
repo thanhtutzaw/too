@@ -92,7 +92,8 @@ export default function AddButton({ activeNote, active, setactive }) {
     if (active) {
       setTimeout(() => {
         titleRef.current.focus();
-      }, 1150);
+      }, 500);
+      // }, 1150);
     }
   }, [active, titleRef]);
   const InputContainer = `${s.InputContainer} ${active ? s.active : ""}`;
