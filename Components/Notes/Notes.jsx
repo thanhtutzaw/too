@@ -31,7 +31,7 @@ export default function Notes(props) {
     // let newarr = arr.push(height)
     // arr.concat(newarr)
 
-    console.log(totalHeight);
+    // console.log(totalHeight);
   }, [totalHeight]);
 
   // if (typeof window !== "undefined") {

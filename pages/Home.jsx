@@ -1,6 +1,6 @@
 import { useAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
 import React, { useState } from "react";
-import Footer from "../Components/Footer";
+import AddButton from "../Components/AddButton";
 import Header from "../Components/Header";
 import Notes from "../Components/Notes";
 export default function Home({ float, notes }) {
@@ -22,7 +22,7 @@ export default function Home({ float, notes }) {
             notes={notes}
             isSearching={isSearching}
           />
-          <Footer
+          <AddButton
             activeNote={activeNote}
             active={active}
             setactive={setactive}

@@ -5,6 +5,7 @@
   --body-bg       : #cfd3d0;
   --btn-background: rgb(18, 170, 77);
 
+  --text-secondary: #414141;
   --light-card    : rgb(255, 255, 255);
   --text-black    : black;
   --border-light  : #efefef;
@@ -42,6 +43,7 @@ html[theme="dark"] {
   --light-btn-hover : #dcdcdc4a;
   --light-btn-active: #5b5b5b;
   --card-border     : #464646;
+  --text-secondary  : #9d9d9d;
 }
 
 #confirmModal {
@@ -96,7 +98,7 @@ html[theme="dark"] {
 .confirmModal button:hover {
   /* background-color: rgba(179, 179, 179, 0.466) !important; */
   background-color: var(--btn-dark-green) !important;
-  opacity: 1 !important;
+  opacity         : 1 !important;
 }
 
 .confirmModal button:focus-visible {

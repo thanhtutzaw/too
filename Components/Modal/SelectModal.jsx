@@ -1,11 +1,11 @@
-import { AppContext } from "../../context/AppContext";
+import { getAuth } from "firebase/auth";
+import { doc, writeBatch } from "firebase/firestore";
+import { motion } from "framer-motion";
 import { useContext, useState } from "react";
 import { GrClose } from "react-icons/gr";
+import { AppContext } from "../../context/AppContext";
 import styles from "../../styles/Home.module.css";
-import { doc, writeBatch } from "firebase/firestore";
 import app, { db } from "../../utils/firebase";
-import { getAuth } from "firebase/auth";
-import { motion } from "framer-motion";
 export default function SelectModal() {
   const { clearSelect, selectLength, selectedId, setShowAction } =
     useContext(AppContext);
@@ -57,7 +57,6 @@ export default function SelectModal() {
       </div>
       <button
         disabled={loading}
-        // style={{ pointerEvents: deleteloading ? "none" : "initial" }}
         onClick={async (e) => {
           e.stopPropagation();
           setloading(true);

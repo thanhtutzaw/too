@@ -1,0 +1,117 @@
+.container {
+    position          : fixed;
+    bottom            : 0;
+    /* min-width      : 500px; */
+    max-width         : 500px;
+    width             : 100vw;
+    /* height         : 100vh; */
+    /* height         : 6rem; */
+
+    justify-content   : flex-end;
+    justify-content   : center;
+    z-index           : 10000;
+    /* bottom         : 1rem; */
+    /* left           :-40px; */
+}
+
+.InputContainer {
+    position        : fixed;
+    inset           : 0;
+    margin          : 0 auto;
+    width           : 100vw;
+    max-width       : 500px;
+    min-height      : -webkit-fill-available;
+    z-index         : 20;
+    text-align      : left;
+    /* overflow     : auto; */
+    /* padding      : 0 1rem; */
+    opacity         : 0;
+    display         : none;
+    transition      : opacity 1s ease;
+    background-color: var(--light-card);
+}
+
+.addBtn {
+    bottom                   : 30px;
+    right                    : 44px;
+    transform                : scale(2.5);
+    border-radius            : 10px;
+    overflow                 : hidden;
+    position                 : absolute;
+    width                    : 30px;
+    height                   : 30px;
+    /* bottom                : -700px;
+right                        : -200px; */
+    transform-origin         : right;
+    font-size                : inherit;
+    /* bottom                : -2rem; */
+    /* bottom                : -700px; */
+    transition               : all .4s cubic-bezier(1, 0.05, 0, 0.94), background-color .6s ease-in-out, color 0s ease;
+    /* background-color      : var(--main-color); */
+    background-color         : var(--btn-background);
+    border                   : 0;
+    /* rotate                : 0deg; */
+    cursor                   : pointer;
+}
+
+.addBtn:focus-visible {
+    outline: 1px solid black;
+}
+
+.addBtn.active:focus-visible {
+    outline: none;
+}
+
+.addBtn.active {
+    width           : 40%;
+    height          : 100vh;
+    bottom          : 0;
+    right           : 0;
+    background-color: var(--light-card);
+    transition-delay: .2s;
+    color           : black;
+    border-radius   : 0%;
+}
+
+.plusIcon {
+    display   : block;
+    rotate    : 0deg;
+    transform : translate(0px, 0px);
+    color     : white;
+    transition: all .7s cubic-bezier(1, 0.05, 0, 0.94);
+}
+
+.addBtn:is(.active) .plusIcon {
+    display         : inline-block;
+    cursor          : pointer;
+    opacity         : 0;
+    transform       : translate(-70px, -130px);
+    visibility      : hidden;
+    user-select     : none;
+    transition      : all .4s cubic-bezier(1, 0.05, 0, 0.94);
+    transition-delay: .1s;
+}
+
+.InputContainer.active {
+    animation: fadein 1s ease-in-out;
+    opacity  : 1;
+    display  : block;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        display: none;
+    }
+
+    /* 
+  50% {
+    opacity: 0;
+    display: none;
+  } */
+
+    100% {
+        opacity: 1;
+        display: block;
+    }
+}

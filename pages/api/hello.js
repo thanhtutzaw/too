@@ -1,5 +1,4 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 export default function handler(req, res) {
   // const key = process.env.FIREBASE_PRIVATE_KEY
   const key = process.env.TEST_DATA

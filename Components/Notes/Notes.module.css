@@ -121,19 +121,19 @@ border                     :none; */
 }
 
 .card p {
-  -webkit-line-clamp   : 6;
-  overflow             : hidden;
-  display              : -webkit-box;
-  -webkit-box-orient   : vertical;
-  text-overflow        : ellipsis;
-  font-family          : Roboto, Arial, sans-serif;
-  color                : #4a4a4a;
-  color                : #414141;
-  font-size            : 19px;
-  /* white-space       : normal; */
+  -webkit-line-clamp      : 6;
+  overflow                : hidden;
+  display                 : -webkit-box;
+  -webkit-box-orient      : vertical;
+  text-overflow           : ellipsis;
+  font-family             : Roboto, Arial, sans-serif;
+  /* color                : #4a4a4a; */
+  color                   : var(--text-secondary);
+  font-size               : 19px;
+  /* white-space          : normal; */
 }
 
-.header>button {
+ .header>button {
   width              : 25px;
   height             : 25px;
   display            : flex;

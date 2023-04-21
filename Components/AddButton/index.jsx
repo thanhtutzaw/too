@@ -2,15 +2,16 @@ import { getAuth } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
-import s from "../styles/Home.module.css";
-import { app, db } from "../utils/firebase";
+// import s from "../../styles/Home.module.css";
+import s from "./index.module.css";
+import { app, db } from "../../utils/firebase";
 import AddConfirm from "./AddConfirm";
-import Input from "./Notes/Input";
-import ViewHeader from "./Notes/ViewHeader";
+import Input from "../Notes/Input";
+import ViewHeader from "../Notes/ViewHeader";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
 
-export default function Footer({ activeNote, active, setactive }) {
+export default function AddButton({ activeNote, active, setactive }) {
   const [loading, setloading] = useState(false);
   const [playOn] = useSound(checkSound, { volume: 0.1 });
   const [playOff] = useSound(uncheckSound, { volume: 0.1 });
@@ -19,60 +20,10 @@ export default function Footer({ activeNote, active, setactive }) {
   const addConfirmRef = useRef(null);
   const exitWithoutSaving = titleInput !== "" || textInput !== "";
   useEffect(() => {
-    // function handleEscape(e) {
-    //   if (e.key === "Escape") {
-    //     if (titleInput !== "" || textInput !== "") {
-    //       window.location.hash = "#addNote";
-    //       return;
-    //     }
-    //     if (titleInput === "" || textInput === "") {
-    //       setactive(false);
-    //       window.location.hash = "#home";
-    //     }
-    //   }
-    // }
-    // if (active) {
-    //   window.addEventListener("keyup", handleEscape);
-    // }
-    window.onpopstate = async () => {
-      // if ((active && titleInput !== "") || textInput !== "") {
-      //   window.location.hash = "#home";
-      // } else {
-      //   window.location.hash = "#addNote";
-      // }
-      // if (titleInput !== "" || (textInput !== "" && active)) {
-      // } else if (titleInput === "" || (textInput === "" && active)) {
-      //   setactive(false);
-      // }
-      // if (
-      //   titleInput !== "" ||
-      //   (textInput !== "" && window.location.hash === "#home")
-      // ) {
-      // } else if (window.location.hash === "#addNote") {
-      //   setactive(true);
-      // }
-      // if (
-      //   (titleInput === "" || textInput === "") &&
-      //   window.location.hash === "#home"
-      // ) {
-      //   setactive(false);
-      // }
-      // if (active === true && (titleInput === "" || textInput === "")) {
-      //   setactive(false);
-      // } else if ((active && titleInput !== "") || textInput !== "") {
-      //   // addConfirmRef.current.showModal();
-      // }
-    };
-    // return () => window.removeEventListener("keyup", handleEscape);
-  }, [active]);
-
-  useEffect(() => {
     window.onpopstate = (e) => {
       history.pushState(null, document.title, location.href);
       if (active) {
         if (exitWithoutSaving) {
-          // window.location.hash = "#addNote";
-          // addConfirmRef.current.close();
           addConfirmRef.current.showModal();
           setactive(true);
         } else {
@@ -94,7 +45,7 @@ export default function Footer({ activeNote, active, setactive }) {
       exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false),
     [exitWithoutSaving, setactive]
   );
-  async function handle() {
+  async function submitHandle() {
     if (exitWithoutSaving) {
       setloading(true);
       try {
@@ -118,16 +69,6 @@ export default function Footer({ activeNote, active, setactive }) {
           setactive(false);
         }
       }
-      // if (exitWithoutSaving) {
-      //   window.location.hash = "#addNote";
-
-      //   // history.pushState(null, document.title, location.href);
-      //   addConfirmRef.current?.close();
-      //   addConfirmRef.current?.showModal();
-      //   setactive(true);
-      // } else {
-      //   setactive(false);
-      // }
     }
 
     window.addEventListener("keyup", handleEscape);
@@ -140,36 +81,6 @@ export default function Footer({ activeNote, active, setactive }) {
       addConfirmRef.current?.close();
     }
   }, [activeNote, active]);
-  // useEffect(() => {
-  //   function handleEscape(e) {
-  //     if (e.key !== "Escape") return;
-  //     // history.pushState(null, document.title, location.hash);
-  //     if (active) {
-  //       if (exitWithoutSaving && e.key === "Escape") {
-  //         window.location.hash = `#addNote`;
-  //         // addConfirmRef.current.showModal();
-  //         addConfirmRef.current.close();
-  //         addConfirmRef.current.showModal();
-  //       } else if (!exitWithoutSaving && e.key === "Escape") {
-  //         setactive(false);
-  //       }
-  //     }
-  //     // exitHandle();
-  //   }
-  //   window.addEventListener("keyup", handleEscape);
-  //   return () => window.removeEventListener("keyup", handleEscape);
-  // }, [active, exitWithoutSaving, setactive]);
-  // useEffect(() => {
-  //   function handleEscape(e) {
-  //     if (e.key !== "Escape") return;
-  //   }
-  //   if (titleInput !== "" || titleInput !== "") {
-  //     window.addEventListener("keyup", handleEscape);
-  //   } else {
-  //     // setactive((prev) => !prev);
-  //   }
-  //   return () => window.removeEventListener("keyup", handleEscape);
-  // }, [textInput, titleInput]);
   const titleRef = useRef(null);
   const textRef = useRef(null);
   useEffect(() => {
@@ -188,15 +99,14 @@ export default function Footer({ activeNote, active, setactive }) {
       <dialog id="confirmModal" ref={addConfirmRef}>
         <AddConfirm addConfirmRef={addConfirmRef} setactive={setactive} />
       </dialog>
-      <div className={s.footerContainer}>
-        <div className={`${s.addContainer} ${active ? s.active : ""}`}>
+      <div className={s.container}>
+        <div className={`${s.InputContainer} ${active ? s.active : ""}`}>
           <ViewHeader
             loading={loading}
             exitHandle={exitHandle}
-            submitHandle={handle}
+            submitHandle={submitHandle}
           >
             {loading ? "Saving" : "Save"}
-            {/* {loading ? "Updating" : "Update"} */}
           </ViewHeader>
           <Input
             titleInput={titleInput}
@@ -208,17 +118,16 @@ export default function Footer({ activeNote, active, setactive }) {
           />
         </div>
         <button
-          // onKeyDown={(e) => active && e.key === "Escape" && handle}
           style={{ cursor: !active ? "pointer" : "default" }}
           onClick={() => {
             if (!active) {
               window.location.hash = "#addNote";
             }
-            handle();
+            submitHandle();
           }}
           className={`${s.addBtn} ${active ? s.active : ""}`}
         >
-          <span className={`${s.buttonText} ${active ? s.rotate : ""}`}>+</span>
+          <span className={`${s.plusIcon} ${active ? s.rotate : ""}`}>+</span>
         </button>
       </div>
     </>
