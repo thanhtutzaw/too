@@ -76,16 +76,9 @@ export default function Notes(props) {
     }
   }, [activeNote, active]);
   useEffect(() => {
-    activeNote ? playOn() : playOff();
+    editNote ? playOn() : playOff();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeNote]);
-  // useEffect(() => {
-  //   active ? playOn() : playOff();
-  //   if (!active) {
-  //     addConfirmRef.current.close();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [active]);
+  }, [editNote]);
   return (
     <>
       <div
