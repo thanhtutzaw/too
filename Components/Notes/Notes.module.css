@@ -152,17 +152,10 @@ border                     :none; */
 }
 
 .header>button:hover {
-  /* background-color: #F0F0F0; */
   background-color: var(--light-btn-hover);
 }
 
-/* .header>button:focus {
-  background-color: var(--light-btn-active);
-  opacity         : .5;
-} */
-
 .header>button:active {
-  /* background-color: #F0F0F0; */
   background-color: var(--light-btn-active);
   opacity         : .5;
 }

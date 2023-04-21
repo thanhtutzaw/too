@@ -22,7 +22,7 @@ main {
   /* min-height      : -moz-available; */
   max-width          : 500px;
   width              : 100vw;
-  background-color   : white; 
+  background-color   : white;
   display            : flex;
   flex-direction     : column;
   overflow           : hidden;
@@ -94,12 +94,25 @@ html[theme="dark"] {
 }
 
 .confirmModal button:hover {
-  background-color: rgba(179, 179, 179, 0.466) !important;
+  /* background-color: rgba(179, 179, 179, 0.466) !important; */
+  background-color: var(--btn-dark-green) !important;
+  opacity: 1 !important;
 }
 
 .confirmModal button:focus-visible {
-  background-color: rgba(233, 233, 233, 0.466) !important;
-  outline         : 1px solid #27272785;
+  /* background-color: rgba(233, 233, 233, 0.466) !important; */
+  /* outline         : 1px solid #27272785; */
+  color           : #19e062 !important;
+  background-color: transparent !important;
+  outline         : 0 !important;
+  background-color: var(--btn-dark-green) !important;
+  opacity         : .8;
+}
+
+.confirmModal button:active {
+  /* background-color: rgba(179, 179, 179, 0.466) !important; */
+  background-color: var(--btn-dark-green) !important;
+  opacity         : .5 !important;
 }
 
 button:disabled {

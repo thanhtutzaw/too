@@ -10,8 +10,8 @@ import React, {
 import { AppContext } from "../../context/AppContext";
 import { app, db } from "../../utils/firebase";
 import ConfirmModal from "../Modal/ConfirmModal";
-import s from "./Notes.module.css";
 import Input from "./Input";
+import s from "./Notes.module.css";
 import ViewHeader from "./ViewHeader";
 // export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
@@ -74,18 +74,15 @@ export default function EditNote({
 
   useEffect(() => {
     if (activeNote || editnote) {
-      titleRef.current.focus();
+      setTimeout(() => {
+        titleRef.current.focus();
+      }, 200);
+      // console.log("title focused");
+      // console.log(titleRef.current);
     }
     settitleInput(editnote?.title);
     settextInput(editnote?.text);
   }, [activeNote, editnote, settextInput, settitleInput]);
-  // useEffect(() => {
-  //   active ? playOn() : playOff();
-  //   if (!active) {
-  //     addConfirmRef.current.close();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [active]);
   const [loading, setLoading] = useState(false);
   const submitHandle = async () => {
     if (!exitWithoutSaving) {
@@ -103,6 +100,12 @@ export default function EditNote({
       alert(`Update Failed ! ${error.message}`);
     }
   };
+  const edit = `${s.edit} ${activeNote ? s.active : ""} ${
+    loading ? s.loading : ""
+  }`;
+  const viewContainer = `${s.viewContainer} ${activeNote ? s.active : ""} ${
+    loading ? s.loading : ""
+  }`;
   return (
     <>
       <dialog id="confirmModal" ref={confirmModalRef}>
@@ -111,21 +114,8 @@ export default function EditNote({
           setactiveNote={setactiveNote}
         />
       </dialog>
-      <div
-        // style={
-        //   {
-        //     // pointerEvents: activeNote ? "auto" : "none",
-        //   }
-        // }
-        className={`${s.edit} ${activeNote ? s.active : ""} ${
-          loading ? s.loading : ""
-        }`}
-      >
-        <div
-          className={`${s.viewContainer} ${activeNote ? s.active : ""} ${
-            loading ? s.loading : ""
-          }`}
-        >
+      <div className={edit}>
+        <div className={viewContainer}>
           <ViewHeader
             loading={loading}
             exitHandle={exitHandle}
@@ -140,10 +130,9 @@ export default function EditNote({
             settextInput={settextInput}
             textRef={textRef}
           />
-          {/* <motion.div className={s.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
+          {/* <motion.div className={s.titleView} layoutId={`title-${id}`}  aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
           </motion.div>
-          <motion.div className={s.textView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
-
+          <motion.div className={s.textView} layoutId={`title-${id}`}  aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
           </motion.div> */}
         </div>
       </div>

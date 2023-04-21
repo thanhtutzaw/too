@@ -1,6 +1,6 @@
 import { getAuth } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
 import s from "../styles/Home.module.css";
 import { app, db } from "../utils/firebase";
@@ -89,7 +89,11 @@ export default function Footer({ activeNote, active, setactive }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
   const auth = getAuth(app);
-
+  const exitHandle = useCallback(
+    () =>
+      exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false),
+    [exitWithoutSaving, setactive]
+  );
   async function handle() {
     if (exitWithoutSaving) {
       setloading(true);
@@ -174,7 +178,9 @@ export default function Footer({ activeNote, active, setactive }) {
     settitleInput("");
     settextInput("");
     if (active) {
-      titleRef.current.focus();
+      setTimeout(() => {
+        titleRef.current.focus();
+      }, 200);
     }
   }, [titleRef, active]);
   return (
@@ -186,7 +192,7 @@ export default function Footer({ activeNote, active, setactive }) {
         <div className={`${s.addContainer} ${active ? s.active : ""}`}>
           <ViewHeader
             loading={loading}
-            exitHandle={handle}
+            exitHandle={exitHandle}
             submitHandle={handle}
           >
             {loading ? "Saving" : "Save"}
