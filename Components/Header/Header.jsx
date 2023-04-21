@@ -4,29 +4,35 @@ import Link from "next/link";
 import { useCallback, useContext, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { AppContext } from "../../context/AppContext";
+import useTheme from "../../hooks/useTheme";
 import styles from "../../styles/Home.module.css";
 import SelectModal from "../Modal/SelectModal";
 import Sidebar from "./Sidebar";
-import useTheme from "../../hooks/useTheme";
 function Searchbar(props) {
+  const { searchCloseHandle, setisSearching, Search, setSearch, input, user } =
+    props;
   return (
     <div className={styles.searchBar}>
       <input
-        onBlur={() => props.setisSearching(false)}
-        onFocus={() => props.setisSearching(true)}
-        onChange={(e) => props.setSearch(e.target.value)}
-        ref={props.input}
-        value={props.Search}
+        onBlur={() => setisSearching(false)}
+        onFocus={() => setisSearching(true)}
+        onChange={(e) => {
+          setSearch(e.target.value.toLowerCase());
+        }}
+        ref={input}
+        value={Search}
         className={styles.searchInput}
-        disabled={props.user ? "" : "disable"}
+        disabled={user ? "" : "disable"}
         type="text"
         placeholder="Search"
       />
+      {/* <BiSearch
+        onClick={() => alert("hey")}
+        className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide}
+      /> */}
       <CgClose
-        onClick={props.searchCloseHandle}
-        className={
-          props.Search ? styles.searchCloseBtn : styles.searchCloseBtnHide
-        }
+        onClick={searchCloseHandle}
+        className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide}
       />
     </div>
   );
@@ -34,13 +40,14 @@ function Searchbar(props) {
 export default function Header({ user, setisSearching }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
-  const [Search, setSearch] = useState();
+  const { Search, setSearch, selectLength, showAction, setShowAction } =
+    useContext(AppContext);
+
   const { theme, setTheme } = useTheme();
   const searchCloseHandle = () => {
     setSearch("");
     input.current.focus();
   };
-  const { selectLength, showAction, setShowAction } = useContext(AppContext);
 
   const modalHandle = useCallback(() => {
     setshowModal((prevstate) => !prevstate);

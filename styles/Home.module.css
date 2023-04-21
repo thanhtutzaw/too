@@ -360,18 +360,22 @@
 .searchBar {
   background-color: #eeeeee;
   height          : 2rem;
-  padding         : .35em .85em;
-  border-radius   : 26px;
   border          : none;
-  display         : flex;
-  align-items     : center;
-  justify-content : center;
-  max-width       : 193px;
+
+  padding        : 0.35em 0.5em;
+  border-radius  : 26px;
+  border         : none;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  max-width      : 193px;
+  gap            : 8px;
 }
 
 .searchCloseBtn {
   opacity   : 1;
   visibility: visible;
+  color     : black !important;
 }
 
 .searchCloseBtnHide {
@@ -415,8 +419,6 @@
 .loginWrapper a:active {
   color: #0ca307 !important;
 }
-
-
 
 .loginWrapper {
   margin-top     : 1rem;

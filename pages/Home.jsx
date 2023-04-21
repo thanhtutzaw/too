@@ -1,14 +1,26 @@
 import { useAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AddButton from "../Components/AddButton";
 import Header from "../Components/Header";
 import Notes from "../Components/Notes";
+import { AppContext } from "../context/AppContext";
 export default function Home({ float, notes }) {
   const [active, setactive] = useState(false);
   const [activeNote, setactiveNote] = useState();
 
   const [isSearching, setisSearching] = useState(false);
   const user = useAuthUser();
+  const { Search } = useContext(AppContext);
+  const searchedNotes = notes.filter((note) => {
+    if (Search) {
+      return (
+        note.title.toLowerCase().includes(Search) ||
+        note.text.toLowerCase().includes(Search)
+      );
+    } else {
+      return { ...notes };
+    }
+  });
   return (
     <>
       {/* {OpenNew === false ?  <Input setOpenNew={setOpenNew} /> : null} */}
@@ -19,9 +31,10 @@ export default function Home({ float, notes }) {
             setactiveNote={setactiveNote}
             activeNote={activeNote}
             active={active}
-            notes={notes}
+            notes={searchedNotes}
             isSearching={isSearching}
           />
+
           <AddButton
             activeNote={activeNote}
             active={active}

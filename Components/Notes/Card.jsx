@@ -108,6 +108,7 @@ export function Card({
           }}
           className={cardActive}
         >
+          {/* <p>{Search}</p> */}
           <AnimatePresence>
             {showAction === id && (
               <NoteAction

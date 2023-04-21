@@ -1,15 +1,14 @@
 import { getAuth } from "firebase/auth";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
-// import s from "../../styles/Home.module.css";
-import s from "./index.module.css";
 import { app } from "../../utils/firebase";
-import AddConfirm from "./AddConfirm";
 import Input from "../Notes/Input";
 import ViewHeader from "../Notes/ViewHeader";
+import AddConfirm from "./AddConfirm";
+import { addNote } from "./addNote";
+import s from "./index.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
-import { addNote } from "./addNote";
 
 export default function AddButton({ activeNote, active, setactive }) {
   const [loading, setloading] = useState(false);
@@ -23,13 +22,12 @@ export default function AddButton({ activeNote, active, setactive }) {
   useEffect(() => {
     window.onpopstate = (e) => {
       history.pushState(null, document.title, location.href);
-      if (active) {
-        if (exitWithoutSaving) {
-          addConfirmRef.current.showModal();
-          setactive(true);
-        } else {
-          setactive(false);
-        }
+      if (!active) return;
+      if (exitWithoutSaving) {
+        addConfirmRef.current.showModal();
+        setactive(true);
+      } else {
+        setactive(false);
       }
     };
   }, [active, exitWithoutSaving, setactive]);
@@ -61,27 +59,21 @@ export default function AddButton({ activeNote, active, setactive }) {
   }
   useEffect(() => {
     function handleEscape(e) {
-      if (e.key !== "Escape") return;
-      if (active) {
-        console.log("%cEscape (add)", "color:green");
-        if (exitWithoutSaving) {
-          addConfirmRef.current?.showModal();
-        } else {
-          setactive(false);
-        }
-      }
+      if (!(e.key === "Escape" && active)) return;
+      exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false);
+      console.log("%cEscape (add)", "color:green");
     }
-
     window.addEventListener("keyup", handleEscape);
 
     return () => window.removeEventListener("keyup", handleEscape);
   }, [active, exitWithoutSaving, setactive]);
   useEffect(() => {
-    if (!activeNote && !active) {
+    if (!(activeNote || active)) {
       window.location.hash = "home";
       addConfirmRef.current?.close();
     }
   }, [activeNote, active]);
+
   const titleRef = useRef(null);
   const textRef = useRef(null);
   useEffect(() => {
