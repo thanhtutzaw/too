@@ -1,17 +1,11 @@
 .container {
-    position          : fixed;
-    bottom            : 0;
-    /* min-width      : 500px; */
-    max-width         : 500px;
-    width             : 100vw;
-    /* height         : 100vh; */
-    /* height         : 6rem; */
-
-    justify-content   : flex-end;
-    justify-content   : center;
-    z-index           : 10000;
-    /* bottom         : 1rem; */
-    /* left           :-40px; */
+    position       : fixed;
+    bottom         : 0;
+    max-width      : 500px;
+    width          : 100vw;
+    justify-content: flex-end;
+    justify-content: center;
+    z-index        : 10000;
 }
 
 .InputContainer {
@@ -24,7 +18,6 @@
     z-index         : 20;
     text-align      : left;
     /* overflow     : auto; */
-    /* padding      : 0 1rem; */
     opacity         : 0;
     display         : none;
     transition      : opacity 1s ease;
@@ -40,14 +33,9 @@
     position                 : absolute;
     width                    : 30px;
     height                   : 30px;
-    /* bottom                : -700px;
-right                        : -200px; */
     transform-origin         : right;
     font-size                : inherit;
-    /* bottom                : -2rem; */
-    /* bottom                : -700px; */
     transition               : all .4s cubic-bezier(1, 0.05, 0, 0.94), background-color .6s ease-in-out, color 0s ease;
-    /* background-color      : var(--main-color); */
     background-color         : var(--btn-background);
     border                   : 0;
     /* rotate                : 0deg; */
@@ -104,11 +92,10 @@ right                        : -200px; */
         display: none;
     }
 
-    /* 
-  50% {
-    opacity: 0;
-    display: none;
-  } */
+    30% {
+        opacity: 0;
+        display: none;
+    }
 
     100% {
         opacity: 1;

@@ -1,15 +1,15 @@
 import { getAuth } from "firebase/auth";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
 // import s from "../../styles/Home.module.css";
 import s from "./index.module.css";
-import { app, db } from "../../utils/firebase";
+import { app } from "../../utils/firebase";
 import AddConfirm from "./AddConfirm";
 import Input from "../Notes/Input";
 import ViewHeader from "../Notes/ViewHeader";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
+import { addNote } from "./addNote";
 
 export default function AddButton({ activeNote, active, setactive }) {
   const [loading, setloading] = useState(false);
@@ -19,6 +19,7 @@ export default function AddButton({ activeNote, active, setactive }) {
   const [textInput, settextInput] = useState("");
   const addConfirmRef = useRef(null);
   const exitWithoutSaving = titleInput !== "" || textInput !== "";
+
   useEffect(() => {
     window.onpopstate = (e) => {
       history.pushState(null, document.title, location.href);
@@ -91,16 +92,18 @@ export default function AddButton({ activeNote, active, setactive }) {
     if (active) {
       setTimeout(() => {
         titleRef.current.focus();
-      }, 200);
+      }, 1150);
     }
-  }, [titleRef, active]);
+  }, [active, titleRef]);
+  const InputContainer = `${s.InputContainer} ${active ? s.active : ""}`;
+  const addBtn = `${s.addBtn} ${active ? s.active : ""}`;
   return (
     <>
       <dialog id="confirmModal" ref={addConfirmRef}>
         <AddConfirm addConfirmRef={addConfirmRef} setactive={setactive} />
       </dialog>
       <div className={s.container}>
-        <div className={`${s.InputContainer} ${active ? s.active : ""}`}>
+        <div className={InputContainer}>
           <ViewHeader
             loading={loading}
             exitHandle={exitHandle}
@@ -125,7 +128,7 @@ export default function AddButton({ activeNote, active, setactive }) {
             }
             submitHandle();
           }}
-          className={`${s.addBtn} ${active ? s.active : ""}`}
+          className={addBtn}
         >
           <span className={`${s.plusIcon} ${active ? s.rotate : ""}`}>+</span>
         </button>
@@ -134,14 +137,6 @@ export default function AddButton({ activeNote, active, setactive }) {
   );
 
   async function addNotes() {
-    const q = collection(db, `users/${auth.currentUser.uid}/notes`);
-    const data = {
-      title: titleInput,
-      text: textInput,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-    };
-    await addDoc(q, data);
-    window.location.reload();
+    await addNote(auth, titleInput, textInput);
   }
 }
