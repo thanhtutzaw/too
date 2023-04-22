@@ -1,27 +1,32 @@
 .container {
-    position       : fixed;
-    bottom         : 0;
-    max-width      : 500px;
-    width          : 100vw;
-    justify-content: flex-end;
-    justify-content: center;
-    z-index        : 10000;
+    position          : fixed;
+    bottom            : 0;
+    max-width         : 500px;
+    width             : 100vw;
+    justify-content   : flex-end;
+    justify-content   : center;
+    z-index           : 10000;
+    /* border         : 2px solid rgb(25, 0, 255); */
 }
 
 .InputContainer {
-    position        : fixed;
-    inset           : 0;
-    margin          : 0 auto;
-    width           : 100vw;
-    max-width       : 500px;
-    min-height      : -webkit-fill-available;
-    z-index         : 20;
-    text-align      : left;
-    /* overflow     : auto; */
-    opacity         : 0;
-    display         : none;
-    transition      : opacity 1s ease;
-    background-color: var(--light-card);
+    position              : fixed;
+    inset                 : 0;
+    margin                : 0 auto;
+    width                 : 100vw;
+    max-width             : 500px;
+    /* min-height         : -webkit-fill-available; */
+    z-index               : 20;
+    text-align            : left;
+    /* overflow           : auto; */
+    opacity               : 0;
+    display               : none;
+    transition            : opacity 1s ease;
+    background-color      : var(--light-card);
+    /* border             : 2px solid red; */
+    /* position           : relative; */
+    /* overflow           : auto; */
+    /* height             : 100vh; */
 }
 
 .addBtn {
@@ -52,7 +57,7 @@
 
 .addBtn.active {
     width           : 40%;
-    height          : 100vh;
+    height          : 100dvh;
     bottom          : 0;
     right           : 0;
     background-color: var(--light-card);

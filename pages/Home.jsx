@@ -14,8 +14,10 @@ export default function Home({ float, notes }) {
   const searchedNotes = notes.filter((note) => {
     if (Search) {
       return (
+        note.title.toLowerCase().replace(/ /g, "").includes(Search) ||
         note.title.toLowerCase().includes(Search) ||
-        note.text.toLowerCase().includes(Search)
+        note.text.toLowerCase().includes(Search) ||
+        note.text.toLowerCase().replace(/ /g, "").includes(Search)
       );
     } else {
       return { ...notes };
