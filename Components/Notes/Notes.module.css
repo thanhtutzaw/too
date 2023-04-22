@@ -133,7 +133,7 @@ border                     :none; */
   /* white-space          : normal; */
 }
 
- .header>button {
+.header>button {
   width              : 25px;
   height             : 25px;
   display            : flex;
@@ -272,9 +272,8 @@ max-height           : 100%; */
 }
 
 .action>button:active {
-  background-color   : rgb(91 231 145);
-  /* opacity         : .5; */
-  scale              : .9;
+  background-color: rgb(91 231 145);
+  scale           : .9;
 }
 
 .action>button {
@@ -341,9 +340,9 @@ max-height           : 100%; */
 }
 
 .viewContent {
-  overflow: auto;
+  overflow: auto !important;
   padding : 25px 1.3rem;
-  height  : calc(100% - 44px);
+  height  : calc(100% - 70px);
 }
 
 .viewContent>h3 {

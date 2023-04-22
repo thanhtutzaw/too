@@ -71,6 +71,9 @@ export default function AddButton({ activeNote, active, setactive }) {
     if (!(activeNote || active)) {
       window.location.hash = "home";
       addConfirmRef.current?.close();
+      document.body.style.overflow = "auto";
+    } else {
+      document.body.style.overflow = "hidden";
     }
   }, [activeNote, active]);
 
