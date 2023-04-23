@@ -52,6 +52,8 @@ export default function Notes(props) {
   const editNote = notes?.find((note) => note.id == activeNote);
   const exitWithoutSaving =
     titleInput !== editNote?.title || textInput !== editNote?.text;
+  const viewContainerRef = useRef(null);
+
   useEffect(() => {
     window.onpopstate = () => {
       history.pushState(null, document.title, location.hash);
@@ -65,20 +67,32 @@ export default function Notes(props) {
         } else {
           setactiveNote("");
           setShowAction("");
+          viewContainerRef.current.style.position = "initial";
+          viewContainerRef.current.style.inset = "initial";
         }
       }
     };
   }, [editNote, activeNote, exitWithoutSaving, setShowAction, setactiveNote]);
   useEffect(() => {
     if (!activeNote && !active) {
+      ``;
       window.location.hash = "home";
       confirmModalRef.current?.close();
+      // viewContainerRef.current.style.position = "initial";
+      // viewContainerRef.current.style.inset = "initial";
+    } else {
+      setTimeout(() => {
+        viewContainerRef.current.style.position = "fixed";
+        viewContainerRef.current.style.inset = "0";
+        // viewContainerRef.current.style.border = "2px solid red";
+      }, 500);
     }
   }, [activeNote, active]);
   useEffect(() => {
     editNote ? playOn() : playOff();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editNote]);
+
   return (
     <>
       <div
@@ -101,6 +115,7 @@ export default function Notes(props) {
         ))}
       </div>
       <EditNote
+        viewContainerRef={viewContainerRef}
         editnote={editNote}
         textInput={textInput}
         activeNote={activeNote}

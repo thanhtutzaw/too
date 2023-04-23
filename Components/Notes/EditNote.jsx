@@ -27,6 +27,7 @@ import ViewHeader from "./ViewHeader";
 //     }
 //   })
 export default function EditNote({
+  viewContainerRef,
   confirmModalRef,
   exitWithoutSaving,
   titleInput,
@@ -47,10 +48,12 @@ export default function EditNote({
   //     }
   //   }
   const closeEdit = useCallback(() => {
+    viewContainerRef.current.style.position = "initial";
+    viewContainerRef.current.style.inset = "initial";
     setactiveNote(null);
     setShowAction("");
     window.location.hash = "#home";
-  }, [setShowAction, setactiveNote]);
+  }, [setShowAction, setactiveNote, viewContainerRef]);
   const exitHandle = useCallback(
     () =>
       exitWithoutSaving ? confirmModalRef.current?.showModal() : closeEdit(),
@@ -104,16 +107,29 @@ export default function EditNote({
   const viewContainer = `${s.viewContainer} ${activeNote ? s.active : ""} ${
     loading ? s.loading : ""
   }`;
+
   return (
     <>
       <dialog id="confirmModal" ref={confirmModalRef}>
         <ConfirmModal
+          closeEdit={closeEdit}
           confirmModalRef={confirmModalRef}
           setactiveNote={setactiveNote}
         />
       </dialog>
       <div className={edit}>
-        <div className={viewContainer}>
+        <div
+          onTransitionEnd={(e) => {
+            // if (editnote) {
+            //   e.currentTarget.style.position = "fixed";
+            //   e.currentTarget.style.inset = "0";
+            //   viewContainerRef.current.style.position = "fixed";
+            //   viewContainerRef.current.style.inset = "0";
+            // }
+          }}
+          className={viewContainer}
+          ref={viewContainerRef}
+        >
           <ViewHeader
             loading={loading}
             exitHandle={exitHandle}

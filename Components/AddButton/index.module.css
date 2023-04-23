@@ -1,50 +1,48 @@
 .container {
-    position          : fixed;
-    bottom            : 0;
-    max-width         : 500px;
-    width             : 100vw;
-    justify-content   : flex-end;
-    justify-content   : center;
-    z-index           : 10000;
-    /* border         : 2px solid rgb(25, 0, 255); */
+    position       : fixed;
+    bottom         : 0;
+    max-width      : 500px;
+    width          : 100vw;
+    justify-content: flex-end;
+    justify-content: center;
+    z-index        : 10000;
 }
 
 .InputContainer {
-    position              : fixed;
-    inset                 : 0;
-    margin                : 0 auto;
-    width                 : 100vw;
-    max-width             : 500px;
-    /* min-height         : -webkit-fill-available; */
-    z-index               : 20;
-    text-align            : left;
-    /* overflow           : auto; */
-    opacity               : 0;
-    display               : none;
-    transition            : opacity 1s ease;
-    background-color      : var(--light-card);
-    /* border             : 2px solid red; */
-    /* position           : relative; */
-    /* overflow           : auto; */
-    /* height             : 100vh; */
+    position                 : fixed;
+    inset                    : 0;
+    /* right                 : 20px; */
+    margin                   : 0 auto;
+    width                    : 100vw;
+    max-width                : 500px;
+    /* min-height            : -webkit-fill-available; */
+    z-index                  : 20;
+    text-align               : left;
+    /* overflow              : auto; */
+    opacity                  : 0;
+    display                  : none;
+    transition               : opacity 1s ease;
+    background-color         : var(--light-card);
+    /* position              : relative; */
+    /* height                : 100vh; */
 }
 
 .addBtn {
-    bottom                   : 30px;
-    right                    : 44px;
-    transform                : scale(2.5);
-    border-radius            : 10px;
-    overflow                 : hidden;
-    position                 : absolute;
-    width                    : 30px;
-    height                   : 30px;
-    transform-origin         : right;
-    font-size                : inherit;
-    transition               : all .4s cubic-bezier(1, 0.05, 0, 0.94), background-color .6s ease-in-out, color 0s ease;
-    background-color         : var(--btn-background);
-    border                   : 0;
-    /* rotate                : 0deg; */
-    cursor                   : pointer;
+    bottom             : 30px;
+    right              : 44px;
+    transform          : scale(2.5);
+    border-radius      : 10px;
+    overflow           : hidden;
+    position           : absolute;
+    width              : 30px;
+    height             : 30px;
+    transform-origin   : right;
+    font-size          : inherit;
+    transition         : all .4s cubic-bezier(1, 0.05, 0, 0.94), background-color .6s ease-in-out, color 0s ease;
+    background-color   : var(--btn-background);
+    border             : 0;
+    cursor             : pointer;
+    /* border          : 3px solid red; */
 }
 
 .addBtn:focus-visible {

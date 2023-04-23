@@ -1,9 +1,5 @@
-import { useContext } from "react";
-import { AppContext } from "../../context/AppContext";
-
 export default function ConfirmModal(props) {
-  const { setShowAction } = useContext(AppContext);
-  const { setactiveNote, confirmModalRef } = props;
+  const { closeEdit, confirmModalRef } = props;
   const close = () => confirmModalRef.current?.close();
   return (
     <div className="confirmModal">
@@ -15,11 +11,8 @@ export default function ConfirmModal(props) {
         className="discardBtn"
         onClick={() => {
           close();
-          window.location.hash = "home";
-          setactiveNote(null);
-          setactiveNote("");
-          setShowAction("");
-          console.log("%cCanceled" , 'color:grey');
+          closeEdit();
+          console.log("%cCanceled", "color:grey");
         }}
       >
         Discard
