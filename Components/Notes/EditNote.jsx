@@ -27,6 +27,7 @@ import ViewHeader from "./ViewHeader";
 //     }
 //   })
 export default function EditNote({
+  mounted,
   viewContainerRef,
   confirmModalRef,
   exitWithoutSaving,
@@ -107,7 +108,10 @@ export default function EditNote({
   const viewContainer = `${s.viewContainer} ${activeNote ? s.active : ""} ${
     loading ? s.loading : ""
   }`;
-
+  const date = new Timestamp(
+    editnote?.updatedAt.seconds,
+    editnote?.updatedAt.nanoseconds
+  ).toDate();
   return (
     <>
       <dialog id="confirmModal" ref={confirmModalRef}>
@@ -136,6 +140,11 @@ export default function EditNote({
             submitHandle={submitHandle}
           />
           <Input
+            height={`${
+              date.toDateString() !== "Invalid Date"
+                ? "calc(100% - 105px)"
+                : "calc(100% - 70px)"
+            }`}
             titleInput={titleInput}
             settitleInput={settitleInput}
             titleRef={titleRef}
@@ -144,6 +153,14 @@ export default function EditNote({
             settextInput={settextInput}
             textRef={textRef}
           />
+          {editnote && date.toDateString() !== "Invalid Date" && (
+            <p
+              className={s.editDate}
+            >{`Edited - ${date.toDateString()} ${date.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}`}</p>
+          )}
           {/* <motion.div className={s.titleView} layoutId={`title-${id}`}  aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
           </motion.div>
           <motion.div className={s.textView} layoutId={`title-${id}`}  aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >

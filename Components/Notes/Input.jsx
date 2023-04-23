@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Notes.module.css";
 
 export default function Input({
+  height,
   titleInput,
   settitleInput,
   titleRef,
@@ -11,7 +12,7 @@ export default function Input({
   textRef,
 }) {
   return (
-    <div className={s.viewContent}>
+    <div style={{ height: height }} className={s.viewContent}>
       <Label
         focus={titleInput !== ""}
         label="Title"

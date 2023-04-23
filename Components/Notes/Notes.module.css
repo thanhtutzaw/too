@@ -343,10 +343,11 @@ max-height           : 100%; */
 }
 
 .viewContent {
-  overflow: auto !important;
-  padding : 25px 1.3rem;
-  height  : calc(100% - 70px);
-  position: relative;
+  overflow   : auto !important;
+  padding    : 25px 1.3rem;
+  height     : calc(100% - 70px);
+  position   : relative;
+  /* outline : 1px solid red; */
 }
 
 .viewContent>h3 {
@@ -380,4 +381,29 @@ max-height           : 100%; */
     sans-serif;
   font-size: 16px;
   margin   : .5rem 0;
+}
+
+.editDate {
+  padding            : 10px 1.3rem;
+  /* background-color: red; */
+  font-size          : 16px;
+
+  font-family: Roboto,
+    Arial,
+    sans-serif;
+  animation      : fadeIn .2s .5s forwards ease-in-out;
+  opacity        : 0;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

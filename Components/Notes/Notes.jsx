@@ -53,6 +53,7 @@ export default function Notes(props) {
   const exitWithoutSaving =
     titleInput !== editNote?.title || textInput !== editNote?.text;
   const viewContainerRef = useRef(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     window.onpopstate = () => {
@@ -82,6 +83,7 @@ export default function Notes(props) {
       // viewContainerRef.current.style.inset = "initial";
     } else {
       setTimeout(() => {
+        // setMounted(true);
         viewContainerRef.current.style.position = "fixed";
         viewContainerRef.current.style.inset = "0";
         // viewContainerRef.current.style.border = "2px solid red";
@@ -104,7 +106,6 @@ export default function Notes(props) {
         {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
         {notes?.map((note, index) => (
           <Card
-            
             selectMode={selectMode}
             setselectMode={setselectMode}
             activeNote={activeNote}
@@ -116,6 +117,7 @@ export default function Notes(props) {
         ))}
       </div>
       <EditNote
+        mounted={mounted}
         viewContainerRef={viewContainerRef}
         editnote={editNote}
         textInput={textInput}
