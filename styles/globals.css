@@ -5,12 +5,13 @@
   --body-bg       : #cfd3d0;
   --btn-background: rgb(18, 170, 77);
 
-  --text-secondary: #414141;
-  --light-card    : rgb(255, 255, 255);
-  --text-black    : black;
-  --border-light  : #efefef;
-  --card-border   : #bdbdbd;
-  --btn-dark-green: rgb(230 255 231);
+  --text-secondary   : #414141;
+  --light-card       : rgb(255, 255, 255);
+  --text-black       : black;
+  /* --border-light  : #efefef; */
+  --border-light     : #f6f6f6;
+  --card-border      : #bdbdbd;
+  --btn-dark-green   : rgb(230 255 231);
 
   --light-btn-hover : #dcdcdc4a;
   --light-btn-active: gainsboro;
@@ -35,16 +36,16 @@
 /* :not(.viewContent) */
 
 main {
-  user-select           : none;
-  min-height            : 100dvh;
-  /* min-height         : -webkit-fill-available; */
-  /* min-height         : -moz-available; */
-  /* max-width          : 486px; */
-  max-width             : 500px;
-  width                 : 100vw;
-  background-color      : white;
-  display               : flex;
-  flex-direction        : column;
+  user-select              : none;
+  min-height               : 100dvh;
+  /* min-height            : -webkit-fill-available; */
+  /* min-height            : -moz-available; */
+  /* max-width             : 486px; */
+  max-width                : 500px;
+  width                    : 100vw;
+  background-color         : white;
+  display                  : flex;
+  flex-direction           : column;
   /* overflow              : hidden; */
 }
 

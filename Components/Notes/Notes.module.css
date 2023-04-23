@@ -120,7 +120,7 @@ border                     :none; */
   font-family   : "Google Sans", Roboto, Arial, sans-serif;
 }
 
-.card p {
+.card p:not(.date) {
   -webkit-line-clamp      : 6;
   overflow                : hidden;
   display                 : -webkit-box;
@@ -371,4 +371,13 @@ max-height           : 100%; */
 
 .edit.loading {
   cursor: wait;
+}
+
+.date {
+  color: rgb(197, 197, 197);
+  font-family: Roboto,
+    Arial,
+    sans-serif;
+  font-size: 16px;
+  margin   : .5rem 0;
 }

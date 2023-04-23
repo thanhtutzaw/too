@@ -6,6 +6,7 @@ import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import { AppContext } from "../../context/AppContext";
 import NoteAction from "./NoteAction";
 import styles from "./Notes.module.css";
+import { Timestamp } from "firebase/firestore";
 
 export function Card({
   selectMode,
@@ -13,6 +14,7 @@ export function Card({
   id,
   title,
   text,
+  createdAt,
   setactiveNote,
   activeNote,
 }) {
@@ -73,6 +75,7 @@ export function Card({
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
   }, [selectedId, setselectMode, setselectedId]);
+  const date = new Timestamp(createdAt.seconds, createdAt.nanoseconds);
   return (
     <>
       <Link href={selectMode ? `/#home` : `/#Note/${id}`}>
@@ -176,7 +179,19 @@ export function Card({
               </>
             )}
           </div>
-          <p style={{ filter: showAction === id ? "blur(2px)" : "" }}>{text}</p>
+          <p style={{ filter: showAction === id ? "blur(2px)" : "unset" }}>
+            {text}
+          </p>
+          <p
+            className={styles.date}
+            style={{ filter: showAction === id ? "blur(2px)" : "unset" }}
+          >
+            {date.toDate().toLocaleDateString("en", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </p>
         </div>
       </Link>
     </>

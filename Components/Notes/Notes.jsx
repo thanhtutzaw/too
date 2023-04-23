@@ -104,6 +104,7 @@ export default function Notes(props) {
         {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
         {notes?.map((note, index) => (
           <Card
+            
             selectMode={selectMode}
             setselectMode={setselectMode}
             activeNote={activeNote}
