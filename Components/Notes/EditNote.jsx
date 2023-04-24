@@ -27,7 +27,6 @@ import ViewHeader from "./ViewHeader";
 //     }
 //   })
 export default function EditNote({
-  mounted,
   viewContainerRef,
   confirmModalRef,
   exitWithoutSaving,
@@ -108,10 +107,16 @@ export default function EditNote({
   const viewContainer = `${s.viewContainer} ${activeNote ? s.active : ""} ${
     loading ? s.loading : ""
   }`;
-  const date = new Timestamp(
+  const updatedAt = new Timestamp(
     editnote?.updatedAt.seconds,
     editnote?.updatedAt.nanoseconds
   ).toDate();
+  const dateString = updatedAt.toDateString();
+  const timeString = updatedAt.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   return (
     <>
       <dialog id="confirmModal" ref={confirmModalRef}>
@@ -122,18 +127,7 @@ export default function EditNote({
         />
       </dialog>
       <div className={edit}>
-        <div
-          onTransitionEnd={(e) => {
-            // if (editnote) {
-            //   e.currentTarget.style.position = "fixed";
-            //   e.currentTarget.style.inset = "0";
-            //   viewContainerRef.current.style.position = "fixed";
-            //   viewContainerRef.current.style.inset = "0";
-            // }
-          }}
-          className={viewContainer}
-          ref={viewContainerRef}
-        >
+        <div className={viewContainer} ref={viewContainerRef}>
           <ViewHeader
             loading={loading}
             exitHandle={exitHandle}
@@ -141,8 +135,8 @@ export default function EditNote({
           />
           <Input
             height={`${
-              date.toDateString() !== "Invalid Date"
-                ? "calc(100% - 105px)"
+              dateString !== "Invalid Date"
+                ? "calc(100% - 110px)"
                 : "calc(100% - 70px)"
             }`}
             titleInput={titleInput}
@@ -153,18 +147,11 @@ export default function EditNote({
             settextInput={settextInput}
             textRef={textRef}
           />
-          {editnote && date.toDateString() !== "Invalid Date" && (
-            <p
-              className={s.editDate}
-            >{`Edited - ${date.toDateString()} ${date.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}`}</p>
+          {dateString !== "Invalid Date" && (
+            <p className={s.editDate}>
+              {`Edited - ${dateString} ${timeString}`}
+            </p>
           )}
-          {/* <motion.div className={s.titleView} layoutId={`title-${id}`}  aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
-          </motion.div>
-          <motion.div className={s.textView} layoutId={`title-${id}`}  aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
-          </motion.div> */}
         </div>
       </div>
     </>

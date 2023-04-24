@@ -1,7 +1,7 @@
 .container {
     position       : fixed;
     bottom         : 0;
-    max-width      : 500px;
+    max-width      : var(--max-width);
     width          : 100vw;
     justify-content: flex-end;
     justify-content: center;
@@ -9,22 +9,18 @@
 }
 
 .InputContainer {
-    position                 : fixed;
-    inset                    : 0;
-    /* right                 : 20px; */
-    margin                   : 0 auto;
-    width                    : 100vw;
-    max-width                : 500px;
-    /* min-height            : -webkit-fill-available; */
-    z-index                  : 20;
-    text-align               : left;
-    /* overflow              : auto; */
-    opacity                  : 0;
-    display                  : none;
-    transition               : opacity 1s ease;
-    background-color         : var(--light-card);
-    /* position              : relative; */
-    /* height                : 100vh; */
+    position                       : fixed;
+    inset                          : 0;
+    margin                         : 0 auto;
+    width                          : 100vw;
+    max-width                      : var(--max-width);
+    /* min-height                  : -webkit-fill-available; */
+    z-index                        : 20;
+    text-align                     : left;
+    opacity                        : 0;
+    display                        : none;
+    transition                     : opacity 1s ease;
+    background-color               : var(--light-card);
 }
 
 .addBtn {

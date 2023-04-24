@@ -75,11 +75,16 @@ export function Card({
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
   }, [selectedId, setselectMode, setselectedId]);
-  const date = new Timestamp(createdAt.seconds, createdAt.nanoseconds);
+  const date = new Timestamp(createdAt.seconds, createdAt.nanoseconds).toDate();
+  const dateString = date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
   return (
     <>
       <Link href={selectMode ? `/#home` : `/#Note/${id}`}>
-        {/* <Link href={`/#home`}> */}
         <div
           role="button"
           tabIndex="0"
@@ -111,7 +116,6 @@ export function Card({
           }}
           className={cardActive}
         >
-          {/* <p>{Search}</p> */}
           <AnimatePresence>
             {showAction === id && (
               <NoteAction
@@ -186,11 +190,7 @@ export function Card({
             className={styles.date}
             style={{ filter: showAction === id ? "blur(2px)" : "unset" }}
           >
-            {date.toDate().toLocaleDateString("en", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
+            {dateString}
           </p>
         </div>
       </Link>

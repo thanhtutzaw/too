@@ -2,25 +2,23 @@
 @import url('https://fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese');
 
 .cardContainer {
-  width     : 100%;
-  text-align: left;
-  margin-top: 65px;
-  margin    : 0 auto;
-  padding   : 1.3rem 0.9rem;
-  position  : relative;
-  transition: all .3s ease-in-out;
+  width               : 100%;
+  /* width            : 100vw;
+  max-width           : var(--max-width); */
+  text-align          : left;
+  margin              : 0 auto;
+  position            : relative;
+  transition          : all .3s ease-in-out;
+  overflow            : hidden;
+  display             : flex;
+  justify-content     : center;
+  flex-wrap           : wrap;
+  gap                 : 10px;
+  text-align          : left;
+  margin-top          : 65px;
+  padding             : 1.3rem 0.9rem;
 }
 
-.cardContainer {
-  overflow       : hidden;
-  display        : flex;
-  justify-content: center;
-  flex-wrap      : wrap;
-  gap            : 10px;
-  text-align     : left;
-  margin-top     : 65px;
-  padding        : 1.3rem 0.9rem;
-}
 
 .card {
   background-color: var(--light-card);
@@ -61,7 +59,6 @@
 
 .card.active {
   /* width:100%; */
-  /* max-width: 500px; */
   /* height:100vh; */
   /* position: fixed; */
   opacity                  : 0;
@@ -83,7 +80,6 @@ margin                     : 0 auto;
 z-index                    : 20000;
 border                     :none; */
   /* width                 : 100vw; */
-  /* max-width             : 500px; */
 }
 
 .positioned {
@@ -197,24 +193,25 @@ max-height           : 100%; */
   /* height          : 87vh; */
   /* height          : 100vh; */
   /* height          :100dvh; */
-  display               : flex;
-  flex-direction        : column;
-  text-align            : left;
-  background-color      : var(--light-card);
-  color                 : var(--text-black);
-  max-width             : 500px;
-  width                 : 100vw;
-  min-height            : -webkit-fill-available;
-  margin                : 0 auto;
-  transform             : translateX(500px);
-  transition            : all .4s ease-in-out, width 0s;
-  z-index               : 100000;
-  opacity               : 0;
-  visibility            : hidden;
-  pointer-events        : initial;
-  margin                : 0 auto;
-  /* min-height         : -webkit-fill-available; */
-  /* transition         : opacity 1s ease; */
+  display                  : flex;
+  flex-direction           : column;
+  text-align               : left;
+  background-color         : var(--light-card);
+  color                    : var(--text-black);
+  max-width                : var(--max-width);
+  width                    : 100vw;
+  min-height               : -webkit-fill-available;
+  margin                   : 0 auto;
+  transform                : translateX(var(--max-width));
+  transition               : all .4s ease-in-out, width 0s;
+  z-index                  : 100000;
+  opacity                  : 0;
+  visibility               : hidden;
+  pointer-events           : initial;
+  margin                   : 0 auto;
+  /* outline               : 1px solid red; */
+  /* min-height            : -webkit-fill-available; */
+  /* transition            : opacity 1s ease; */
 }
 
 .viewContainer.loading {
@@ -338,16 +335,11 @@ max-height           : 100%; */
   flex: 1;
 }
 
-.animateNotes {
-  /* transform: translateX(-500px); */
-}
-
 .viewContent {
-  overflow   : auto !important;
-  padding    : 25px 1.3rem;
-  height     : calc(100% - 70px);
-  position   : relative;
-  /* outline : 1px solid red; */
+  overflow: auto !important;
+  padding : 25px 1.3rem;
+  height  : calc(100% - 70px);
+  position: relative;
 }
 
 .viewContent>h3 {
@@ -359,7 +351,7 @@ max-height           : 100%; */
   position      : fixed;
   overflow      : hidden;
   width         : 100vw;
-  max-width     : 500px;
+  max-width     : var(--max-width);
   height        : 100%;
   z-index       : 100000;
   cursor        : default;
@@ -375,7 +367,7 @@ max-height           : 100%; */
 }
 
 .date {
-  color: rgb(197, 197, 197);
+  color: var(--date-text);
   font-family: Roboto,
     Arial,
     sans-serif;

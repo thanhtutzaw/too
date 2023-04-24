@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import useSound from "use-sound";
 import { AppContext } from "../../context/AppContext";
 import { Card } from "./Card";
 import EditNote from "./EditNote";
 import styles from "./Notes.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
-import useSound from "use-sound";
 
 export default function Notes(props) {
-  const { active, activeNote, setactiveNote, notes, isSearching } = props;
+  const { active, activeNote, setactiveNote, notes } = props;
   const [totalHeight, settotalHeight] = useState(0);
   const [selectMode, setselectMode] = useState(false);
 
@@ -53,7 +53,6 @@ export default function Notes(props) {
   const exitWithoutSaving =
     titleInput !== editNote?.title || textInput !== editNote?.text;
   const viewContainerRef = useRef(null);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     window.onpopstate = () => {
@@ -79,14 +78,10 @@ export default function Notes(props) {
       ``;
       window.location.hash = "home";
       confirmModalRef.current?.close();
-      // viewContainerRef.current.style.position = "initial";
-      // viewContainerRef.current.style.inset = "initial";
     } else {
       setTimeout(() => {
-        // setMounted(true);
         viewContainerRef.current.style.position = "fixed";
         viewContainerRef.current.style.inset = "0";
-        // viewContainerRef.current.style.border = "2px solid red";
       }, 500);
     }
   }, [activeNote, active]);
@@ -98,7 +93,6 @@ export default function Notes(props) {
   return (
     <>
       <div
-        // style={{ pointerEvents: isSearching ? "none" : "auto" }}
         className={`${styles.cardContainer} ${
           activeNote ? styles.animateNotes : ""
         }`}
@@ -117,7 +111,6 @@ export default function Notes(props) {
         ))}
       </div>
       <EditNote
-        mounted={mounted}
         viewContainerRef={viewContainerRef}
         editnote={editNote}
         textInput={textInput}

@@ -3,7 +3,7 @@
   justify-content          : space-between;
   align-items              : center;
   /* max-width             : 483px; */
-  max-width                : 500px;
+  max-width                : var(--max-width);
   width                    : 100vw;
   z-index                  : 999;
   transition               : opacity .4s ease-in-out;

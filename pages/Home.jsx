@@ -8,7 +8,6 @@ export default function Home({ float, notes }) {
   const [active, setactive] = useState(false);
   const [activeNote, setactiveNote] = useState();
 
-  const [isSearching, setisSearching] = useState(false);
   const user = useAuthUser();
   const { Search } = useContext(AppContext);
   const searchedNotes = notes.filter((note) => {
@@ -25,16 +24,14 @@ export default function Home({ float, notes }) {
   });
   return (
     <>
-      {/* {OpenNew === false ?  <Input setOpenNew={setOpenNew} /> : null} */}
       {user.photoURL || user.email ? (
         <>
-          <Header float={float} user={user} setisSearching={setisSearching} />
+          <Header float={float} user={user}  />
           <Notes
             setactiveNote={setactiveNote}
             activeNote={activeNote}
             active={active}
             notes={searchedNotes}
-            isSearching={isSearching}
           />
 
           <AddButton
@@ -49,12 +46,3 @@ export default function Home({ float, notes }) {
   );
 }
 export const getServerSideProps = withAuthUserTokenSSR()(Home);
-// export const getServerSideProps = withAuthUserTokenSSR()( ({AuthUser}) => {
-//   // const id = AuthUser.id;
-//   const id = 123;
-//   return{
-//     props:{
-//       id
-//     }
-//   }
-// })

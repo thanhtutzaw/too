@@ -37,11 +37,17 @@ function Searchbar(props) {
     </div>
   );
 }
-export default function Header({ user, setisSearching }) {
+export default function Header({ user }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
-  const { Search, setSearch, selectLength, showAction, setShowAction } =
-    useContext(AppContext);
+  const {
+    setisSearching,
+    Search,
+    setSearch,
+    selectLength,
+    showAction,
+    setShowAction,
+  } = useContext(AppContext);
 
   const { theme, setTheme } = useTheme();
   const searchCloseHandle = () => {
