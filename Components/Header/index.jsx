@@ -26,10 +26,6 @@ function Searchbar(props) {
         type="text"
         placeholder="Search"
       />
-      {/* <BiSearch
-        onClick={() => alert("hey")}
-        className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide}
-      /> */}
       <CgClose
         onClick={searchCloseHandle}
         className={Search ? styles.searchCloseBtn : styles.searchCloseBtnHide}
