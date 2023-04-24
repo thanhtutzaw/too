@@ -213,7 +213,6 @@ max-height           : 100%; */
   /* min-height            : -webkit-fill-available; */
   /* transition            : opacity 1s ease; */
 }
-
 .viewContainer.loading {
   pointer-events: none;
 }

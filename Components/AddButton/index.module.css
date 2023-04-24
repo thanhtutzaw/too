@@ -79,6 +79,10 @@
     transition-delay: .1s;
 }
 
+.InputContainer.loading {
+    cursor: wait;
+}
+
 .InputContainer.active {
     animation: fadein 1s ease-in-out;
     opacity  : 1;

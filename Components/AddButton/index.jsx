@@ -91,7 +91,9 @@ export default function AddButton({ activeNote, active, setactive }) {
       // }, 1150);
     }
   }, [active, titleRef]);
-  const InputContainer = `${s.InputContainer} ${active ? s.active : ""}`;
+  const InputContainer = `${s.InputContainer} ${activeNote ? s.active : ""} ${
+    loading ? s.loading : ""
+  }`;
   const addBtn = `${s.addBtn} ${active ? s.active : ""}`;
   return (
     <>
