@@ -24,21 +24,20 @@
 }
 
 .addBtn {
-    bottom             : 30px;
-    right              : 44px;
-    transform          : scale(2.5);
-    border-radius      : 10px;
-    overflow           : hidden;
-    position           : absolute;
-    width              : 30px;
-    height             : 30px;
-    transform-origin   : right;
-    font-size          : inherit;
-    transition         : all .4s cubic-bezier(1, 0.05, 0, 0.94), background-color .6s ease-in-out, color 0s ease;
-    background-color   : var(--btn-background);
-    border             : 0;
-    cursor             : pointer;
-    /* border          : 3px solid red; */
+    bottom          : 30px;
+    right           : 44px;
+    transform       : scale(2.5);
+    border-radius   : 10px;
+    overflow        : hidden;
+    position        : absolute;
+    width           : 30px;
+    height          : 30px;
+    transform-origin: right;
+    font-size       : inherit;
+    transition      : all .4s cubic-bezier(1, 0.05, 0, 0.94), background-color .6s ease-in-out, color 0s ease;
+    background-color: var(--btn-background);
+    border          : 0;
+    cursor          : pointer;
 }
 
 .addBtn:focus-visible {
@@ -79,9 +78,14 @@
     transition-delay: .1s;
 }
 
-.InputContainer.loading {
-    cursor: wait;
+.container.loading {
+    cursor: wait !important;
 }
+
+/* 
+.InputContainer.loading {
+    pointer-events: none !important;
+} */
 
 .InputContainer.active {
     animation: fadein 1s ease-in-out;

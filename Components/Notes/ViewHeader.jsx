@@ -14,10 +14,13 @@ export default function ViewHeader({
         <BiArrowBack onClick={exitHandle} />
       </div>
       <button
+        style={{
+          pointerEvents: loading ? "none" : "initial",
+        }}
         disabled={loading}
         onClick={submitHandle}
         tabIndex="0"
-        className="addBtn"
+        className="submitBtn"
       >
         {children ? children : loading ? "Updating" : "Update"}
       </button>

@@ -186,7 +186,7 @@ a {
 
 button,
 .backBtn,
-.addBtn,
+.submitBtn,
 .searchCloseBtn {
   cursor: pointer;
 }
@@ -222,7 +222,7 @@ button,
   flex: 1;
 }
 
-.addBtn {
+.submitBtn {
   display         : flex;
   align-items     : center;
   width           : 90px;
@@ -241,13 +241,13 @@ button,
   transition: all .3s ease-in-out, scale .1s ease-in-out;
 }
 
-.addBtn:hover {
+.submitBtn:hover {
   background-color: var(--btn-background);
   background-color: rgb(50 224 117);
   color           : white;
 }
 
-.addBtn:active {
+.submitBtn:active {
   background-color: var(--btn-background);
   background-color: rgb(50 224 117);
   color           : white;

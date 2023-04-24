@@ -91,6 +91,7 @@ export default function AddButton({ activeNote, active, setactive }) {
       // }, 1150);
     }
   }, [active, titleRef]);
+  const container = `${s.container} ${loading ? s.loading : ""}`;
   const InputContainer = `${s.InputContainer} ${active ? s.active : ""} ${
     loading ? s.loading : ""
   }`;
@@ -100,7 +101,7 @@ export default function AddButton({ activeNote, active, setactive }) {
       <dialog id="confirmModal" ref={addConfirmRef}>
         <AddConfirm addConfirmRef={addConfirmRef} setactive={setactive} />
       </dialog>
-      <div className={s.container}>
+      <div className={container}>
         <div className={InputContainer}>
           <ViewHeader
             loading={loading}
