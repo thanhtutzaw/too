@@ -7,7 +7,7 @@ export async function addNote(auth, titleInput, textInput) {
     title: titleInput,
     text: textInput,
     createdAt: serverTimestamp(),
-    updatedAt: serverTimestamp(),
+    updatedAt: "Invalid Date",
   };
   await addDoc(q, data);
   window.location.reload();

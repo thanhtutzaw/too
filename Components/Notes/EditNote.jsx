@@ -113,7 +113,7 @@ export default function EditNote({
   ).toDate();
   const dateString = updatedAt.toDateString();
   const timeString = updatedAt.toLocaleTimeString([], {
-    hour: "2-digit",
+    hour: "numeric",
     minute: "2-digit",
   });
 
