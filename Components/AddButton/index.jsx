@@ -51,11 +51,8 @@ export default function AddButton({ activeNote, active, setactive }) {
       setloading(true);
       try {
         await addNotes();
-        console.log("try");
-        // console.log(router.asPath);
         setactive(false);
         setloading(false);
-        router.replace(router.asPath);
       } catch (error) {
         setloading(false);
         alert(`Creat Note Failed! ${error.message}`);
@@ -79,7 +76,7 @@ export default function AddButton({ activeNote, active, setactive }) {
   }, [active, exitWithoutSaving, setactive]);
   useEffect(() => {
     if (!active) {
-      window.location.hash = "home";
+      // window.location.hash = "home";
       setactive(false);
       addConfirmRef.current?.close();
     }

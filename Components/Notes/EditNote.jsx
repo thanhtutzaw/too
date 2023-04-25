@@ -1,5 +1,6 @@
 import { getAuth } from "firebase/auth";
-import { Timestamp, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
+import { useRouter } from "next/router";
 import React, {
   useCallback,
   useContext,
@@ -8,12 +9,11 @@ import React, {
   useState,
 } from "react";
 import { AppContext } from "../../context/AppContext";
-import { app, db } from "../../utils/firebase";
+import { app } from "../../utils/firebase";
 import ConfirmModal from "../Modal/ConfirmModal";
 import Input from "./Input";
 import s from "./Notes.module.css";
 import ViewHeader from "./ViewHeader";
-import { useRouter } from "next/router";
 import { update } from "./update";
 // export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
@@ -55,14 +55,18 @@ export default function EditNote({
     viewContainerRef.current.style.inset = "initial";
     setactiveNote(null);
     setShowAction("");
-    window.location.hash = "home";
+    // router.back();
+    router.replace("/", undefined, {
+      scroll: false,
+    });
+    // router.push({ hash: "home" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setShowAction, setactiveNote, viewContainerRef]);
   const exitHandle = useCallback(
     () =>
       exitWithoutSaving ? confirmModalRef.current?.showModal() : closeEdit(),
     [closeEdit, confirmModalRef, exitWithoutSaving]
   );
-
   useEffect(() => {
     function handleEscape(e) {
       if (e.key !== "Escape") return;
@@ -98,12 +102,9 @@ export default function EditNote({
       setLoading(true);
       try {
         await updateNote();
-        // router.push("/");
-        // router.reload();
-        router.replace(router.asPath);
-        // router.replace("/#home");
-        // router.push("/");
-        // router.replace("/#hello");
+        router.replace(router.asPath, undefined, {
+          scroll: false,
+        });
         console.log(router.asPath);
         // closeEdit();
         setactiveNote(null);

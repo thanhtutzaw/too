@@ -85,7 +85,7 @@ export function Card({
 
   return (
     <>
-      {/* <Link href={selectMode ? `/#home` : `/#Note/${id}`}> */}
+      {/* <Link href={selectMode ? `/home` : `/#Note/${id}`}> */}
       <div
         role="button"
         tabIndex="0"
@@ -101,10 +101,10 @@ export function Card({
           if (!activeNote && e.key !== "Escape") return;
           e.preventDefault();
           setactiveNote(null);
-          window.location.hash = `#home`;
+          window.location.hash = `home`;
         }}
         onClick={(e) => {
-          window.location.hash = selectMode ? `#home` : `#Note/${id}`;
+          window.location.hash = selectMode ? `home` : `#Note/${id}`;
           e.stopPropagation();
           if (!selectMode) {
             setactiveNote(id);

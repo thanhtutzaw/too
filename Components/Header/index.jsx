@@ -8,6 +8,7 @@ import useTheme from "../../hooks/useTheme";
 import styles from "../../styles/Home.module.css";
 import SelectModal from "../Modal/SelectModal";
 import Sidebar from "./Sidebar";
+import { useRouter } from "next/router";
 function Searchbar(props) {
   const { searchCloseHandle, setisSearching, Search, setSearch, input, user } =
     props;
@@ -75,8 +76,10 @@ export default function Header({ user }) {
   // if(!user){
   //     Router.push('/auth')
   // }
+  const router = useRouter();
   return (
     <header>
+      {/* {router.asPath} */}
       <AnimatePresence>
         {selectLength > 0 ? (
           <SelectModal />

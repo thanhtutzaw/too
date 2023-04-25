@@ -6,6 +6,7 @@ import EditNote from "./EditNote";
 import styles from "./Notes.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
+import { useRouter } from "next/router";
 
 export default function Notes(props) {
   const { active, activeNote, setactiveNote, notes } = props;
@@ -53,18 +54,21 @@ export default function Notes(props) {
   const exitWithoutSaving =
     titleInput !== editNote?.title || textInput !== editNote?.text;
   const viewContainerRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     window.onpopstate = () => {
-      history.pushState(null, document.title, location.hash);
+      // history.pushState(null, document.title, location.hash);
       if (!activeNote) return;
       if (exitWithoutSaving) {
-        if (editNote) {
-          window.location.hash = `#Note/${editNote?.id}`;
-        }
+        // if (editNote) {
+        //   window.location.hash = `#Note/${editNote?.id}`;
+        //   alert("hey");
+        // }
         confirmModalRef.current?.close();
         confirmModalRef?.current.showModal();
       } else {
+        // router.replace("/");
         setactiveNote("");
         setShowAction("");
         viewContainerRef.current.style.position = "initial";
@@ -74,7 +78,11 @@ export default function Notes(props) {
   }, [editNote, activeNote, exitWithoutSaving, setShowAction, setactiveNote]);
   useEffect(() => {
     if (!activeNote && !active) {
-      window.location.hash = "home";
+      // window.location.hash = "home";
+      router.replace("/", undefined, {
+        scroll: false,
+      });
+      // router.push({ hash: "home" });
       confirmModalRef.current?.close();
     }
     if (activeNote) {
@@ -83,6 +91,7 @@ export default function Notes(props) {
         viewContainerRef.current.style.inset = "0";
       }, 350);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeNote, active]);
   useEffect(() => {
     editNote ? playOn() : playOff();
