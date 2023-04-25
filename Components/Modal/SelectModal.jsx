@@ -6,6 +6,7 @@ import { GrClose } from "react-icons/gr";
 import { AppContext } from "../../context/AppContext";
 import styles from "../../styles/Home.module.css";
 import app, { db } from "../../utils/firebase";
+import { useRouter } from "next/router";
 export default function SelectModal() {
   const { clearSelect, selectLength, selectedId, setShowAction } =
     useContext(AppContext);
@@ -34,8 +35,8 @@ export default function SelectModal() {
       }
     }
     await batch.commit();
-    window.location.reload();
   }
+  const router = useRouter();
   return (
     // <div style={mountAnimation} className={`selectModal `}>
     <motion.div
@@ -62,6 +63,10 @@ export default function SelectModal() {
           setloading(true);
           try {
             await deleteMultipleNotes();
+            router.replace(router.asPath);
+            setloading(false);
+            clearSelect();
+            console.log("%c Deleted !", "color:green");
           } catch (error) {
             setloading(false);
             alert(error.message);

@@ -10,5 +10,4 @@ export async function addNote(auth, titleInput, textInput) {
     updatedAt: "Invalid Date",
   };
   await addDoc(q, data);
-  window.location.reload();
 }

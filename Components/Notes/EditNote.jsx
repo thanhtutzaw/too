@@ -13,6 +13,8 @@ import ConfirmModal from "../Modal/ConfirmModal";
 import Input from "./Input";
 import s from "./Notes.module.css";
 import ViewHeader from "./ViewHeader";
+import { useRouter } from "next/router";
+import { update } from "./update";
 // export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -85,22 +87,38 @@ export default function EditNote({
     settextInput(editnote?.text);
   }, [activeNote, editnote, settextInput, settitleInput]);
   const [loading, setLoading] = useState(false);
-  const submitHandle = async () => {
-    if (!exitWithoutSaving) {
+  const router = useRouter();
+
+  async function submitHandle() {
+    // if (!exitWithoutSaving) {
+    //   closeEdit();
+    //   return;
+    // }
+    if (exitWithoutSaving) {
+      setLoading(true);
+      try {
+        await updateNote();
+        // router.push("/");
+        // router.reload();
+        router.replace(router.asPath);
+        // router.replace("/#home");
+        // router.push("/");
+        // router.replace("/#hello");
+        console.log(router.asPath);
+        // closeEdit();
+        setactiveNote(null);
+        setShowAction("");
+
+        setLoading(false);
+        confirmModalRef.current.close();
+      } catch (error) {
+        setLoading(false);
+        alert(`Update Failed ! ${error.message}`);
+      }
+    } else {
       closeEdit();
-      return;
     }
-    setLoading(true);
-    try {
-      await updateNote();
-      closeEdit();
-      confirmModalRef.current.close();
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      alert(`Update Failed ! ${error.message}`);
-    }
-  };
+  }
   const edit = `${s.edit} ${activeNote ? s.active : ""} ${
     loading ? s.loading : ""
   }`;
@@ -116,7 +134,6 @@ export default function EditNote({
     hour: "numeric",
     minute: "2-digit",
   });
-
   return (
     <>
       <dialog id="confirmModal" ref={confirmModalRef}>
@@ -131,6 +148,9 @@ export default function EditNote({
           <ViewHeader
             loading={loading}
             exitHandle={exitHandle}
+            // exitHandle={() => {
+            //   console.log(router.asPath);
+            // }}
             submitHandle={submitHandle}
           />
           <Input
@@ -157,20 +177,6 @@ export default function EditNote({
     </>
   );
   async function updateNote() {
-    const uid = auth.currentUser.uid,
-      noteId = editnote?.id.toString();
-    const docRef = doc(db, `users/${uid}/notes/${noteId}`);
-    const newData = {
-      ...editnote,
-      title: titleInput,
-      text: textInput,
-      createdAt: new Timestamp(
-        editnote.createdAt.seconds,
-        editnote.createdAt.nanoseconds
-      ),
-      updatedAt: serverTimestamp(),
-    };
-    await updateDoc(docRef, newData);
-    window.location.reload();
+    await update(auth, editnote, titleInput, textInput);
   }
 }

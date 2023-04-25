@@ -57,25 +57,23 @@ export default function Notes(props) {
   useEffect(() => {
     window.onpopstate = () => {
       history.pushState(null, document.title, location.hash);
-      if (activeNote) {
-        if (exitWithoutSaving) {
-          if (editNote) {
-            window.location.hash = `#Note/${editNote?.id}`;
-          }
-          confirmModalRef.current?.close();
-          confirmModalRef?.current.showModal();
-        } else {
-          setactiveNote("");
-          setShowAction("");
-          viewContainerRef.current.style.position = "initial";
-          viewContainerRef.current.style.inset = "initial";
+      if (!activeNote) return;
+      if (exitWithoutSaving) {
+        if (editNote) {
+          window.location.hash = `#Note/${editNote?.id}`;
         }
+        confirmModalRef.current?.close();
+        confirmModalRef?.current.showModal();
+      } else {
+        setactiveNote("");
+        setShowAction("");
+        viewContainerRef.current.style.position = "initial";
+        viewContainerRef.current.style.inset = "initial";
       }
     };
   }, [editNote, activeNote, exitWithoutSaving, setShowAction, setactiveNote]);
   useEffect(() => {
     if (!activeNote && !active) {
-      ``;
       window.location.hash = "home";
       confirmModalRef.current?.close();
     } else {

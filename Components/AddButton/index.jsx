@@ -9,6 +9,7 @@ import { addNote } from "./addNote";
 import s from "./index.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
+import { useRouter } from "next/router";
 
 export default function AddButton({ activeNote, active, setactive }) {
   const [loading, setloading] = useState(false);
@@ -20,7 +21,7 @@ export default function AddButton({ activeNote, active, setactive }) {
   const exitWithoutSaving = titleInput !== "" || textInput !== "";
 
   useEffect(() => {
-    window.onpopstate = (e) => {
+    window.onpopstate = () => {
       history.pushState(null, document.title, location.href);
       if (!active) return;
       if (exitWithoutSaving) {
@@ -44,11 +45,16 @@ export default function AddButton({ activeNote, active, setactive }) {
       exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false),
     [exitWithoutSaving, setactive]
   );
+  const router = useRouter();
   async function submitHandle() {
     if (exitWithoutSaving) {
       setloading(true);
       try {
         await addNotes();
+        router.replace(router.asPath);
+        console.log(router.asPath);
+        setactive(false);
+        setloading(false);
       } catch (error) {
         setloading(false);
         alert(`Creat Note Failed! ${error.message}`);
@@ -68,14 +74,16 @@ export default function AddButton({ activeNote, active, setactive }) {
     return () => window.removeEventListener("keyup", handleEscape);
   }, [active, exitWithoutSaving, setactive]);
   useEffect(() => {
-    if (!(activeNote || active)) {
-      window.location.hash = "home";
+    // if (!(activeNote || active)) {
+    if (!active) {
+      // window.location.hash = "home";
+      setactive(false);
       addConfirmRef.current?.close();
       document.body.style.overflow = "auto";
     } else {
       document.body.style.overflow = "hidden";
     }
-  }, [activeNote, active]);
+  }, [active, setactive]);
 
   const titleRef = useRef(null);
   const textRef = useRef(null);
@@ -105,7 +113,11 @@ export default function AddButton({ activeNote, active, setactive }) {
         <div className={InputContainer}>
           <ViewHeader
             loading={loading}
+            // exitHandle={exitHandle}
             exitHandle={exitHandle}
+            // exitHandle={() => {
+            //   console.log(router.asPath);
+            // }}
             submitHandle={submitHandle}
           >
             {loading ? "Saving" : "Save"}
@@ -123,7 +135,7 @@ export default function AddButton({ activeNote, active, setactive }) {
           style={{ cursor: !active ? "pointer" : "default" }}
           onClick={() => {
             if (!active) {
-              window.location.hash = "#addNote";
+              window.location.hash = "#addNote/123";
             }
             submitHandle();
           }}

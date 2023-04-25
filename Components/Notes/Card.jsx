@@ -84,116 +84,117 @@ export function Card({
 
   return (
     <>
-      <Link href={selectMode ? `/#home` : `/#Note/${id}`}>
-        <div
-          role="button"
-          tabIndex="0"
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              setactiveNote(id);
-              if (activeNote === id) {
-                setactiveNote(null);
-              }
-              e.currentTarget.click();
-            }
-            if (!activeNote && e.key !== "Escape") return;
-            e.preventDefault();
-            setactiveNote(null);
-            window.location.hash = `#home`;
-          }}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!selectMode) {
-              setactiveNote(id);
-              if (activeNote !== id) return;
+      {/* <Link href={selectMode ? `/#home` : `/#Note/${id}`}> */}
+      <div
+        role="button"
+        tabIndex="0"
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            setactiveNote(id);
+            if (activeNote === id) {
               setactiveNote(null);
-            } else {
-              select ? checkRef.current?.click() : uncheckRef.current?.click();
             }
-          }}
-          style={{
-            outline: select ? "1px solid rgb(97, 245, 97)" : "",
-          }}
-          className={cardActive}
+            e.currentTarget.click();
+          }
+          if (!activeNote && e.key !== "Escape") return;
+          e.preventDefault();
+          setactiveNote(null);
+          window.location.hash = `#home`;
+        }}
+        onClick={(e) => {
+          window.location.hash = selectMode ? `#home` : `#Note/${id}`;
+          e.stopPropagation();
+          if (!selectMode) {
+            setactiveNote(id);
+            if (activeNote !== id) return;
+            setactiveNote(null);
+          } else {
+            select ? checkRef.current?.click() : uncheckRef.current?.click();
+          }
+        }}
+        style={{
+          outline: select ? "1px solid rgb(97, 245, 97)" : "",
+        }}
+        className={cardActive}
+      >
+        <AnimatePresence>
+          {showAction === id && (
+            <NoteAction
+              setactiveNote={setactiveNote}
+              chooseSelectMode={chooseSelectMode}
+              setselectMode={setselectMode}
+              setselectedId={setselectedId}
+            />
+          )}
+        </AnimatePresence>
+        {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
+        <div
+          style={{ filter: showAction === id ? "blur(2px)" : "" }}
+          className={styles.header}
         >
-          <AnimatePresence>
-            {showAction === id && (
-              <NoteAction
-                setactiveNote={setactiveNote}
-                chooseSelectMode={chooseSelectMode}
-                setselectMode={setselectMode}
-                setselectedId={setselectedId}
-              />
-            )}
-          </AnimatePresence>
-          {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
-          <div
-            style={{ filter: showAction === id ? "blur(2px)" : "" }}
-            className={styles.header}
-          >
-            <div className={styles.cardTitle}>{title}</div>
-            {!selectMode ? (
-              <button
-                tabIndex={-1}
-                aria-expanded={showAction}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowAction(id);
-                }}
-                className={styles.dot}
-              >
-                <BiDotsVerticalRounded />
-              </button>
-            ) : (
-              <>
-                {select ? (
-                  <button
-                    ref={checkRef}
-                    role="checkbox"
-                    tabIndex={-1}
-                    aria-checked={true}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelect(!select);
-                      setselectedId(selectedId.filter((t) => t !== id));
-                      if (selectedId.length === 1) {
-                        setselectMode(false);
-                      }
-                    }}
-                    className={styles.check}
-                  >
-                    <BiCheck />
-                  </button>
-                ) : (
-                  <button
-                    ref={uncheckRef}
-                    role="checkbox"
-                    tabIndex={-1}
-                    aria-checked={false}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelect(!select);
-                      setselectedId([...selectedId, id]);
-                    }}
-                    className={styles.uncheck}
-                  >
-                    <RiCheckboxBlankCircleLine />
-                  </button>
-                )}
-              </>
-            )}
-          </div>
-          <p style={{ filter: showAction === id ? "blur(2px)" : "unset" }}>
-            {text}
-          </p>
-          <p
-            className={styles.date}
-            style={{ filter: showAction === id ? "blur(2px)" : "unset" }}
-          >
-            {dateString}
-          </p>
+          <div className={styles.cardTitle}>{title}</div>
+          {!selectMode ? (
+            <button
+              tabIndex={-1}
+              aria-expanded={showAction}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowAction(id);
+              }}
+              className={styles.dot}
+            >
+              <BiDotsVerticalRounded />
+            </button>
+          ) : (
+            <>
+              {select ? (
+                <button
+                  ref={checkRef}
+                  role="checkbox"
+                  tabIndex={-1}
+                  aria-checked={true}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelect(!select);
+                    setselectedId(selectedId.filter((t) => t !== id));
+                    if (selectedId.length === 1) {
+                      setselectMode(false);
+                    }
+                  }}
+                  className={styles.check}
+                >
+                  <BiCheck />
+                </button>
+              ) : (
+                <button
+                  ref={uncheckRef}
+                  role="checkbox"
+                  tabIndex={-1}
+                  aria-checked={false}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelect(!select);
+                    setselectedId([...selectedId, id]);
+                  }}
+                  className={styles.uncheck}
+                >
+                  <RiCheckboxBlankCircleLine />
+                </button>
+              )}
+            </>
+          )}
         </div>
-      </Link>
+        <p style={{ filter: showAction === id ? "blur(2px)" : "unset" }}>
+          {text}
+        </p>
+        <p
+          className={styles.date}
+          style={{ filter: showAction === id ? "blur(2px)" : "unset" }}
+        >
+          {dateString}
+        </p>
+      </div>
+      {/* </Link> */}
     </>
   );
 }
