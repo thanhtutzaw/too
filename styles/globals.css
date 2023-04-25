@@ -21,9 +21,11 @@
 }
 
 @media screen and (min-width: 486px) {
+  /* @media screen and (max-width: 500px) { */
 
   /* @media screen and (min-width: 500px) { */
   html {
+    /* color       : red !important; */
     margin-left : calc(100vw - 100%);
     margin-right: 0;
   }

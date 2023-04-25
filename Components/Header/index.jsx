@@ -100,9 +100,11 @@ export default function Header({ user }) {
             />
             <div>
               <motion.div
-                onKeyDown={(e) =>
-                  (e.key === "Enter" || e.key === " " || e.key === "Escape") &&
-                  modalHandle()
+                onKeyDown={
+                  (e) =>
+                    // (e.key === "Enter" || e.key === " " || e.key === "Escape") &&
+                    (e.key === "Enter" || e.key === "Escape") && modalHandle()
+                  // alert("hey")
                 }
                 role="button"
                 tabIndex={4}

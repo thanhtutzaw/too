@@ -51,13 +51,17 @@ export default function AddButton({ activeNote, active, setactive }) {
       setloading(true);
       try {
         await addNotes();
-        router.replace(router.asPath);
-        console.log(router.asPath);
+        console.log("try");
+        // console.log(router.asPath);
         setactive(false);
         setloading(false);
+        router.replace(router.asPath);
       } catch (error) {
         setloading(false);
         alert(`Creat Note Failed! ${error.message}`);
+      } finally {
+        console.log("finally");
+        router.replace(router.asPath);
       }
     } else {
       setactive((prev) => !prev);
@@ -74,17 +78,19 @@ export default function AddButton({ activeNote, active, setactive }) {
     return () => window.removeEventListener("keyup", handleEscape);
   }, [active, exitWithoutSaving, setactive]);
   useEffect(() => {
-    // if (!(activeNote || active)) {
     if (!active) {
-      // window.location.hash = "home";
+      window.location.hash = "home";
       setactive(false);
       addConfirmRef.current?.close();
+    }
+  }, [active, setactive]);
+  useEffect(() => {
+    if (!(activeNote || active)) {
       document.body.style.overflow = "auto";
     } else {
       document.body.style.overflow = "hidden";
     }
-  }, [active, setactive]);
-
+  }, [active, activeNote]);
   const titleRef = useRef(null);
   const textRef = useRef(null);
   useEffect(() => {

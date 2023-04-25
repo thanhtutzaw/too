@@ -49,12 +49,13 @@ export default function EditNote({
   //       height = 57 + " extra px need (full screen)";
   //     }
   //   }
+  const router = useRouter();
   const closeEdit = useCallback(() => {
     viewContainerRef.current.style.position = "initial";
     viewContainerRef.current.style.inset = "initial";
     setactiveNote(null);
     setShowAction("");
-    window.location.hash = "#home";
+    window.location.hash = "home";
   }, [setShowAction, setactiveNote, viewContainerRef]);
   const exitHandle = useCallback(
     () =>
@@ -66,8 +67,8 @@ export default function EditNote({
     function handleEscape(e) {
       if (e.key !== "Escape") return;
       if (activeNote) {
-        console.log("%cEscape (editNote)", "color:green");
         exitHandle();
+        console.log("%cEscape (editNote)", "color:green");
       }
     }
     window.addEventListener("keyup", handleEscape);
@@ -87,7 +88,6 @@ export default function EditNote({
     settextInput(editnote?.text);
   }, [activeNote, editnote, settextInput, settitleInput]);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   async function submitHandle() {
     // if (!exitWithoutSaving) {

@@ -76,11 +76,12 @@ export default function Notes(props) {
     if (!activeNote && !active) {
       window.location.hash = "home";
       confirmModalRef.current?.close();
-    } else {
+    }
+    if (activeNote) {
       setTimeout(() => {
         viewContainerRef.current.style.position = "fixed";
         viewContainerRef.current.style.inset = "0";
-      }, 500);
+      }, 350);
     }
   }, [activeNote, active]);
   useEffect(() => {

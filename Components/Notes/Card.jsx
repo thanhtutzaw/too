@@ -67,14 +67,15 @@ export function Card({
       setselectMode(false);
       setSelect(false);
     }
-    function handleEscape() {
+    function handleEscape(e) {
+      if (!(e.key === "Escape" && selectMode)) return;
       setselectedId([]);
       setselectMode(false);
       setSelect(false);
     }
     window.addEventListener("keyup", handleEscape);
     return () => window.removeEventListener("keyup", handleEscape);
-  }, [selectedId, setselectMode, setselectedId]);
+  }, [selectMode, selectedId, setselectMode, setselectedId]);
   const date = new Timestamp(createdAt.seconds, createdAt.nanoseconds).toDate();
   const dateString = date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -89,7 +90,8 @@ export function Card({
         role="button"
         tabIndex="0"
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
+          // if (e.key === "Enter" || e.key === " ") {
+          if (e.key === "Enter") {
             setactiveNote(id);
             if (activeNote === id) {
               setactiveNote(null);

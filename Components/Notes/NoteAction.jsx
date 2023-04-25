@@ -7,6 +7,7 @@ import { CgClose } from "react-icons/cg";
 import { AppContext } from "../../context/AppContext";
 import { app, db } from "../../utils/firebase";
 import s from "./Notes.module.css";
+import { useRouter } from "next/router";
 
 export default function NoteAction({ chooseSelectMode }) {
   const { showAction, setShowAction } = useContext(AppContext);
@@ -29,8 +30,8 @@ export default function NoteAction({ chooseSelectMode }) {
       noteId = showAction.toString();
     const docRef = doc(db, `users/${uid}/notes/${noteId}`);
     await deleteDoc(docRef);
-    window.location.reload();
   }
+  const router = useRouter();
   return (
     <motion.div
       style={{
@@ -63,6 +64,7 @@ export default function NoteAction({ chooseSelectMode }) {
           setloading(true);
           try {
             await deleteNote();
+            router.replace(router.asPath);
           } catch (error) {
             setloading(false);
             alert(error.message);
