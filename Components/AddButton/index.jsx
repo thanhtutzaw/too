@@ -135,7 +135,7 @@ export default function AddButton({ activeNote, active, setactive }) {
           style={{ cursor: !active ? "pointer" : "default" }}
           onClick={() => {
             if (!active) {
-              window.location.hash = "#addNote/123";
+              window.location.hash = "#addNote";
             }
             submitHandle();
           }}
