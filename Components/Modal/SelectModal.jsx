@@ -1,12 +1,12 @@
 import { getAuth } from "firebase/auth";
 import { doc, writeBatch } from "firebase/firestore";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { AppContext } from "../../context/AppContext";
 import styles from "../../styles/Home.module.css";
 import app, { db } from "../../utils/firebase";
-import { useRouter } from "next/router";
 export default function SelectModal() {
   const { clearSelect, selectLength, selectedId, setShowAction } =
     useContext(AppContext);
@@ -42,7 +42,7 @@ export default function SelectModal() {
     <motion.div
       style={{
         cursor: loading ? "wait" : "initial",
-        pointerEvents: loading ? "none" : "initial",
+        // pointerEvents: loading ? "none" : "initial",
       }}
       initial={{ opacity: 0, rotateX: 60 }}
       animate={{ opacity: 1, rotateX: 0 }}
@@ -51,12 +51,16 @@ export default function SelectModal() {
       className={styles.selectModal}
     >
       <div className={styles.left}>
-        <div className={styles.close}>
+        <div
+          style={{ pointerEvents: loading ? "none" : "initial" }}
+          className={styles.close}
+        >
           <GrClose onClick={() => clearSelect()} />
         </div>
         <p>{selectLength}</p>
       </div>
       <button
+        style={{ pointerEvents: loading ? "none" : "initial" }}
         disabled={loading}
         onClick={async (e) => {
           e.stopPropagation();
