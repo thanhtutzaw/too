@@ -55,10 +55,12 @@ export default function EditNote({
     viewContainerRef.current.style.inset = "initial";
     setactiveNote(null);
     setShowAction("");
-    // router.back();
-    router.replace("/", undefined, {
-      scroll: false,
-    });
+    // console.log("this runned");
+    // router.replace("/", undefined, {
+    //   scroll: false,
+    // });
+    // window.location.hash = "#home";
+    console.log("you called close");
     // router.push({ hash: "home" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setShowAction, setactiveNote, viewContainerRef]);

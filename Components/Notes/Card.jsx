@@ -1,5 +1,4 @@
 import { AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiCheck, BiDotsVerticalRounded } from "react-icons/bi";
 import { RiCheckboxBlankCircleLine } from "react-icons/ri";
@@ -7,6 +6,7 @@ import { AppContext } from "../../context/AppContext";
 import NoteAction from "./NoteAction";
 import styles from "./Notes.module.css";
 import { Timestamp } from "firebase/firestore";
+import { useRouter } from "next/router";
 
 export function Card({
   selectMode,
@@ -82,7 +82,7 @@ export function Card({
     month: "short",
     day: "numeric",
   });
-
+  const router = useRouter();
   return (
     <>
       {/* <Link href={selectMode ? `/home` : `/#Note/${id}`}> */}
@@ -90,7 +90,6 @@ export function Card({
         role="button"
         tabIndex="0"
         onKeyDown={(e) => {
-          // if (e.key === "Enter" || e.key === " ") {
           if (e.key === "Enter") {
             setactiveNote(id);
             if (activeNote === id) {
@@ -98,13 +97,22 @@ export function Card({
             }
             e.currentTarget.click();
           }
-          if (!activeNote && e.key !== "Escape") return;
+          if (e.key !== "Escape") return;
           e.preventDefault();
           setactiveNote(null);
           window.location.hash = `home`;
         }}
         onClick={(e) => {
-          window.location.hash = selectMode ? `home` : `#Note/${id}`;
+          // router.push({ hash: selectMode ? `home` : `#Note/${id}` });
+          selectMode
+            ? router.replace("/", undefined, {
+                scroll: false,
+              })
+            : (window.location.hash = `#Note/${id}`);
+          // window.location.hash = selectMode ? `home` : `#Note/${id}`;
+          // router.push({ hash: selectMode ? `home` : `#Note/${id}` });
+          // router.push({ hash: "helo" });
+          // router.replace("/", undefined, { scroll: false });
           e.stopPropagation();
           if (!selectMode) {
             setactiveNote(id);

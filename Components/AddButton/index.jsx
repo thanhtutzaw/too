@@ -20,18 +20,18 @@ export default function AddButton({ activeNote, active, setactive }) {
   const addConfirmRef = useRef(null);
   const exitWithoutSaving = titleInput !== "" || textInput !== "";
 
-  useEffect(() => {
-    window.onpopstate = () => {
-      history.pushState(null, document.title, location.href);
-      if (!active) return;
-      if (exitWithoutSaving) {
-        addConfirmRef.current.showModal();
-        setactive(true);
-      } else {
-        setactive(false);
-      }
-    };
-  }, [active, exitWithoutSaving, setactive]);
+  // useEffect(() => {
+  //   window.onpopstate = () => {
+  //     history.pushState(null, document.title, location.href);
+  //     if (!active) return;
+  //     if (exitWithoutSaving) {
+  //       addConfirmRef.current.showModal();
+  //       setactive(true);
+  //     } else {
+  //       setactive(false);
+  //     }
+  //   };
+  // }, [active, exitWithoutSaving, setactive]);
   useEffect(() => {
     active ? playOn() : playOff();
     if (!active) {

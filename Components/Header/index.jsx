@@ -79,7 +79,7 @@ export default function Header({ user }) {
   const router = useRouter();
   return (
     <header>
-      {/* {router.asPath} */}
+      {router.asPath}
       <AnimatePresence>
         {selectLength > 0 ? (
           <SelectModal />
@@ -113,6 +113,11 @@ export default function Header({ user }) {
                 tabIndex={4}
                 className={styles.mainProfile}
                 onClick={modalHandle}
+                // onClick={() => {
+                //   // window.location.hash = "gg";
+                //   // router.replace({ hash: "gg" });
+                //   router.push({ hash: "gg" });
+                // }}
                 whileTap={{ scale: 0.8 }}
               >
                 <Image

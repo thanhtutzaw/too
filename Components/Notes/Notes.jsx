@@ -57,25 +57,46 @@ export default function Notes(props) {
   const router = useRouter();
 
   useEffect(() => {
+    // if (router.asPath === `#Note/${editNote?.id}`) {
+    // history.go(1);
     window.onpopstate = () => {
-      // history.pushState(null, document.title, location.hash);
       if (!activeNote) return;
       if (exitWithoutSaving) {
+        if (editNote) {
+          window.location.hash = `Note/${editNote?.id}`;
+        } else {
+          router.replace("/");
+        }
         // if (editNote) {
         //   window.location.hash = `#Note/${editNote?.id}`;
         //   alert("hey");
         // }
+        // router.replace(`#Note/${editNote?.id}`);
+        console.log("back (exit without save)");
+        // history.pushState(null, document.title, location.hash);
+        // window.location.hash = `Note/${editNote?.id}`;
         confirmModalRef.current?.close();
         confirmModalRef?.current.showModal();
       } else {
-        // router.replace("/");
+        console.log("back (just close)");
+        // history.pushState(null, document.title, "/");
+        // if (router.asPath !== "/") router.replace("/");
         setactiveNote("");
         setShowAction("");
+        // window.location.hash = "home";
         viewContainerRef.current.style.position = "initial";
         viewContainerRef.current.style.inset = "initial";
       }
     };
-  }, [editNote, activeNote, exitWithoutSaving, setShowAction, setactiveNote]);
+    // history.pushState(null, document.title, location.hash);
+  }, [
+    editNote,
+    activeNote,
+    exitWithoutSaving,
+    setShowAction,
+    setactiveNote,
+    router,
+  ]);
   useEffect(() => {
     if (!activeNote && !active) {
       // window.location.hash = "home";
@@ -89,12 +110,19 @@ export default function Notes(props) {
       setTimeout(() => {
         viewContainerRef.current.style.position = "fixed";
         viewContainerRef.current.style.inset = "0";
-      }, 350);
+      }, 400);
+      // }, 350);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeNote, active]);
   useEffect(() => {
     editNote ? playOn() : playOff();
+    if (editNote === null) {
+      // console.log("hey");
+      // router.replace("/", undefined, {
+      //   scroll: false,
+      // });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editNote]);
 
