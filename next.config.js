@@ -1,16 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    scrollRestoration: true,
+  },
+
 }
 
 module.exports = nextConfig
 
 module.exports = {
-  experimental: {
-    scrollRestoration: true,
-  },
   images: {
-    domains: ['lh3.googleusercontent.com']
+    domains: ['images.unsplash.com'],
+    // domains: ['lh3.googleusercontent.com'],
+    // remotePatterns: [
+    //   {
+    //     protocol: "https",
+    //     hostname: "*.googleusercontent.com",
+    //     port: "",
+    //     pathname: "**",
+    //   },
+    // ],
   }
 }
 module.exports = {
@@ -36,4 +46,5 @@ module.exports = {
 
     return config;
   },
+
 };

@@ -121,9 +121,10 @@ export default function Header({ user }) {
                 whileTap={{ scale: 0.8 }}
               >
                 <Image
-                  referrerPolicy="no-referrer"
-                  unoptimized={!user.photoURL}
-                  src={user.photoURL ? user.photoURL : testUserPicture}
+                  unoptimized={true}
+                  // referrerPolicy="no-referrer"
+                  // unoptimized={!user.photoURL}
+                  src={user?.photoURL ? user.photoURL : testUserPicture}
                   alt={""}
                   width="40"
                   height="40"
