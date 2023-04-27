@@ -83,6 +83,10 @@ html[theme="dark"] {
   --search-bg          : #d4d4d417;
 }
 
+mark {
+  background-color: var(--bright-green);
+}
+
 #confirmModal {
   background: unset;
   border    : unset;

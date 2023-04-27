@@ -49,7 +49,6 @@ export default function EditNote({
   //       height = 57 + " extra px need (full screen)";
   //     }
   //   }
-  const router = useRouter();
   const closeEdit = useCallback(() => {
     viewContainerRef.current.style.position = "initial";
     viewContainerRef.current.style.inset = "initial";

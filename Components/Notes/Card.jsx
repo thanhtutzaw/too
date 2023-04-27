@@ -50,7 +50,7 @@ export function Card({
     activeNote === id ? styles.active : ""
   } ${activeNote === id ? styles.positioned : ""}`;
   const [select, setSelect] = useState(false);
-  const { selectedId, setselectedId, showAction, setShowAction } =
+  const { Search, selectedId, setselectedId, showAction, setShowAction } =
     useContext(AppContext);
 
   function chooseSelectMode(e) {
@@ -83,6 +83,16 @@ export function Card({
     day: "numeric",
   });
   const router = useRouter();
+  const index = text.toLowerCase().indexOf(Search?.toLowerCase());
+  // if (index === -1) {
+  //   return <div></div>;
+  // }
+  const searchIndex = text.toLowerCase().indexOf(Search?.toLowerCase());
+  const before = text.slice(0, searchIndex);
+  const match = text.slice(searchIndex, searchIndex + Search?.length);
+  const after = text.slice(searchIndex + Search?.length);
+  // if (index !== -1) return;
+
   return (
     <>
       <div
@@ -188,8 +198,23 @@ export function Card({
           )}
         </div>
         <p style={{ filter: showAction === id ? "blur(2px)" : "unset" }}>
-          {text}
+          {/* {text?.split(Search)} */}
+          {/* {text?.split(Search)} */}
+          {/* {text.substring(Search?.length )} */}
+
+          {/* {text.substring(0, Search?.length - text.length)}
+          {text.toLowerCase().includes(Search) && <mark>{Search}</mark>}
+          {text?.split(Search)} */}
+
+          {index !== -1 && (
+            <>
+              {before}
+              <mark>{match}</mark>
+              {after}
+            </>
+          )}
         </p>
+
         <p
           className={styles.date}
           style={{ filter: showAction === id ? "blur(2px)" : "unset" }}
