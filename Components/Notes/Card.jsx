@@ -205,12 +205,14 @@ export function Card({
           {text.toLowerCase().includes(Search) && <mark>{Search}</mark>}
           {text?.split(Search)} */}
 
-          {index !== -1 && (
+          {index !== -1 ? (
             <>
               {before}
               <mark>{match}</mark>
               {after}
             </>
+          ) : (
+            text
           )}
         </p>
 
