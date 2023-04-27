@@ -111,11 +111,10 @@ export function Card({
           setactiveNote(null);
         }}
         onClick={(e) => {
-          selectMode
-            ? router.replace("/", undefined, {
-                scroll: false,
-              })
-            : (window.location.hash = `#Note/${id}`);
+          !selectMode && (window.location.hash = `#Note/${id}`);
+          //   router.replace("/", undefined, {
+          //       scroll: false,
+          //     })
           e.stopPropagation();
           if (!selectMode) {
             setactiveNote(id);
