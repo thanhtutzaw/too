@@ -5,8 +5,9 @@
   /* --max-width     : 512px; */
   --max-width     : 500px;
   --main-color    : rgb(8, 166, 60);
-  --body-bg       : #cfd3d0;
+  --bright-green  : rgb(97, 245, 97);
   --btn-background: rgb(18, 170, 77);
+  --body-bg       : #cfd3d0;
   --search-bg     : #eeeeee;
 
   --text-secondary: #414141;
@@ -19,6 +20,12 @@
 
   --light-btn-hover : #dcdcdc4a;
   --light-btn-active: gainsboro;
+}
+
+@media screen and (min-width:850px) {
+  :root {
+    --max-width: 60vw;
+  }
 }
 
 @media screen and (min-width: 486px) {
@@ -62,17 +69,18 @@ html[theme="dark"] main {
 }
 
 html[theme="dark"] {
-  --body-bg         : #343434;
-  --btn-dark-green  : rgb(230 255 231 / 8%);
-  --light-card      : rgb(39, 39, 39);
-  --text-black      : rgb(255, 255, 255);
-  --border-light    : #efefef1a;
-  --light-btn-hover : #dcdcdc4a;
-  --light-btn-active: #5b5b5b;
-  --card-border     : #464646;
-  --text-secondary  : #9d9d9d;
-  --date-text       : #595959;
-  --search-bg       : #eeeeee08;
+  --body-bg            : #343434;
+  --btn-dark-green     : rgb(230 255 231 / 8%);
+  --light-card         : rgb(39, 39, 39);
+  --text-black         : rgb(255, 255, 255);
+  --border-light       : #efefef1a;
+  --light-btn-hover    : #dcdcdc4a;
+  --light-btn-active   : #5b5b5b;
+  --card-border        : #464646;
+  --text-secondary     : #9d9d9d;
+  --date-text          : #595959;
+  /* --search-bg       : #eeeeee08; */
+  --search-bg          : #d4d4d417;
 }
 
 #confirmModal {

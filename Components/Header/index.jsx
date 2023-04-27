@@ -79,7 +79,7 @@ export default function Header({ user }) {
   const router = useRouter();
   return (
     <header>
-      {router.asPath}
+      {/* {router.asPath} */}
       <AnimatePresence>
         {selectLength > 0 ? (
           <SelectModal />

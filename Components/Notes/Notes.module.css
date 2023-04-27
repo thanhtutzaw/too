@@ -164,7 +164,8 @@ border                     :none; */
 }
 
 .check {
-  color           : green;
+  /* color           : green; */
+  color           : var(--bright-green);
   background-color: rgb(59, 223, 59);
   background-color: rgb(97, 245, 97);
 }

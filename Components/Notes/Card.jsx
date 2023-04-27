@@ -85,7 +85,6 @@ export function Card({
   const router = useRouter();
   return (
     <>
-      {/* <Link href={selectMode ? `/home` : `/#Note/${id}`}> */}
       <div
         role="button"
         tabIndex="0"
@@ -100,19 +99,13 @@ export function Card({
           if (e.key !== "Escape") return;
           e.preventDefault();
           setactiveNote(null);
-          window.location.hash = `home`;
         }}
         onClick={(e) => {
-          // router.push({ hash: selectMode ? `home` : `#Note/${id}` });
           selectMode
             ? router.replace("/", undefined, {
                 scroll: false,
               })
             : (window.location.hash = `#Note/${id}`);
-          // window.location.hash = selectMode ? `home` : `#Note/${id}`;
-          // router.push({ hash: selectMode ? `home` : `#Note/${id}` });
-          // router.push({ hash: "helo" });
-          // router.replace("/", undefined, { scroll: false });
           e.stopPropagation();
           if (!selectMode) {
             setactiveNote(id);
@@ -123,7 +116,7 @@ export function Card({
           }
         }}
         style={{
-          outline: select ? "1px solid rgb(97, 245, 97)" : "",
+          outline: select ? "1px solid var(--bright-green)" : "",
         }}
         className={cardActive}
       >
@@ -203,8 +196,8 @@ export function Card({
         >
           {dateString}
         </p>
+        {/* <span style={{ color: "rgb(8, 166, 60)" }}>{dateString}</span> */}
       </div>
-      {/* </Link> */}
     </>
   );
 }
