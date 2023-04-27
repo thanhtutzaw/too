@@ -54,6 +54,11 @@ export default function AddButton({ activeNote, active, setactive }) {
         await addNote(auth, titleInput, textInput);
         setactive(false);
         setloading(false);
+        // document.body.scrollTo({
+        //   top: 100,
+        //   behavior: "smooth",
+        // });
+        document.body.scrollIntoView({ behavior: "smooth" });
       } catch (error) {
         setloading(false);
         alert(`Creat Note Failed! ${error.message}`);
@@ -75,11 +80,15 @@ export default function AddButton({ activeNote, active, setactive }) {
     return () => window.removeEventListener("keyup", handleEscape);
   }, [active, exitWithoutSaving, setactive]);
   useEffect(() => {
+    // console.log(exitWithoutSaving);
     if (!active && !exitWithoutSaving) {
-      router.replace("/", undefined, { scroll: true });
+      router.replace("/", undefined, { scroll: false });
     } else if (active) {
       history.pushState(null, document.title, location.hash);
     }
+    // if (active && !exitWithoutSaving) {
+    //   console.log("hey");
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, exitWithoutSaving]);
   useEffect(() => {

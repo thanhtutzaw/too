@@ -2,21 +2,21 @@
 @import url('https://fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese');
 
 .cardContainer {
-  width               : 100%;
-  /* width            : 100vw;
-  max-width           : var(--max-width); */
-  text-align          : left;
-  margin              : 0 auto;
-  position            : relative;
-  transition          : all .3s ease-in-out;
-  overflow            : hidden;
-  display             : flex;
-  justify-content     : center;
-  flex-wrap           : wrap;
-  gap                 : 10px;
-  text-align          : left;
-  margin-top          : 65px;
-  padding             : 1.3rem 0.9rem;
+  width                  : 100%;
+  /* width               : 100vw;
+  max-width              : var(--max-width); */
+  text-align             : left;
+  margin                 : 0 auto;
+  position               : relative;
+  transition             : all .3s ease-in-out;
+  /* overflow            : hidden; */
+  display                : flex;
+  justify-content        : center;
+  flex-wrap              : wrap;
+  gap                    : 10px;
+  text-align             : left;
+  margin-top             : 65px;
+  padding                : 1.3rem 0.9rem;
 }
 
 
