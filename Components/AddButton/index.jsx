@@ -54,10 +54,6 @@ export default function AddButton({ activeNote, active, setactive }) {
         await addNote(auth, titleInput, textInput);
         setactive(false);
         setloading(false);
-        // document.body.scrollTo({
-        //   top: 100,
-        //   behavior: "smooth",
-        // });
         document.body.scrollIntoView({ behavior: "smooth" });
       } catch (error) {
         setloading(false);
