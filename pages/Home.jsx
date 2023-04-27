@@ -1,4 +1,4 @@
-import { useAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
+import { AuthAction, useAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
 import React, { useContext, useState } from "react";
 import AddButton from "../Components/AddButton";
 import Header from "../Components/Header";
@@ -45,4 +45,6 @@ export default function Home({ float, notes }) {
     </>
   );
 }
-export const getServerSideProps = withAuthUserTokenSSR()(Home);
+export const getServerSideProps = withAuthUserTokenSSR({
+  whenAuthed: AuthAction.REDIRECT_TO_APP,
+})(Home);
