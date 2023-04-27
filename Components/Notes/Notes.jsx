@@ -60,13 +60,16 @@ export default function Notes(props) {
     // if (router.asPath === `#Note/${editNote?.id}`) {
     // history.go(1);
     window.onpopstate = () => {
+      history.pushState(null, document.title, location.hash);
+      // history.pushState(null, document.title, '/');
       if (!activeNote) return;
       if (exitWithoutSaving) {
-        if (editNote) {
-          window.location.hash = `Note/${editNote?.id}`;
-        } else {
-          router.replace("/");
-        }
+        // if (activeNote) {
+        //   window.location.hash = `Note/${editNote?.id}`;
+        // } else {
+        //   router.replace("/");
+        // }
+
         // if (editNote) {
         //   window.location.hash = `#Note/${editNote?.id}`;
         //   alert("hey");
@@ -78,6 +81,10 @@ export default function Notes(props) {
         confirmModalRef.current?.close();
         confirmModalRef?.current.showModal();
       } else {
+        // router.replace("/");
+        // window.location.hash = "home";
+        // history.pushState(null, document.title, location.hash);
+        // router.replace("/", undefined, { scroll: false });
         console.log("back (just close)");
         // history.pushState(null, document.title, "/");
         // if (router.asPath !== "/") router.replace("/");
@@ -89,34 +96,51 @@ export default function Notes(props) {
       }
     };
     // history.pushState(null, document.title, location.hash);
-  }, [
-    editNote,
-    activeNote,
-    exitWithoutSaving,
-    setShowAction,
-    setactiveNote,
-    router,
-  ]);
+  }, [activeNote, exitWithoutSaving, setShowAction, setactiveNote]);
+  useEffect(() => {
+    if (!activeNote && exitWithoutSaving) {
+      console.log("note route runned");
+      // router.replace(router.asPath, undefined, { scroll: false });
+      router.replace("/", undefined, { scroll: false });
+    } else if (activeNote) {
+      // window.location.hash = `Note/${editNote?.id}`;
+      history.pushState(null, document.title, location.hash);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeNote, exitWithoutSaving, editNote]);
+  // useEffect(() => {
+  //   if (!activeNote && exitWithoutSaving) {
+  //     console.log("close");
+  //   } else if (activeNote) {
+  //     console.log("editNote");
+  //   }
+  // }, [activeNote, editNote, exitWithoutSaving]);
   useEffect(() => {
     if (!activeNote && !active) {
+      // router.replace(router.asPath);
+
       // window.location.hash = "home";
-      router.replace("/", undefined, {
-        scroll: false,
-      });
+      // router.replace("/", undefined, {
+      //   scroll: false,
+      // });
       // router.push({ hash: "home" });
       confirmModalRef.current?.close();
     }
     if (activeNote) {
+      // router.replace("/", undefined, {
+      //   scroll: false,
+      // });
       setTimeout(() => {
         viewContainerRef.current.style.position = "fixed";
         viewContainerRef.current.style.inset = "0";
       }, 400);
       // }, 350);
+    } else {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeNote, active]);
   useEffect(() => {
-    editNote ? playOn() : playOff();
+    activeNote ? playOn() : playOff();
     if (editNote === null) {
       // console.log("hey");
       // router.replace("/", undefined, {
@@ -124,7 +148,7 @@ export default function Notes(props) {
       // });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editNote]);
+  }, [activeNote]);
 
   return (
     <>

@@ -7,6 +7,7 @@
   --main-color    : rgb(8, 166, 60);
   --body-bg       : #cfd3d0;
   --btn-background: rgb(18, 170, 77);
+  --search-bg     : #eeeeee;
 
   --text-secondary: #414141;
   --light-card    : #ffffff;
@@ -71,6 +72,7 @@ html[theme="dark"] {
   --card-border     : #464646;
   --text-secondary  : #9d9d9d;
   --date-text       : #595959;
+  --search-bg       : #eeeeee08;
 }
 
 #confirmModal {
@@ -198,6 +200,7 @@ button,
   text-align      : center;
   background-color: rgb(228, 228, 228) !important;
   border-radius   : 100px;
+  height          : 50px;
 }
 
 .backBtn {

@@ -3,7 +3,6 @@ export default function AddConfirm(props) {
   const close = () => addConfirmRef.current?.close();
   const discard = () => {
     close();
-    window.location.hash = "home";
     setactive(false);
     console.log("%cCanceled", "color:grey");
   };

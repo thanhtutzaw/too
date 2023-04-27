@@ -60,7 +60,6 @@ export default function EditNote({
     //   scroll: false,
     // });
     // window.location.hash = "#home";
-    console.log("you called close");
     // router.push({ hash: "home" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setShowAction, setactiveNote, viewContainerRef]);
@@ -103,15 +102,11 @@ export default function EditNote({
     if (exitWithoutSaving) {
       setLoading(true);
       try {
-        await updateNote();
-        router.replace(router.asPath, undefined, {
-          scroll: false,
-        });
-        console.log(router.asPath);
-        // closeEdit();
-        setactiveNote(null);
-        setShowAction("");
-
+        await update(auth, editnote, titleInput, textInput);
+        // router.replace(router.asPath, undefined, {
+        //   scroll: false,
+        // });
+        closeEdit();
         setLoading(false);
         confirmModalRef.current.close();
       } catch (error) {
@@ -179,7 +174,4 @@ export default function EditNote({
       </div>
     </>
   );
-  async function updateNote() {
-    await update(auth, editnote, titleInput, textInput);
-  }
 }
