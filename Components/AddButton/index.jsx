@@ -10,6 +10,7 @@ import { addNote } from "./addNote";
 import s from "./index.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
+import useEscape from "../../hooks/useEscape";
 
 export default function AddButton({ activeNote, active, setactive }) {
   const [loading, setloading] = useState(false);
@@ -30,11 +31,6 @@ export default function AddButton({ activeNote, active, setactive }) {
         setactive(false);
       }
     };
-    function handleEscape(e) {
-      if (!(e.key === "Escape" && active)) return;
-      exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false);
-      console.log("%cEscape (add)", "color:green");
-    }
     if (!active && !exitWithoutSaving) {
       router.replace("/", undefined, { scroll: false });
     } else if (active) {
@@ -42,14 +38,13 @@ export default function AddButton({ activeNote, active, setactive }) {
     }
     if (!active) {
       addConfirmRef.current?.close();
-    }
-    // if (!active) {
-    //   addConfirmRef.current.close();
-    // }
-    window.addEventListener("keyup", handleEscape);
-    return () => window.removeEventListener("keyup", handleEscape);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, exitWithoutSaving, setactive]);
+  useEscape(() => {
+    if (!active) return;
+    exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false);
+    console.log("%cEscape (add)", "color:green");
+  });
   useEffect(() => {
     active ? playOn() : playOff();
     // eslint-disable-next-line react-hooks/exhaustive-deps

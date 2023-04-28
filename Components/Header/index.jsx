@@ -8,17 +8,10 @@ import useTheme from "../../hooks/useTheme";
 import styles from "../../styles/Home.module.css";
 import SelectModal from "../Modal/SelectModal";
 import Sidebar from "./Sidebar";
-import { useRouter } from "next/router";
+import useEscape from "../../hooks/useEscape";
 function Searchbar(props) {
-  const {
-    isSearching,
-    searchCloseHandle,
-    setisSearching,
-    Search,
-    setSearch,
-    input,
-    user,
-  } = props;
+  const { searchCloseHandle, setisSearching, Search, setSearch, input, user } =
+    props;
 
   return (
     <div className={styles.searchBar}>
@@ -64,16 +57,12 @@ export default function Header({ user }) {
     window.addEventListener("keydown", handleSearch);
     return () => window.removeEventListener("keydown", handleSearch);
   }, []);
-  useEffect(() => {
-    function handleEscape(e) {
-      if (!(e.key === "Escape" && Search)) return;
-      setisSearching(false);
-      setSearch("");
-      input.current.blur();
-    }
-    window.addEventListener("keyup", handleEscape);
-    return () => window.removeEventListener("keyup", handleEscape);
-  }, [Search, setSearch, setisSearching]);
+  useEscape(() => {
+    if (!Search) return;
+    setisSearching(false);
+    setSearch("");
+    input.current.blur();
+  });
   const { theme, setTheme } = useTheme();
   const searchCloseHandle = () => {
     setSearch("");

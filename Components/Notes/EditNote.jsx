@@ -1,6 +1,5 @@
 import { getAuth } from "firebase/auth";
 import { Timestamp } from "firebase/firestore";
-import { useRouter } from "next/router";
 import React, {
   useCallback,
   useContext,
@@ -15,6 +14,7 @@ import Input from "./Input";
 import s from "./Notes.module.css";
 import ViewHeader from "./ViewHeader";
 import { update } from "./update";
+import useEscape from "../../hooks/useEscape";
 // export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -53,21 +53,13 @@ export default function EditNote({
       exitWithoutSaving ? confirmModalRef.current?.showModal() : closeEdit(),
     [closeEdit, confirmModalRef, exitWithoutSaving]
   );
-  useEffect(() => {
-    function handleEscape(e) {
-      if (e.key !== "Escape") return;
-      if (activeNote) {
-        exitHandle();
-        console.log("%cEscape (editNote)", "color:green");
-      }
-    }
-    window.addEventListener("keyup", handleEscape);
-    return () => window.removeEventListener("keyup", handleEscape);
-  }, [activeNote, exitHandle]);
-
+  useEscape(() => {
+    if (!activeNote) return;
+    exitHandle();
+    console.log("%cEscape (editNote)", "color:green");
+  });
   const titleRef = useRef(null);
   const textRef = useRef(null);
-
   useEffect(() => {
     if (activeNote || editnote) {
       setTimeout(() => {

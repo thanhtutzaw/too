@@ -7,6 +7,7 @@ import { AppContext } from "../../context/AppContext";
 import { Highlight } from "./Highlight";
 import NoteAction from "./NoteAction";
 import styles from "./Notes.module.css";
+import useEscape from "../../hooks/useEscape";
 
 export function Card({
   selectMode,
@@ -67,15 +68,14 @@ export function Card({
       setselectMode(false);
       setSelect(false);
     }
-    function handleEscape(e) {
-      if (!(e.key === "Escape" && selectMode)) return;
-      setselectedId([]);
-      setselectMode(false);
-      setSelect(false);
-    }
-    window.addEventListener("keyup", handleEscape);
-    return () => window.removeEventListener("keyup", handleEscape);
-  }, [selectMode, selectedId, setselectMode, setselectedId]);
+  }, [selectedId.length, setselectMode]);
+
+  useEscape(() => {
+    if (!selectMode) return;
+    setSelect(false);
+    setselectedId([]);
+    setselectMode(false);
+  });
   const date = new Timestamp(createdAt.seconds, createdAt.nanoseconds).toDate();
   const dateString = date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -116,7 +116,9 @@ export function Card({
           }
         }}
         style={{
-          border: select ? "2px solid var(--bright-green)" : "1px solid var(--card-border)",
+          border: select
+            ? "2px solid var(--bright-green)"
+            : "1px solid var(--card-border)",
         }}
         className={cardActive}
       >

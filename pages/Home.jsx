@@ -8,6 +8,7 @@ import AddButton from "../Components/AddButton";
 import Header from "../Components/Header";
 import Notes from "../Components/Notes";
 import { AppContext } from "../context/AppContext";
+import useEscape from "../hooks/useEscape";
 export default function Home({ float, notes }) {
   const [active, setactive] = useState(false);
   const [activeNote, setactiveNote] = useState();
@@ -32,6 +33,7 @@ export default function Home({ float, notes }) {
       return { ...notes };
     }
   });
+
   return (
     <>
       {user.photoURL || user.email ? (
