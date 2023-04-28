@@ -35,51 +35,13 @@
   opacity         : 1;
 }
 
-.card {
-  /* 
-  word-break      : break-word;
-  flex-grow       : 1;
-  border          : 1px solid #bdbdbd;
-  padding         : .5rem;
-  cursor          : pointer;
-  width           : 100%;
-  color           : inherit;
-  width           : 37%;
-  white-space     : pre-wrap; */
-
-  /* transform: scale(1); */
-  /* position: relative; */
-  /* transition: width 400ms ease , height 400ms ease , left cubic-bezier(0.4, 0, 0.2, 1) 420ms , top cubic-bezier(0.4, 0, 0.2, 1) 420ms; */
-}
-
 .card:focus-visible {
   outline       : 2px solid var(--main-color);
   outline-offset: 2px;
 }
 
 .card.active {
-  /* width:100%; */
-  /* height:100vh; */
-  /* position: fixed; */
-  opacity                  : 0;
-  /* scale                 : 5; */
-  /* scale                 : 2; */
-  /* position              : relative;
-  top                      :0;
-  left                     :0; */
-  /* transform             : translate(50%,50%); */
-  /* transform-origin      : center  ; */
-  /* transform-origin      : 50% 10%; */
-  /* -webkit-line-clamp    : unset;
-  word-break               : normal;
-white-space                : pre-wrap;
-height                     : 100vh;
-position                   : fixed;
-inset                      : 0;
-margin                     : 0 auto;
-z-index                    : 20000;
-border                     :none; */
-  /* width                 : 100vw; */
+  opacity: 0;
 }
 
 .positioned {
@@ -88,24 +50,6 @@ border                     :none; */
   /* left         : 0; */
 }
 
-/* .card.active { */
-/* transform: scale(1.5); */
-/* opacity            : 0; */
-
-/* animation: fadein 1s ease-in-out; */
-
-/* } */
-
-/* .card.inactive { */
-/*
-  transform: scale(1); */
-/* transition-delay: 1s; */
-/* animation: fadein 1s ease-in-out; */
-
-/* } */
-/* -webkit-line-clamp : unset;
-  overflow           : auto;
-*/
 .cardTitle {
   display       : flex;
   flex          : 1;
@@ -117,29 +61,26 @@ border                     :none; */
 }
 
 .card p:not(.date) {
-  -webkit-line-clamp      : 6;
-  overflow                : hidden;
-  display                 : -webkit-box;
-  -webkit-box-orient      : vertical;
-  text-overflow           : ellipsis;
-  font-family             : Roboto, Arial, sans-serif;
-  /* color                : #4a4a4a; */
-  color                   : var(--text-secondary);
-  font-size               : 19px;
-  /* white-space          : normal; */
+  -webkit-line-clamp: 6;
+  overflow          : hidden;
+  display           : -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow     : ellipsis;
+  font-family       : Roboto, Arial, sans-serif;
+  color             : var(--text-secondary);
+  font-size         : 19px;
 }
 
 .header>button {
-  width              : 25px;
-  height             : 25px;
-  display            : flex;
-  justify-content    : center;
-  align-items        : center;
-  border             : 0;
-  border-radius      : 100px;
-  padding            : 3px;
-  background-color   : transparent;
-  /* color           : var(--text-black); */
+  width           : 25px;
+  height          : 25px;
+  display         : flex;
+  justify-content : center;
+  align-items     : center;
+  border          : 0;
+  border-radius   : 100px;
+  padding         : 3px;
+  background-color: transparent;
 }
 
 .header>button:not(.check) {
@@ -164,56 +105,28 @@ border                     :none; */
 }
 
 .check {
-  /* color           : green; */
   color           : var(--bright-green);
   background-color: rgb(59, 223, 59);
   background-color: rgb(97, 245, 97);
 }
 
-/* @media (hover: hover) and (pointer: fine) {
-  .item {
-    opacity: 0;
-  }
-
-  .card:hover .item {
-    opacity: 1;
-  }
-} */
-
 .viewContainer {
-  /* visibility         : hidden;
-  transform-origin   : 0 0;
-  opacity            : 0; */
-  /* height          : 100vh;
-max-height           : 100%; */
-  /* height          : stretch;
-  height             : -webkit-fill-available; */
-  /* height          : -webkit-fill-available;
-  height             : fill-available; */
-  /* height          : 100vh; */
-  /* height          : 87vh; */
-  /* height          : 100vh; */
-  /* height          :100dvh; */
-  display                        : flex;
-  flex-direction                 : column;
-  text-align                     : left;
-  background-color               : var(--light-card);
-  color                          : var(--text-black);
-  max-width                      : var(--max-width);
-  width                          : 100vw;
-  min-height                     : -webkit-fill-available;
-  margin                         : 0 auto;
-  transform                      : translateX(var(--max-width));
-  transition                     : all .4s ease-in-out, width 0s;
-  /* transition                  : all 2s ease-in-out; */
-  z-index                        : 100000;
-  opacity                        : 0;
-  visibility                     : hidden;
-  pointer-events                 : initial;
-  margin                         : 0 auto;
-  /* outline                     : 1px solid red; */
-  /* min-height                  : -webkit-fill-available; */
-  /* transition                  : opacity 1s ease; */
+  display         : flex;
+  flex-direction  : column;
+  text-align      : left;
+  background-color: var(--light-card);
+  color           : var(--text-black);
+  max-width       : var(--max-width);
+  width           : 100vw;
+  min-height      : -webkit-fill-available;
+  margin          : 0 auto;
+  transform       : translateX(var(--max-width));
+  transition      : all .4s ease-in-out, width 0s;
+  z-index         : 100000;
+  opacity         : 0;
+  visibility      : hidden;
+  pointer-events  : initial;
+  margin          : 0 auto;
 }
 
 .viewContainer.loading {
@@ -350,15 +263,14 @@ max-height           : 100%; */
 }
 
 .edit {
-  position         : fixed;
-  overflow         : hidden;
-  width            : 100vw;
-  max-width        : var(--max-width);
-  height           : 100%;
-  z-index          : 100000;
-  cursor           : default;
-  pointer-events   : none;
-  /* border        : 3px solid red !important;  */
+  position      : fixed;
+  overflow      : hidden;
+  width         : 100vw;
+  max-width     : var(--max-width);
+  height        : 100%;
+  z-index       : 100000;
+  cursor        : default;
+  pointer-events: none;
 }
 
 .edit.active {
@@ -379,9 +291,8 @@ max-height           : 100%; */
 }
 
 .editDate {
-  padding            : 10px 1.3rem;
-  /* background-color: red; */
-  font-size          : 16px;
+  padding  : 10px 1.3rem;
+  font-size: 16px;
 
   font-family: Roboto,
     Arial,

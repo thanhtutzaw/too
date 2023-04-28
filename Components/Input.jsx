@@ -19,12 +19,6 @@ export default function Input({ setOpenNew }) {
           input text
         </p>
       </div>
-      {/* <motion.div className={s.titleView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
-            {note.title}
-          </motion.div>
-          <motion.div className={s.textView} layoutId={`title-${id}`} contentEditable="true" aria-multiline="true" role="textbox" tabIndex="0" aria-label="Title" spellCheck="true" >
-            {note.text}
-          </motion.div> */}
     </motion.div>
   );
 }

@@ -2,9 +2,7 @@ import React from "react";
 
 export function Highlight({ highlight, query }) {
   const q = query;
-  // const searchIndex = highlight.toLowerCase().indexOf(q);
   const searchIndex = highlight.toLowerCase().indexOf(q?.toLowerCase());
-  // highlight.toLowerCase().indexOf(q) || highlight.indexOf(query);
   if (searchIndex === -1) {
     return <>{highlight}</>;
   }

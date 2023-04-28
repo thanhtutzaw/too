@@ -1,6 +1,3 @@
-
-// import React from 'react'
-// import { notes } from '../../utils/data'
 // export const getStaticPaths = async () => {
 //     // const { id, slug } = params;
 //     // const userDoc = await getUserWithUsername(username);
@@ -28,9 +25,4 @@
 //   }
 // }
   
-// export default function Note({note}) {
-//   return (
-//     <div>{note.id}</div>
-//   )
-// }
 

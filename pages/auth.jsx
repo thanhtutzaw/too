@@ -1,13 +1,13 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { AuthAction, withAuthUser } from "next-firebase-auth";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import GoogleLogin from "../Components/Login/GoogleLogin";
-import Layout from "../Components/Layout.jsx";
-import styles from "../styles/Home.module.css";
 import FullPageLoader from "../Components/FullPageLoader";
-import Image from "next/image";
+import Layout from "../Components/Layout.jsx";
+import GoogleLogin from "../Components/Login/GoogleLogin";
+import styles from "../styles/Home.module.css";
 
 const Auth = () => {
   const router = useRouter();
@@ -16,11 +16,10 @@ const Auth = () => {
   const auth = getAuth();
   function signin(email, password) {
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        // router.push('/')
-      })
-      .catch((err) => {
-        console.log(err);
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+        alert(`signInWithEmailAndPassword Failed! ${error.message}`);
       });
   }
   useEffect(() => {

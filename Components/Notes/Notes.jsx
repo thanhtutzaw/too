@@ -21,7 +21,6 @@ export default function Notes(props) {
     elements?.forEach((ele) => {
       height = getComputedStyle(ele).height;
       // settotalHeight(totalHeight += parseInt(height))
-
       for (let i = 0; i < elements?.length; i++) {
         let arr = [];
         //  height += height
@@ -75,7 +74,6 @@ export default function Notes(props) {
   }, [activeNote, exitWithoutSaving, setShowAction, setactiveNote]);
   useEffect(() => {
     if (!activeNote && exitWithoutSaving) {
-      console.log("note route runned");
       router.replace("/", undefined, { scroll: false });
     } else if (activeNote) {
       history.pushState(null, document.title, location.hash);
@@ -121,7 +119,6 @@ export default function Notes(props) {
         ))}
       </div>
       <EditNote
-        viewContainerRef={viewContainerRef}
         editnote={editNote}
         textInput={textInput}
         activeNote={activeNote}
@@ -130,22 +127,9 @@ export default function Notes(props) {
         settitleInput={settitleInput}
         setactiveNote={setactiveNote}
         confirmModalRef={confirmModalRef}
+        viewContainerRef={viewContainerRef}
         exitWithoutSaving={exitWithoutSaving}
       />
-
-      {
-        // <motion.div
-        //     layoutid={`card-${editNote.id}`}
-        //     id="card" className={styles.viewContent}>
-        //     {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
-        //     <motion.div layoutid={`title-${editNote.id}`} className={styles.titleView}>
-        //         {editNote.title}
-        //     </motion.div>
-        //     <motion.div layoutid={`text-${editNote.id}`} className={styles.textView}>
-        //         <p>{editNote.text}</p>
-        //     </motion.div>
-        // </motion.div>
-      }
     </>
   );
 }

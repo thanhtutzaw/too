@@ -6,7 +6,6 @@ import Layout from "../Components/Layout.jsx";
 const Auth = () => (
   <>
     <h3>Sign in ssr</h3>
-
     <GoogleLogin />
   </>
 );
@@ -14,9 +13,7 @@ Auth.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
 export const getServerSideProps = withAuthUserTokenSSR({
-  // whenAuthed: AuthAction.REDIRECT_TO_APP,
 })();
 
 export default withAuthUser({
-  // whenAuthed: AuthAction.REDIRECT_TO_APP,
 })(Auth);

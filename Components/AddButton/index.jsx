@@ -26,17 +26,32 @@ export default function AddButton({ activeNote, active, setactive }) {
       if (!active) return;
       if (exitWithoutSaving) {
         addConfirmRef.current.showModal();
-        // setactive(true);
       } else {
         setactive(false);
       }
     };
+    function handleEscape(e) {
+      if (!(e.key === "Escape" && active)) return;
+      exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false);
+      console.log("%cEscape (add)", "color:green");
+    }
+    if (!active && !exitWithoutSaving) {
+      router.replace("/", undefined, { scroll: false });
+    } else if (active) {
+      history.pushState(null, document.title, location.hash);
+    }
+    if (!active) {
+      addConfirmRef.current?.close();
+    }
+    // if (!active) {
+    //   addConfirmRef.current.close();
+    // }
+    window.addEventListener("keyup", handleEscape);
+    return () => window.removeEventListener("keyup", handleEscape);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, exitWithoutSaving, setactive]);
   useEffect(() => {
     active ? playOn() : playOff();
-    if (!active) {
-      addConfirmRef.current.close();
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
   const auth = getAuth(app);
@@ -66,32 +81,12 @@ export default function AddButton({ activeNote, active, setactive }) {
       setactive((prev) => !prev);
     }
   }
-  useEffect(() => {
-    function handleEscape(e) {
-      if (!(e.key === "Escape" && active)) return;
-      exitWithoutSaving ? addConfirmRef.current?.showModal() : setactive(false);
-      console.log("%cEscape (add)", "color:green");
-    }
-    window.addEventListener("keyup", handleEscape);
-    return () => window.removeEventListener("keyup", handleEscape);
-  }, [active, exitWithoutSaving, setactive]);
-  useEffect(() => {
-    // console.log(exitWithoutSaving);
-    if (!active && !exitWithoutSaving) {
-      router.replace("/", undefined, { scroll: false });
-    } else if (active) {
-      history.pushState(null, document.title, location.hash);
-    }
-    // if (active && !exitWithoutSaving) {
-    //   console.log("hey");
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, exitWithoutSaving]);
-  useEffect(() => {
-    if (!active) {
-      addConfirmRef.current?.close();
-    }
-  }, [active]);
+
+  // useEffect(() => {
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [active, exitWithoutSaving]);
+  // useEffect(() => {}, [active]);
   useEffect(() => {
     if (!(activeNote || active)) {
       document.body.style.overflow = "auto";
@@ -147,8 +142,6 @@ export default function AddButton({ activeNote, active, setactive }) {
             if (active) return;
             window.location.hash = "#addNote";
             setactive(true);
-            // }
-            // submitHandle();
           }}
           className={addBtn}
         >

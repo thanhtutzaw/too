@@ -116,7 +116,7 @@ export function Card({
           }
         }}
         style={{
-          outline: select ? "1px solid var(--bright-green)" : "",
+          border: select ? "2px solid var(--bright-green)" : "1px solid var(--card-border)",
         }}
         className={cardActive}
       >
@@ -132,7 +132,7 @@ export function Card({
         </AnimatePresence>
         {/* <a id="card" style={{ width: width + 'px', transform: `translate(${width + 16 * index / index}px,${width + 16 * index}px)` }} key={id} className={styles.card}> */}
         <div
-          style={{ filter: showAction === id ? "blur(2px)" : "" }}
+          style={{ filter: showAction === id ? "blur(2px)" : "unset" }}
           className={styles.header}
         >
           <div className={styles.cardTitle}>
@@ -192,7 +192,6 @@ export function Card({
         <p style={{ filter: showAction === id ? "blur(2px)" : "unset" }}>
           <Highlight highlight={text} query={Search} />
         </p>
-
         <p
           className={styles.date}
           style={{ filter: showAction === id ? "blur(2px)" : "unset" }}

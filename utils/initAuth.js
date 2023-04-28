@@ -3,8 +3,6 @@ import { init } from 'next-firebase-auth'
 import absoluteUrl from 'next-absolute-url'
 
 const TWELVE_DAYS_IN_MS = 12 * 60 * 60 * 24 * 1000
-
-// initAuth.js
 const initAuth = () => {
 
   init({   // calling function from Package and pass VALUE

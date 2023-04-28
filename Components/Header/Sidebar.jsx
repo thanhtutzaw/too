@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useAuthUser } from "next-firebase-auth";
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { MdLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { VscSignOut } from "react-icons/vsc";
@@ -75,7 +75,6 @@ export default function Sidebar({ setshowModal, theme, setTheme }) {
       setLoading(false);
     }, 1000);
   };
-  // const { showAction, setShowAction } = useContext(AppContext);
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}

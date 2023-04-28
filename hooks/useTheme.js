@@ -25,5 +25,7 @@ export default function useTheme() {
       document.documentElement.setAttribute('theme', theme);
     }
   }, [theme]);
+
+  
   return { theme, setTheme };
 }

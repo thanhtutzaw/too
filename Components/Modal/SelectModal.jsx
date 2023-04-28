@@ -11,8 +11,6 @@ export default function SelectModal() {
   const { clearSelect, selectLength, selectedId, setShowAction } =
     useContext(AppContext);
   const [loading, setloading] = useState(false);
-  // const controlTabkey = !openDeleteModal ? 1 : -1;
-  // const mountAnimation = selecting ? mountStyle : unmountStyle;
   const auth = getAuth(app);
   async function deleteMultipleNotes() {
     if (!db) {
@@ -38,11 +36,9 @@ export default function SelectModal() {
   }
   const router = useRouter();
   return (
-    // <div style={mountAnimation} className={`selectModal `}>
     <motion.div
       style={{
         cursor: loading ? "wait" : "initial",
-        // pointerEvents: loading ? "none" : "initial",
       }}
       initial={{ opacity: 0, rotateX: 60 }}
       animate={{ opacity: 1, rotateX: 0 }}
@@ -73,7 +69,7 @@ export default function SelectModal() {
             console.log("%c Deleted !", "color:green");
           } catch (error) {
             setloading(false);
-            alert(error.message);
+            alert(`Delete Failed ! ${error.message}`);
           }
           setShowAction("");
         }}

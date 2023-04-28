@@ -10,8 +10,27 @@ import SelectModal from "../Modal/SelectModal";
 import Sidebar from "./Sidebar";
 import { useRouter } from "next/router";
 function Searchbar(props) {
-  const { searchCloseHandle, setisSearching, Search, setSearch, input, user } =
-    props;
+  const {
+    isSearching,
+    searchCloseHandle,
+    setisSearching,
+    Search,
+    setSearch,
+    input,
+    user,
+  } = props;
+  useEffect(() => {
+    function handleEscape(e) {
+      if (!isSearching && e.key === "Escape") {
+        input.current.blur();
+      }
+      if (Search?.length === 0 || e.key !== "Escape") return;
+      setisSearching(false);
+      setSearch("");
+    }
+    window.addEventListener("keyup", handleEscape);
+    return () => window.removeEventListener("keyup", handleEscape);
+  }, [Search, input, isSearching, setSearch, setisSearching]);
   return (
     <div className={styles.searchBar}>
       <input
@@ -48,6 +67,7 @@ export default function Header({ user }) {
   }, []);
   const [showModal, setshowModal] = useState(false);
   const {
+    isSearching,
     setisSearching,
     Search,
     setSearch,
@@ -83,9 +103,6 @@ export default function Header({ user }) {
   //     document.addEventListener('scroll', handleScroll);
   //     return () => document.removeEventListener('scroll', handleScroll);
   // }, [float]);
-  // if(!user){
-  //     Router.push('/auth')
-  // }
   const router = useRouter();
   return (
     <header>
@@ -113,11 +130,8 @@ export default function Header({ user }) {
             />
             <div>
               <motion.div
-                onKeyDown={
-                  (e) =>
-                    // (e.key === "Enter" || e.key === " " || e.key === "Escape") &&
-                    (e.key === "Enter" || e.key === "Escape") && modalHandle()
-                  // alert("hey")
+                onKeyDown={(e) =>
+                  (e.key === "Enter" || e.key === "Escape") && modalHandle()
                 }
                 role="button"
                 tabIndex={4}
@@ -127,8 +141,6 @@ export default function Header({ user }) {
               >
                 <Image
                   unoptimized={true}
-                  // referrerPolicy="no-referrer"
-                  // unoptimized={!user.photoURL}
                   src={user?.photoURL ? user.photoURL : testUserPicture}
                   alt={""}
                   width="40"

@@ -10,14 +10,9 @@ function Layout({ children }) {
         <meta name="Too" content="for you" />
         <link rel="icon" href="favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        {/* <div className={styles.container}> */}
-        {children}
-        {/* { OpenNew && <Input setOpenNew={setOpenNew} />} */}
-      </main>
+      <main className={styles.main}>{children}</main>
     </>
   );
 }
-// export const getServerSideProps = withAuthUserTokenSSR()()
 
 export default withAuthUser({})(Layout);

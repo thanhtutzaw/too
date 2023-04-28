@@ -42,13 +42,6 @@ export default function EditNote({
 }) {
   const auth = getAuth(app);
   const { setShowAction } = useContext(AppContext);
-  //   let height;
-  //   if (typeof window !== "undefined") {
-  //     height = window.innerHeight;
-  //     if (height > 673) {
-  //       height = 57 + " extra px need (full screen)";
-  //     }
-  //   }
   const closeEdit = useCallback(() => {
     viewContainerRef.current.style.position = "initial";
     viewContainerRef.current.style.inset = "initial";
@@ -87,10 +80,6 @@ export default function EditNote({
   const [loading, setLoading] = useState(false);
 
   async function submitHandle() {
-    // if (!exitWithoutSaving) {
-    //   closeEdit();
-    //   return;
-    // }
     if (exitWithoutSaving) {
       setLoading(true);
       try {
@@ -135,9 +124,6 @@ export default function EditNote({
           <ViewHeader
             loading={loading}
             exitHandle={exitHandle}
-            // exitHandle={() => {
-            //   console.log(router.asPath);
-            // }}
             submitHandle={submitHandle}
           />
           <Input

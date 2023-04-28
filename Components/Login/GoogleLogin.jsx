@@ -12,16 +12,6 @@ const firebaseAuthConfig = {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       requireDisplayName: false,
     },
-    // {
-    //   provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    //   // Whether the display name should be displayed in Sign Up page.
-    //   requireDisplayName: false,
-
-    //   // signInMethod: getEma(),
-    //   disableSignUp: {
-    //     // status: getDisableSignUpStatus()
-    //   }
-    // }
   ],
   signInSuccessUrl: "/",
   credentialHelper: "none",
@@ -31,24 +21,10 @@ const firebaseAuthConfig = {
 };
 const GoogleLogin = () => {
   const [renderAuth, setRenderAuth] = useState(false);
-  // const input = document.querySelectorAll('input[type=email]')[0]
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       setRenderAuth(true);
       console.log("CLIENT");
-      // const input = document.querySelectorAll('#firebaseui_container > div > div.firebaseui-card-content > form > ul > li:nth-child(2) > button')[0]
-      // if(input){
-      //   input.addEventListener('click', ()=>{
-      //   })
-      // }
-      // const emailInput = document.querySelectorAll('input[type=email]')[0]
-      // emailInput.value = 'test'
-
-      // if(emailInput){
-      //   // emailInput.value = "test"
-      //   // emailInput.style.backgroundColor = 'red !important'
-      // }
     } else {
       console.log("server");
     }
