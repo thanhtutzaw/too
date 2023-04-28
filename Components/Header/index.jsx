@@ -18,7 +18,7 @@ function Searchbar(props) {
         onBlur={() => setisSearching(false)}
         onFocus={() => setisSearching(true)}
         onChange={(e) => {
-          setSearch(e.target.value.toLowerCase());
+          setSearch(e.target.value);
         }}
         ref={input}
         value={Search}
@@ -113,11 +113,6 @@ export default function Header({ user }) {
                 tabIndex={4}
                 className={styles.mainProfile}
                 onClick={modalHandle}
-                // onClick={() => {
-                //   // window.location.hash = "gg";
-                //   // router.replace({ hash: "gg" });
-                //   router.push({ hash: "gg" });
-                // }}
                 whileTap={{ scale: 0.8 }}
               >
                 <Image

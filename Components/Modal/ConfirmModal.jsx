@@ -11,10 +11,6 @@ export default function ConfirmModal(props) {
         className="discardBtn"
         onClick={() => {
           close();
-          // router.asPath !== "/" && router.replace("/");
-          // router.replace("/", undefined, {
-          //   scroll: false,
-          // });
           closeEdit();
           console.log("%cCanceled", "color:grey");
         }}

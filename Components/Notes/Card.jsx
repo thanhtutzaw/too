@@ -1,12 +1,12 @@
+import { Timestamp } from "firebase/firestore";
 import { AnimatePresence } from "framer-motion";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiCheck, BiDotsVerticalRounded } from "react-icons/bi";
 import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import { AppContext } from "../../context/AppContext";
+import { Highlight } from "./Highlight";
 import NoteAction from "./NoteAction";
 import styles from "./Notes.module.css";
-import { Timestamp } from "firebase/firestore";
-import { useRouter } from "next/router";
 
 export function Card({
   selectMode,
@@ -82,19 +82,11 @@ export function Card({
     month: "short",
     day: "numeric",
   });
-  const router = useRouter();
-  const index = text.toLowerCase().indexOf(Search?.toLowerCase());
-  // if (index === -1) {
-  //   return <div></div>;
-  // }
-  const searchIndex = text.toLowerCase().indexOf(Search?.toLowerCase());
-  const before = text.slice(0, searchIndex);
-  const match = text.slice(searchIndex, searchIndex + Search?.length);
-  const after = text.slice(searchIndex + Search?.length);
-  // if (index !== -1) return;
-
   return (
     <>
+      {/* {titleIndex}
+      {" , "}
+      {index} */}
       <div
         role="button"
         tabIndex="0"
@@ -112,9 +104,6 @@ export function Card({
         }}
         onClick={(e) => {
           !selectMode && (window.location.hash = `#Note/${id}`);
-          //   router.replace("/", undefined, {
-          //       scroll: false,
-          //     })
           e.stopPropagation();
           if (!selectMode) {
             setactiveNote(id);
@@ -144,7 +133,9 @@ export function Card({
           style={{ filter: showAction === id ? "blur(2px)" : "" }}
           className={styles.header}
         >
-          <div className={styles.cardTitle}>{title}</div>
+          <div className={styles.cardTitle}>
+            <Highlight highlight={title} query={Search} />
+          </div>
           {!selectMode ? (
             <button
               tabIndex={-1}
@@ -197,23 +188,7 @@ export function Card({
           )}
         </div>
         <p style={{ filter: showAction === id ? "blur(2px)" : "unset" }}>
-          {/* {text?.split(Search)} */}
-          {/* {text?.split(Search)} */}
-          {/* {text.substring(Search?.length )} */}
-
-          {/* {text.substring(0, Search?.length - text.length)}
-          {text.toLowerCase().includes(Search) && <mark>{Search}</mark>}
-          {text?.split(Search)} */}
-
-          {index !== -1 ? (
-            <>
-              {before}
-              <mark>{match}</mark>
-              {after}
-            </>
-          ) : (
-            text
-          )}
+          <Highlight highlight={text} query={Search} />
         </p>
 
         <p
@@ -222,7 +197,6 @@ export function Card({
         >
           {dateString}
         </p>
-        {/* <span style={{ color: "rgb(8, 166, 60)" }}>{dateString}</span> */}
       </div>
     </>
   );

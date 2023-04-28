@@ -1,4 +1,8 @@
-import { AuthAction, useAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
+import {
+  AuthAction,
+  useAuthUser,
+  withAuthUserTokenSSR,
+} from "next-firebase-auth";
 import React, { useContext, useState } from "react";
 import AddButton from "../Components/AddButton";
 import Header from "../Components/Header";
@@ -13,10 +17,16 @@ export default function Home({ float, notes }) {
   const searchedNotes = notes.filter((note) => {
     if (Search) {
       return (
-        note.title.toLowerCase().replace(/ /g, "").includes(Search.replace(/ /g, "")) ||
-        note.title.toLowerCase().includes(Search) ||
-        note.text.toLowerCase().includes(Search) ||
-        note.text.toLowerCase().replace(/ /g, "").includes(Search.replace(/ /g, ""))
+        note.title
+          .toLowerCase()
+          .replace(/ /g, "")
+          .includes(Search.toLowerCase().replace(/ /g, "")) ||
+        note.title.toLowerCase().includes(Search.toLowerCase()) ||
+        note.text.toLowerCase().includes(Search.toLowerCase()) ||
+        note.text
+          .toLowerCase()
+          .replace(/ /g, "")
+          .includes(Search.toLowerCase().replace(/ /g, ""))
       );
     } else {
       return { ...notes };
@@ -26,7 +36,7 @@ export default function Home({ float, notes }) {
     <>
       {user.photoURL || user.email ? (
         <>
-          <Header float={float} user={user}  />
+          <Header float={float} user={user} />
           <Notes
             setactiveNote={setactiveNote}
             activeNote={activeNote}

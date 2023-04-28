@@ -54,13 +54,6 @@ export default function EditNote({
     viewContainerRef.current.style.inset = "initial";
     setactiveNote(null);
     setShowAction("");
-    // console.log("this runned");
-    // router.replace("/", undefined, {
-    //   scroll: false,
-    // });
-    // window.location.hash = "#home";
-    // router.push({ hash: "home" });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setShowAction, setactiveNote, viewContainerRef]);
   const exitHandle = useCallback(
     () =>
@@ -102,9 +95,6 @@ export default function EditNote({
       setLoading(true);
       try {
         await update(auth, editnote, titleInput, textInput);
-        // router.replace(router.asPath, undefined, {
-        //   scroll: false,
-        // });
         closeEdit();
         setLoading(false);
         confirmModalRef.current.close();

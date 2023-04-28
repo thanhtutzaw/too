@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
 import { AppContext } from "../../context/AppContext";
@@ -6,7 +7,6 @@ import EditNote from "./EditNote";
 import styles from "./Notes.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
-import { useRouter } from "next/router";
 
 export default function Notes(props) {
   const { active, activeNote, setactiveNote, notes } = props;
@@ -57,79 +57,36 @@ export default function Notes(props) {
   const router = useRouter();
 
   useEffect(() => {
-    // if (router.asPath === `#Note/${editNote?.id}`) {
-    // history.go(1);
     window.onpopstate = () => {
       history.pushState(null, document.title, location.hash);
-      // history.pushState(null, document.title, '/');
       if (!activeNote) return;
       if (exitWithoutSaving) {
-        // if (activeNote) {
-        //   window.location.hash = `Note/${editNote?.id}`;
-        // } else {
-        //   router.replace("/");
-        // }
-
-        // if (editNote) {
-        //   window.location.hash = `#Note/${editNote?.id}`;
-        //   alert("hey");
-        // }
-        // router.replace(`#Note/${editNote?.id}`);
         console.log("back (exit without save)");
-        // history.pushState(null, document.title, location.hash);
-        // window.location.hash = `Note/${editNote?.id}`;
         confirmModalRef.current?.close();
         confirmModalRef?.current.showModal();
       } else {
-        // router.replace("/");
-        // window.location.hash = "home";
-        // history.pushState(null, document.title, location.hash);
-        // router.replace("/", undefined, { scroll: false });
         console.log("back (just close)");
-        // history.pushState(null, document.title, "/");
-        // if (router.asPath !== "/") router.replace("/");
         setactiveNote("");
         setShowAction("");
-        // window.location.hash = "home";
         viewContainerRef.current.style.position = "initial";
         viewContainerRef.current.style.inset = "initial";
       }
     };
-    // history.pushState(null, document.title, location.hash);
   }, [activeNote, exitWithoutSaving, setShowAction, setactiveNote]);
   useEffect(() => {
     if (!activeNote && exitWithoutSaving) {
       console.log("note route runned");
-      // router.replace(router.asPath, undefined, { scroll: false });
       router.replace("/", undefined, { scroll: false });
     } else if (activeNote) {
-      // window.location.hash = `Note/${editNote?.id}`;
       history.pushState(null, document.title, location.hash);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeNote, exitWithoutSaving, editNote]);
-  // useEffect(() => {
-  //   if (!activeNote && exitWithoutSaving) {
-  //     console.log("close");
-  //   } else if (activeNote) {
-  //     console.log("editNote");
-  //   }
-  // }, [activeNote, editNote, exitWithoutSaving]);
   useEffect(() => {
     if (!activeNote && !active) {
-      // router.replace(router.asPath);
-
-      // window.location.hash = "home";
-      // router.replace("/", undefined, {
-      //   scroll: false,
-      // });
-      // router.push({ hash: "home" });
       confirmModalRef.current?.close();
     }
     if (activeNote) {
-      // router.replace("/", undefined, {
-      //   scroll: false,
-      // });
       setTimeout(() => {
         viewContainerRef.current.style.position = "fixed";
         viewContainerRef.current.style.inset = "0";
@@ -137,16 +94,9 @@ export default function Notes(props) {
       // }, 350);
     } else {
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeNote, active]);
   useEffect(() => {
     activeNote ? playOn() : playOff();
-    if (editNote === null) {
-      // console.log("hey");
-      // router.replace("/", undefined, {
-      //   scroll: false,
-      // });
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeNote]);
 
