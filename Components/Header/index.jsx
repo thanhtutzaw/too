@@ -19,18 +19,7 @@ function Searchbar(props) {
     input,
     user,
   } = props;
-  useEffect(() => {
-    function handleEscape(e) {
-      if (!isSearching && e.key === "Escape") {
-        input.current.blur();
-      }
-      if (Search?.length === 0 || e.key !== "Escape") return;
-      setisSearching(false);
-      setSearch("");
-    }
-    window.addEventListener("keyup", handleEscape);
-    return () => window.removeEventListener("keyup", handleEscape);
-  }, [Search, input, isSearching, setSearch, setisSearching]);
+
   return (
     <div className={styles.searchBar}>
       <input
@@ -55,6 +44,16 @@ function Searchbar(props) {
 }
 export default function Header({ user }) {
   const input = useRef(null);
+
+  const [showModal, setshowModal] = useState(false);
+  const {
+    setisSearching,
+    Search,
+    setSearch,
+    selectLength,
+    showAction,
+    setShowAction,
+  } = useContext(AppContext);
   useEffect(() => {
     function handleSearch(e) {
       if ((e.keyCode == 70 && (e.ctrlKey || e.metaKey)) || e.keyCode == 191) {
@@ -65,23 +64,21 @@ export default function Header({ user }) {
     window.addEventListener("keydown", handleSearch);
     return () => window.removeEventListener("keydown", handleSearch);
   }, []);
-  const [showModal, setshowModal] = useState(false);
-  const {
-    isSearching,
-    setisSearching,
-    Search,
-    setSearch,
-    selectLength,
-    showAction,
-    setShowAction,
-  } = useContext(AppContext);
-
+  useEffect(() => {
+    function handleEscape(e) {
+      if (!(e.key === "Escape" && Search)) return;
+      setisSearching(false);
+      setSearch("");
+      input.current.blur();
+    }
+    window.addEventListener("keyup", handleEscape);
+    return () => window.removeEventListener("keyup", handleEscape);
+  }, [Search, setSearch, setisSearching]);
   const { theme, setTheme } = useTheme();
   const searchCloseHandle = () => {
     setSearch("");
     input.current.focus();
   };
-
   const modalHandle = useCallback(() => {
     setshowModal((prevstate) => !prevstate);
     if (showAction) {
@@ -103,10 +100,8 @@ export default function Header({ user }) {
   //     document.addEventListener('scroll', handleScroll);
   //     return () => document.removeEventListener('scroll', handleScroll);
   // }, [float]);
-  const router = useRouter();
   return (
     <header>
-      {/* {router.asPath} */}
       <AnimatePresence>
         {selectLength > 0 ? (
           <SelectModal />
