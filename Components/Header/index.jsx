@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useContext, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { AppContext } from "../../context/AppContext";
 import useTheme from "../../hooks/useTheme";
@@ -36,6 +36,16 @@ function Searchbar(props) {
 }
 export default function Header({ user }) {
   const input = useRef(null);
+  useEffect(() => {
+    function handleSearch(e) {
+      if ((e.keyCode == 70 && (e.ctrlKey || e.metaKey)) || e.keyCode == 191) {
+        e.preventDefault();
+        input.current.focus();
+      }
+    }
+    window.addEventListener("keydown", handleSearch);
+    return () => window.removeEventListener("keydown", handleSearch);
+  }, []);
   const [showModal, setshowModal] = useState(false);
   const {
     setisSearching,

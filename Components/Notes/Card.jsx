@@ -82,6 +82,8 @@ export function Card({
     month: "short",
     day: "numeric",
   });
+  const titleIndex = title.toLowerCase().indexOf(Search?.toLowerCase());
+  const index = text.toLowerCase().indexOf(Search?.toLowerCase());
   return (
     <>
       {/* {titleIndex}
