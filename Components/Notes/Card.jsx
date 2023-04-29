@@ -182,7 +182,7 @@ export function Card({
           {!selectMode ? (
             <button
               tabIndex={-1}
-              aria-expanded={showAction}
+              aria-expanded={showAction !== ""}
               onClick={(e) => {
                 e.stopPropagation();
                 setShowAction(id);

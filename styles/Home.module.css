@@ -349,7 +349,6 @@
 
 .closeBtn svg:hover {
   background-color: var(--light-btn-hover);
-
 }
 
 .closeBtn svg:active {
