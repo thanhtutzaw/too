@@ -35,7 +35,7 @@ function Searchbar(props) {
     </div>
   );
 }
-export default function Header({ user }) {
+export default function Header({ user, notes }) {
   const input = useRef(null);
 
   const [showModal, setshowModal] = useState(false);
@@ -93,7 +93,7 @@ export default function Header({ user }) {
     <header>
       <AnimatePresence>
         {selectLength > 0 ? (
-          <SelectModal />
+          <SelectModal notes={notes} />
         ) : (
           <motion.div
             // initial={{ opacity: 0, rotateX: 60 }}
@@ -118,7 +118,7 @@ export default function Header({ user }) {
                   (e.key === "Enter" || e.key === "Escape") && modalHandle()
                 }
                 role="button"
-                tabIndex={4}
+                // tabIndex={4}
                 className={styles.mainProfile}
                 onClick={modalHandle}
                 whileTap={{ scale: 0.8 }}

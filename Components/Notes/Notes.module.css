@@ -2,41 +2,67 @@
 @import url('https://fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese');
 
 .cardContainer {
-  width                  : 100%;
-  /* width               : 100vw;
-  max-width              : var(--max-width); */
-  text-align             : left;
-  margin                 : 0 auto;
-  position               : relative;
-  transition             : all .3s ease-in-out;
-  /* overflow            : hidden; */
-  display                : flex;
-  justify-content        : center;
-  flex-wrap              : wrap;
-  gap                    : 10px;
-  text-align             : left;
-  margin-top             : 65px;
-  padding                : 1.3rem 0.9rem;
+  width                              : 100%;
+  /* width                           : 100vw;
+  max-width                          : var(--max-width); */
+  text-align                         : left;
+  margin                             : 0 auto;
+  position                           : relative;
+  transition                         : all .3s ease-in-out, margin .2s ease-in-out, padding .2s ease-in-out;
+  /* overflow                        : hidden; */
+  display                            : flex;
+  justify-content                    : center;
+  flex-wrap                          : wrap;
+  gap                                : 10px;
+  text-align                         : left;
+  /* margin-top                      : 65px; */
+  padding                            : 1.3rem 0.9rem;
+  /* padding-top                     : 0; */
+  /* padding-top                     : 7px;
+  padding-top                        : 20px; */
+  /* margin-top                      : calc(75px + 45px); */
 }
 
+.selectAll {
+  display               : block;
+  background-color      : transparent;
+  color                 : var(--text-black);
+  border                : 0;
+  transition            : margin .2s ease-in-out;
+  text-align            : right;
+  padding               : 0.5rem 0.9rem;
+  position              : fixed;
+  z-index               : 1000;
+  /* background         : white; */
+  background-color      : var(--light-card);
+  /* border-bottom      : .5px solid var(--border-light); */
+  max-width             : var(--max-width);
+  width                 : 100vw;
+}
 
 .card {
-  background-color: var(--light-card);
-  word-break      : break-word;
   flex-grow       : 1;
-  border          : 1px solid var(--card-border);
+  opacity         : 1;
+  width           : 35%;
   border-radius   : 13px;
   padding         : .5rem;
-  cursor          : pointer;
+  overflow        : hidden;
   color           : inherit;
+  cursor          : pointer;
   white-space     : pre-wrap;
+  word-break      : break-word;
+  background-color: var(--light-card);
+  border          : 1px solid var(--card-border);
   transition      : all .2s ease-in-out, background-color 0s;
-  width           : 35%;
-  opacity         : 1;
+}
+
+.card.selected {
+  outline      : 2px solid var(--bright-green);
+  border-radius: 141px 10% 25% 10px;
 }
 
 .card:focus-visible {
-  outline       : 2px solid var(--main-color);
+  outline       : 2px solid var(--main-color) !important;
   outline-offset: 2px;
 }
 
@@ -260,6 +286,7 @@
 .viewContent>h3 {
   font-weight  : 500;
   margin-bottom: 0.7rem;
+  outline      : none;
 }
 
 .edit {

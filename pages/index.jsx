@@ -11,8 +11,8 @@ import Home from "./Home.jsx";
 const Index = (props) => {
   const { notes } = props;
   return (
-    <AppProvider>
-      <Home notes={notes} />
+    <AppProvider notes={notes}>
+      <Home />
     </AppProvider>
   );
 };
@@ -40,7 +40,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(
     };
   }
 );
-
 export default withAuthUser({
   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
   authPageURL: "/auth",

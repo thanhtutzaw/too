@@ -10,9 +10,9 @@ import React, {
 import { AppContext } from "../../context/AppContext";
 import { app } from "../../utils/firebase";
 import ConfirmModal from "../Modal/ConfirmModal";
-import Input from "./Input";
+import Input from "../Input";
 import s from "./Notes.module.css";
-import ViewHeader from "./ViewHeader";
+import ViewHeader from "../Header/ViewHeader";
 import { update } from "./update";
 import useEscape from "../../hooks/useEscape";
 // export const getStaticPaths =async () => { // my ssg old code
@@ -41,7 +41,11 @@ export default function EditNote({
   activeNote,
 }) {
   const auth = getAuth(app);
+  const titleRef = useRef(null);
+  const textRef = useRef(null);
+  const [loading, setLoading] = useState(false);
   const { setShowAction } = useContext(AppContext);
+
   const closeEdit = useCallback(() => {
     viewContainerRef.current.style.position = "initial";
     viewContainerRef.current.style.inset = "initial";
@@ -58,8 +62,6 @@ export default function EditNote({
     exitHandle();
     console.log("%cEscape (editNote)", "color:green");
   });
-  const titleRef = useRef(null);
-  const textRef = useRef(null);
   useEffect(() => {
     if (activeNote || editnote) {
       setTimeout(() => {
@@ -69,7 +71,6 @@ export default function EditNote({
     settitleInput(editnote?.title);
     settextInput(editnote?.text);
   }, [activeNote, editnote, settextInput, settitleInput]);
-  const [loading, setLoading] = useState(false);
 
   async function submitHandle() {
     if (exitWithoutSaving) {
@@ -102,13 +103,14 @@ export default function EditNote({
     hour: "numeric",
     minute: "2-digit",
   });
+  const validDate = dateString !== "Invalid Date";
   return (
     <>
       <dialog id="confirmModal" ref={confirmModalRef}>
         <ConfirmModal
           closeEdit={closeEdit}
-          confirmModalRef={confirmModalRef}
           setactiveNote={setactiveNote}
+          confirmModalRef={confirmModalRef}
         />
       </dialog>
       <div className={edit}>
@@ -119,20 +121,16 @@ export default function EditNote({
             submitHandle={submitHandle}
           />
           <Input
-            height={`${
-              dateString !== "Invalid Date"
-                ? "calc(100% - 110px)"
-                : "calc(100% - 70px)"
-            }`}
-            titleInput={titleInput}
-            settitleInput={settitleInput}
-            titleRef={titleRef}
+            height={`${validDate ? "calc(100% - 110px)" : "calc(100% - 70px)"}`}
             note={editnote}
-            textInput={textInput}
-            settextInput={settextInput}
             textRef={textRef}
+            titleRef={titleRef}
+            textInput={textInput}
+            titleInput={titleInput}
+            settextInput={settextInput}
+            settitleInput={settitleInput}
           />
-          {dateString !== "Invalid Date" && (
+          {validDate && (
             <p className={s.editDate}>
               {`Edited - ${dateString} ${timeString}`}
             </p>

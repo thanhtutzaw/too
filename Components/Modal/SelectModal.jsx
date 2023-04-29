@@ -7,9 +7,14 @@ import { GrClose } from "react-icons/gr";
 import { AppContext } from "../../context/AppContext";
 import styles from "../../styles/Home.module.css";
 import app, { db } from "../../utils/firebase";
-export default function SelectModal() {
-  const { clearSelect, selectLength, selectedId, setShowAction } =
-    useContext(AppContext);
+export default function SelectModal({ notes }) {
+  const {
+    clearSelect,
+    selectLength,
+    selectedId,
+    setShowAction,
+  } = useContext(AppContext);
+  
   const [loading, setloading] = useState(false);
   const auth = getAuth(app);
   async function deleteMultipleNotes() {
@@ -35,16 +40,15 @@ export default function SelectModal() {
     await batch.commit();
   }
   const router = useRouter();
+  const cursor = loading ? "wait" : "initial";
   return (
     <motion.div
-      style={{
-        cursor: loading ? "wait" : "initial",
-      }}
-      initial={{ opacity: 0, rotateX: 60 }}
-      animate={{ opacity: 1, rotateX: 0 }}
-      exit={{ opacity: 0, rotateX: 90 }}
-      transition={{ duration: 0.2 }}
+      style={{ cursor }}
       className={styles.selectModal}
+      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0, rotateX: 90 }}
+      animate={{ opacity: 1, rotateX: 0 }}
+      initial={{ opacity: 0, rotateX: 60 }}
     >
       <div className={styles.left}>
         <div
@@ -53,7 +57,9 @@ export default function SelectModal() {
         >
           <GrClose onClick={() => clearSelect()} />
         </div>
-        <p>{selectLength}</p>
+
+        
+        <p>{selectLength} Selected</p>
       </div>
       <button
         style={{ pointerEvents: loading ? "none" : "initial" }}

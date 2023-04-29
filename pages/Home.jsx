@@ -8,14 +8,13 @@ import AddButton from "../Components/AddButton";
 import Header from "../Components/Header";
 import Notes from "../Components/Notes";
 import { AppContext } from "../context/AppContext";
-import useEscape from "../hooks/useEscape";
-export default function Home({ float, notes }) {
+export default function Home({ float }) {
   const [active, setactive] = useState(false);
   const [activeNote, setactiveNote] = useState();
-
   const user = useAuthUser();
-  const { Search } = useContext(AppContext);
-  const searchedNotes = notes.filter((note) => {
+  const {  Search, notes } =
+    useContext(AppContext);
+  const searchedNotes = notes?.filter((note) => {
     if (Search) {
       return (
         note.title
@@ -33,12 +32,13 @@ export default function Home({ float, notes }) {
       return { ...notes };
     }
   });
-
+  
   return (
     <>
       {user.photoURL || user.email ? (
         <>
-          <Header float={float} user={user} />
+          <Header notes={notes} float={float} user={user} />
+          
           <Notes
             setactiveNote={setactiveNote}
             activeNote={activeNote}

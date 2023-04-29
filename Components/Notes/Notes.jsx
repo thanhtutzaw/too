@@ -44,7 +44,8 @@ export default function Notes(props) {
   //   // });
   // }
   const confirmModalRef = useRef(null);
-  const { setShowAction } = useContext(AppContext);
+  const { setShowAction, allItems, setselectedId, selectedId, clearSelect } =
+    useContext(AppContext);
   const [titleInput, settitleInput] = useState("");
   const [textInput, settextInput] = useState("");
   const [playOn] = useSound(checkSound, { volume: 0.1 });
@@ -97,10 +98,30 @@ export default function Notes(props) {
     activeNote ? playOn() : playOff();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeNote]);
-
+  function selectAll() {
+    const items = allItems();
+    setselectedId(items);
+  }
+  
   return (
     <>
+      <button
+        className={styles.selectAll}
+        tabIndex={-1}
+        style={{
+          pointerEvents: selectMode ? "auto" : "none",
+          opacity: selectMode ? "1" : "0",
+          marginTop: selectMode ? "70px" : "45px",
+        }}
+        onClick={() => (selectedId.length > 1 ? clearSelect() : selectAll())}
+      >
+        <p>{selectedId.length > 1 ? "Deselect All" : "Select All"}</p>
+      </button>
       <div
+        style={{
+          marginTop: selectMode ? "calc(65px + 44px)" : "65px",
+          paddingTop: selectMode ? "7px" : "20px",
+        }}
         className={`${styles.cardContainer} ${
           activeNote ? styles.animateNotes : ""
         }`}

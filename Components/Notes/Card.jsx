@@ -4,10 +4,10 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiCheck, BiDotsVerticalRounded } from "react-icons/bi";
 import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import { AppContext } from "../../context/AppContext";
+import useEscape from "../../hooks/useEscape";
 import { Highlight } from "./Highlight";
 import NoteAction from "./NoteAction";
 import styles from "./Notes.module.css";
-import useEscape from "../../hooks/useEscape";
 
 export function Card({
   selectMode,
@@ -47,12 +47,16 @@ export function Card({
   //     // ele.style.color = 'red'
   // })
   // let width = 150
-  const cardActive = `${styles.card} ${
-    activeNote === id ? styles.active : ""
-  } ${activeNote === id ? styles.positioned : ""}`;
+
   const [select, setSelect] = useState(false);
-  const { Search, selectedId, setselectedId, showAction, setShowAction } =
-    useContext(AppContext);
+  const {
+    notes,
+    Search,
+    selectedId,
+    setselectedId,
+    showAction,
+    setShowAction,
+  } = useContext(AppContext);
 
   function chooseSelectMode(e) {
     e.stopPropagation();
@@ -64,12 +68,19 @@ export function Card({
   const checkRef = useRef(null);
   const uncheckRef = useRef(null);
   useEffect(() => {
-    if (selectedId.length === 0) {
+    if (selectedId?.length === 0) {
       setselectMode(false);
       setSelect(false);
     }
-  }, [selectedId.length, setselectMode]);
-
+    // if (selectedId === id) {
+    //   setSelect(true);
+    // }
+  }, [selectedId?.length, setselectMode]);
+  // useEffect(() => {
+  //   if (selectedId === id) {
+  //     setSelect(true);
+  //   }
+  // }, [id, selectedId]);
   useEscape(() => {
     if (!selectMode) return;
     setSelect(false);
@@ -82,13 +93,35 @@ export function Card({
     month: "short",
     day: "numeric",
   });
-  const titleIndex = title.toLowerCase().indexOf(Search?.toLowerCase());
-  const index = text.toLowerCase().indexOf(Search?.toLowerCase());
+  const isSelecting = select && selectedId.length !== 0;
+  useEffect(() => {
+    if (selectedId.length === 0) {
+      setSelect(false);
+    }
+    if (selectedId.length === notes.length) {
+      setSelect(true);
+    }
+  }, [notes.length, selectedId]);
+  function handleSelect(e) {
+    e.stopPropagation();
+    setSelect((prev) => !prev);
+    if (isSelecting) {
+      if (selectedId.length === 1) {
+        setselectMode(false);
+      }
+      setselectedId(selectedId.filter((t) => t !== id));
+    } else {
+      setselectedId([...selectedId, id]);
+    }
+  }
+  // const todoClass = `todo ${todo?.completed ? "checked" : ""} `;
+  const cardActive = `${styles.card} ${
+    activeNote === id ? styles.active : ""
+  }  ${select ? styles.selected : ""} ${
+    activeNote === id ? styles.positioned : ""
+  }`;
   return (
     <>
-      {/* {titleIndex}
-      {" , "}
-      {index} */}
       <div
         role="button"
         tabIndex="0"
@@ -115,11 +148,17 @@ export function Card({
             select ? checkRef.current?.click() : uncheckRef.current?.click();
           }
         }}
-        style={{
-          border: select
-            ? "2px solid var(--bright-green)"
-            : "1px solid var(--card-border)",
-        }}
+        style={
+          {
+            // outline: select ? "2px solid var(--bright-green)" : "0",
+            // borderRadius: select ? "141px 10% 25% 10px" : "13px",
+            // outline: select
+            //   ? "2px solid var(--bright-green)"
+            //   : "1px solid var(--card-border)",
+            // borderRadius: select ? "141px 10% 25% 10px" : "13px",
+            // borderRadius: select ? "141px" : "3px",
+          }
+        }
         className={cardActive}
       >
         <AnimatePresence>
@@ -154,20 +193,13 @@ export function Card({
             </button>
           ) : (
             <>
-              {select ? (
+              {isSelecting ? (
                 <button
                   ref={checkRef}
                   role="checkbox"
                   tabIndex={-1}
                   aria-checked={true}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelect(!select);
-                    setselectedId(selectedId.filter((t) => t !== id));
-                    if (selectedId.length === 1) {
-                      setselectMode(false);
-                    }
-                  }}
+                  onClick={handleSelect}
                   className={styles.check}
                 >
                   <BiCheck />
@@ -178,11 +210,7 @@ export function Card({
                   role="checkbox"
                   tabIndex={-1}
                   aria-checked={false}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelect(!select);
-                    setselectedId([...selectedId, id]);
-                  }}
+                  onClick={handleSelect}
                   className={styles.uncheck}
                 >
                   <RiCheckboxBlankCircleLine />

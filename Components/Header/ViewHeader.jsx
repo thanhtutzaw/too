@@ -1,6 +1,6 @@
 import React from "react";
-import s from "./Notes.module.css";
 import { BiArrowBack } from "react-icons/bi";
+import s from "../../Components/Notes/Notes.module.css";
 
 export default function ViewHeader({
   children,
@@ -8,21 +8,21 @@ export default function ViewHeader({
   submitHandle,
   loading = false,
 }) {
+  const pointerEvents = loading ? "none" : "initial";
+  const Submit = children ? children : loading ? "Updating" : "Update";
   return (
     <div className={s.viewHeader}>
       <div className="backBtn">
         <BiArrowBack onClick={exitHandle} />
       </div>
       <button
-        style={{
-          pointerEvents: loading ? "none" : "initial",
-        }}
-        disabled={loading}
-        onClick={submitHandle}
         tabIndex="0"
+        disabled={loading}
         className="submitBtn"
+        onClick={submitHandle}
+        style={{ pointerEvents }}
       >
-        {children ? children : loading ? "Updating" : "Update"}
+        {Submit}
       </button>
     </div>
   );

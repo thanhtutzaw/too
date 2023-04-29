@@ -1,10 +1,21 @@
 import { useState } from "react";
 
-export default function useSelect() {
+export default function useSelect(notes) {
     const [selectedId, setselectedId] = useState([]);
-    const selectLength = selectedId.length;
+    const selectLength = selectedId?.length;
     const clearSelect = () => {
         setselectedId([]);
     };
-    return { selectLength,selectedId, setselectedId, clearSelect }
+    const allItems = () => {
+        const items = [];
+        if (notes?.length === 0 || !notes || notes === null) return;
+        for (let i = 0; i < notes.length; i++) {
+            const id = notes[i]?.id;
+            items.push(id);
+        }
+        return items
+        // setselectedId(items);
+    };
+
+    return { allItems, selectLength, selectedId, setselectedId, clearSelect }
 }
