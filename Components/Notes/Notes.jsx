@@ -44,8 +44,14 @@ export default function Notes(props) {
   //   // });
   // }
   const confirmModalRef = useRef(null);
-  const { setShowAction, allItems, setselectedId, selectedId, clearSelect } =
-    useContext(AppContext);
+  const {
+    showAction,
+    setShowAction,
+    allItems,
+    setselectedId,
+    selectedId,
+    clearSelect,
+  } = useContext(AppContext);
   const [titleInput, settitleInput] = useState("");
   const [textInput, settextInput] = useState("");
   const [playOn] = useSound(checkSound, { volume: 0.1 });
@@ -95,9 +101,18 @@ export default function Notes(props) {
     }
   }, [activeNote, active]);
   useEffect(() => {
-    editNote ? playOn() : playOff();
+    // console.log(activeNote);
+    // activeNote ? playOn() : playOff();
+    if (activeNote || activeNote !== "") {
+      if (editNote) {
+        playOn();
+      }
+    }
+    if (!activeNote || activeNote === "") {
+      playOff();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editNote]);
+  }, [activeNote]);
   function selectAll() {
     const items = allItems();
     setselectedId(items);
