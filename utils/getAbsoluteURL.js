@@ -15,7 +15,4 @@ const getAbsoluteURL = (url, req = null) => {
   const protocol = isLocalhost ? 'http' : 'https'
   return `${protocol}://${host}${url}`
 }
-
 export default getAbsoluteURL
-
-

@@ -118,6 +118,7 @@ export default function Header({ user, notes }) {
                   (e.key === "Enter" || e.key === "Escape") && modalHandle()
                 }
                 role="button"
+                aria-label="logout darkmode"
                 // tabIndex={4}
                 className={styles.mainProfile}
                 onClick={modalHandle}
@@ -132,7 +133,7 @@ export default function Header({ user, notes }) {
                   className={styles.profile}
                 />
               </motion.div>
-
+              {/* {theme} */}
               <AnimatePresence>
                 {showModal && (
                   <Sidebar

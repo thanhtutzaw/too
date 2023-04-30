@@ -2,15 +2,15 @@ import { getAuth } from "firebase/auth";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
+import useEscape from "../../hooks/useEscape";
 import { app } from "../../utils/firebase";
-import Input from "../Input";
 import ViewHeader from "../Header/ViewHeader";
+import Input from "../Input";
 import AddConfirm from "./AddConfirm";
 import { addNote } from "./addNote";
 import s from "./index.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
-import useEscape from "../../hooks/useEscape";
 
 export default function AddButton({ activeNote, active, setactive }) {
   const [loading, setloading] = useState(false);

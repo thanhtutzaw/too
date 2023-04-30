@@ -95,14 +95,14 @@ export default function Notes(props) {
     }
   }, [activeNote, active]);
   useEffect(() => {
-    activeNote ? playOn() : playOff();
+    editNote ? playOn() : playOff();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeNote]);
+  }, [editNote]);
   function selectAll() {
     const items = allItems();
     setselectedId(items);
   }
-  
+
   return (
     <>
       <button

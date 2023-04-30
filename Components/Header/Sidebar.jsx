@@ -14,9 +14,13 @@ function Setting(props) {
       modalHandle();
     }, 340);
   };
-  const darkMode = theme !== "light" ? styles.darkAnimation : styles.darkIcon;
-  const lightMode =
-    theme === "light" ? styles.lightAnimation : styles.lightIcon;
+  // const darkMode = theme !== "light" ? styles.darkAnimation : styles.darkIcon;
+  const lightMode = `${styles.lightIcon} ${
+    theme === "light" ? "" : styles.active
+  }`;
+  const darkMode = `${styles.darkIcon} ${
+    theme !== "light" ? "" : styles.active
+  }`;
   return (
     <div className={styles.tools}>
       <button className={styles.tool} onClick={handleDarkMode}>

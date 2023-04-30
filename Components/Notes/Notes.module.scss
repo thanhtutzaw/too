@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?lang=en&family=Product+Sans|Roboto:400,700");
 @import url("https://fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese");
+
 .cardContainer {
   width: 100%;
   /* width                           : 100vw;
@@ -67,13 +68,16 @@
   .card .header button:not(.uncheck, .check) {
     opacity: 0;
   }
+
   .card:is(.selected) button {
     opacity: 1;
   }
+
   .card:hover .header button:not(:active) {
     opacity: 1;
   }
 }
+
 .card:hover .header button:active {
   /* background-color: var(--light-btn-active);
   opacity         : .5; */
@@ -201,9 +205,7 @@
 .titleSpan,
 .textSpan {
   position: absolute;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   pointer-events: none;
 }
 
@@ -232,29 +234,29 @@
   align-items: center;
   border-radius: 10px;
   background-color: white;
-  box-shadow: 0 0 8px 1px rgba(159, 159, 159, 0.32);
+  box-shadow: 0 0 8px 1px rgb(159 159 159 / 32%);
   transition: all 0.19s ease-in-out;
-}
-.action > button:hover {
-  padding: 8px;
-  background-color: rgb(221, 221, 221);
-}
-.action > button:active {
-  background-color: rgb(91, 231, 145);
-  scale: 0.9;
-}
+  &:hover {
+    padding: 8px;
+    background-color: rgb(221, 221, 221);
+  }
 
+  &:active {
+    background-color: rgb(91 231 145);
+    scale: 0.9;
+  }
+}
 .deletBtn {
   background-color: red !important;
   background-color: red !important;
   color: white;
-}
-.deletBtn:hover {
-  background-color: rgb(255, 77, 77) !important;
-}
-.deletBtn:is(:active, :disabled) {
-  background-color: rgb(255, 127, 127) !important;
-  opacity: 1 !important;
+  &:hover {
+    background-color: rgb(255, 77, 77) !important;
+  }
+  &:is(:active, :disabled) {
+    background-color: rgb(255, 127, 127) !important;
+    opacity: 1 !important;
+  }
 }
 
 .titleSpan {
@@ -299,13 +301,12 @@
   padding: 25px 1.3rem;
   height: calc(100% - 70px);
   position: relative;
+  & > h3 {
+    outline: none;
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
 }
-.viewContent > h3 {
-  outline: none;
-  font-weight: 500;
-  margin-bottom: 0.7rem;
-}
-
 .edit {
   position: fixed;
   overflow: hidden;
@@ -315,12 +316,12 @@
   z-index: 100000;
   cursor: default;
   pointer-events: none;
-}
-.edit .active {
-  pointer-events: auto;
-}
-.edit .loading {
-  cursor: wait;
+  .active {
+    pointer-events: auto;
+  }
+  .loading {
+    cursor: wait;
+  }
 }
 
 .date {
@@ -348,4 +349,4 @@
   to {
     opacity: 1;
   }
-}/*# sourceMappingURL=Notes.module.css.map */
+}

@@ -123,6 +123,7 @@ export function Card({
   return (
     <>
       <div
+        aria-label={title}
         role="button"
         tabIndex="0"
         onKeyDown={(e) => {
@@ -183,6 +184,7 @@ export function Card({
             <button
               tabIndex={-1}
               aria-expanded={showAction !== ""}
+              aria-label="note dropdown options"
               onClick={(e) => {
                 e.stopPropagation();
                 setShowAction(id);
@@ -195,6 +197,7 @@ export function Card({
             <>
               {isSelecting ? (
                 <button
+                  aria-label="select note"
                   ref={checkRef}
                   role="checkbox"
                   tabIndex={-1}
@@ -206,6 +209,7 @@ export function Card({
                 </button>
               ) : (
                 <button
+                  aria-label="deselect note"
                   ref={uncheckRef}
                   role="checkbox"
                   tabIndex={-1}

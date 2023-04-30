@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese");
+
 :root {
   --max-width: 500px;
   --main-color: rgb(8, 166, 60);
@@ -7,6 +8,7 @@
   --body-bg: #cfd3d0;
   --search-bg: #eeeeee;
   --theme-transition: all 0.3s ease-in-out;
+
   --text-secondary: #414141;
   --light-card: #ffffff;
   --text-black: black;
@@ -14,6 +16,7 @@
   --border-light: #f6f6f6;
   --card-border: #bdbdbd;
   --btn-dark-green: rgb(230 255 231);
+
   --light-btn-hover: #dcdcdc4a;
   --light-btn-active: gainsboro;
 }
@@ -23,21 +26,22 @@
     --theme-transition: none;
   }
 }
+
 @media screen and (min-width: 850px) {
   :root {
     --max-width: 60vw;
   }
 }
+
 @media screen and (min-width: 486px) {
   html {
     margin-left: calc(100vw - 100%);
     margin-right: 0;
   }
 }
+
 main {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   min-height: 100dvh;
   /* min-height               : -webkit-fill-available; */
   /* min-height               : -moz-available; */
@@ -50,12 +54,12 @@ main {
   /* overflow                 : hidden; */
 }
 
-html[theme=dark] main {
+html[theme="dark"] main {
   background-color: var(--light-card);
   color: white;
 }
 
-html[theme=dark] {
+html[theme="dark"] {
   --body-bg: #343434;
   --btn-dark-green: rgb(230 255 231 / 8%);
   --light-card: rgb(39, 39, 39);
@@ -92,47 +96,44 @@ mark {
   gap: 1rem;
   border-radius: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 20px rgba(102, 102, 102, 0.2666666667);
+  box-shadow: 0 4px 20px #6664;
   outline: 0;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: auto;
-}
-.confirmModal > p {
-  font-weight: 500;
-  font-size: 1rem;
-  text-align: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-.confirmModal button {
-  border: 0;
-  border-radius: 0.5rem;
-  font-size: 18px;
-  min-width: 100px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  margin: 0 5px;
-  color: var(--text-black) !important;
-  padding: 0.7rem !important;
-  background-color: transparent !important;
-}
-.confirmModal button:hover {
-  background-color: var(--btn-dark-green) !important;
-  opacity: 1 !important;
-}
-.confirmModal button:focus-visible {
-  scale: 1.05;
-  transition: all 0.3s ease-in-out;
-  outline: 1px solid #19e062;
-}
-.confirmModal button:active {
-  background-color: var(--btn-dark-green) !important;
-  opacity: 0.5 !important;
+
+  & > p {
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+    user-select: none;
+  }
+  & button {
+    border: 0;
+    border-radius: 0.5rem;
+    font-size: 18px;
+    min-width: 100px;
+    user-select: none;
+    margin: 0 5px;
+    color: var(--text-black) !important;
+    padding: 0.7rem !important;
+    background-color: transparent !important;
+    &:hover {
+      background-color: var(--btn-dark-green) !important;
+      opacity: 1 !important;
+    }
+    &:focus-visible {
+      scale: 1.05;
+      transition: all 0.3s ease-in-out;
+      outline: 1px solid #19e062;
+    }
+    &:active {
+      background-color: var(--btn-dark-green) !important;
+      opacity: 0.5 !important;
+    }
+  }
 }
 
 button:disabled {
@@ -145,7 +146,8 @@ body {
   justify-content: center;
   background-color: var(--body-bg);
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
   font-size: 22px;
 }
 
@@ -203,19 +205,19 @@ button,
   align-items: center;
   border-radius: 100px;
   color: var(--text-black);
-}
-.backBtn:hover {
-  background-color: var(--light-btn-hover);
-  color: var(--text-black);
-}
-.backBtn:active {
-  opacity: 0.6;
-  background-color: var(--light-btn-active);
-}
-.backBtn > svg {
-  flex: 1;
-}
 
+  &:hover {
+    background-color: var(--light-btn-hover);
+    color: var(--text-black);
+  }
+  &:active {
+    opacity: 0.6;
+    background-color: var(--light-btn-active);
+  }
+  & > svg {
+    flex: 1;
+  }
+}
 .submitBtn {
   border: 0;
   outline: 0;
@@ -230,14 +232,14 @@ button,
   background-color: var(--btn-dark-green);
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   transition: all 0.3s ease-in-out, scale 0.1s ease-in-out;
+  &:hover {
+    background-color: rgb(50 224 117);
+    color: white;
+  }
+  &:active {
+    background-color: rgb(50 224 117);
+    color: white;
+    opacity: 0.5;
+    scale: 0.94;
+  }
 }
-.submitBtn:hover {
-  background-color: rgb(50, 224, 117);
-  color: white;
-}
-.submitBtn:active {
-  background-color: rgb(50, 224, 117);
-  color: white;
-  opacity: 0.5;
-  scale: 0.94;
-}/*# sourceMappingURL=globals.css.map */
