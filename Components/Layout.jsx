@@ -7,7 +7,10 @@ function Layout({ children }) {
     <>
       <Head>
         <title>Too</title>
-        <meta name="Too" content="for you" />
+        <meta
+          name="description"
+          content="Note Taking App built with Next.js SSR and FireStore"
+        />
         <link rel="icon" href="favicon.ico" />
       </Head>
       <main className={styles.main}>{children}</main>

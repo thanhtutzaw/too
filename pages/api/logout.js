@@ -1,7 +1,7 @@
 import { unsetAuthCookies } from 'next-firebase-auth'
 import initAuth from "../../utils/initAuth";
 initAuth()
-// logout remove cookie
+// logout // remove cookie
 const handler = async (req, res) => {
   try {
     await unsetAuthCookies(req, res)

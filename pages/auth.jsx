@@ -76,7 +76,6 @@ Auth.getLayout = function getLayout(page) {
 export default withAuthUser({
   whenAuthed: AuthAction.REDIRECT_TO_APP,
   whenAuthedBeforeRedirect: AuthAction.RETURN_NULL,
-  // appPageURL:'/',
   whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
   LoaderComponent: FullPageLoader,
   whenUnauthedAfterInit: AuthAction.RENDER,

@@ -10,7 +10,6 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Too</title>
-        <meta name="Too" content="for you" />
         <meta
           name="description"
           content="Note Taking App built with Next.js SSR and FireStore"

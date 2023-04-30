@@ -10,8 +10,6 @@ export default function AppProvider({ children, notes }) {
   return (
     <AppContext.Provider
       value={{
-        // select,
-        // setSelect,
         allItems,
         notes,
         isSearching,
