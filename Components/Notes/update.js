@@ -1,7 +1,8 @@
+import { getAuth } from "firebase/auth";
 import { Timestamp, doc, serverTimestamp, updateDoc } from "firebase/firestore";
-import { db } from "../../utils/firebase";
-
-export async function update(auth, editnote, titleInput, textInput) {
+import app, { db } from "../../utils/firebase";
+export async function update(editnote, titleInput, textInput) {
+    const auth = getAuth(app);
     const uid = auth.currentUser.uid,
         noteId = editnote?.id.toString();
     const docRef = doc(db, `users/${uid}/notes/${noteId}`);

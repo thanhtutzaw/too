@@ -2,26 +2,18 @@
 @import url("https://fonts.googleapis.com/css?family=Google+Sans:400,500&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese");
 .cardContainer {
   width: 100%;
-  /* width                           : 100vw;
-  max-width                          : var(--max-width); */
   text-align: left;
   margin: 0 auto;
   position: relative;
   transition: all 0.3s ease-in-out, margin 0.2s ease-in-out, padding 0.2s ease-in-out;
-  /* overflow                        : hidden; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
   text-align: left;
-  /* margin-top                      : 65px; */
   padding: 1.3rem 0.9rem;
   padding-top: 20px;
   margin-top: 65px;
-  /* padding-top                     : 0; */
-  /* padding-top                     : 7px;
-  padding-top                        : 20px; */
-  /* margin-top                      : calc(75px + 45px); */
 }
 .cardContainer.selecting {
   margin-top: 109px;
@@ -39,7 +31,6 @@
   position: fixed;
   z-index: 1000;
   background-color: var(--light-card);
-  /* border-bottom      : .5px solid var(--border-light); */
   max-width: var(--max-width);
   width: 100vw;
   outline: 0;
@@ -58,14 +49,14 @@
 }
 
 .card {
-  flex-grow: 1;
-  opacity: 1;
   width: 35%;
-  border-radius: 13px;
+  opacity: 1;
+  flex-grow: 1;
   padding: 0.5rem;
-  overflow: hidden;
   color: inherit;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 13px;
   white-space: pre-wrap;
   word-break: break-word;
   background-color: var(--light-card);
@@ -87,11 +78,6 @@
     opacity: 1;
   }
 }
-.card:hover .header button:active {
-  /* background-color: var(--light-btn-active);
-  opacity         : .5; */
-}
-
 .card.selected {
   outline: 2px solid var(--bright-green);
   border-radius: 141px 10% 25% 10px;
@@ -104,12 +90,6 @@
 
 .card.active {
   opacity: 0;
-}
-
-.positioned {
-  /* opacity         : 0; */
-  /* top          : 0; */
-  /* left         : 0; */
 }
 
 .cardTitle {
@@ -144,15 +124,12 @@
   padding: 3px;
   background-color: transparent;
 }
-
 .header > button:not(.check) {
   color: var(--text-black);
 }
-
 .header > button:hover {
   background-color: var(--light-btn-hover);
 }
-
 .header > button:active {
   background-color: var(--light-btn-active) !important;
   opacity: 0.5 !important;
@@ -163,7 +140,6 @@
   scale: 1.3;
   color: rgb(202, 202, 202);
   color: rgb(187, 187, 187);
-  /* opacity         : 1; */
 }
 
 .check {
@@ -190,11 +166,9 @@
   pointer-events: initial;
   margin: 0 auto;
 }
-
 .viewContainer.loading {
   pointer-events: none;
 }
-
 .viewContainer.active {
   transform: translateX(0px);
   opacity: 1;
@@ -226,13 +200,21 @@
 }
 
 .action {
-  z-index: 100;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
   gap: 6px;
   width: 40%;
+  z-index: 100;
+  display: flex;
+  cursor: initial;
+  position: absolute;
   transform-origin: top;
+  flex-direction: column;
+  pointer-events: initial;
+}
+.action.loading {
+  cursor: wait;
+}
+.action:is(.loading) button {
+  pointer-events: none !important;
 }
 
 .action > button {
@@ -268,6 +250,9 @@
 .deletBtn:is(:active, :disabled) {
   background-color: rgb(255, 127, 127) !important;
   opacity: 1 !important;
+}
+.deletBtn:disabled {
+  pointer-events: none !important;
 }
 
 .titleSpan {

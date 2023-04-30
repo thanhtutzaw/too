@@ -1,4 +1,3 @@
-import { getAuth } from "firebase/auth";
 import { Timestamp } from "firebase/firestore";
 import React, {
   useCallback,
@@ -8,13 +7,12 @@ import React, {
   useState,
 } from "react";
 import { AppContext } from "../../context/AppContext";
-import { app } from "../../utils/firebase";
-import ConfirmModal from "../Modal/ConfirmModal";
-import Input from "../Input";
-import s from "./Notes.module.css";
-import ViewHeader from "../Header/ViewHeader";
-import { update } from "./update";
 import useEscape from "../../hooks/useEscape";
+import ViewHeader from "../Header/ViewHeader";
+import Input from "../Input";
+import ConfirmModal from "../Modal/ConfirmModal";
+import s from "./Notes.module.css";
+import { update } from "./update";
 // export const getStaticPaths =async () => { // my ssg old code
 //   let notes = []
 //   const q = collection(db, `users/${id}/notes`);
@@ -40,7 +38,6 @@ export default function EditNote({
   setactiveNote,
   activeNote,
 }) {
-  const auth = getAuth(app);
   const titleRef = useRef(null);
   const textRef = useRef(null);
   const [loading, setLoading] = useState(false);
@@ -71,12 +68,11 @@ export default function EditNote({
     settitleInput(editnote?.title);
     settextInput(editnote?.text);
   }, [activeNote, editnote, settextInput, settitleInput]);
-
-  async function submitHandle() {
+  async function updateHandle() {
     if (exitWithoutSaving) {
       setLoading(true);
       try {
-        await update(auth, editnote, titleInput, textInput);
+        await update(editnote, titleInput, textInput);
         closeEdit();
         setLoading(false);
         confirmModalRef.current.close();
@@ -118,7 +114,7 @@ export default function EditNote({
           <ViewHeader
             loading={loading}
             exitHandle={exitHandle}
-            submitHandle={submitHandle}
+            submitHandle={updateHandle}
           />
           <Input
             height={`${validDate ? "calc(100% - 110px)" : "calc(100% - 70px)"}`}

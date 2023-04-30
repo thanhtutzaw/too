@@ -47,6 +47,9 @@ export default function AddButton({ activeNote, active, setactive }) {
   });
   useEffect(() => {
     active ? playOn() : playOff();
+    if (!active) {
+      router.prefetch("/");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
   const auth = getAuth(app);

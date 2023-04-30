@@ -123,9 +123,9 @@ export function Card({
   return (
     <>
       <div
-        aria-label={title}
-        role="button"
         tabIndex="0"
+        role="button"
+        aria-label={title}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             setactiveNote(id);
@@ -149,17 +149,6 @@ export function Card({
             select ? checkRef.current?.click() : uncheckRef.current?.click();
           }
         }}
-        style={
-          {
-            // outline: select ? "2px solid var(--bright-green)" : "0",
-            // borderRadius: select ? "141px 10% 25% 10px" : "13px",
-            // outline: select
-            //   ? "2px solid var(--bright-green)"
-            //   : "1px solid var(--card-border)",
-            // borderRadius: select ? "141px 10% 25% 10px" : "13px",
-            // borderRadius: select ? "141px" : "3px",
-          }
-        }
         className={cardActive}
       >
         <AnimatePresence>
