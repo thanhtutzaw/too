@@ -86,7 +86,7 @@ const initAuth = () => {
       databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     },
-    cookies: { // cookie place
+    cookies: {
       name: 'CookE',
       keys: [
         process.env.COOKIE_SECRET_CURRENT,

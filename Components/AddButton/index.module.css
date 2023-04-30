@@ -1,111 +1,99 @@
 .container {
-    position       : fixed;
-    bottom         : 0;
-    max-width      : var(--max-width);
-    width          : 100vw;
-    justify-content: flex-end;
-    justify-content: center;
-    z-index        : 10000;
+  position: fixed;
+  bottom: 0;
+  max-width: var(--max-width);
+  width: 100vw;
+  justify-content: flex-end;
+  justify-content: center;
+  z-index: 10000;
+}
+.container.loading {
+  cursor: wait !important;
 }
 
 .InputContainer {
-    position                       : fixed;
-    inset                          : 0;
-    margin                         : 0 auto;
-    width                          : 100vw;
-    max-width                      : var(--max-width);
-    /* min-height                  : -webkit-fill-available; */
-    z-index                        : 20;
-    text-align                     : left;
-    opacity                        : 0;
-    display                        : none;
-    transition                     : opacity 1s ease;
-    background-color               : var(--light-card);
+  position: fixed;
+  inset: 0;
+  margin: 0 auto;
+  width: 100vw;
+  opacity: 0;
+  z-index: 20;
+  display: none;
+  text-align: left;
+  max-width: var(--max-width);
+  transition: opacity 1s ease;
+  background-color: var(--light-card);
+}
+.InputContainer.active {
+  animation: fadein 1s ease-in-out;
+  opacity: 1;
+  display: block;
 }
 
 .addBtn {
-    bottom          : 30px;
-    right           : 44px;
-    transform       : scale(2.5);
-    border-radius   : 10px;
-    overflow        : hidden;
-    position        : absolute;
-    width           : 30px;
-    height          : 30px;
-    transform-origin: right;
-    font-size       : inherit;
-    transition      : all .4s cubic-bezier(1, 0.05, 0, 0.94), background-color .6s ease-in-out, color 0s ease;
-    background-color: var(--btn-background);
-    border          : 0;
-    cursor          : pointer;
+  bottom: 30px;
+  right: 44px;
+  transform: scale(2.5);
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  transform-origin: right;
+  font-size: inherit;
+  transition: all 0.4s cubic-bezier(1, 0.05, 0, 0.94), background-color 0.6s ease-in-out, color 0s ease;
+  background-color: var(--btn-background);
+  border: 0;
+  cursor: pointer;
 }
-
-.addBtn:focus-visible {
-    outline: 1px solid black;
+.addBtn .plusIcon {
+  display: block;
+  rotate: 0deg;
+  transform: translate(0px, 0px);
+  color: white;
+  transition: all 0.7s cubic-bezier(1, 0.05, 0, 0.94);
 }
-
-.addBtn.active:focus-visible {
-    outline: none;
-}
-
-.addBtn.active {
-    width           : 40%;
-    height          : 100dvh;
-    bottom          : 0;
-    right           : 0;
-    background-color: var(--light-card);
-    transition-delay: .2s;
-    color           : black;
-    border-radius   : 0%;
-}
-
-.plusIcon {
-    display   : block;
-    rotate    : 0deg;
-    transform : translate(0px, 0px);
-    color     : white;
-    transition: all .7s cubic-bezier(1, 0.05, 0, 0.94);
-}
-
 .addBtn:is(.active) .plusIcon {
-    display         : inline-block;
-    cursor          : pointer;
-    opacity         : 0;
-    transform       : translate(-70px, -130px);
-    visibility      : hidden;
-    user-select     : none;
-    transition      : all .4s cubic-bezier(1, 0.05, 0, 0.94);
-    transition-delay: .1s;
+  display: inline-block;
+  cursor: pointer;
+  opacity: 0;
+  transform: translate(-70px, -130px);
+  visibility: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  transition: all 0.4s cubic-bezier(1, 0.05, 0, 0.94);
+  transition-delay: 0.1s;
 }
-
-.container.loading {
-    cursor: wait !important;
+.addBtn:focus-visible {
+  outline: 1px solid black;
 }
-
-/* 
-.InputContainer.loading {
-    pointer-events: none !important;
-} */
-
-.InputContainer.active {
-    animation: fadein 1s ease-in-out;
-    opacity  : 1;
-    display  : block;
+.addBtn.active {
+  width: 40%;
+  height: 100dvh;
+  bottom: 0;
+  right: 0;
+  background-color: var(--light-card);
+  transition-delay: 0.2s;
+  color: black;
+  border-radius: 0%;
+  cursor: default;
+}
+.addBtn.active:focus-visible {
+  outline: none;
 }
 
 @keyframes fadein {
-    0% {
-        opacity: 0;
-        display: none;
-    }
-
-    30% {
-        opacity: 0;
-        display: none;
-    }
-
-    100% {
-        opacity: 1;
-        display: block;
-    }
-}
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  30% {
+    opacity: 0;
+    display: none;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}/*# sourceMappingURL=index.module.css.map */

@@ -135,7 +135,6 @@ export default function AddButton({ activeNote, active, setactive }) {
           />
         </div>
         <button
-          style={{ cursor: !active ? "pointer" : "default" }}
           onClick={() => {
             if (active) return;
             window.location.hash = "#addNote";
