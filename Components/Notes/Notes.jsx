@@ -102,29 +102,19 @@ export default function Notes(props) {
     const items = allItems();
     setselectedId(items);
   }
-
   return (
     <>
       <button
-        className={styles.selectAll}
         tabIndex={-1}
-        style={{
-          pointerEvents: selectMode ? "auto" : "none",
-          opacity: selectMode ? "1" : "0",
-          marginTop: selectMode ? "70px" : "45px",
-        }}
         onClick={() => (selectedId.length > 1 ? clearSelect() : selectAll())}
+        className={`${styles.selectAll} ${selectMode ? styles.selecting : ""}`}
       >
         <p>{selectedId.length > 1 ? "Deselect All" : "Select All"}</p>
       </button>
       <div
-        style={{
-          marginTop: selectMode ? "calc(65px + 44px)" : "65px",
-          paddingTop: selectMode ? "7px" : "20px",
-        }}
         className={`${styles.cardContainer} ${
           activeNote ? styles.animateNotes : ""
-        }`}
+        }${selectMode ? styles.selecting : ""}`}
       >
         {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
         {notes?.map((note, index) => (
