@@ -14,7 +14,6 @@ export default function useSelect(notes) {
             items.push(id);
         }
         return items
-        // setselectedId(items);
     };
 
     return { allItems, selectLength, selectedId, setselectedId, clearSelect }

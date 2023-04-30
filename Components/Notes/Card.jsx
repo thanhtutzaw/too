@@ -57,7 +57,8 @@ export function Card({
     showAction,
     setShowAction,
   } = useContext(AppContext);
-
+  const checkRef = useRef(null);
+  const uncheckRef = useRef(null);
   function chooseSelectMode(e) {
     e.stopPropagation();
     setselectMode(true);
@@ -65,22 +66,12 @@ export function Card({
     setSelect(true);
     setShowAction("");
   }
-  const checkRef = useRef(null);
-  const uncheckRef = useRef(null);
   useEffect(() => {
     if (selectedId?.length === 0) {
       setselectMode(false);
       setSelect(false);
     }
-    // if (selectedId === id) {
-    //   setSelect(true);
-    // }
   }, [selectedId?.length, setselectMode]);
-  // useEffect(() => {
-  //   if (selectedId === id) {
-  //     setSelect(true);
-  //   }
-  // }, [id, selectedId]);
   useEscape(() => {
     if (!selectMode) return;
     setSelect(false);
@@ -114,7 +105,6 @@ export function Card({
       setselectedId([...selectedId, id]);
     }
   }
-  // const todoClass = `todo ${todo?.completed ? "checked" : ""} `;
   const cardActive = `${styles.card} ${
     activeNote === id ? styles.active : ""
   }  ${select ? styles.selected : ""} ${

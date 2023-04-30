@@ -37,7 +37,6 @@ function Searchbar(props) {
 }
 export default function Header({ user, notes }) {
   const input = useRef(null);
-
   const [showModal, setshowModal] = useState(false);
   const {
     setisSearching,

@@ -25,11 +25,7 @@ export default function AddButton({ activeNote, active, setactive }) {
     window.onpopstate = () => {
       history.pushState(null, document.title, location.href);
       if (!active) return;
-      if (exitWithoutSaving) {
-        addConfirmRef.current.showModal();
-      } else {
-        setactive(false);
-      }
+      exitWithoutSaving ? addConfirmRef.current.showModal() : setactive(false);
     };
     if (!active && !exitWithoutSaving) {
       router.replace("/", undefined, { scroll: false });
@@ -60,7 +56,7 @@ export default function AddButton({ activeNote, active, setactive }) {
   );
   const router = useRouter();
 
-  async function submitHandle() {
+  async function addHandle() {
     if (exitWithoutSaving) {
       setloading(true);
       try {
@@ -79,12 +75,6 @@ export default function AddButton({ activeNote, active, setactive }) {
       setactive((prev) => !prev);
     }
   }
-
-  // useEffect(() => {
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [active, exitWithoutSaving]);
-  // useEffect(() => {}, [active]);
   useEffect(() => {
     if (!(activeNote || active)) {
       document.body.style.overflow = "auto";
@@ -121,7 +111,7 @@ export default function AddButton({ activeNote, active, setactive }) {
           <ViewHeader
             loading={loading}
             exitHandle={exitHandle}
-            submitHandle={submitHandle}
+            submitHandle={addHandle}
           >
             {loading ? "Saving" : "Save"}
           </ViewHeader>

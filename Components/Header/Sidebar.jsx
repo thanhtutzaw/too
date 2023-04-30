@@ -14,7 +14,6 @@ function Setting(props) {
       modalHandle();
     }, 340);
   };
-  // const darkMode = theme !== "light" ? styles.darkAnimation : styles.darkIcon;
   const lightMode = `${styles.lightIcon} ${
     theme === "light" ? "" : styles.active
   }`;
@@ -68,7 +67,6 @@ function AccountHeader(props) {
 }
 export default function Sidebar({ setshowModal, theme, setTheme }) {
   const user = useAuthUser();
-  const [DarkMode, setDarkMode] = useState(false);
   const modalHandle = () => setshowModal((prevstate) => !prevstate);
   const [loading, setLoading] = useState(false);
   const signoutHandle = () => {
@@ -81,10 +79,10 @@ export default function Sidebar({ setshowModal, theme, setTheme }) {
   };
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
       exit={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0.5 }}
       className={styles.setting}
     >
       <div className={styles.closeBtn}>
