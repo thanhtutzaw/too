@@ -442,28 +442,6 @@
     opacity: 0;
   }
 } */
-.titleSpan,
-.textSpan {
-  position: absolute;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  pointer-events: none;
-}
-
-.titleSpan {
-  font-size: 1.3em;
-}
-
-.viewHeader {
-  padding: 0 1.3rem;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #efefef;
-}
-
 @keyframes scaleup {
   50% {
     width: 100%;
