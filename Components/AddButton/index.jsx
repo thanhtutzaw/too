@@ -1,6 +1,12 @@
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import useSound from "use-sound";
 import useEscape from "../../hooks/useEscape";
 import { app } from "../../utils/firebase";
@@ -11,8 +17,9 @@ import { addNote } from "./addNote";
 import s from "./index.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
+import { AppContext } from "../../context/AppContext";
 
-export default function AddButton({ activeNote, active, setactive }) {
+export default function AddButton() {
   const [loading, setloading] = useState(false);
   const [playOn] = useSound(checkSound, { volume: 0.1 });
   const [playOff] = useSound(uncheckSound, { volume: 0.1 });
@@ -20,7 +27,7 @@ export default function AddButton({ activeNote, active, setactive }) {
   const [textInput, settextInput] = useState("");
   const addConfirmRef = useRef(null);
   const exitWithoutSaving = titleInput !== "" || textInput !== "";
-
+  const { activeNote, active, setactive } = useContext(AppContext);
   useEffect(() => {
     window.onpopstate = () => {
       history.pushState(null, document.title, location.href);

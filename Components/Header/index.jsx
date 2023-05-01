@@ -39,6 +39,8 @@ export default function Header({ user, notes }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
   const {
+    theme,
+    setTheme,
     setisSearching,
     Search,
     setSearch,
@@ -62,7 +64,7 @@ export default function Header({ user, notes }) {
     setSearch("");
     input.current.blur();
   });
-  const { theme, setTheme } = useTheme();
+
   const searchCloseHandle = () => {
     setSearch("");
     input.current.focus();
@@ -75,7 +77,6 @@ export default function Header({ user, notes }) {
   }, [setShowAction, showAction]);
   const testUserPicture =
     "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
-  // const [float, setfloat] = useState(false);
   // useEffect(() => {
   //     const handleScroll = () => {
   //         const offset = 22;
@@ -92,14 +93,9 @@ export default function Header({ user, notes }) {
     <header>
       <AnimatePresence>
         {selectLength > 0 ? (
-          <SelectModal notes={notes} />
+          <SelectModal />
         ) : (
-          <motion.div
-            // initial={{ opacity: 0, rotateX: 60 }}
-            // animate={{ opacity: 1, rotateX: 0 }}
-            // transition={{ duration: 0.1 }}
-            className={styles.headerContainer}
-          >
+          <motion.div className={styles.headerContainer}>
             <Link href="/">
               <h1 className={styles.logo}>Too</h1>
             </Link>
@@ -118,7 +114,6 @@ export default function Header({ user, notes }) {
                 }
                 role="button"
                 aria-label="logout darkmode"
-                // tabIndex={4}
                 className={styles.mainProfile}
                 onClick={modalHandle}
                 whileTap={{ scale: 0.8 }}
@@ -131,7 +126,6 @@ export default function Header({ user, notes }) {
                   className={styles.profile}
                 />
               </motion.div>
-              {/* {theme} */}
               <AnimatePresence>
                 {showModal && (
                   <Sidebar
@@ -146,8 +140,6 @@ export default function Header({ user, notes }) {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* <button onClick={() => setselectedId([])}>Clear</button> */}
     </header>
   );
 }

@@ -9,10 +9,9 @@ import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
 
 export default function Notes(props) {
-  const { active, activeNote, setactiveNote, notes } = props;
+  const { notes } = props;
   const [totalHeight, settotalHeight] = useState(0);
   const [selectMode, setselectMode] = useState(false);
-
   useEffect(() => {
     let elements = document.querySelectorAll("#card");
 
@@ -44,8 +43,16 @@ export default function Notes(props) {
   //   // });
   // }
   const confirmModalRef = useRef(null);
-  const { setShowAction, allItems, setselectedId, selectedId, clearSelect } =
-    useContext(AppContext);
+  const {
+    activeNote,
+    active,
+    setactiveNote,
+    setShowAction,
+    allItems,
+    setselectedId,
+    selectedId,
+    clearSelect,
+  } = useContext(AppContext);
   const [titleInput, settitleInput] = useState("");
   const [textInput, settextInput] = useState("");
   const [playOn] = useSound(checkSound, { volume: 0.1 });

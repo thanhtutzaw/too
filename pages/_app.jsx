@@ -1,3 +1,4 @@
+import useTheme from "../hooks/useTheme";
 import "../styles/globals.css";
 import initAuth from "../utils/initAuth";
 import Head from "next/head";
@@ -6,6 +7,7 @@ initAuth();
 
 export default function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
+  useTheme();
   return getLayout(
     <>
       <Head>

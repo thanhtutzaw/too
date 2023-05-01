@@ -70,7 +70,6 @@ const Auth = () => {
           </span>
           <span>{emailLoading ? "Signing in..." : "Sign in as testUser"}</span>
         </button>
-        {/* <EmailAuth /> */}
       </div>
     </>
   );

@@ -3,16 +3,15 @@ import {
   useAuthUser,
   withAuthUserTokenSSR,
 } from "next-firebase-auth";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import AddButton from "../Components/AddButton";
 import Header from "../Components/Header";
 import Notes from "../Components/Notes";
 import { AppContext } from "../context/AppContext";
-export default function Home({ float }) {
-  const [active, setactive] = useState(false);
-  const [activeNote, setactiveNote] = useState("");
+export default function Home() {
   const user = useAuthUser();
   const { Search, notes } = useContext(AppContext);
+
   const searchedNotes = notes?.filter((note) => {
     if (Search) {
       return (
@@ -36,21 +35,9 @@ export default function Home({ float }) {
     <>
       {user.photoURL || user.email ? (
         <>
-          <Header notes={notes} float={float} user={user} />
-
-          <Notes
-            setactiveNote={setactiveNote}
-            activeNote={activeNote}
-            active={active}
-            notes={searchedNotes}
-          />
-
-          <AddButton
-            activeNote={activeNote}
-            active={active}
-            setactive={setactive}
-            user={user}
-          />
+          <Header user={user} />
+          <Notes notes={searchedNotes} />
+          <AddButton user={user} />
         </>
       ) : null}
     </>
