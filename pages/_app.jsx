@@ -14,7 +14,8 @@ export default function MyApp({ Component, pageProps }) {
           name="description"
           content="Note Taking App built with Next.js SSR and FireStore"
         />
-        <link rel="icon" href="favicon.ico" />
+        <link rel="icon" href="logo.svg" />
+        {/* <link rel="icon" href="favicon.ico" /> */}
       </Head>
       <Component {...pageProps} />
     </>

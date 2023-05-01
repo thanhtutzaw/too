@@ -164,7 +164,7 @@
   min-height: -webkit-fill-available;
   margin: 0 auto;
   transform: translateX(var(--max-width));
-  transition: all 0.4s ease-in-out, width 0s;
+  transition: all 0.4s ease-in-out;
   z-index: 100000;
   opacity: 0;
   visibility: hidden;

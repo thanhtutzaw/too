@@ -49,5 +49,9 @@ module.exports = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+
+    domains: ['images.unsplash.com', 'lh3.googleusercontent.com'],
+  }
 
 };

@@ -44,14 +44,8 @@ export default function Notes(props) {
   //   // });
   // }
   const confirmModalRef = useRef(null);
-  const {
-    showAction,
-    setShowAction,
-    allItems,
-    setselectedId,
-    selectedId,
-    clearSelect,
-  } = useContext(AppContext);
+  const { setShowAction, allItems, setselectedId, selectedId, clearSelect } =
+    useContext(AppContext);
   const [titleInput, settitleInput] = useState("");
   const [textInput, settextInput] = useState("");
   const [playOn] = useSound(checkSound, { volume: 0.1 });
@@ -101,8 +95,6 @@ export default function Notes(props) {
     }
   }, [activeNote, active]);
   useEffect(() => {
-    // console.log(activeNote);
-    // activeNote ? playOn() : playOff();
     if (activeNote || activeNote !== "") {
       if (editNote) {
         playOn();

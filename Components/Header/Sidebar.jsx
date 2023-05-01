@@ -45,7 +45,6 @@ function AccountHeader(props) {
   return (
     <div className={styles.grid}>
       <Image
-        unoptimized={true}
         src={
           user?.photoURL
             ? user.photoURL

@@ -369,15 +369,15 @@
   flex: 1;
   gap: 1rem;
   display: flex;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   flex-direction: column;
   justify-content: center;
 }
 .loginWrapper h1 {
-  position: absolute;
+  /* position: absolute;
   top: 25%;
   right: 0;
-  left: 0;
+  left: 0; */
   font-size: 1.8rem;
 }
 .loginWrapper a {

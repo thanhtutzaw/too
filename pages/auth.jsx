@@ -29,9 +29,11 @@ const Auth = () => {
   return (
     <>
       <div className={styles.loginWrapper}>
+        <Image width={150} height={150} alt="logo" src={"/logo.svg"} />
         <h1>
           Welcome to <Link href="https://github.com/thanhtutzaw/too">Too</Link>
         </h1>
+
         <div
           style={{
             opacity: emailLoading ? "0" : "1",
@@ -56,10 +58,8 @@ const Auth = () => {
             <Image
               className={styles.profile}
               alt="testuser profile"
-              referrerPolicy="no-referrer"
-              unoptimized={true}
-              width="20"
-              height="20"
+              width="25"
+              height="25"
               src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
             />
           </span>
