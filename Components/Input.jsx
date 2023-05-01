@@ -23,6 +23,7 @@ export default function Input({
         role="input"
         ref={titleRef}
         contentEditable
+        suppressContentEditableWarning={true}
         spellCheck="true"
         aria-label="title"
         onInput={() => settitleInput(titleRef.current.innerText)}
@@ -38,6 +39,7 @@ export default function Input({
       <p
         ref={textRef}
         contentEditable
+        suppressContentEditableWarning={true}
         aria-label="text"
         spellCheck="true"
         className={s.textView}

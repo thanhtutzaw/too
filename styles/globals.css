@@ -18,6 +18,30 @@
   --light-btn-active: gainsboro;
 }
 
+@keyframes activeAnimation {
+  from {
+    transform: translateX(var(--max-width));
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes exitActiveNote {
+  from {
+    transform: translateX(0px);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    transform: translateX(var(--max-width));
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 @media (prefers-reduced-motion) {
   :root {
     --theme-transition: none;

@@ -10,10 +10,9 @@ import Notes from "../Components/Notes";
 import { AppContext } from "../context/AppContext";
 export default function Home({ float }) {
   const [active, setactive] = useState(false);
-  const [activeNote, setactiveNote] = useState();
+  const [activeNote, setactiveNote] = useState("");
   const user = useAuthUser();
-  const {  Search, notes } =
-    useContext(AppContext);
+  const { Search, notes } = useContext(AppContext);
   const searchedNotes = notes?.filter((note) => {
     if (Search) {
       return (
@@ -32,13 +31,13 @@ export default function Home({ float }) {
       return { ...notes };
     }
   });
-  
+
   return (
     <>
       {user.photoURL || user.email ? (
         <>
           <Header notes={notes} float={float} user={user} />
-          
+
           <Notes
             setactiveNote={setactiveNote}
             activeNote={activeNote}

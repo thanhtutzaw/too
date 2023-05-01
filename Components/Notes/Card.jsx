@@ -120,13 +120,13 @@ export function Card({
           if (e.key === "Enter") {
             setactiveNote(id);
             if (activeNote === id) {
-              setactiveNote(null);
+              setactiveNote("");
             }
             e.currentTarget.click();
           }
           if (e.key !== "Escape") return;
           e.preventDefault();
-          setactiveNote(null);
+          setactiveNote("");
         }}
         onClick={(e) => {
           !selectMode && (window.location.hash = `#Note/${id}`);
@@ -134,7 +134,7 @@ export function Card({
           if (!selectMode) {
             setactiveNote(id);
             if (activeNote !== id) return;
-            setactiveNote(null);
+            setactiveNote("");
           } else {
             select ? checkRef.current?.click() : uncheckRef.current?.click();
           }

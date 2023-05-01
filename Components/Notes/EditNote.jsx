@@ -46,7 +46,7 @@ export default function EditNote({
   const closeEdit = useCallback(() => {
     viewContainerRef.current.style.position = "initial";
     viewContainerRef.current.style.inset = "initial";
-    setactiveNote(null);
+    setactiveNote("");
     setShowAction("");
   }, [setShowAction, setactiveNote, viewContainerRef]);
   const exitHandle = useCallback(
