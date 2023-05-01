@@ -29,7 +29,12 @@ const Auth = () => {
   return (
     <>
       <div className={styles.loginWrapper}>
-        <Image width={150} height={150} alt="logo" src={"/logo.svg"} />
+        <div className={styles.logo}>
+          <Image width={150} height={150} alt="logo" src={"/logo.svg"} />
+        </div>
+        {/* <div>
+          <Image width={150} height={150} alt="logo" src={"/logo.svg"} />
+        </div> */}
         <h1>
           Welcome to <Link href="https://github.com/thanhtutzaw/too">Too</Link>
         </h1>

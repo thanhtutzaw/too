@@ -369,15 +369,29 @@
   flex: 1;
   gap: 1rem;
   display: flex;
-  /* margin-top: 1rem; */
   flex-direction: column;
   justify-content: center;
 }
+.loginWrapper .logo {
+  animation: blur 1.5s forwards ease-in-out, pulse 0.2s forwards ease-in-out;
+}
+@keyframes blur {
+  0% {
+    filter: blur(120px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+@keyframes pulse {
+  50% {
+    scale: 1;
+  }
+  100% {
+    scale: 0.8;
+  }
+}
 .loginWrapper h1 {
-  /* position: absolute;
-  top: 25%;
-  right: 0;
-  left: 0; */
   font-size: 1.8rem;
 }
 .loginWrapper a {

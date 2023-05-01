@@ -405,14 +405,43 @@
   flex: 1;
   gap: 1rem;
   display: flex;
-  margin-top: 1rem;
   flex-direction: column;
   justify-content: center;
+  .logo {
+    // position: absolute;
+    // left: 41%;
+    // top: 22%;
+    animation: blur 1.5s forwards ease-in-out, pulse 0.2s forwards ease-in-out;
+  }
+  @keyframes blur {
+    0% {
+      filter: blur(120px);
+    }
+    50% {
+      // filter: blur(90px);
+      // scale: 1;
+    }
+    55% {
+      // scale: 0.8;
+    }
+    100% {
+      // scale: 0.9;
+      filter: blur(0px);
+    }
+  }
+  @keyframes pulse {
+    0% {
+    }
+    50% {
+      // filter: blur(90px);
+      scale: 1;
+    }
+
+    100% {
+      scale: 0.8;
+    }
+  }
   h1 {
-    position: absolute;
-    top: 25%;
-    right: 0;
-    left: 0;
     font-size: 1.8rem;
   }
   a {
