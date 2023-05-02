@@ -3,9 +3,8 @@
 Project is created with:
 * Next.js - SSR
 * Google Sign-in with [next-firebase-auth](https://www.npmjs.com/package/next-firebase-auth), [firebaseui](https://www.npmjs.com/package/firebaseui)
-* [use-sound](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/)
-* [React-Icons](https://www.npmjs.com/package/react-icons)
-* [Framer-Motion](https://www.framer.com/motion/)
+* [SASS - CSS with Superpowers](https://sass-lang.com/), [use-sound](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/)
+* [React-Icons](https://www.npmjs.com/package/react-icons), [Framer-Motion](https://www.framer.com/motion/)
 
 ## Features
 :ballot_box_with_check:	Google Sign-in and Test-User Account\
