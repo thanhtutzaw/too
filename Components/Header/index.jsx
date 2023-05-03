@@ -10,17 +10,14 @@ import SelectModal from "../Modal/SelectModal";
 import Sidebar from "./Sidebar";
 import useEscape from "../../hooks/useEscape";
 function Searchbar(props) {
-  const { searchCloseHandle, setisSearching, Search, setSearch, input, user } =
-    props;
-
+  const { searchCloseHandle, setisSearching, input, user } = props;
+  const { Search, setSearch } = useContext(AppContext);
   return (
     <div className={styles.searchBar}>
       <input
         onBlur={() => setisSearching(false)}
         onFocus={() => setisSearching(true)}
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
+        onChange={(e) => setSearch(e.target.value)}
         ref={input}
         value={Search}
         className={styles.searchInput}
@@ -35,19 +32,11 @@ function Searchbar(props) {
     </div>
   );
 }
-export default function Header({ user, notes }) {
+export default function Header({ user }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
-  const {
-    theme,
-    setTheme,
-    setisSearching,
-    Search,
-    setSearch,
-    selectLength,
-    showAction,
-    setShowAction,
-  } = useContext(AppContext);
+  const { setisSearching, selectLength, showAction, setShowAction } =
+    useContext(AppContext);
   useEffect(() => {
     function handleSearch(e) {
       if ((e.keyCode == 70 && (e.ctrlKey || e.metaKey)) || e.keyCode == 191) {
@@ -103,8 +92,6 @@ export default function Header({ user, notes }) {
               user={user}
               setisSearching={setisSearching}
               input={input}
-              Search={Search}
-              setSearch={setSearch}
               searchCloseHandle={searchCloseHandle}
             />
             <div>
@@ -128,12 +115,7 @@ export default function Header({ user, notes }) {
               </motion.div>
               <AnimatePresence>
                 {showModal && (
-                  <Sidebar
-                    theme={theme}
-                    setTheme={setTheme}
-                    user={user}
-                    setshowModal={setshowModal}
-                  />
+                  <Sidebar user={user} setshowModal={setshowModal} />
                 )}
               </AnimatePresence>
             </div>

@@ -11,6 +11,7 @@ export default function AppProvider({ children, notes }) {
   const { theme, setTheme } = useTheme();
   const { allItems, selectLength, selectedId, setselectedId, clearSelect } =
     useSelect(notes);
+  
   return (
     <AppContext.Provider
       value={{

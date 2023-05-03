@@ -8,10 +8,10 @@ import styles from "./Notes.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
 
-export default function Notes(props) {
-  const { notes } = props;
+export default function Notes() {
   const [totalHeight, settotalHeight] = useState(0);
   const [selectMode, setselectMode] = useState(false);
+
   useEffect(() => {
     let elements = document.querySelectorAll("#card");
 
@@ -44,6 +44,8 @@ export default function Notes(props) {
   // }
   const confirmModalRef = useRef(null);
   const {
+    notes,
+    Search,
     activeNote,
     active,
     setactiveNote,
@@ -53,6 +55,24 @@ export default function Notes(props) {
     selectedId,
     clearSelect,
   } = useContext(AppContext);
+  const searchedNotes = notes?.filter((note) => {
+    if (Search) {
+      return (
+        note.title
+          .toLowerCase()
+          .replace(/ /g, "")
+          .includes(Search.toLowerCase().replace(/ /g, "")) ||
+        note.title.toLowerCase().includes(Search.toLowerCase()) ||
+        note.text.toLowerCase().includes(Search.toLowerCase()) ||
+        note.text
+          .toLowerCase()
+          .replace(/ /g, "")
+          .includes(Search.toLowerCase().replace(/ /g, ""))
+      );
+    } else {
+      return { ...notes };
+    }
+  });
   const [titleInput, settitleInput] = useState("");
   const [textInput, settextInput] = useState("");
   const [playOn] = useSound(checkSound, { volume: 0.1 });
@@ -131,7 +151,7 @@ export default function Notes(props) {
         }${selectMode ? styles.selecting : ""}`}
       >
         {/* <div  style={{height:`${totalHeight + 190}px`}} > */}
-        {notes?.map((note, index) => (
+        {searchedNotes?.map((note, index) => (
           <Card
             selectMode={selectMode}
             setselectMode={setselectMode}

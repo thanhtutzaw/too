@@ -1,18 +1,29 @@
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import {
   AuthAction,
+  useAuthUser,
   withAuthUser,
   withAuthUserTokenSSR,
 } from "next-firebase-auth";
+import { useContext } from "react";
+import AddButton from "../Components/AddButton/index.jsx";
+import Header from "../Components/Header/index.jsx";
 import Layout from "../Components/Layout.jsx";
-import AppProvider from "../context/AppContext.jsx";
+import Notes from "../Components/Notes/Notes.jsx";
+import AppProvider, { AppContext } from "../context/AppContext.jsx";
 import { db, postToJSON } from "../utils/firebase.js";
-import Home from "./Home.jsx";
 const Index = (props) => {
   const { notes } = props;
+  const user = useAuthUser();
   return (
     <AppProvider notes={notes}>
-      <Home />
+      {user.photoURL || user.email ? (
+        <>
+          <Header user={user} />
+          <Notes />
+          <AddButton />
+        </>
+      ) : null}
     </AppProvider>
   );
 };
