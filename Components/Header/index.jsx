@@ -35,8 +35,14 @@ function Searchbar(props) {
 export default function Header({ user }) {
   const input = useRef(null);
   const [showModal, setshowModal] = useState(false);
-  const { setisSearching, selectLength, showAction, setShowAction } =
-    useContext(AppContext);
+  const {
+    Search,
+    setSearch,
+    setisSearching,
+    selectLength,
+    showAction,
+    setShowAction,
+  } = useContext(AppContext);
   useEffect(() => {
     function handleSearch(e) {
       if ((e.keyCode == 70 && (e.ctrlKey || e.metaKey)) || e.keyCode == 191) {
