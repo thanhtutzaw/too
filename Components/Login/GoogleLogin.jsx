@@ -30,7 +30,9 @@ const GoogleLogin = () => {
     }
   }, []);
   return (
-    <div>
+    <div
+    style={{ height: "80px"}}
+    >
       {renderAuth ? (
         <StyledFirebaseAuth
           uiConfig={firebaseAuthConfig}

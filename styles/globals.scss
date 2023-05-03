@@ -62,7 +62,17 @@
     margin-right: 0;
   }
 }
-
+.firebaseui-idp-list {
+  margin: 0 !important;
+}
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 main {
   user-select: none;
   min-height: 100dvh;

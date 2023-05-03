@@ -408,6 +408,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  .googleLogin,
+  .loginBtn,
+  span {
+    // animation: fadeIn 1s forwards ease-in;
+  }
+  
   .logo {
     animation: blur 1.5s forwards ease-in;
   }
