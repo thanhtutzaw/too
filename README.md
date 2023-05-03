@@ -16,6 +16,7 @@ Project is created with:
 :ballot_box_with_check:	Search Highlights\
 :ballot_box_with_check:	Dropdown Actions
 
+https://user-images.githubusercontent.com/71011043/235898592-195ad56b-b85d-43ba-b0cc-0122e7f6fba1.mp4
 ## Demo
 [✨ too.netlify.app](https://too.netlify.app)
 
