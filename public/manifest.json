@@ -1,0 +1,20 @@
+{
+  "name": "Too",
+  "short_name": "Too",
+  "description": "Note-taking app build with Nextjs and Firebase",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1ED317",
+  "theme_color": "#1ED317",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any"
+    },
+    {
+      "src": "/logo512.svg",
+      "sizes": "512x512"
+    }
+  ]
+}
