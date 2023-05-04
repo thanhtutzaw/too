@@ -37,6 +37,7 @@
   pointer-events: none;
   opacity: 0;
   margin-top: 45px;
+  font-size: 1rem;
 }
 .selectAll.selecting {
   opacity: 1;
@@ -123,6 +124,7 @@
   border-radius: 100px;
   padding: 3px;
   background-color: transparent;
+  font-size: 1rem;
 }
 .header > button:not(.check) {
   color: var(--text-black);
@@ -159,7 +161,7 @@
   min-height: -webkit-fill-available;
   margin: 0 auto;
   transform: translateX(var(--max-width));
-  transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out, width 0s;
   z-index: 100000;
   opacity: 0;
   visibility: hidden;
@@ -229,6 +231,7 @@
   background-color: white;
   box-shadow: 0 0 8px 1px rgba(159, 159, 159, 0.32);
   transition: all 0.19s ease-in-out;
+  font-size: 1.2rem;
 }
 .action > button:hover {
   padding: 8px;

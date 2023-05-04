@@ -255,9 +255,9 @@ button,
 .submitBtn {
   border: 0;
   outline: 0;
-  width: 90px;
   display: flex;
-  padding: 0.5rem;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
   color: #19e062;
   align-items: center;
   border-radius: 0.5rem;
