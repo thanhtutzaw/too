@@ -7,7 +7,10 @@ const FullPageLoader = () => {
   return (
     <>
       <div className={styles.loginWrapper}>
-        <div className={styles.logo} style={{ opacity: "0" }}>
+        <div
+          className={styles.logo}
+          style={{ opacity: "0 !important", visibility: "hidden" }}
+        >
           <Image width={150} height={150} alt="logo" src={"/logo.svg"} />
         </div>
 
