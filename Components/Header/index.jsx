@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { AppContext } from "../../context/AppContext";
-import useTheme from "../../hooks/useTheme";
 import styles from "../../styles/Home.module.css";
 import SelectModal from "../Modal/SelectModal";
 import Sidebar from "./Sidebar";

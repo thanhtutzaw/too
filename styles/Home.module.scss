@@ -408,26 +408,29 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .googleLogin,
-  .loginBtn,
-  span {
-    // animation: fadeIn 1s forwards ease-in;
-  }
-  
+
   .logo {
+    opacity: 0;
     animation: blur 1.5s forwards ease-in;
   }
   @keyframes blur {
     0% {
+      opacity: 0;
       filter: blur(200px);
     }
+    15% {
+      opacity: 1;
+    }
     60% {
+      opacity: 1;
       filter: blur(150px);
     }
     85% {
+      opacity: 1;
       filter: blur(10px);
     }
     100% {
+      opacity: 1;
       filter: blur(0px);
     }
   }
