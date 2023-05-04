@@ -315,6 +315,7 @@
   justify-content: center;
   max-width: 193px;
   gap: 8px;
+  height: 40px;
 }
 .searchBar:focus-within {
   background: rgb(255, 255, 255);
@@ -327,10 +328,11 @@
 .searchBar:focus-within .searchCloseBtn {
   opacity: 1;
   visibility: visible;
-  color: black !important;
+  color: black;
 }
-.searchBar input {
-  color: white;
+.searchBar input,
+.searchBar .searchInput {
+  color: var(--text-black);
 }
 
 @media screen and (min-width: 850px) {
@@ -354,6 +356,7 @@
   outline: none;
   width: 100%;
   padding: 12px 0;
+  font-size: 1rem;
 }
 
 .signinBtn {
