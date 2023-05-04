@@ -30,7 +30,6 @@
   padding: 0.5rem 0.9rem;
   position: fixed;
   z-index: 1000;
-  background-color: var(--light-card);
   max-width: var(--max-width);
   width: 100vw;
   outline: 0;

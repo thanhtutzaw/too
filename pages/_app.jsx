@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }) {
           content="Note Taking App built with Next.js SSR and FireStore"
         />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#90cdf4" />
+        <meta name="theme-color" content="#ffffff" />
         <link rel="apple-touch-icon" href="/logo.svg" />
         <meta name="apple-mobile-web-app-status-bar" content="#90cdf4" />
         <link rel="icon" href="logo.svg" />
