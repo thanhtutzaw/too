@@ -113,8 +113,9 @@ export default function Header({ user }) {
                 <Image
                   src={user?.photoURL ? user.photoURL : testUserPicture}
                   alt={""}
-                  width="40"
-                  height="40"
+                  width={50}
+                  height={50}
+                  style={{ objectFit: "cover", width: "100%", height: "50px" }}
                   className={styles.profile}
                 />
               </motion.div>
