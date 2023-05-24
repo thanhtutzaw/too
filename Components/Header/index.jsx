@@ -110,12 +110,12 @@ export default function Header({ user }) {
                 onClick={modalHandle}
                 whileTap={{ scale: 0.8 }}
               >
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={user?.photoURL ? user.photoURL : testUserPicture}
                   alt={""}
-                  width={50}
-                  height={50}
-                  style={{ objectFit: "cover", width: "100%", height: "50px" }}
+                  width={40}
+                  height={40}
                   className={styles.profile}
                 />
               </motion.div>

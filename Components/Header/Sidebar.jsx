@@ -46,10 +46,11 @@ function AccountHeader(props) {
   const { user } = props;
   return (
     <div className={styles.grid}>
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         width={50}
         height={50}
-        style={{ objectFit: "cover", width: "100%", height: "50px" }}
+        // style={{ objectFit: "cover", width: "100%", height: "50px" }}
         src={
           user?.photoURL
             ? user.photoURL
