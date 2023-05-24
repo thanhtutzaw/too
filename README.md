@@ -6,6 +6,7 @@ Project is created with:
 * [SASS - CSS with Superpowers](https://sass-lang.com/), [use-sound](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/)
 * [React-Icons](https://www.npmjs.com/package/react-icons), [Framer-Motion](https://www.framer.com/motion/)
 
+<img src="public/logo512.svg" width="100" height="100" alt="logo512" title="logo512" /> <img src="public/logo.svg" width="100" height="100" alt="logo" title="logo" />
 ## Features
 :ballot_box_with_check:	Google Sign-in and Test-User Account\
 :ballot_box_with_check:	Fetch Notes Data with Server Sider Rendering\
