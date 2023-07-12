@@ -188,7 +188,9 @@
   overflow: hidden;
   resize: none;
 }
-
+.textView{
+  white-space: pre;
+}
 .titleView:focus,
 .textView:focus {
   outline: none;
