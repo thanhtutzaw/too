@@ -10,9 +10,9 @@ Project is created with:
 
 ## Features
 :ballot_box_with_check:	Google Sign-in and Test-User Account\
-:ballot_box_with_check:	Fetch Notes Data with Server Sider Rendering\
+:ballot_box_with_check:	Fetch Notes Data with Server Side Rendering\
 :ballot_box_with_check:	Refresh SSR data without reload\
-:ballot_box_with_check:	Delete Muliple Notes and Single Note\
+:ballot_box_with_check:	Delete Multiple Notes and Single Note\
 :ballot_box_with_check:	Create and Update Note\
 :ballot_box_with_check:	Confirm Dialog for exitWithoutSaving\
 :ballot_box_with_check:	Search Highlights\
