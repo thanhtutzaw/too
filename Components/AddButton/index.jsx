@@ -9,7 +9,6 @@ import React, {
 } from "react";
 import useSound from "use-sound";
 import useEscape from "../../hooks/useEscape";
-import { app } from "../../utils/firebase";
 import ViewHeader from "../Header/ViewHeader";
 import Input from "../Input";
 import AddConfirm from "./AddConfirm";
@@ -18,6 +17,7 @@ import s from "./index.module.css";
 import uncheckSound from "/public/disable-sound.mp3";
 import checkSound from "/public/enable-sound.mp3";
 import { AppContext } from "../../context/AppContext";
+import app from "../../utils/firebase";
 
 export default function AddButton() {
   const [loading, setloading] = useState(false);
