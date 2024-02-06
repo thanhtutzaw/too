@@ -10,6 +10,16 @@ const nextConfig = {
 module.exports = nextConfig
 
 module.exports = {
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: 'https://toodemo.vercel.app',
+        permanent: true,
+      },
+    ];
+  },
+
   images: {
     domains: ['images.unsplash.com'],
     // domains: ['lh3.googleusercontent.com'],
